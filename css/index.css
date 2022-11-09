@@ -133,6 +133,7 @@ nav li:hover ul.sub_menu{
 /*Phần article*/
 article{
     font-weight: bold;
+    margin: 10px 0px;
 }
 /*Phần footer*/
 footer .footer_back{
