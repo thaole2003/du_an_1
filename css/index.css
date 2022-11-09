@@ -98,10 +98,11 @@ nav ul li a:hover{
 nav ul.sub_menu{
     position: absolute;
     background-color: #ffffff;
-    width: 1549px;
+    width: 1153px;
     display: none;
-    margin-left: -255px;
+    margin-left: -89px;
     text-align: left;
+    z-index: 1;
 }
 nav ul.sub_menu>.vien{
     margin-left: 15px;
@@ -118,9 +119,11 @@ nav ul.sub_menu>.vien>li>a:hover{
 }
 nav ul.sub_menu .vien{
     width: 1300px;
+    width: 100%;
 }
 nav ul.sub_menu li{
-    padding-left: 155px;
+    padding-left: 0px;
+
 }
 nav ul.sub_menu a{
     color: #333;
@@ -132,14 +135,172 @@ nav li:hover ul.sub_menu{
 }
 /*Phần article*/
 article{
-    font-weight: bold;
     margin: 10px 0px;
+}
+article .banner{
+    width: 100%;
+}
+article .banner table{
+    width: 100%;
+}
+article .banner table tr td .item_1 .img img{
+    width: 100%;
+    height: 200px;
+}
+article .banner table tr td .item_2 .img img{
+    width: 100%;
+    height: 410px;
+}
+.banner a{
+    text-decoration: none;
+    color: white;
+}
+article .banner .img{
+    position: relative;
+}
+article .banner .img img{
+    width: 100%;
+}
+article .banner .img .ngay_xb{
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    background-color: #ed9c56;
+    padding: 5px 5px;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}
+article .banner .img .text{
+    position: absolute;
+    position: absolute;
+    bottom: 3%;
+    left: 3%;
+    padding: 5px 5px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+/*Truyện hot*/
+article .truyen_hot h3{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: rgb(255, 64, 64);
+}
+article .truyen_hot h3 i{
+    margin-right: 5px;
+}
+article .truyen_hot .rol a{
+    text-decoration: none;
+    color: #000;
+}
+article .truyen_hot .rol a:hover{
+    color: rgb(1, 204, 204);
+}
+article .truyen_hot .rol{
+    width: 100%;
+}
+article .truyen_hot .rol .col{
+    float: left;
+    width: 20%;
+}
+article .truyen_hot .rol .col .product{
+    position: relative;
+}
+article .truyen_hot .rol .col .product .img img{
+    width: 100%;
+    border-radius: 16px;
+    padding: 10px 10px;
+}
+article .truyen_hot .rol .col .product .ngay_update{
+    position: absolute;
+    top: 5%;
+    left: 7%;
+    border-radius: 5px;
+    background-color: #ed9c56;
+}
+article .truyen_hot .rol .col .product .ngay_update h5{
+    padding: 5px 5px;
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 400;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+article .truyen_hot .rol .col .product .text{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+/*Truyện*/
+article .truyen h3{
+    margin: 20px 0px;
+    color: rgb(25, 235, 235);
+}
+article .truyen h3 i{
+    margin-right: 10px;
+}
+article .truyen a{
+    text-decoration: none;
+    color: #000;
+}
+article .truyen a:hover{
+    color: rgb(1, 204, 204);
+}
+article .truyen .col{
+    position: relative;
+    float: left;
+    width: 25%;
+}
+article .truyen .col .img{
+    text-align: center;
+}
+article .truyen .col .img img{
+    width: 100%;
+    border-radius: 25px;
+    padding: 15px 15px;
+}
+article .truyen .col .text .ngay_update{
+    position: absolute;
+    top: 6%;
+    left: 8%;
+    background-color: #ed9c56;
+    padding: 5px 5px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: 100;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+article .truyen .text h4{
+    text-align: center;
+    margin-top: -12px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+/*Trang 1 2 3 ..... 5 6 7*/
+article .trang{
+    text-align: center;
+    margin: 30px 0px;
+}
+article .trang a{
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-radius: 40px;
+    border: 1px solid #ccc;
+}
+article .trang a:hover{
+    background-color: #000;
+    color: #ffffff;
 }
 /*Phần footer*/
 footer .footer_back{
     display: grid;
     grid-template-columns: repeat(2,1fr);
     margin-top: 10px;
+    margin-bottom: 20px;
 }
 footer .footer_back .left .img img{
     width: 20%;
