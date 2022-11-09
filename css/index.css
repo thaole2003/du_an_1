@@ -165,13 +165,13 @@ nav li:hover ul.sub_menu {
 
 
 /*Phần article*/
+article{
+    margin: 0px 0px;
 
-article {
-    margin: 10px 0px;
-}
 
 article .banner {
     width: 100%;
+    margin-top: 10px;
 }
 
 article .banner table {
@@ -367,6 +367,92 @@ article .trang a:hover {
     color: #ffffff;
 }
 
+/*Chi tiết truyện*/
+article .nen{
+    background-color: #fff;
+    padding: 15px;
+}
+article .nen .trangchu_phim{
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+article .nen .trangchu_phim a{
+    text-decoration: none;
+    color: #000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+}
+article .nen .trangchu_phim a:hover{
+    color: cyan;
+}
+article .col .product .left{
+    float: left;
+}
+article .col .product .left .img{
+    margin-right: 20px;
+}
+article .col .product .left .img img{
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px gray;
+}
+article .col .product .right{
+    display: block;
+}
+article .col .product .right h2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 31px;
+    margin-bottom: 10px;
+}
+article .col .product .right table tr{
+    height: 25px;
+}
+article .col .product .right table tr td i{
+    width: 20px;
+}
+article .col .product .right .loai_truyen{
+    background-color: red;
+    width: 1200px;
+}
+article .col .product .right .loai_truyen a{
+    padding: 5px 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    float: left;
+    margin-top: 10px;
+    margin-right: 5px;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    background-color: #f18121;
+    border: 1px solid #f18121;
+}
+article .col .product .right .loai_truyen a:hover{
+    background-color: #ffffff;
+    color: #f18121;
+    border: 1px solid #f18121;
+}
+article .col .product .chon{
+    margin-left: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+article .col .product .chon a{
+    padding: 5px 5px;
+    margin-right: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    background-color: #45daf4;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #ffffff;
+    border: 1px solid #45daf4;
+}
+article .col .product .chon a:hover{
+    background-color: #ffffff;
+    color: #45daf4;
+    border: 1px solid #45daf4;
+}
 
 /*Phần footer*/
 
@@ -396,6 +482,9 @@ footer .footer_back .right {
 
 /*Phần chung cho web*/
 
+.kc{
+    width: 70px;
+}
 .vien_footer {
     width: 100%;
     height: 5px;
