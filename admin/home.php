@@ -15,7 +15,7 @@
             <li>Thống kê - Thống kê số liệu của website</li>
         </div>
         <div class="back_website">
-            <a href="../index.html">Quay về trang web</a>
+            <a href="../index.php">Quay về trang web</a>
         </div>
     </div>
 </div>
