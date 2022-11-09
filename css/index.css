@@ -473,6 +473,26 @@ article .col .product .chon a:hover {
     border: 1px solid #45daf4;
 }
 
+article .gioi_thieu h3{
+    margin-top: 10px;
+    color: #ff7700;
+}
+article .gioi_thieu h3 i{
+    margin-right: 10px;
+}
+article .gioi_thieu p{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    margin-top: 5px;
+    color: rgb(71, 71, 71);
+}
+article .binh_luan h3{
+    margin-top: 10px;
+    color: #ff7700;
+}
+article .binh_luan h3 i{
+    margin-right: 10px;
+}
 
 /*Phần footer*/
 
