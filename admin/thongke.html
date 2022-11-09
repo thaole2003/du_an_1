@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/index.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!--Phần Header-->
+        <header>
+            <div class="up">
+                <div class="left">
+                    <a href="#">
+                        <div class="img"><img src="../img/logo.png" alt=""></div>
+                    </a>
+                </div>
+
+                <div class="right">
+                    <!--Đăng ký - Đăng nhập-->
+                    <form action="#">
+                        <a href="#"><input type="submit" value="Đăng ký"></a>
+                        <a href="#"><input type="submit" value="Đăng nhập"></a>
+                    </form>
+                </div>
+                <div class="clear"></div>
+            </div>
+    </div>
+    <div class="container">
+        <div class="bg-orange-400">
+            <h1 class="p-4 font-medium text-2xl text-white">Quản trị website</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="flex">
+            <!-- nav  -->
+            <nav class="text-center p-4 mt-4 bg-orange-400 max-h-max w-[200px] ">
+                <ul>
+                    <li class="my-2"><a class="p-2 rounded-lg px-4 font-medium  " href="">Home</a></li>
+                    <li class="my-2"><a class="p-2 rounded-lg px-4 font-medium " href="loai.html">Loại</a></li>
+                    <li class="my-2"><a class="p-2 rounded-lg px-4 font-medium " href="comic.html">Truyện</a></li>
+                    <li class="my-2"><a class="p-2 rounded-lg px-4 font-medium " href="users.html">Người dùng</a></li>
+                    <li class="my-2"><a class="p-2 rounded-lg px-4 font-medium " href="comment.html">Bình luận</a></li>
+                    <li class="my-2"><a class="p-2 rounded-lg px-4 font-medium " href="thongke.html">Thống kê</a></li>
+                </ul>
+            </nav>
+            <!-- content  -->
+            <div class="py-4 w-full">
+                <div class="bg-red-300">
+                    <h1 class="text-xl font-medium p-4">Người dùng</h1>
+                </div>
+                <div class="p-4">
+                    <table class="table-auto w-full">
+                        <thead class="text-xl border-2">
+                            <tr class="bg-red-200 ">
+                                <th class="p-2 border-2">Mã loại</th>
+                                <th class="p-2 border-2">Tên loại</th>
+                                <th class="p-2 border-2">Số lượng</th>
+                                <th class="p-2 border-2">View</th>
+                               
+                                <th class="p-2 border-2">View thấp nhất</th>
+                                <th class="p-2 border-2">View trung bình</th>
+                                <th class="p-2 border-2">View cao nhất</th>
+                                <th class="p-2 border-2">Like</th>
+                                <th class="p-2 border-2">Like thấp nhất</th>
+                                <th class="p-2 border-2">Like trung bình</th>
+                                <th class="p-2 border-2">Like cao nhất</th>
+
+                                
+
+                            </tr>
+                        </thead>
+                        <tbody class="font-medium text-lg border-2">
+                            <tr class="text-center  ">
+                                <td class="p-2 border-2 border-solid ">1</td>
+                                <td class="p-2 border-2 border-solid ">Truyện cười</td>
+                                <td class="p-2 border-2 border-solid ">6</td>
+                                <td class="p-2 border-2 border-solid">59</td>
+                                <td class="p-2 border-2 border-solid ">15</td>
+                                <td class="p-2 border-2 border-solid ">19</td>
+                                <td class="p-2 border-2 border-solid">32</td>
+                                <td class="p-2 border-2 border-solid ">89</td>
+                                <td class="p-2 border-2 border-solid ">22</td>
+                                <td class="p-2 border-2 border-solid ">30</td>
+                                <td class="p-2 border-2 border-solid ">42</td>
+
+                                
+                            </tr>
+                           
+                           
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-4">
+                    <button
+                        class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"
+                        ><a href="">Xem biểu đồ</a></button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
