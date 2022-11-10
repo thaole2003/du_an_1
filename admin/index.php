@@ -1,14 +1,15 @@
 <?php
-    include "header.php";
-    require_once "../DAO/pdo.php";
-    require_once "../DAO/loai.php";
-    
-    //Controller
-    if(isset($_GET['act'])){
-        $act = $_GET['act'];
-        switch($act){
+include "header.php";
+require_once "../DAO/pdo.php";
+require_once "../DAO/loai.php";
+
+//Controller
+if (isset($_GET['act'])) {
+    $act = $_GET['act'];
+    switch ($act) {
             //Controller danh mục
             //add loại
+
             case 'add_loai':
                 $is_valid = true;
                 $list_loai=load_all_loai();
@@ -30,18 +31,28 @@
                 include "danh_muc/addloai.php";
                 break; 
             //list loại
-            case 'list_loai':
-                $list_all_loai = load_all_loai();
-                include "danh_muc/listcategories.php";
-                break;  
+        case 'list_loai':
+            $list_all_loai = load_all_loai();
+            include "danh_muc/listcategories.php";
+            break;
             // sua loai
-            case 'sua_loai':
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    $id = $_GET['id'];
-                    $loai_one = load_one_loai($id);
-                }
-                include "danh_muc/editcategory.php";
-                break; 
+
+        case 'sua_loai':
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $id = $_GET['id'];
+                $loai_one = load_one_loai($id);
+            }
+            include "danh_muc/editcategory.php";
+            break;
+            //Cập nhật
+        case 'cap_nhat_loai':
+            if (isset($_POST['cap_nhat'])) {
+                $name = $_POST['name'];
+                $id = $_POST['id'];
+                update_loai($id,$name);
+            }
+            $list_all_loai = load_all_loai();
+            include "danh_muc/listcategories.php";
             //xóa loại
             case 'xoa_loai';
             if(isset($_GET['id'])){
@@ -52,14 +63,15 @@
                 $thong_bao='Xóa thành công';
 
             } 
+
             break;
             //ngược lại không tồn tại act thì include "home.php"; 
-            default:
-                include "home.php";
-                break;
-        }
-    }else{
-        include "home.php";
+        default:
+            include "home.php";
+            break;
     }
+} else {
+    include "home.php";
+}
 
-    include "footer.php";
+include "footer.php";

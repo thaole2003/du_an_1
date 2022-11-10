@@ -10,8 +10,8 @@ function delete_loai_hang($id){
     $sql = "delete from category where id =".$id;
     pdo_execute($sql);
 }
-function update_loai_hang($ma_loai,$ten_loai){
-    $sql = "update loai_hang set ten_loai='$ten_loai' where ma_loai = ".$ma_loai;
+function update_loai($id,$name){
+    $sql = "update category set name='$name' where id = '$id'";
     pdo_execute($sql);
 }
 function load_all_loai(){
@@ -23,7 +23,7 @@ function load_all_loai(){
 }
 
 function load_one_loai($id){
-    $sql = "select * from category where id = ".$id;
+    $sql = "select * from category where id = '$id'";
     $lh = pdo_query_one($sql);
     return $lh;
 }
