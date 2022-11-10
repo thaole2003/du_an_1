@@ -1,6 +1,8 @@
 <?php
     include "header.php";
-
+    require_once "../DAO/pdo.php";
+    require_once "../DAO/loai.php";
+    
     //Controller
     if(isset($_GET['act'])){
         $act = $_GET['act'];
@@ -24,6 +26,18 @@
             //Controller thống kê
             case 'list_tk':
                 include "thong_ke/thongke.php";
+                break;   
+            //add loai
+            case 'add_loai':
+                if(isset($_POST['btn-add'])){
+                    $ten_loai=$_POST['name-loai'];
+                   insert_loai_hang($ten_loai);
+                }
+                include "danh_muc/addloai.php";
+                break;   
+            // sua loai
+            case 'edit_loai':
+                include "danh_muc/editcategory.php";
                 break;   
             default:
                 include "home.php";

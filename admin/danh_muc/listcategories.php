@@ -21,7 +21,7 @@
                     <td class="p-2 border-2 border-solid ">
                         <button
                             class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 mr-2"><a
-                                href="editcategory.html">Sửa</a></button>
+                                href="index.php?act=edit_loai">Sửa</a></button>
                         <button
                             class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ml-2">Xóa</button>
                     </td>
@@ -82,7 +82,7 @@
     <div class="p-4">
         <button
             class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"><a
-                href="loai.html">Thêm</a></button>
+                href="index.php?act=add_loai">Thêm</a></button>
 
     </div>
 </div>
