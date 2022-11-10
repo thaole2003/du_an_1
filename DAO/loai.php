@@ -1,6 +1,6 @@
 <?php 
  function insert_loai_hang($ten_loai){
-    $sql = "insert into loai_hang(ten_loai) values('$ten_loai')";
+    $sql = "insert into category(name) values('$ten_loai')";
     pdo_execute($sql);
 }
 

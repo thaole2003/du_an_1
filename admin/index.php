@@ -31,7 +31,8 @@
             case 'add_loai':
                 if(isset($_POST['btn-add'])){
                     $ten_loai=$_POST['name-loai'];
-                   insert_loai_hang($ten_loai);
+                    insert_loai_hang($ten_loai);
+                    $thong_bao = "Thêm mới thành công";
                 }
                 include "danh_muc/addloai.php";
                 break;   
@@ -48,4 +49,3 @@
     }
 
     include "footer.php";
-?>
