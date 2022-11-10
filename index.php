@@ -29,5 +29,4 @@
     }else{
         include "views/header_home_footer/home.php";
     }
-
     include "views/header_home_footer/footer.php";
