@@ -12,14 +12,14 @@ function update_loai_hang($ma_loai,$ten_loai){
     $sql = "update loai_hang set ten_loai='$ten_loai' where ma_loai = ".$ma_loai;
     pdo_execute($sql);
 }
-function load_all_loai_hang(){
-    $sql = "select * from loai_hang order by ma_loai desc";
-    $list_loai_hang = pdo_query($sql);
-    return $list_loai_hang;
+function load_all_loai(){
+    $sql = "select * from category order by id desc";
+    $list_loai = pdo_query($sql);
+    return $list_loai;
 }
 
-function load_one_loai_hang($id){
-    $sql = "select * from loai_hang where ma_loai = ".$id;
+function load_one_loai($id){
+    $sql = "select * from category where id = ".$id;
     $lh = pdo_query_one($sql);
     return $lh;
 }
