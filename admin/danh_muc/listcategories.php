@@ -18,22 +18,21 @@
                 extract($loai_all);
                 $sua_loai = "index.php?act=sua_loai&id=" . $id;
                 $xoa_loai = "index.php?act=xoa_loai&id=" . $id;
-
-                echo '
+            ?>
+            
                 <tbody class="font-medium text-lg border-2">
                     <tr class="text-center  ">
-                        <td class="p-2 border-2 border-solid ">'.$id.'</td>
-                        <td class="p-2 border-2 border-solid ">'.$name.'</td>
+                        <td class="p-2 border-2 border-solid "><?php echo $id ?></td>
+                        <td class="p-2 border-2 border-solid "><?php echo $name ?></td>
                         <td class="p-2 border-2 border-solid ">8</td>
                         <td class="p-2 border-2 border-solid ">
                             <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 mr-2"><a href="'.$sua_loai.'">Sửa</a></button>
-                            <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ml-2"><a href="'.$xoa_loai.'">Xóa</a></button>
+                            <button onclick="del('<?php echo $xoa_loai?>')"   class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ml-2">Xóa</button>
                         </td>
                     </tr>
                 </tbody>
-                ';
-            }
-            ?>
+                <?php } ?>
+            
         </table>
     </div>
     <div class="p-4">
@@ -41,3 +40,10 @@
 
     </div>
 </div>
+<script>
+    function del(aaaa){
+            if( confirm('xác nhận xóa')){
+                return document.location = aaaa;
+            }
+        }
+</script>
