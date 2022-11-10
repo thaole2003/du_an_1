@@ -5,7 +5,7 @@
 }
 
 function delete_loai_hang($id){
-    $sql = "delete from loai_hang where ma_loai =".$id;
+    $sql = "delete from category where id =".$id;
     pdo_execute($sql);
 }
 function update_loai_hang($ma_loai,$ten_loai){
