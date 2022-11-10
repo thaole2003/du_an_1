@@ -345,6 +345,14 @@ article .truyen .text h4 {
     font-size: 18px;
 }
 
+article .truyen .text h5 {
+    padding-top: 5px;
+    text-align: center;
+    margin-top: -12px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+
 
 /*Trang 1 2 3 ..... 5 6 7*/
 
@@ -473,31 +481,39 @@ article .col .product .chon a:hover {
     border: 1px solid #45daf4;
 }
 
-article .gioi_thieu h3{
+article .gioi_thieu h3 {
     margin-top: 10px;
     color: #ff7700;
 }
-article .gioi_thieu h3 i{
+
+article .gioi_thieu h3 i {
     margin-right: 10px;
 }
-article .gioi_thieu p{
+
+article .gioi_thieu p {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
     margin-top: 5px;
     color: rgb(71, 71, 71);
 }
-article .binh_luan h3{
+
+article .binh_luan h3 {
     margin-top: 10px;
     color: #ff7700;
 }
-article .binh_luan h3 i{
+
+article .binh_luan h3 i {
     margin-right: 10px;
 }
+
+
 /*Đọc truyện*/
-article .truyen_doc{
+
+article .truyen_doc {
     margin-bottom: 50px;
 }
-article .truyen_doc .title_truyen{
+
+article .truyen_doc .title_truyen {
     background-color: #fff;
     text-align: center;
     height: 200px;
@@ -506,31 +522,39 @@ article .truyen_doc .title_truyen{
     border-radius: 10px;
     box-shadow: 0px 0px 10px #ccc;
 }
-article .truyen_doc  .title_truyen a{
+
+article .truyen_doc .title_truyen a {
     line-height: 40px;
     text-decoration: none;
     color: #000;
 }
-article .truyen_doc  .title_truyen a:hover{
+
+article .truyen_doc .title_truyen a:hover {
     color: cyan;
 }
-article .truyen_doc  .title_truyen h2{
+
+article .truyen_doc .title_truyen h2 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 30px;
     margin-bottom: 5px;
 }
-article .truyen_doc  .title_truyen h1{
+
+article .truyen_doc .title_truyen h1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #ff983e;
     font-size: 30px;
 }
-article .truyen_doc  .img_comic{
+
+article .truyen_doc .img_comic {
     text-align: center;
 }
-article .truyen_doc .img_comic img{
+
+article .truyen_doc .img_comic img {
     width: 900px;
     margin: 0px auto;
 }
+
+
 /*Phần footer*/
 
 footer .footer_back {
@@ -592,22 +616,27 @@ footer .footer_back .right {
     transform: translate(-50%, -50%);
     z-index: 1;
 }
+
+
 /*Home admin*/
-.home_admin{
+
+.home_admin {
     margin: 0px auto;
     height: 350px;
     width: 80%;
     background-color: #ffffff;
     box-shadow: 0px 0px 10px #ccc;
 }
-.home_admin h1{
+
+.home_admin h1 {
     padding-top: 10px;
     text-align: center;
     font-size: 28px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
 }
-.home_admin h4{
+
+.home_admin h4 {
     margin-bottom: 5px;
     margin-top: 20px;
     margin-left: 10px;
@@ -615,20 +644,23 @@ footer .footer_back .right {
     font-weight: bold;
     font-size: 20px;
 }
-.home_admin p{
+
+.home_admin p {
     font-weight: bold;
     margin-left: 20px;
     font-size: 18px;
 }
-.home_admin li{
+
+.home_admin li {
     margin-left: 30px;
 }
 
-.home_admin .back_website{
+.home_admin .back_website {
     text-align: center;
     margin-top: 30px;
 }
-.home_admin .back_website a{
+
+.home_admin .back_website a {
     color: #ffffff;
     padding: 15px 15px;
     text-align: center;
@@ -637,7 +669,8 @@ footer .footer_back .right {
     background-color: #ed9c56;
     border: 1px solid #ed9c56;
 }
-.home_admin .back_website a:hover{
+
+.home_admin .back_website a:hover {
     background-color: #ffffff;
     color: #ed9c56;
     border: 1px solid #ed9c56;

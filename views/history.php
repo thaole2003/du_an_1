@@ -1,103 +1,188 @@
 <!--Phần article-->
 <article>
-    <div class="flex text-sky-600 w-1/3 text-3xl m-3 p-3 gap-3 justify-items-center">
+     <div class="truyen">
+        <h3>  <i class="fa-solid fa-flag"></i> Lịch Sử Đọc Truyện</h3>
+        <a href="#">
+            <div class="col">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <h4>Onepice</h4>
+                        <h5>Tiếp tục đọc</h5>
+                    </a>
+                    <div class="ngay_update">
+                        <h5>21/10/2022</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="col">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <h4>Onepice</h4>
+                        <h5>Tiếp tục đọc</h5>
+                    </a>
+                    <div class="ngay_update">
+                        <h5>21/10/2022</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="col">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <h4>Onepice</h4>
+                        <h5>Tiếp tục đọc</h5>
+                    </a>
+                    <div class="ngay_update">
+                        <h5>21/10/2022</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="col">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <h4>Onepice</h4>
+                        <h5>Tiếp tục đọc</h5>
+                    </a>
+                    <div class="ngay_update">
+                        <h5>21/10/2022</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="col">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <h4>Onepice</h4>
+                        <h5>Tiếp tục đọc</h5>
+                    </a>
+                    <div class="ngay_update">
+                        <h5>21/10/2022</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="col">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <h4>Onepice</h4>
+                        <h5>Tiếp tục đọc</h5>
+                    </a>
+                    <div class="ngay_update">
+                        <h5>21/10/2022</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="col">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <h4>Onepice</h4>
+                        <h5>Tiếp tục đọc</h5>
+                    </a>
+                    <div class="ngay_update">
+                        <h5>21/10/2022</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="col">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <h4>Onepice</h4>
+                        <h5>Tiếp tục đọc</h5>
+                    </a>
+                    <div class="ngay_update">
+                        <h5>21/10/2022</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="col">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <h4>Onepice</h4>
+                        <h5>Tiếp tục đọc</h5>
+                    </a>
+                    <div class="ngay_update">
+                        <h5>21/10/2022</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="col">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <h4>Onepice</h4>
+                        <h5>Tiếp tục đọc</h5>
+                    </a>
+                    <div class="ngay_update">
+                        <h5>21/10/2022</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="col">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <h4>Onepice</h4>
+                        <h5>Tiếp tục đọc</h5>
+                    </a>
+                    <div class="ngay_update">
+                        <h5>21/10/2022</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="col">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                </div>
+                <div class="text">
+                    <a href="#">
+                        <h4>Onepice</h4>
+                        <h5>Tiếp tục đọc</h5>
+                    </a>
+                    <div class="ngay_update">
+                        <h5>21/10/2022</h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
 
-        <i class="fa-solid fa-flag"></i>
-        <p>
-            Lịch Sử Đọc Truyện
-        </p>
-    </div>
-    <div class="flex gap-3 flex-wrap">
-        <a href="#" class="">
-            <div class="col text-center">
-                <div class="product">
-                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
-                    <div class="text">
-                        <a href="#">
-                            <h4 class="font-sans text-xl ">Onepice</h4>
-                        </a>
-                    </div>
-                    <button class="text-sm">Tiếp tục đọc</button>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="">
-            <div class="col text-center">
-                <div class="product">
-                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
-                    <div class="text">
-                        <a href="#">
-                            <h4 class="font-sans text-xl ">Onepice</h4>
-                        </a>
-                    </div>
-                    <button class="text-sm">Tiếp tục đọc</button>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="">
-            <div class="col text-center">
-                <div class="product">
-                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
-                    <div class="text">
-                        <a href="#">
-                            <h4 class="font-sans text-xl ">Onepice</h4>
-                        </a>
-                    </div>
-                    <button class="text-sm">Tiếp tục đọc</button>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="">
-            <div class="col text-center">
-                <div class="product">
-                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
-                    <div class="text">
-                        <a href="#">
-                            <h4 class="font-sans text-xl ">Onepice</h4>
-                        </a>
-                    </div>
-                    <button class="text-sm">Tiếp tục đọc</button>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="">
-            <div class="col text-center">
-                <div class="product">
-                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
-                    <div class="text">
-                        <a href="#">
-                            <h4 class="font-sans text-xl ">Onepice</h4>
-                        </a>
-                    </div>
-                    <button class="text-sm">Tiếp tục đọc</button>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="">
-            <div class="col text-center">
-                <div class="product">
-                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
-                    <div class="text">
-                        <a href="#">
-                            <h4 class="font-sans text-xl ">Onepice</h4>
-                        </a>
-                    </div>
-                    <button class="text-sm">Tiếp tục đọc</button>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="">
-            <div class="col text-center">
-                <div class="product">
-                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
-                    <div class="text">
-                        <a href="#">
-                            <h4 class="font-sans text-xl ">Onepice</h4>
-                        </a>
-                    </div>
-                    <button class="text-sm">Tiếp tục đọc</button>
-                </div>
-            </div>
-        </a>
-    </div>
+    <div class="clear"></div>
 </article>

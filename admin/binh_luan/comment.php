@@ -29,7 +29,6 @@
                     <td class="p-2 border-2 border-solid ">Cười không nhặt được mồm</td>
                     <td class="p-2 border-2 border-solid ">2</td>
                     <td class="p-2 border-2 border-solid ">
-                        <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a href="editusers.html">Sửa</a> </button><br>
                         <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 mt-2 ">Xóa</button>
                     </td>
                 </tr>
