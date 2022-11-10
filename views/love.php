@@ -8,10 +8,10 @@
         </p>
     </div>
     <div class="flex gap-3 flex-wrap">
-        <a href="#" class="">
+    <a href="#" class="">
             <div class="col text-center">
                 <div class="product">
-                    <div class="img"><img src="img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
                     <div class="text">
                         <a href="#">
                             <h4 class="font-sans text-xl ">Onepice</h4>
@@ -24,7 +24,7 @@
         <a href="#" class="">
             <div class="col text-center">
                 <div class="product">
-                    <div class="img"><img src="img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
                     <div class="text">
                         <a href="#">
                             <h4 class="font-sans text-xl ">Onepice</h4>
@@ -37,7 +37,7 @@
         <a href="#" class="">
             <div class="col text-center">
                 <div class="product">
-                    <div class="img"><img src="img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
                     <div class="text">
                         <a href="#">
                             <h4 class="font-sans text-xl ">Onepice</h4>
@@ -50,7 +50,7 @@
         <a href="#" class="">
             <div class="col text-center">
                 <div class="product">
-                    <div class="img"><img src="img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
                     <div class="text">
                         <a href="#">
                             <h4 class="font-sans text-xl ">Onepice</h4>
@@ -63,7 +63,7 @@
         <a href="#" class="">
             <div class="col text-center">
                 <div class="product">
-                    <div class="img"><img src="img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
                     <div class="text">
                         <a href="#">
                             <h4 class="font-sans text-xl ">Onepice</h4>
@@ -76,7 +76,7 @@
         <a href="#" class="">
             <div class="col text-center">
                 <div class="product">
-                    <div class="img"><img src="img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
                     <div class="text">
                         <a href="#">
                             <h4 class="font-sans text-xl ">Onepice</h4>
@@ -89,7 +89,7 @@
         <a href="#" class="">
             <div class="col text-center">
                 <div class="product">
-                    <div class="img"><img src="img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                    <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
                     <div class="text">
                         <a href="#">
                             <h4 class="font-sans text-xl ">Onepice</h4>

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="../css/index.css" rel="stylesheet">
+    <link href="../content/css/index.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -17,17 +17,10 @@
             <div class="up">
                 <div class="left">
                     <a href="#">
-                        <div class="img"><img src="../img/logo.png" alt=""></div>
+                        <div class="img"><img src="../content/img/logo.png" alt=""></div>
                     </a>
                 </div>
 
-                <div class="right">
-                    <!--Đăng ký - Đăng nhập-->
-                    <form action="#">
-                        <a href="#"><input type="submit" value="Đăng ký"></a>
-                        <a href="#"><input type="submit" value="Đăng nhập"></a>
-                    </form>
-                </div>
                 <div class="clear"></div>
             </div>
     </div>

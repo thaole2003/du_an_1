@@ -8,9 +8,9 @@
             <h1>Đại hội pháp sư</h1>
         </div>
         <div class="img_comic">
-            <img src="img/anh_truyen/1.jpg" alt="">
-            <img src="img/anh_truyen/0.jpg" alt="">
-            <img src="img/anh_truyen/2.jpg" alt="">
+            <img src="content/img/anh_truyen/1.jpg" alt="">
+            <img src="content/img/anh_truyen/0.jpg" alt="">
+            <img src="content/img/anh_truyen/2.jpg" alt="">
         </div>
     </div>
 </article>

@@ -8,7 +8,7 @@
             <div class="product">
                 <div class="left">
                     <div class="img"><img
-                            src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                            src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                     </div>
                 </div>
                 <div class="right">

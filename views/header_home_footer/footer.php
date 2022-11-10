@@ -5,7 +5,7 @@
         <footer>
             <div class="footer_back">
                 <div class="left">
-                    <div class="img"><img src="img/logo.png" alt=""></div>
+                    <div class="img"><img src="content/img/logo.png" alt=""></div>
                     <div class="text">
                         <p>Email: truyensvip@gmail.com</p>
                         <p>Địa chỉ: Cao đẳng FPT Polytechnic</p>
@@ -20,7 +20,7 @@
             </div>
         </footer>
     </div>
-    <script src="js/scrip.js"></script>
+    <script src="content/js/scrip.js"></script>
 </body>
 
 </html>

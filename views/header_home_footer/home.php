@@ -6,7 +6,7 @@
             <tr>
                 <td>
                     <a href="index.php?act=chi_tiet_truyen" class="item_1">
-                        <div class="img"><img src="img/banner/banner_1.jpg" alt="">
+                        <div class="img"><img src="content/img/banner/banner_1.jpg" alt="">
                             <div class="ngay_xb">22/12/2022</div>
                             <div class="text">One Pice</div>
                         </div>
@@ -14,7 +14,7 @@
                 </td>
                 <td rowspan="2" style="padding: 0px 5px;">
                     <a href="#" class="item_2">
-                        <div class="img"><img src="img/banner/banner_3.jpg" alt="">
+                        <div class="img"><img src="content/img/banner/banner_3.jpg" alt="">
                             <div class="ngay_xb">22/12/2022</div>
                             <div class="text">Học Viện Anh Hùng</div>
                         </div>
@@ -22,7 +22,7 @@
                 </td>
                 <td>
                     <a href="#" class="item_1">
-                        <div class="img"><img src="img/banner/banner_4.jpg" alt="">
+                        <div class="img"><img src="content/img/banner/banner_4.jpg" alt="">
                             <div class="ngay_xb">22/12/2022</div>
                             <div class="text">Fairy Tail 100 Year Quest</div>
                         </div>
@@ -32,7 +32,7 @@
             <tr>
                 <td>
                     <a href="#" class="item_1">
-                        <div class="img"><img src="img/banner/banner_2.jpg" alt="">
+                        <div class="img"><img src="content/img/banner/banner_2.jpg" alt="">
                             <div class="ngay_xb">22/12/2022</div>
                             <div class="text">Thất Hình Đại Hội</div>
                         </div>
@@ -40,7 +40,7 @@
                 </td>
                 <td>
                     <a href="#" class="item_1">
-                        <div class="img"><img src="img/banner/banner_5.jpg" alt="">
+                        <div class="img"><img src="content/img/banner/banner_5.jpg" alt="">
                             <div class="ngay_xb">22/12/2022</div>
                             <div class="text">Black Clover - Thế Giới Phép Thuật</div>
                         </div>
@@ -56,7 +56,7 @@
             <a href="#">
                 <div class="col">
                     <div class="product">
-                        <div class="img"><img src="img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                        <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
                         <div class="text">
                             <a href="#">
                                 <h4>Onepice</h4>
@@ -71,7 +71,7 @@
             <a href="#">
                 <div class="col">
                     <div class="product">
-                        <div class="img"><img src="img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                        <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
                         <div class="text">
                             <a href="#">
                                 <h4>Onepice</h4>
@@ -86,7 +86,7 @@
             <a href="#">
                 <div class="col">
                     <div class="product">
-                        <div class="img"><img src="img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                        <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
                         <div class="text">
                             <a href="#">
                                 <h4>Onepice</h4>
@@ -101,7 +101,7 @@
             <a href="#">
                 <div class="col">
                     <div class="product">
-                        <div class="img"><img src="img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                        <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
                         <div class="text">
                             <a href="#">
                                 <h4>Onepice</h4>
@@ -116,7 +116,7 @@
             <a href="#">
                 <div class="col">
                     <div class="product">
-                        <div class="img"><img src="img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                        <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
                         <div class="text">
                             <a href="#">
                                 <h4>Onepice</h4>
@@ -136,7 +136,7 @@
         <h3><i class="fa-solid fa-cloud-arrow-down"></i>Truyện mới cập nhật</h3>
         <a href="#">
             <div class="col">
-                <div class="img"><img src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                 </div>
                 <div class="text">
                     <a href="#">
@@ -150,7 +150,7 @@
         </a>
         <a href="#">
             <div class="col">
-                <div class="img"><img src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                 </div>
                 <div class="text">
                     <a href="#">
@@ -164,7 +164,7 @@
         </a>
         <a href="#">
             <div class="col">
-                <div class="img"><img src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                 </div>
                 <div class="text">
                     <a href="#">
@@ -178,7 +178,7 @@
         </a>
         <a href="#">
             <div class="col">
-                <div class="img"><img src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                 </div>
                 <div class="text">
                     <a href="#">
@@ -192,7 +192,7 @@
         </a>
         <a href="#">
             <div class="col">
-                <div class="img"><img src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                 </div>
                 <div class="text">
                     <a href="#">
@@ -206,7 +206,7 @@
         </a>
         <a href="#">
             <div class="col">
-                <div class="img"><img src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                 </div>
                 <div class="text">
                     <a href="#">
@@ -220,7 +220,7 @@
         </a>
         <a href="#">
             <div class="col">
-                <div class="img"><img src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                 </div>
                 <div class="text">
                     <a href="#">
@@ -234,7 +234,7 @@
         </a>
         <a href="#">
             <div class="col">
-                <div class="img"><img src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                 </div>
                 <div class="text">
                     <a href="#">
@@ -248,7 +248,7 @@
         </a>
         <a href="#">
             <div class="col">
-                <div class="img"><img src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                 </div>
                 <div class="text">
                     <a href="#">
@@ -262,7 +262,7 @@
         </a>
         <a href="#">
             <div class="col">
-                <div class="img"><img src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                 </div>
                 <div class="text">
                     <a href="#">
@@ -276,7 +276,7 @@
         </a>
         <a href="#">
             <div class="col">
-                <div class="img"><img src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                 </div>
                 <div class="text">
                     <a href="#">
@@ -290,7 +290,7 @@
         </a>
         <a href="#">
             <div class="col">
-                <div class="img"><img src="img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
                 </div>
                 <div class="text">
                     <a href="#">

@@ -8,7 +8,7 @@
     <title>Trang chủ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="../../content/css/index.css">
+    <link rel="stylesheet" href="content/css/index.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -19,7 +19,7 @@
             <div class="up">
                 <div class="left">
                     <a href="index.php">
-                        <div class="img"><img src="img/logo.png" alt=""></div>
+                        <div class="img"><img src="content/img/logo.png" alt=""></div>
                     </a>
                 </div>
                 <div class="mid">
