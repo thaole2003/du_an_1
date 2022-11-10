@@ -63,7 +63,6 @@ if (isset($_GET['act'])) {
                 $thong_bao='Xóa thành công';
 
             } 
-
             break;
             //ngược lại không tồn tại act thì include "home.php"; 
         default:
