@@ -10,6 +10,9 @@
         <label class="font-medium">Loại Truyện</label><br>
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 " type="text"
             name="name-loai" placeholder="Tên loại truyện"><br>
+        <span class="font-medium text-red-500"><?php if(isset($thong_bao)){
+            echo $thong_bao;
+        } ?></span><br>
         <button
             class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"
             name="btn-add">Thêm</button>
