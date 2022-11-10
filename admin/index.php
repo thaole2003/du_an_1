@@ -29,7 +29,18 @@
                     $loai_one = load_one_loai($id);
                 }
                 include "danh_muc/editcategory.php";
-                break;  
+                break; 
+            //xóa loại
+            case 'xoa_loai';
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                delete_loai_hang($id);
+                $list_all_loai = load_all_loai();
+                include_once 'danh_muc/listcategories.php';
+                $thong_bao='Xóa thành công';
+
+            } 
+            break;
             //ngược lại không tồn tại act thì include "home.php"; 
             default:
                 include "home.php";
