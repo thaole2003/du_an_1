@@ -1,5 +1,7 @@
 <?php 
- function insert_loai_hang($ten_loai){
+
+ function insert_loai($ten_loai){
+
     $sql = "insert into category(name) values('$ten_loai')";
     pdo_execute($sql);
 }
@@ -14,8 +16,10 @@ function update_loai_hang($ma_loai,$ten_loai){
 }
 function load_all_loai(){
     $sql = "select * from category order by id desc";
+
     $list_loai = pdo_query($sql);
     return $list_loai;
+
 }
 
 function load_one_loai($id){

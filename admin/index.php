@@ -10,10 +10,22 @@
             //Controller danh mục
             //add loại
             case 'add_loai':
+                $is_valid = true;
+                $list_loai=load_all_loai();
                 if(isset($_POST['btn-add'])){
-                    $ten_loai=$_POST['name-loai'];
-                    insert_loai_hang($ten_loai);
-                    $thong_bao = "Thêm mới thành công";
+
+                    $ten_loai=trim($_POST['name-loai']);
+                    foreach($list_loai as $key=>$value){
+                        if($ten_loai ==""||$ten_loai==$value['name']){
+                            $thong_bao="Tên loại không được để trùng hoặc trống";
+                            $is_valid = false;
+                            break;
+                        }
+                    }
+                    if ($is_valid){
+                        insert_loai($ten_loai);
+                    }
+
                 }
                 include "danh_muc/addloai.php";
                 break; 
