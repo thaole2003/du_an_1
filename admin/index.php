@@ -8,30 +8,12 @@
         $act = $_GET['act'];
         switch($act){
             //Controller danh mục
-            case 'list_loai':
-                include "danh_muc/listcategories.php";
-                break;
-            //Controller truyện
-            case 'list_truyen':
-                include "truyen/comic.php";
-                break;
-            //Controller người dùng
-            case 'list_kh':
-                include "user/users.php";
-                break;
-            //Controller bình luận
-            case 'list_bl':
-                include "binh_luan/comment.php";
-                break;
-            //Controller thống kê
-            case 'list_tk':
-                include "thong_ke/thongke.php";
-                break;   
-            //add loai
+            //add loại
             case 'add_loai':
                 $is_valid = true;
                 $list_loai=load_all_loai();
                 if(isset($_POST['btn-add'])){
+
                     $ten_loai=trim($_POST['name-loai']);
                     foreach($list_loai as $key=>$value){
                         if($ten_loai ==""||$ten_loai==$value['name']){
@@ -43,13 +25,35 @@
                     if ($is_valid){
                         insert_loai($ten_loai);
                     }
+
                 }
                 include "danh_muc/addloai.php";
-                break;   
+                break; 
+            //list loại
+            case 'list_loai':
+                $list_all_loai = load_all_loai();
+                include "danh_muc/listcategories.php";
+                break;  
             // sua loai
-            case 'edit_loai':
+            case 'sua_loai':
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    $id = $_GET['id'];
+                    $loai_one = load_one_loai($id);
+                }
                 include "danh_muc/editcategory.php";
-                break;   
+                break; 
+            //xóa loại
+            case 'xoa_loai';
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                delete_loai_hang($id);
+                $list_all_loai = load_all_loai();
+                include_once 'danh_muc/listcategories.php';
+                $thong_bao='Xóa thành công';
+
+            } 
+            break;
+            //ngược lại không tồn tại act thì include "home.php"; 
             default:
                 include "home.php";
                 break;
