@@ -99,6 +99,7 @@ if (isset($_GET['act'])) {
             if(isset($_POST['btn_add_comic'])){
                 
             }
+            //Sửa truyện
             break;
             //ngược lại không tồn tại act thì include "home.php"; 
         default:
