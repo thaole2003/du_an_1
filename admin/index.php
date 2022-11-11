@@ -2,6 +2,7 @@
 include "header.php";
 require_once "../DAO/pdo.php";
 require_once "../DAO/loai.php";
+require_once "../DAO/comic.php";
 
 //Controller
 if (isset($_GET['act'])) {
@@ -63,6 +64,11 @@ if (isset($_GET['act'])) {
                 $thong_bao='Xóa thành công';
 
             } 
+            break;
+            //load truyện
+            case 'list_truyen';
+            $load_all_truyen = comic_select_all();
+            include_once "../admin/truyen/comic.php";
             break;
             //ngược lại không tồn tại act thì include "home.php"; 
         default:
