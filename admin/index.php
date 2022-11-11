@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "header.php";
 require_once "../DAO/pdo.php";
 require_once "../DAO/loai.php";
@@ -11,25 +12,26 @@ if (isset($_GET['act'])) {
             //Controller danh mục
             //add loại
 
-            case 'add_loai':
-                $is_valid = true;
-                $list_loai=load_all_loai();
-                if(isset($_POST['btn-add'])){
-                    $ten_loai=trim($_POST['name-loai']);
-                    foreach($list_loai as $key=>$value){
-                        if($ten_loai ==""||$ten_loai==$value['name']){
-                            $thong_bao="Tên loại không được để trùng hoặc trống";
-                            $is_valid = false;
-                            break;
-                        }
-                    }
-                    if ($is_valid){
-                        insert_loai($ten_loai);
-                    }
+        case 'add_loai':
+            $is_valid = true;
+            $list_loai = load_all_loai();
+            if (isset($_POST['btn-add'])) {
+                $ten_loai = trim($_POST['name-loai']);
+                foreach ($list_loai as $key => $value) {
+                    if ($ten_loai == "" || $ten_loai == $value['name']) {
+                        $thong_bao = "Tên loại không được để trùng hoặc trống";
+                        $is_valid = false;
+                        break;
 
+                    }
                 }
-                include "danh_muc/addloai.php";
-                break; 
+                if ($is_valid) {
+                    insert_loai($ten_loai);
+                    $thong_bao = "Thêm mới thành công";
+                }
+            }
+            include "danh_muc/addloai.php";
+            break;
             //list loại
         case 'list_loai':
             $list_all_loai = load_all_loai();
@@ -49,20 +51,44 @@ if (isset($_GET['act'])) {
             if (isset($_POST['cap_nhat'])) {
                 $name = $_POST['name'];
                 $id = $_POST['id'];
-                update_loai($id,$name);
+                $ten_cu = load_one_loai($id)['name'];
+                $ten_cac_loai_khac = load_all_loai_edit($ten_cu);
+                $allowUpload = true;
+
+                if ($name == "") {
+                    $_SESSION['trong_loai'] = "Không được để trống tên loại!";
+                    $allowUpload = false;
+                } else {
+                    unset($_SESSION['trong_loai']);
+                }
+
+                foreach ($ten_cac_loai_khac as $value) {
+                    if ($name == $value['name']) {
+                        $_SESSION['trung_loai'] = "Bạn đã bị trùng tên loại!";
+                        $allowUpload = false;
+                        break;
+                    }else{
+                        unset($_SESSION['trung_loai']);
+                    }
+                }
+
+                if ($allowUpload == true) {
+                    update_loai($id, $name);
+                } else {
+                    header('location:index.php?act=sua_loai&id=' . $id);
+                }
             }
             $list_all_loai = load_all_loai();
             include "danh_muc/listcategories.php";
             //xóa loại
-            case 'xoa_loai';
-            if(isset($_GET['id'])){
+        case 'xoa_loai';
+            if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 delete_loai_hang($id);
                 $list_all_loai = load_all_loai();
                 include_once 'danh_muc/listcategories.php';
-                $thong_bao='Xóa thành công';
-
-            } 
+                $thong_bao = 'Xóa thành công';
+            }
             break;
             //load truyện
             case 'list_truyen';
@@ -71,6 +97,7 @@ if (isset($_GET['act'])) {
             break;
             //thêm truyện
             case 'add_comic';
+
        
             $list_all_loai = load_all_loai();
 
@@ -105,6 +132,16 @@ if (isset($_GET['act'])) {
                   }
               }
             include_once './truyen/addcomic.php';
+
+            break;
+            // DELETE Truyện
+            case 'xoa_truyen';
+            if(isset($_GET['id'])){
+                $id= $_GET['id'];
+                delete_comic($id);
+                $load_all_truyen = comic_select_all();
+                include_once "../admin/truyen/comic.php";
+            }
             break;
             //ngược lại không tồn tại act thì include "home.php"; 
         default:
