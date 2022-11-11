@@ -96,7 +96,7 @@ if (isset($_GET['act'])) {
             //thêm truyện
             case 'add_comic';
             include_once './truyen/addcomic.php';
-            if(isset($_POST('btn_add_comic'))){
+            if(isset($_POST['btn_add_comic'])){
                 
             }
             break;
