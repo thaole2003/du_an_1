@@ -38,7 +38,7 @@
         </div><br>
         <button
             class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"
-            name="btn-add">Thêm</button>
+            name="btn_add_comic">Thêm</button>
         <button
             class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"><a
                 href="comic.html">Danh sách</a></button>
