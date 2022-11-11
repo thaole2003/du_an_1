@@ -89,7 +89,7 @@ if (isset($_GET['act'])) {
             }
             break;
             //load truyện
-        case 'list_truyen';
+            case 'list_truyen';
             $load_all_truyen = comic_select_all();
             include_once "../admin/truyen/comic.php";
             break;
@@ -98,6 +98,15 @@ if (isset($_GET['act'])) {
             include_once './truyen/addcomic.php';
             if(isset($_POST['btn_add_comic'])){
                 
+            }
+            break;
+            // DELETE Truyện
+            case 'xoa_truyen';
+            if(isset($_GET['id'])){
+                $id= $_GET['id'];
+                delete_comic($id);
+                $load_all_truyen = comic_select_all();
+                include_once "../admin/truyen/comic.php";
             }
             break;
             //ngược lại không tồn tại act thì include "home.php"; 
