@@ -19,24 +19,32 @@
                 </tr>
             </thead>
             <tbody class="font-medium text-lg border-2">
+                <?php 
+                foreach($load_all_truyen as $key => $value){
+                    extract($value);
+                    $sua_truyen = "index.php?act=sua_truyen&id=" . $id;
+                    $xoa_truyen = "index.php?act=xoa_truyen&id=" . $id;
+                ?>
                 <tr class="text-center  ">
-                    <td class="p-2 border-2 border-solid ">1</td>
-                    <td class="p-2 border-2 border-solid ">Ếch ngồi đáy giếng</td>
-                    <td class="p-2 border-2 border-solid ">Nguyễn Hoàng</td>
-                    <td class="p-2 border-2 border-solid">Ếch ngồi đáy giếng là một câu chuyện ngụ ngôn...</td>
-                    <td class="p-2 border-2 border-solid ">2022-11-9:22-54-59</td>
-                    <td class="p-2 border-2 border-solid ">58</td>
-                    <td class="p-2 border-2 border-solid ">59</td>
-                    <td class="p-2 border-2 border-solid ">Truyện trào phúng</td>
+                    <td class="p-2 border-2 border-solid "><?php echo $id ?></td>
+                    <td class="p-2 border-2 border-solid "><?php echo $name ?></td>
+                    <td class="p-2 border-2 border-solid "><?php echo $author ?></td>
+                    <td class="p-2 border-2 border-solid"><?php echo $intro ?></td>
+                    <td class="p-2 border-2 border-solid "><?php echo $date ?></td>
+                    <td class="p-2 border-2 border-solid "><?php echo $view ?></td>
+                    <td class="p-2 border-2 border-solid "><?php echo $like ?></td>
+                    <td class="p-2 border-2 border-solid "><?php echo $ca_name ?></td>
                     <td class="p-2 border-2 border-solid ">
                         <button
                             class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a
-                                href="editcomic.html">Sửa</a> </button><br>
+                                href="<?php echo $sua_truyen ?>">Sửa</a> </button><br>
                         <button
                             class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 mt-2">Xóa</button>
                     </td>
                 </tr>
-
+<?php 
+                }
+                ?>
             </tbody>
         </table>
     </div>
