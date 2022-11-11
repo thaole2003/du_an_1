@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "header.php";
 require_once "../DAO/pdo.php";
 require_once "../DAO/loai.php";
@@ -24,6 +25,7 @@ if (isset($_GET['act'])) {
                 }
                 if ($is_valid) {
                     insert_loai($ten_loai);
+                    $thong_bao = "Thêm mới thành công";
                 }
             }
             include "danh_muc/addloai.php";
@@ -47,7 +49,32 @@ if (isset($_GET['act'])) {
             if (isset($_POST['cap_nhat'])) {
                 $name = $_POST['name'];
                 $id = $_POST['id'];
-                update_loai($id, $name);
+                $ten_cu = load_one_loai($id)['name'];
+                $ten_cac_loai_khac = load_all_loai_edit($ten_cu);
+                $allowUpload = true;
+
+                if ($name == "") {
+                    $_SESSION['trong_loai'] = "Không được để trống tên loại!";
+                    $allowUpload = false;
+                } else {
+                    unset($_SESSION['trong_loai']);
+                }
+
+                foreach ($ten_cac_loai_khac as $value) {
+                    if ($name == $value['name']) {
+                        $_SESSION['trung_loai'] = "Bạn đã bị trùng tên loại!";
+                        $allowUpload = false;
+                        break;
+                    }else{
+                        unset($_SESSION['trung_loai']);
+                    }
+                }
+
+                if ($allowUpload == true) {
+                    update_loai($id, $name);
+                } else {
+                    header('location:index.php?act=sua_loai&id=' . $id);
+                }
             }
             $list_all_loai = load_all_loai();
             include "danh_muc/listcategories.php";
