@@ -66,6 +66,14 @@ if (isset($_GET['act'])) {
             $load_all_truyen = comic_select_all();
             include_once "../admin/truyen/comic.php";
             break;
+            //thêm truyện
+            case 'add_comic';
+            
+            include_once './truyen/addcomic.php';
+            if(isset($_POST('btn_add_comic'))){
+                
+            }
+            break;
             //ngược lại không tồn tại act thì include "home.php"; 
         default:
             include "home.php";
