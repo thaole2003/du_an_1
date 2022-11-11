@@ -24,11 +24,11 @@
                 </div>
                 <div class="mid">
                     <!--Tìm kiếm truyện-->
-                    <form action="#">
+                    <form action="" method="POST">
                         <div class="search">
                             <div class="vien">
-                                <input type="text" placeholder="Bạn muốn tìm truyện gì?">
-                                <a href="#"><i class="fas fa-search"></i></a>
+                                <input type="text" name='textsearch' placeholder="Bạn muốn tìm truyện gì?">
+                                <a href="index.php?act=search"><button name="search"> <i class="fas fa-search"></i></button></a>
                             </div>
                         </div>
                     </form>
