@@ -32,8 +32,10 @@
                     <td class="p-2 border-2 border-solid"><?php echo $intro ?></td>
                     <td class="p-2 border-2 border-solid "><?php echo $date ?></td>
                     <td class="p-2 border-2 border-solid "><?php echo $view ?></td>
-                    <td class="p-2 border-2 border-solid "><?php echo $like ?></td>
+                    <td class="p-2 border-2 border-solid "><?php echo $like_comic ?></td>
                     <td class="p-2 border-2 border-solid "><?php echo $ca_name ?></td>
+                    <td class="p-2 border-2 border-solid "><img class="w-[200px] h-[200px]" src="<?php echo $img_name ?>"/></td>
+
                     <td class="p-2 border-2 border-solid ">
                         <button
                             class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a
@@ -49,9 +51,9 @@
         </table>
     </div>
     <div class="p-4">
-        <button
-            class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"><a
-                href="index.php?act=add_comic">Thêm</a></button>
+    <a  href="index.php?act=add_comic"> <button
+            class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400">
+              Thêm</button></a>
 
     </div>
 </div>
