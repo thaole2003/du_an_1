@@ -17,6 +17,27 @@ on c.category_id = ca.id
     return pdo_query($sql);
 }
 
+function comic_select_all_search($key,$category_id){
+    $sql = "SELECT 
+    c.*, 
+    i.name as img_name,
+    ca.name as ca_name
+from comic c
+join images i
+on c.images_id = i.comic_id
+join category ca
+on c.category_id = ca.id 
+    where 1";
+    if($key != ""){
+        $sql.=" and c.name like '%".$key."%'";
+    }
+    if($category_id > 0){
+        $sql.=" and c.category_id = '".$category_id."'";
+    }
+    $sql.=" order by c.id desc";
+    return pdo_query($sql);
+}
+
 function comic_select_one($id){
     $sql = "SELECT 
     c.*, 

@@ -83,7 +83,7 @@ if (isset($_GET['act'])) {
             //xóa loại
         case 'xoa_loai':
             if (isset($_GET['id'])) {
-                
+
                 $id = $_GET['id'];
                 delete_fk_comic($id);
                 delete_loai_hang($id);
@@ -93,8 +93,22 @@ if (isset($_GET['act'])) {
             }
             break;
             //load truyện
-        case 'list_truyen';
+        case 'list_truyen':
+            $list_all_loai = load_all_loai();
             $load_all_truyen = comic_select_all();
+            include_once "../admin/truyen/comic.php";
+            break;
+        case 'list_truyen_search':
+            if (isset($_POST['btn_search'])) {
+                $key = $_POST['key_search'];
+                $category_id = $_POST['category_id'];
+            } else {
+                $key = '';
+                $category_id = 0;
+                $load_all_truyen = comic_select_all();
+            }
+            $list_all_loai = load_all_loai();
+            $load_all_truyen = comic_select_all_search($key,$category_id);
             include_once "../admin/truyen/comic.php";
             break;
             //thêm truyện
@@ -114,7 +128,7 @@ if (isset($_GET['act'])) {
                 $like = 0;
                 $category = $_POST['category'];
                 $img_id = $_POST['images'];
-                
+
                 foreach ($ten_cac_loai_khac as $value) {
                     if ($name == $value['name']) {
                         $_SESSION['trung_loai'] = "Bạn đã bị trùng tên loại!";
@@ -182,9 +196,9 @@ if (isset($_GET['act'])) {
                     }
                 }
 
-                if($allowUpload == true){
-                    update_comic($id,$name, $detail, $author, $date, $intro, $category_id, $images_id);
-                }else {
+                if ($allowUpload == true) {
+                    update_comic($id, $name, $detail, $author, $date, $intro, $category_id, $images_id);
+                } else {
                     header('location:index.php?act=sua_truyen&id=' . $id);
                 }
             }
