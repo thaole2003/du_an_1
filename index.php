@@ -1,7 +1,10 @@
 <?php
-    include "views/header_home_footer/header.php";
+  
 include_once "./DAO/comic.php";
 include_once "./DAO/pdo.php";
+include_once "./DAO/loai.php";
+$list_all_loai = load_all_loai();
+include_once "views/header_home_footer/header.php";
     //Controller
     //Tìm kiếm
     if(isset($_POST['search'])){

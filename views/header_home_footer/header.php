@@ -91,16 +91,12 @@
                     <ul class="sub_menu">
                         <!--Phần đẩy loại truyện-->
                         <div class="vien">
-                            <li><a href="#">Kịch tính</a></li>
-                            <li><a href="#">Vui vẻ</a></li>
-                            <li><a href="#">Kịch tính</a></li>
-                            <li><a href="#">Vui vẻ</a></li>
-                            <li><a href="#">Kịch tính</a></li>
-                            <li><a href="#">Vui vẻ</a></li>
-                            <li><a href="#">Kịch tính</a></li>
-                            <li><a href="#">Vui vẻ</a></li>
-                            <li><a href="#">Kịch tính</a></li>
-                            <li><a href="#">Vui vẻ</a></li>
+                            <?php foreach($list_all_loai as $key => $value){
+?>
+                            <li><a href="#"><?php echo $value['name'] ?></a></li>
+
+                          <?php  } ?>
+                            
                         </div>
                     </ul>
                 </li>
