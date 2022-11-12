@@ -24,7 +24,7 @@ function comic_select_one($id){
     ca.name as ca_name
     from comic c
     join images i
-    on c.id = i.comic_id
+    on c.images_id = i.comic_id
     join category ca
     on c.category_id = ca.id
     where c.id = '$id'
@@ -66,6 +66,20 @@ function load_all_comic_edit($name){
     $sql = "select * from comic where name != '$name'";
     return pdo_query($sql);
      
+}
+function all_comic_by_categoryid($id){
+$sql = "SELECT 
+c.*, 
+i.name as img_name,
+ca.name as ca_name
+from comic c
+join images i
+on c.images_id = i.comic_id
+join category ca
+on c.category_id = ca.id
+WHERE c.category_id= $id";
+return pdo_query($sql);
+
 }
 function search_all( $text){
     $sql = "SELECT c.name,c.date,
