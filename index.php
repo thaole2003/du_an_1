@@ -24,6 +24,10 @@ if (isset($_POST['search'])) {
     }
 }
 // Đăng ký user
+    $list_email =select_email_user();
+    // echo "<pre>";
+    // var_dump($list_email);
+    // echo "<pre>";
 if (isset($_POST['dang_ky'])) {
     $email = trim($_POST['email']);
     $name = trim($_POST['name']);
@@ -33,15 +37,21 @@ if (isset($_POST['dang_ky'])) {
     $re_password = trim($_POST['password']);
     $hash_password = password_hash($password, PASSWORD_DEFAULT);
     $role = 2;
-
     $flag_register = true;
     // validate email 
     if ($email == "") {
         $flag_register = false;
         $err_email = "Email không được để trống";
-    }elseif(!emailValid($email)){
-        $flag_register=false;
-        $err_email="Email chưa đúng định dạng mail";
+    } elseif (!emailValid($email)) {
+        $flag_register = false;
+        $err_email = "Email chưa đúng định dạng mail";
+    }else{
+        foreach($list_email as $key=>$value){
+            if($email==$value['email']){
+                $flag_register=false;
+                $err_email="Email đã tồn tại";
+            }
+        }
     }
     // validate name
     if ($name == "") {
@@ -49,25 +59,25 @@ if (isset($_POST['dang_ky'])) {
         $err_name = "Name không được để trống";
     }
     //validate phone
-    if ($phone == ""){
+    if ($phone == "") {
         $flag_register = false;
         $err_phone = "Số điện thoại không được để trống";
-    }elseif(!isVietnamesePhoneNumber($phone)){
-        $flag_register=false;
-        $err_phone="Số điện thoại chưa đúng định dạng";
+    } elseif (!isVietnamesePhoneNumber($phone)) {
+        $flag_register = false;
+        $err_phone = "Số điện thoại chưa đúng định dạng";
     }
     // validate địa chỉ
-    if($address == "") {
+    if ($address == "") {
         $flag_register = false;
         $err_address = "Địa chỉ không được để trống";
     }
     // validate password
-    if($password == "") {
+    if ($password == "") {
         $flag_register = false;
         $err_pass = "Mật khẩu không được để trống";
-    }elseif(!isPassword($password)){
-        $flag_register=false;
-        $err_pass="Mật khẩu phải tối thiểu 8 ký tự và ít nhất 1 chữ cái, 1 số";
+    } elseif (!isPassword($password)) {
+        $flag_register = false;
+        $err_pass = "Mật khẩu phải tối thiểu 8 ký tự và ít nhất 1 chữ cái, 1 số";
     }
     if ($re_password == "") {
         $flag_register = false;
@@ -83,9 +93,6 @@ if (isset($_POST['dang_ky'])) {
         $thongbao = "Thêm người dùng thất bại";
     }
 }
-
-
-
 
 if (isset($_GET['act']) && $_GET['act'] != "") {
     $act = $_GET['act'];
@@ -112,16 +119,16 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
         case 'register';
             include "views/register.php";
             break;
-         //danh mục
-         case 'loai';
-         if (isset($_GET['ma_loai']) && $_GET['ma_loai'] > 0) {
-            $id_ma_loai = $_GET['ma_loai'];
-         }
-         if(isset($id_ma_loai)){
-          $all_comic_by_categoryid=  all_comic_by_categoryid($id_ma_loai);
-          include "./views/loai.php";
-         }
-         break;
+            //danh mục
+        case 'loai';
+            if (isset($_GET['ma_loai']) && $_GET['ma_loai'] > 0) {
+                $id_ma_loai = $_GET['ma_loai'];
+            }
+            if (isset($id_ma_loai)) {
+                $all_comic_by_categoryid =  all_comic_by_categoryid($id_ma_loai);
+                include "./views/loai.php";
+            }
+            break;
 
 
         default:

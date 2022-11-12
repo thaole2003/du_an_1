@@ -32,6 +32,11 @@ function delete_khach_hang($id){
     $sql = "delete from khach_hang where ma_khach_hang =".$id;
     pdo_execute($sql);
 }
+// selct table user
+function select_email_user(){
+    $sql = "SELECT email from user";
+    return pdo_query($sql);
+}
 // kiểm tra email
 function emailValid($email)
 {
