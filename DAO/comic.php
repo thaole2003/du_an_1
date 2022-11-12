@@ -42,6 +42,10 @@ function delete_comic($ma_comic){
     $sql ="DELETE FROM comic where id='$ma_comic' ";
     return pdo_execute($sql);
 }
+function delete_fk_comic($ma_loai){
+    $sql ="DELETE FROM comic where category_id='$ma_loai' ";
+    return pdo_execute($sql);
+}
 function search_all( $text){
     $sql = "SELECT c.name,c.date,
     i.name as img_name

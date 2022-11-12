@@ -83,7 +83,9 @@ if (isset($_GET['act'])) {
             //xóa loại
         case 'xoa_loai';
             if (isset($_GET['id'])) {
+                
                 $id = $_GET['id'];
+                delete_fk_comic($id);
                 delete_loai_hang($id);
                 $list_all_loai = load_all_loai();
                 include_once 'danh_muc/listcategories.php';

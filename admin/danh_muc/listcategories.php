@@ -27,7 +27,7 @@
                         <td class="p-2 border-2 border-solid ">8</td>
                         <td class="p-2 border-2 border-solid ">
                             <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 mr-2"><a href="<?php echo $sua_loai ?>">Sửa</a></button>
-                            <button onclick="del('<?php echo $xoa_loai?>')"   class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ml-2">Xóa</button>
+                            <button onclick="delete_category('<?php echo $xoa_loai?>')"   class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ml-2">Xóa</button>
                         </td>
                     </tr>
                 </tbody>
