@@ -4,13 +4,14 @@ include "header.php";
 require_once "../DAO/pdo.php";
 require_once "../DAO/loai.php";
 require_once "../DAO/comic.php";
-
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 //Controller
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
     switch ($act) {
             //Controller danh mục
             //add loại
+
         case 'add_loai':
             $is_valid = true;
             $list_loai = load_all_loai();
@@ -21,6 +22,7 @@ if (isset($_GET['act'])) {
                         $thong_bao = "Tên loại không được để trùng hoặc trống";
                         $is_valid = false;
                         break;
+
                     }
                 }
                 if ($is_valid) {
@@ -89,14 +91,58 @@ if (isset($_GET['act'])) {
             }
             break;
             //load truyện
-        case 'list_truyen';
+            case 'list_truyen';
             $load_all_truyen = comic_select_all();
             include_once "../admin/truyen/comic.php";
             break;
             //thêm truyện
-        case 'add_comic';
+
+            case 'add_comic';
+
+       
+            $list_all_loai = load_all_loai();
+
+            if(isset($_POST['btnAdd'])){
+                $all_name_comic =comic_select_all_name();
+                $flag = true;
+                $date = date('m/d/Y h:i:s a', time());
+                  $namee =$_POST['name_comic'];
+                  $length2 = strlen($namee);
+                  $detail = $_POST['detail'];
+                  $author = $_POST['author'];
+                  $intro = $_POST['intro'];
+                  $view = 0;
+                  $like=0;
+                  $category = $_POST['category'];
+                  $img_id = $_POST['images'];
+                  foreach($all_name_comic as $key => $value){
+                   
+                    if( $length2 == 0 ){
+                        $thongbao = 'không được để trống';
+                        $flag = false;
+                    }
+                    if($namee==$value['name']){
+                        $thongbao = 'tên truyện đã tồn tại';
+                        $flag = false;
+                        break;
+                    }
+                  
+                  }
+                  if($flag==true){
+                    comic_insert($namee,$detail,$author,$date,$intro,$view,$like,$category,$img_id);      
+                  }
+              }
             include_once './truyen/addcomic.php';
-            if (isset($_POST['btn_add_comic'])) {
+
+            break;
+            // DELETE Truyện
+            case 'xoa_truyen';
+            if(isset($_GET['id'])){
+                $id= $_GET['id'];
+                delete_comic($id);
+                $load_all_truyen = comic_select_all();
+                include_once "../admin/truyen/comic.php";
+
             }
             break;
             //Sửa truyện
