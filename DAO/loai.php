@@ -18,7 +18,6 @@ function load_all_loai(){
     $sql = "select * from category order by id desc";
     $list_loai = pdo_query($sql);
     return $list_loai;
-
 }
 function load_all_loai_edit($name){
     $sql = "select * from category where name != '".$name."'";
