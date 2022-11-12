@@ -42,7 +42,16 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
         case 'truyen_da_doc':
             include "views/history.php";
             break;
-            // case 'search';
+         //danh mục
+         case 'loai';
+         if (isset($_GET['ma_loai']) && $_GET['ma_loai'] > 0) {
+            $id_ma_loai = $_GET['ma_loai'];
+         }
+         if(isset($id_ma_loai)){
+          $all_comic_by_categoryid=  all_comic_by_categoryid($id_ma_loai);
+          include "./views/loai.php";
+         }
+         break;
 
         default:
             include "views/header_home_footer/home.php";
