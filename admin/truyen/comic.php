@@ -32,7 +32,7 @@
                     <td class="p-2 border-2 border-solid"><?php echo $intro ?></td>
                     <td class="p-2 border-2 border-solid "><?php echo $date ?></td>
                     <td class="p-2 border-2 border-solid "><?php echo $view ?></td>
-                    <td class="p-2 border-2 border-solid "><?php echo $like ?></td>
+                    <td class="p-2 border-2 border-solid "><?php echo $like_comic ?></td>
                     <td class="p-2 border-2 border-solid "><?php echo $ca_name ?></td>
                     <td class="p-2 border-2 border-solid ">
                         <button

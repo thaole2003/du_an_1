@@ -65,7 +65,7 @@ if (isset($_GET['act'])) {
                         $_SESSION['trung_loai'] = "Bạn đã bị trùng tên loại!";
                         $allowUpload = false;
                         break;
-                    }else{
+                    } else {
                         unset($_SESSION['trung_loai']);
                     }
                 }
@@ -94,12 +94,22 @@ if (isset($_GET['act'])) {
             include_once "../admin/truyen/comic.php";
             break;
             //thêm truyện
-            case 'add_comic';
+        case 'add_comic';
             include_once './truyen/addcomic.php';
-            if(isset($_POST['btn_add_comic'])){
-                
+            if (isset($_POST['btn_add_comic'])) {
             }
+            break;
             //Sửa truyện
+        case 'sua_truyen':
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $id = $_GET['id'];
+                $load_all_comic = comic_select_one($id);
+            }
+        include_once 'truyen/editcomic.php';
+            break;
+        case 'update_comic':
+            
+            include_once 'truyen/comic.php';
             break;
             //ngược lại không tồn tại act thì include "home.php"; 
         default:

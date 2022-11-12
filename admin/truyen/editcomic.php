@@ -1,31 +1,51 @@
 <!-- content  -->
+<?php
+    if(is_array($load_all_comic)){
+        extract($load_all_comic);
+    }
+?>
 <div class="py-4 w-full">
     <div class="bg-red-300">
         <h1 class="text-xl font-medium p-4">Sửa Truyện</h1>
     </div>
     <form action="" method="POST" class="p-4 w-[500px]">
-        <label class="font-medium">Mã Truyện </label><br>
+        <label class="font-medium">Mã Truyện </label>
+        <br>
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full"
-            type="text" placeholder="Auto number"><br>
-        <label class="font-medium">Tên Truyện</label><br>
+            type="text" value="<?php if (isset($id) && ($id != "")) echo $id; ?>">
+            <br>
+        <label class="font-medium">Tên Truyện</label>
+        <br>
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full "
-            type="text" name="" placeholder="Tên truyện"><br>
-        <label class="font-medium">Detail</label><br>
+            type="text" name="" value="<?php if (isset($name) && ($name != "")) echo $name; ?>">
+            <br>
+        <label class="font-medium">Detail</label>
+        <br>
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full "
-            type="text" name="" placeholder="Chi tiết"><br>
-        <label class="font-medium">Author</label><br>
+            type="text" name="" value="<?php if (isset($detail) && ($detail != "")) echo $detail; ?>">
+            <br>
+        <label class="font-medium">Author</label>
+        <br>
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full "
-            type="text" name="" placeholder="Tác giả"><br>
-        <label class="font-medium">Intro</label><br>
+            type="text" name="" value="<?php if (isset($author) && ($author != "")) echo $author; ?>">
+            <br>
+        <label class="font-medium">Intro</label>
+        <br>
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full "
-            type="text" name="" placeholder="Giới thiệu"><br>
-        <label class="font-medium">Views</label><br>
+            type="text" name="" value="<?php if (isset($id) && ($id != "")) echo $id; ?>">
+            <br>
+        <label class="font-medium">Views</label>
+        <br>
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full "
-            type="text" name="" placeholder="Lượt xem"><br>
-        <label class="font-medium">Likes</label><br>
+            type="text" name="" value="<?php if (isset($id) && ($id != "")) echo $id; ?>">
+            <br>
+        <label class="font-medium">Likes</label>
+        <br>
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400  w-full"
-            type="text" name="" placeholder="Lượt thích"><br>
-        <label class="font-medium">Loại truyện</label><br>
+            type="text" name="" value="<?php if (isset($id) && ($id != "")) echo $id; ?>">
+            <br>
+        <label class="font-medium">Loại truyện</label>
+        <br>
         <select name="">
             <option value="1">Truyện cười</option>
             <option value="2">Truyện trinh thám</option>

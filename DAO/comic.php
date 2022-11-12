@@ -14,4 +14,18 @@ on c.id = ca.id
 
     return pdo_query($sql);
 }
-?>
+function comic_select_one($id){
+    $sql = "SELECT 
+    c.*, 
+    i.name as img_name,
+    ca.name as ca_name
+    from comic c
+    join images i
+    on c.id = i.comic_id
+    join category ca
+    on c.id = ca.id
+    where c.id = '$id'
+    ";
+    $truyen = pdo_query_one($sql);
+    return $truyen;
+}
