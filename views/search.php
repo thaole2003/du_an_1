@@ -1,6 +1,6 @@
 <div class="truyen">
         <h3 class='text-center'> <i class="fa-solid fa-heart"></i>Từ khóa của bạn tìm là '<?php echo $_POST['textsearch'] ?>'</h3>
-        <h4 class='text-center'>Kết quả tim kiếm</h4>
+        <h4 class='text-center'>Kết quả tìm kiếm</h4>
         <div class="flex">
 
 

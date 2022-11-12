@@ -8,11 +8,16 @@ include_once "views/header_home_footer/header.php";
     //Controller
     //Tìm kiếm
     if(isset($_POST['search'])){
-        if(isset($_POST['textsearch']))
-        $textsearch = $_POST['textsearch'];
-            $all_search= search_all($_POST['textsearch']);
+  
+        $length = strlen($_POST['textsearch']);
+
+        if($length != 0){
+            $textsearch = $_POST['textsearch'];
+            $all_search= search_all($textsearch);
             include_once 'views/search.php';
             exit;
+        }
+      
 
     }
     
