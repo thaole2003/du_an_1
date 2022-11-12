@@ -5,7 +5,7 @@
     </div>
     <div class="p-4">
     <form action="" method="POST" class="">
-    <input type="text" name=""class="w-[300px] h-[44px] rounded-md">
+    <input type="text" name=""class="w-[300px] h-[44px] rounded-md border-2 border-solid border-yellow-400">
     <select name="" class="p-2 px-4 rounded-md h-[44px]">
         <?php 
         $list_all_loai = load_all_loai();

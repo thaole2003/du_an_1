@@ -26,7 +26,7 @@ function comic_select_one($id){
     join images i
     on c.id = i.comic_id
     join category ca
-    on c.id = ca.id
+    on c.category_id = ca.id
     where c.id = '$id'
     ";
     $truyen = pdo_query_one($sql);
@@ -61,6 +61,11 @@ function delete_comic($ma_comic){
 function delete_fk_comic($ma_loai){
     $sql ="DELETE FROM comic where category_id='$ma_loai' ";
     return pdo_execute($sql);
+}
+function load_all_comic_edit($name){
+    $sql = "select * from comic where name != '$name'";
+    return pdo_query($sql);
+     
 }
 function search_all( $text){
     $sql = "SELECT c.name,c.date,

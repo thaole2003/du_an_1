@@ -114,18 +114,17 @@ if (isset($_GET['act'])) {
                 $like = 0;
                 $category = $_POST['category'];
                 $img_id = $_POST['images'];
-                foreach ($all_name_comic as $key => $value) {
-
-                    if ($length2 == 0) {
-                        $thongbao = 'không được để trống';
-                        $flag = false;
-                    }
-                    if ($namee == $value['name']) {
-                        $thongbao = 'tên truyện đã tồn tại';
-                        $flag = false;
+                
+                foreach ($ten_cac_loai_khac as $value) {
+                    if ($name == $value['name']) {
+                        $_SESSION['trung_loai'] = "Bạn đã bị trùng tên loại!";
+                        $allowUpload = false;
                         break;
+                    } else {
+                        unset($_SESSION['trung_loai']);
                     }
                 }
+
                 if ($flag == true) {
                     comic_insert($namee, $detail, $author, $date, $intro, $view, $like, $category, $img_id);
                 }
@@ -147,8 +146,6 @@ if (isset($_GET['act'])) {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
                 $load_all_comic = comic_select_one($id);
-                // echo '<pre>';
-                // print_r($load_all_comic);
             }
             $list_all_images = load_all_image();
             $list_all_loai = load_all_loai();
@@ -164,7 +161,32 @@ if (isset($_GET['act'])) {
                 $intro = $_POST['intro'];
                 $category_id = $_POST['category_id'];
                 $images_id = $_POST['images'];
-                update_comic($id,$name, $detail, $author, $date, $intro, $category_id, $images_id);
+                $name_cu = comic_select_one($id)['name'];
+                $ten_cu = load_all_comic_edit($name_cu);
+                $allowUpload = true;
+
+                if ($name == "") {
+                    $_SESSION['trong_truyen'] = "Không được để trống tên truyện!";
+                    $allowUpload = false;
+                } else {
+                    unset($_SESSION['trong_truyen']);
+                }
+
+                foreach ($ten_cu as $value) {
+                    if ($name == $value['name']) {
+                        $_SESSION['trung_ten'] = "Bạn đã bị trùng tên truyện!";
+                        $allowUpload = false;
+                        break;
+                    } else {
+                        unset($_SESSION['trung_ten']);
+                    }
+                }
+
+                if($allowUpload == true){
+                    update_comic($id,$name, $detail, $author, $date, $intro, $category_id, $images_id);
+                }else {
+                    header('location:index.php?act=sua_truyen&id=' . $id);
+                }
             }
             $load_all_truyen = comic_select_all();
             $list_all_loai = load_all_loai();

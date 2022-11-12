@@ -9,7 +9,7 @@ if (is_array($load_all_comic)) {
         <h1 class="text-xl font-medium p-4">Sửa Truyện</h1>
     </div>
     <form action="index.php?act=update_truyen" method="POST" class="p-4 w-[500px]" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="<?php if(isset($id) && ($id > 0)) echo $id; ?>">
+        <input type="hidden" name="id" value="<?php if (isset($id) && ($id > 0)) echo $id; ?>">
         <label class="font-medium">Mã Truyện </label>
         <br>
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full" type="text" value="<?php if (isset($id) && ($id != "")) echo $id; ?>">
@@ -17,6 +17,8 @@ if (is_array($load_all_comic)) {
         <label class="font-medium">Tên Truyện</label>
         <br>
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="text" name="name" value="<?php if (isset($name) && ($name != "")) echo $name; ?>">
+        <b style="color: red;"><?php echo isset($_SESSION['trong_truyen']) ? $_SESSION['trong_truyen'] : "" ?></b>
+        <b style="color: red;"><?php echo isset($_SESSION['trung_ten']) ? $_SESSION['trung_ten'] : "" ?></b>
         <br>
         <label class="font-medium">Detail</label>
         <br>
@@ -60,12 +62,12 @@ if (is_array($load_all_comic)) {
                 extract($images);
                 if ($images_id == $id) {
             ?>
-                <img class="w-[200px] h-[200px]" src="<?php echo $name ?>"/>
-                <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="number" name="images" value="<?php echo $id; ?>"><br>
-                <?php
+                    <img class="w-[200px] h-[200px]" src="<?php echo $name ?>" />
+                    <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="number" name="images" value="<?php echo $id; ?>"><br>
+            <?php
                 }
             }
-                ?>
+            ?>
         </div><br>
 
         <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400" name="btn-update">Cập nhật</a></button>
