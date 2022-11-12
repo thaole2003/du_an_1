@@ -74,12 +74,9 @@
                     <ul class="sub_menu">
                         <!--Phần đẩy loại truyện-->
                         <div class="vien">
-                            <?php foreach($list_all_loai as $key => $value){
-?>
+                            <?php foreach($list_all_loai as $key => $value){?>
                             <li><a href="index.php?act=loai&ma_loai=<?php echo $value['id'] ?>" ><?php echo $value['name'] ?></a></li>
-
                           <?php  } ?>
-                            
                         </div>
                     </ul>
                 </li>
