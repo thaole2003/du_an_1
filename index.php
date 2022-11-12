@@ -15,7 +15,8 @@ include_once "views/header_home_footer/header.php";
             $textsearch = $_POST['textsearch'];
             $all_search= search_all($textsearch);
             include_once 'views/search.php';
-            exit;
+            include_once './views/header_home_footer/footer.php';
+          die;
         }
       
 
@@ -52,4 +53,5 @@ include_once "views/header_home_footer/header.php";
     }else{
         include "views/header_home_footer/home.php";
     }
+    
     include "views/header_home_footer/footer.php";
