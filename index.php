@@ -39,7 +39,7 @@ if(isset($_POST['loginn'])){
          //lay xem co email nào khớp với email đã nhập k.
         $user_check = get_one_user_by_email($email_login);
         // var_dump($user_check) ;
-        if(count($user_check)){
+        if(count($user_check)>0){
            if($pass_login==$user_check['password']){
             $_SESSION['auth'] = [
                 'email' => $user_check['email'],
@@ -47,10 +47,10 @@ if(isset($_POST['loginn'])){
                 'role' => $user_check['role'],
                 'role_name' => $user_check['role_name']
             ];
-           header("location:index.php");
-           die;
+            header("location:index.php");
+            die;
            }
-          
+       
         }
            header("location:index.php?login&msg=tài khoản không chính xác");
            die;
@@ -84,7 +84,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             include "views/history.php";
             break;
             //login
-        case 'login':
+        case 'login';
             include_once './views/login.php';
             break;
          //danh mục
