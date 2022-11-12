@@ -30,6 +30,7 @@
                     <th class="p-2 border-2">Like</th>
                     <th class="p-2 border-2">Loại</th>
                     <th class="p-2 border-2">Thay đổi</th>
+                    <th class="p-2 border-2">Chức năng</th></th>
                 </tr>
             </thead>
             <tbody class="font-medium text-lg border-2">
