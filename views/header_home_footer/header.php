@@ -106,7 +106,7 @@
                         <div class="vien">
                             <?php foreach($list_all_loai as $key => $value){
 ?>
-                            <li><a href="#"><?php echo $value['name'] ?></a></li>
+                            <li><a href="index.php?act=loai&ma_loai=<?php echo $value['id'] ?>" ><?php echo $value['name'] ?></a></li>
 
                           <?php  } ?>
                             

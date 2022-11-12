@@ -12,8 +12,29 @@ from comic c
 join images i
 on c.images_id = i.comic_id
 join category ca
-on c.category_id = ca.id
+on c.category_id = ca.id order by c.id desc
     ";
+    return pdo_query($sql);
+}
+
+function comic_select_all_search($key,$category_id){
+    $sql = "SELECT 
+    c.*, 
+    i.name as img_name,
+    ca.name as ca_name
+from comic c
+join images i
+on c.images_id = i.comic_id
+join category ca
+on c.category_id = ca.id 
+    where 1";
+    if($key != ""){
+        $sql.=" and c.name like '%".$key."%'";
+    }
+    if($category_id > 0){
+        $sql.=" and c.category_id = '".$category_id."'";
+    }
+    $sql.=" order by c.id desc";
     return pdo_query($sql);
 }
 
@@ -24,9 +45,9 @@ function comic_select_one($id){
     ca.name as ca_name
     from comic c
     join images i
-    on c.id = i.comic_id
+    on c.images_id = i.comic_id
     join category ca
-    on c.id = ca.id
+    on c.category_id = ca.id
     where c.id = '$id'
     ";
     $truyen = pdo_query_one($sql);
@@ -61,6 +82,25 @@ function delete_comic($ma_comic){
 function delete_fk_comic($ma_loai){
     $sql ="DELETE FROM comic where category_id='$ma_loai' ";
     return pdo_execute($sql);
+}
+function load_all_comic_edit($name){
+    $sql = "select * from comic where name != '$name'";
+    return pdo_query($sql);
+     
+}
+function all_comic_by_categoryid($id){
+$sql = "SELECT 
+c.*, 
+i.name as img_name,
+ca.name as ca_name
+from comic c
+join images i
+on c.images_id = i.comic_id
+join category ca
+on c.category_id = ca.id
+WHERE c.category_id= $id";
+return pdo_query($sql);
+
 }
 function search_all( $text){
     $sql = "SELECT c.name,c.date,
