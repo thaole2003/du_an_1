@@ -32,7 +32,23 @@ function comic_select_one($id){
     $truyen = pdo_query_one($sql);
     return $truyen;
 }
-
+function load_all_image(){
+    $sql = "select * from images order by id desc";
+    $list_img = pdo_query($sql);
+    return $list_img;
+}
+function update_comic($id,$name, $detail, $author, $date, $intro, $category_id, $images_id){
+    $sql = "update comic set
+    name= '".$name."',
+    detail='".$detail."',
+    author='".$author."',
+    date='".$date."', 
+    intro='".$intro."', 
+    category_id='$category_id', 
+    images_id='$images_id'
+    where id= '$id'";
+    pdo_execute($sql);
+}
 
 function comic_insert($name, $detail, $author, $date,$intro,$view,$like,$category_id,$images_id){
     $sqlQuery = "INSERT INTO comic (name,detail,author,date,intro,view,like_comic,category_id,images_id) VALUES ('$name','$detail','$author','$date','$intro',$view,$like,$category_id,$images_id)";
