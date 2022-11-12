@@ -12,7 +12,7 @@ from comic c
 join images i
 on c.images_id = i.comic_id
 join category ca
-on c.category_id = ca.id
+on c.category_id = ca.id order by c.id desc
     ";
     return pdo_query($sql);
 }
