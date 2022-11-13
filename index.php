@@ -4,11 +4,13 @@ session_start();
 include_once "./DAO/comic.php";
 include_once "./DAO/pdo.php";
 include_once "./DAO/loai.php";
-
-$list_all_loai = load_all_loai();
 include_once  "./DAO/user.php";
+$list_all_loai = load_all_loai();
 include_once  "views/header_home_footer/header.php";
 date_default_timezone_set('Asia/Ho_Chi_Minh');
+$like_comic = load_all_truyen_like();
+// echo '<pre>';
+// print_r(max($like_comic));
 
 //Controller
 //Tìm kiếm

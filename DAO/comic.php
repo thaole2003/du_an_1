@@ -113,6 +113,11 @@ function search_all( $text){
    
     return pdo_query($sql);
 }
+function load_all_truyen_like(){
+    $sql = "SELECT B.name as img,A.name as name, A.date, A.id from comic A INNER JOIN images B on A.images_id = B.id where 1 order by like_comic desc limit 0,5";
+    $truyen_like = pdo_query($sql);
+    return $truyen_like;
+}
 ?>
 
 
