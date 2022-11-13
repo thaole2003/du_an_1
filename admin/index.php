@@ -7,7 +7,7 @@ require_once "../DAO/pdo.php";
 require_once "../DAO/loai.php";
 require_once "../DAO/comic.php";
 if(check_admin_role() == false){
-    header("location:views/login&msg=bạn không có quyền truy cập");
+    header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
     die;
 }
 date_default_timezone_set('Asia/Ho_Chi_Minh');

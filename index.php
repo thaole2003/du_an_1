@@ -12,8 +12,11 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 //Controller
 //Tìm kiếm
-if(isset($_SESSION['okokok'])){
+if (isset($_SESSION['okokok'])) {
     unset($_SESSION['okokok']);
+}
+if(isset($_SESSION['dang_xuat'])){
+    unset($_SESSION['dang_xuat']);
 }
 if (isset($_POST['search'])) {
 
@@ -29,10 +32,10 @@ if (isset($_POST['search'])) {
 }
 
 // Đăng ký user
-    $list_email =select_email_user();
-    // echo "<pre>";
-    // var_dump($list_email);
-    // echo "<pre>";
+$list_email = select_email_user();
+// echo "<pre>";
+// var_dump($list_email);
+// echo "<pre>";
 if (isset($_POST['dang_ky'])) {
     $email = trim($_POST['email']);
     $name = trim($_POST['name']);
@@ -50,11 +53,11 @@ if (isset($_POST['dang_ky'])) {
     } elseif (!emailValid($email)) {
         $flag_register = false;
         $err_email = "Email chưa đúng định dạng mail";
-    }else{
-        foreach($list_email as $key=>$value){
-            if($email==$value['email']){
-                $flag_register=false;
-                $err_email="Email đã tồn tại";
+    } else {
+        foreach ($list_email as $key => $value) {
+            if ($email == $value['email']) {
+                $flag_register = false;
+                $err_email = "Email đã tồn tại";
             }
         }
     }
@@ -122,6 +125,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
             //login
         case 'login':
+            unset($_SESSION['khong_ton_tai_tk']);
+            unset($_SESSION['sai_mk']);
             if (isset($_POST['loginn'])) {
                 $email_login = trim($_POST['email_login']);
                 $length_email = strlen($email_login);
@@ -132,19 +137,19 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $flag_login = false;
                     unset($_SESSION['khong_ton_tai_tk']);
                     $err1_email_login = 'bạn chưa nhập email';
-                }elseif(!emailValidate($email_login)){
+                } elseif (!emailValidate($email_login)) {
                     unset($_SESSION['khong_ton_tai_tk']);
-                        $flag_login = false;
+                    $flag_login = false;
                     $err1_email_login = 'email không đúng định dạng';
-                    }
+                }
                 if ($length_pass == 0) {
                     $flag_login = false;
                     $err_pass_login = 'bạn chưa nhập password';
                 }
-            
+
                 if ($flag_login == true) {
                     //lay xem co email nào khớp với email đã nhập k.
-                    $user_check = get_one_user_by_email($email_login);            
+                    $user_check = get_one_user_by_email($email_login);
                     if ($user_check != "") {
                         // if(password_verify($pass_login, $user_check['password']))
                         if (password_verify($pass_login, $user_check['password'])) {
@@ -153,29 +158,30 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                                 'name' => $user_check['name'],
                                 'role' => $user_check['role'],
                                 'role_name' => $user_check['role_name']
-                            ];   
+                            ];
                             unset($_SESSION['khong_ton_tai_tk']);
                             unset($_SESSION['sai_mk']);
-                            $_SESSION['okokok']='đăng nhập thành công';  
+                            $_SESSION['okokok'] = 'đăng nhập thành công';
                             header('location:index.php');
-                        }else{
+                        } else {
                             unset($_SESSION['khong_ton_tai_tk']);
-                            $_SESSION['sai_mk']='sai mật khẩu';
+                            $_SESSION['sai_mk'] = 'sai mật khẩu';
                         }
-                    }else{
+                    } else {
                         unset($_SESSION['sai_mk']);
-                        $_SESSION['khong_ton_tai_tk']='tài khoản không tồn tại';
+                        $_SESSION['khong_ton_tai_tk'] = 'tài khoản không tồn tại';
                     }
                 }
             }
             include_once  './views/login.php';
             break;
             //log-out
-            case 'dang_xuat':
-                session_unset();
-                session_destroy();
-                include 'views/header_home_footer/home.php';
-                break;
+        case 'dang_xuat':
+            session_unset();
+            $_SESSION['dang_xuat'] = "Bạn đã đăng xuất";
+            session_destroy();
+            header('location:index.php');
+            break;
             //danh mục
         case 'loai':
             if (isset($_GET['ma_loai']) && $_GET['ma_loai'] > 0) {
