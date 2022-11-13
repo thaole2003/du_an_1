@@ -62,7 +62,7 @@
                 }
                 echo '
                 <div class="col_'.$number.'">
-                    <a href="index.php?act=chi_tiet_truyen" class="item_1">
+                    <a href="index.php?act=detail&id='.$id.'" class="item_1">
                         <div class="img"><img src="'.$img.'" alt="">
                             <div class="ngay_xb">'.substr($date,0,11).'</div>
                             <div class="text">'.$name.'</div>
