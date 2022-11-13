@@ -1,10 +1,10 @@
 <?php 
-
-function insert_khach_hang($email, $user, $pass, $dia_chi, $dien_thoai)
-{
-    $sql = "insert into khach_hang(email,user,pass,dia_chi,dien_thoai) values('$email','$user','$pass','$dia_chi','$dien_thoai')";
+// them khach hang 
+function insert_khach_hang($email, $pass, $name, $phone,$dia_chi,$role){
+    $sql = "INSERT into user(email,password,name,phone,address,role) values('$email','$pass','$name','$phone','$dia_chi','$role')";
     pdo_execute($sql);
 }
+// update khách hàng 
 function update_khach_hang($ma_khach_hang,$email,$user,$pass,$dia_chi,$dien_thoai){
     $sql = "update khach_hang set 
     email='$email',
@@ -15,6 +15,7 @@ function update_khach_hang($ma_khach_hang,$email,$user,$pass,$dia_chi,$dien_thoa
     where ma_khach_hang = $ma_khach_hang";
     pdo_execute($sql);
 }
+// update khách hàng trong admin 
 function update_khach_hang_trong_admin($ma_khach_hang,$email,$user,$pass,$dia_chi,$dien_thoai,$vai_tro){
     $sql = "update khach_hang set 
     email='$email',
@@ -26,10 +27,12 @@ function update_khach_hang_trong_admin($ma_khach_hang,$email,$user,$pass,$dia_ch
     where ma_khach_hang = $ma_khach_hang";
     pdo_execute($sql);
 }
+// xoa khách hàng 
 function delete_khach_hang($id){
     $sql = "delete from khach_hang where ma_khach_hang =".$id;
     pdo_execute($sql);
 }
+
 function emailValidate($email)
 {
     return (bool)preg_match ("/^\\S+@\\S+\\.\\S+$/", $email);
@@ -52,4 +55,23 @@ function check_admin_role(){
     return false;
 }
 
+
+// selct table user
+function select_email_user(){
+    $sql = "SELECT email from user";
+    return pdo_query($sql);
+}
+// kiểm tra email
+function emailValid($email)
+{
+    return (bool)preg_match ("/^\\S+@\\S+\\.\\S+$/", $email);
+}
+// kiểm tra phone number
+function isVietnamesePhoneNumber($number) {
+    return (bool)preg_match("/(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/",$number);
+  }
+// kiểm tra password
+function isPassword($password){
+    return (bool)preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/",$password);
+}
 ?>
