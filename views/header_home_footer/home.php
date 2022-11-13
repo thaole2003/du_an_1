@@ -57,7 +57,7 @@
             foreach($comic_by_view as $key => $value){
                 extract($value);
 ?>
-<a href="index.php?act=detail$id=<?=$id?>">
+<a href="index.php?act=detail&id=<?=$id?>">
                 <div class="col">
                     <div class="product">
                         <div class="img"><img src="<?= $iname ?>" alt=""></div>
@@ -84,7 +84,8 @@
     <div class="truyen">
         <h3><i class="fa-solid fa-cloud-arrow-down"></i>Truyện mới cập nhật</h3>
         <?php foreach($comic_by_date as $key => $value ){?>
-            <a href="#">
+            <?php extract($value) ?>
+            <a href="index.php?act=detail&id=<?=$id?>">
             <div class="col">
                 <div class="img"><img src="<?= $iname ?>" alt="">
                 </div>

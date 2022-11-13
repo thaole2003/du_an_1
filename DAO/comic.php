@@ -123,6 +123,19 @@ join images i
 ORDER BY `view` DESC LIMIT 0,5";
 return pdo_query($sql);
 }
+function detail_comic($id){
+    $sql = "SELECT 
+    c.*, 
+    i.name as img_name,
+    ca.name as ca_name
+    from comic c
+    join images i
+    on c.images_id = i.comic_id
+    join category ca
+    on c.category_id = ca.id
+    WHERE c.id= $id";
+    return pdo_query_one($sql);
+}
 function comic_by_date(){
     $sql = "select 
     c.*,
