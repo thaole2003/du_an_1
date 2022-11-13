@@ -113,10 +113,45 @@ function search_all( $text){
    
     return pdo_query($sql);
 }
+
 function load_all_truyen_like(){
     $sql = "SELECT B.name as img,A.name as name, A.date, A.id from comic A INNER JOIN images B on A.images_id = B.id where 1 order by like_comic desc limit 0,5";
     $truyen_like = pdo_query($sql);
     return $truyen_like;
+
+function comic_by_view(){
+    $sql = "select 
+    c.*,
+    i.name as iname
+from comic c
+join images i
+    on c.images_id = i.comic_id
+ORDER BY `view` DESC LIMIT 0,5";
+return pdo_query($sql);
+}
+function detail_comic($id){
+    $sql = "SELECT 
+    c.*, 
+    i.name as img_name,
+    ca.name as ca_name
+    from comic c
+    join images i
+    on c.images_id = i.comic_id
+    join category ca
+    on c.category_id = ca.id
+    WHERE c.id= $id";
+    return pdo_query_one($sql);
+}
+function comic_by_date(){
+    $sql = "select 
+    c.*,
+    i.name as iname
+from comic c
+join images i
+    on c.images_id = i.comic_id
+ORDER BY `date` DESC";
+return pdo_query($sql);
+
 }
 ?>
 

@@ -1,16 +1,18 @@
 <?php
 include_once "./DAO/user.php";
 session_start();
-include_once "./DAO/comic.php";
 include_once "./DAO/pdo.php";
 include_once "./DAO/loai.php";
-include_once  "./DAO/user.php";
+include_once "./DAO/comic.php";
 $list_all_loai = load_all_loai();
+include_once  "./DAO/user.php";
 include_once  "views/header_home_footer/header.php";
 date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 $like_comic = load_all_truyen_like();
-// echo '<pre>';
-// print_r(max($like_comic));
+$comic_by_view = comic_by_view();
+$comic_by_date = comic_by_date();
+
 
 //Controller
 //Tìm kiếm
@@ -194,12 +196,20 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 include_once "./views/loai.php";
             }
             break;
+            //detail
+            case 'detail':
+                if(isset($_GET['id'])){
+                    $id= $_GET['id'];
+                }
+                $detail_comic = detail_comic($id);
+                include_once './views/chi_tiet_truyen.php';
+                break;
             // dang ky
         case 'register':
             include "views/register.php";
             break;
             //danh mục
-        case 'loai';
+        case 'loai':
             if (isset($_GET['ma_loai']) && $_GET['ma_loai'] > 0) {
                 $id_ma_loai = $_GET['ma_loai'];
             }
@@ -213,6 +223,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
     }
 } else {
+  
     include_once "views/header_home_footer/home.php";
 }
 include_once "views/header_home_footer/footer.php";
