@@ -36,33 +36,18 @@
                 <div class="right">
                     <!--Đăng ký - Đăng nhập-->
                     <form action="#">
+
+                        <a href="index.php?act=login"><input type="button"  id="login" value="Đăng nhập"></a>
+
                         <a href="index.php?act=register"><input type="button" id="register" value="Đăng ký"></a>
-                        <a href="#"><input type="button" id="login" value="Đăng nhập"></a>
+
                     </form>
+                    <?php echo  isset($_SESSION['auth']['name'])?  'xin chào,'.$_SESSION['auth']['name'] : ''; ?>
                 </div>
                 <div class="clear"></div>
             </div>
     </div>
-    <div class="login rounded-lg absolute hidden flex flex-col w-1/2 m-2 p-2   bg-white">
-        <p class="text-center font-medium text-2xl">Đăng nhập</p>
-        <label class="m-2" for="">Email</label>
-        <input type="text" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 ">
-        <label class="m-2" for="">Password</label>
-        <input type="password" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 ">
-        <div class="flex justify-between border-b-2">
-            <div class="flex m-2 gap-1">
-                <a class="hover:text-sky-500" href="">Quên mật khẩu</a>|<a class="hover:text-sky-500" href="">Đăng kí</a>
-            </div>
-            <div class="flex m-2 gap-3">
-                <button class="border border-soild h-8 rounded-lg  h-10 p-2 bg-orange-500"> Đăng Nhập</button> <button id="cancellogin" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-blue-500">Cancel</button>
-            </div>
-        </div>
-        <div class="flex gap-2 justify-center m-3">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-google"></i>
-        </div>
-    </div>
-    <!-- danng ky  -->
+
     <!-- <div class="register hidden rounded-lg absolute  flex flex-col w-1/2 m-2 p-2   bg-white ">
         <p class="text-center font-medium text-2xl">Đăng Kí Mới</p>
         <form action="" method="POST">
@@ -104,12 +89,9 @@
                     <ul class="sub_menu">
                         <!--Phần đẩy loại truyện-->
                         <div class="vien">
-                            <?php foreach($list_all_loai as $key => $value){
-?>
+                            <?php foreach($list_all_loai as $key => $value){?>
                             <li><a href="index.php?act=loai&ma_loai=<?php echo $value['id'] ?>" ><?php echo $value['name'] ?></a></li>
-
                           <?php  } ?>
-                            
                         </div>
                     </ul>
                 </li>
@@ -122,3 +104,4 @@
     </header>
     <div class="clear"></div>
     <div class="home">
+      

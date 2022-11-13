@@ -32,6 +32,30 @@ function delete_khach_hang($id){
     $sql = "delete from khach_hang where ma_khach_hang =".$id;
     pdo_execute($sql);
 }
+
+function emailValidate($email)
+{
+    return (bool)preg_match ("/^\\S+@\\S+\\.\\S+$/", $email);
+}
+function get_one_user_by_email($email){
+    $sql = "select 
+    u.*, 
+    r.name as role_name
+from user u
+join roles r
+    on r.id = u.role
+where email = '$email'";
+    return pdo_query_one($sql);
+}
+function check_admin_role(){
+    if(isset($_SESSION['auth']) && $_SESSION['auth']['role_id'] == 2){
+        return true;
+    }
+
+    return false;
+}
+
+
 // selct table user
 function select_email_user(){
     $sql = "SELECT email from user";
