@@ -193,12 +193,20 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 include_once "./views/loai.php";
             }
             break;
+            //detail
+            case 'detail':
+                if(isset($_GET['id'])){
+                    $id= $_GET['id'];
+                }
+                $detail_comic = detail_comic($id);
+                include_once './views/chi_tiet_truyen.php';
+                break;
             // dang ky
         case 'register':
             include "views/register.php";
             break;
             //danh mục
-        case 'loai';
+        case 'loai':
             if (isset($_GET['ma_loai']) && $_GET['ma_loai'] > 0) {
                 $id_ma_loai = $_GET['ma_loai'];
             }
