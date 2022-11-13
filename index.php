@@ -133,8 +133,10 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $flag_login = true;
                 if ($length_email == 0) {
                     $flag_login = false;
+                    unset($_SESSION['khong_ton_tai_tk']);
                     $err1_email_login = 'bạn chưa nhập email';
                 }elseif(!emailValidate($email_login)){
+                    unset($_SESSION['khong_ton_tai_tk']);
                         $flag_login = false;
                     $err1_email_login = 'email không đúng định dạng';
                     
@@ -148,6 +150,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             
                 if ($flag_login == true) {
                     //lay xem co email nào khớp với email đã nhập k.
+
                     $user_check = get_one_user_by_email($email_login);            
                     if ($user_check != "") {
                         // if(password_verify($pass_login, $user_check['password']))
@@ -163,8 +166,9 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                             $_SESSION['okokok']='đăng nhập thành công';
                             
                         }else{
-                            $_SESSION['sai_mk']='sai mật khẩu';
                             unset($_SESSION['khong_ton_tai_tk']);
+                            $_SESSION['sai_mk']='sai mật khẩu';
+                            
                            
                         }
                     }else{
