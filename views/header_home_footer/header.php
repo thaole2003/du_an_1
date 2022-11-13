@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="content/css/index.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -35,14 +34,30 @@
                 </div>
                 <div class="right">
                     <!--Đăng ký - Đăng nhập-->
-                    <form action="#">
+                    <?php
+                    if (isset($_SESSION['auth'])) {
+                        extract($_SESSION['auth']);
+                        // echo '<pre>';
+                        // print_r($_SESSION['auth']);
+                    ?>
+                        <form action="">
+                            <label>Xin chào <strong><?php echo $name ?></strong></label>
+                            <a href="index.php?act=login"><input type="button" value="Cập nhật tài khoản"></a>
+                            <a href="index.php?act=register"><input type="button" value="Quên mật khẩu"></a>
+                            <?php if($_SESSION['auth']['role'] == 1){?>
+                                <a href="admin/index.php"><input type="button" value="Đăng nhập admin"></a>
+                                <?php } ?>
+                            <a href="index.php?act=dang_xuat"><input type="button" value="Đăng xuất"></a>
+                        </form>
+                    <?php } else { ?>
+                        <form action="#">
 
-                        <a href="index.php?act=login"><input type="button"  id="login" value="Đăng nhập"></a>
+                            <a href="index.php?act=login"><input type="button" id="login" value="Đăng nhập"></a>
 
-                        <a href="index.php?act=register"><input type="button" id="register" value="Đăng ký"></a>
+                            <a href="index.php?act=register"><input type="button" id="register" value="Đăng ký"></a>
 
-                    </form>
-                    <?php echo  isset($_SESSION['auth']['name'])?  'xin chào,'.$_SESSION['auth']['name'] : ''; ?>
+                        </form>
+                    <?php } ?>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -89,9 +104,9 @@
                     <ul class="sub_menu">
                         <!--Phần đẩy loại truyện-->
                         <div class="vien">
-                            <?php foreach($list_all_loai as $key => $value){?>
-                            <li><a href="index.php?act=loai&ma_loai=<?php echo $value['id'] ?>" ><?php echo $value['name'] ?></a></li>
-                          <?php  } ?>
+                            <?php foreach ($list_all_loai as $key => $value) { ?>
+                                <li><a href="index.php?act=loai&ma_loai=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></li>
+                            <?php  } ?>
                         </div>
                     </ul>
                 </li>
@@ -104,4 +119,3 @@
     </header>
     <div class="clear"></div>
     <div class="home">
-      
