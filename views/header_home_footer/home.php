@@ -53,255 +53,52 @@
     <div class="truyen_hot">
         <h3><i class="fa-solid fa-star"></i>Truyện hot</h3>
         <div class="rol">
-            <a href="#">
+            <?php 
+            foreach($comic_by_view as $key => $value){
+                extract($value);
+?>
+<a href="index.php?act=detail$id=<?=$id?>">
                 <div class="col">
                     <div class="product">
-                        <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
+                        <div class="img"><img src="<?= $iname ?>" alt=""></div>
                         <div class="text">
                             <a href="#">
-                                <h4>Onepice</h4>
+                                <h4><?= $name?></h4>
                             </a>
                         </div>
                         <div class="ngay_update">
-                            <h5>21/10/2022</h5>
+                            <h5><?php echo substr($date, 0,11)?>
+                        </h5>
                         </div>
                     </div>
                 </div>
             </a>
-            <a href="#">
-                <div class="col">
-                    <div class="product">
-                        <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
-                        <div class="text">
-                            <a href="#">
-                                <h4>Onepice</h4>
-                            </a>
-                        </div>
-                        <div class="ngay_update">
-                            <h5>21/10/2022</h5>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="col">
-                    <div class="product">
-                        <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
-                        <div class="text">
-                            <a href="#">
-                                <h4>Onepice</h4>
-                            </a>
-                        </div>
-                        <div class="ngay_update">
-                            <h5>21/10/2022</h5>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="col">
-                    <div class="product">
-                        <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
-                        <div class="text">
-                            <a href="#">
-                                <h4>Onepice</h4>
-                            </a>
-                        </div>
-                        <div class="ngay_update">
-                            <h5>21/10/2022</h5>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#">
-                <div class="col">
-                    <div class="product">
-                        <div class="img"><img src="content/img/truyen_hot/truyen_hot_1.jpg" alt=""></div>
-                        <div class="text">
-                            <a href="#">
-                                <h4>Onepice</h4>
-                            </a>
-                        </div>
-                        <div class="ngay_update">
-                            <h5>21/10/2022</h5>
-                        </div>
-                    </div>
-                </div>
-            </a>
+  <?php          }
+            ?>
+            
+           
         </div>
     </div>
     <div class="clear"></div>
     <!--Truyện-->
     <div class="truyen">
         <h3><i class="fa-solid fa-cloud-arrow-down"></i>Truyện mới cập nhật</h3>
-        <a href="#">
+        <?php foreach($comic_by_date as $key => $value ){?>
+            <a href="#">
             <div class="col">
-                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
+                <div class="img"><img src="<?= $iname ?>" alt="">
                 </div>
                 <div class="text">
                     <a href="#">
-                        <h4>Onepice</h4>
+                        <h4><?= $name?></h4>
                     </a>
                     <div class="ngay_update">
-                        <h5>21/10/2022</h5>
+                        <h5><?php echo substr($date, 0,11)?></h5>
                     </div>
                 </div>
             </div>
         </a>
-        <a href="#">
-            <div class="col">
-                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
-                </div>
-                <div class="text">
-                    <a href="#">
-                        <h4>Onepice</h4>
-                    </a>
-                    <div class="ngay_update">
-                        <h5>21/10/2022</h5>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="col">
-                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
-                </div>
-                <div class="text">
-                    <a href="#">
-                        <h4>Onepice</h4>
-                    </a>
-                    <div class="ngay_update">
-                        <h5>21/10/2022</h5>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="col">
-                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
-                </div>
-                <div class="text">
-                    <a href="#">
-                        <h4>Onepice</h4>
-                    </a>
-                    <div class="ngay_update">
-                        <h5>21/10/2022</h5>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="col">
-                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
-                </div>
-                <div class="text">
-                    <a href="#">
-                        <h4>Onepice</h4>
-                    </a>
-                    <div class="ngay_update">
-                        <h5>21/10/2022</h5>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="col">
-                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
-                </div>
-                <div class="text">
-                    <a href="#">
-                        <h4>Onepice</h4>
-                    </a>
-                    <div class="ngay_update">
-                        <h5>21/10/2022</h5>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="col">
-                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
-                </div>
-                <div class="text">
-                    <a href="#">
-                        <h4>Onepice</h4>
-                    </a>
-                    <div class="ngay_update">
-                        <h5>21/10/2022</h5>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="col">
-                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
-                </div>
-                <div class="text">
-                    <a href="#">
-                        <h4>Onepice</h4>
-                    </a>
-                    <div class="ngay_update">
-                        <h5>21/10/2022</h5>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="col">
-                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
-                </div>
-                <div class="text">
-                    <a href="#">
-                        <h4>Onepice</h4>
-                    </a>
-                    <div class="ngay_update">
-                        <h5>21/10/2022</h5>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="col">
-                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
-                </div>
-                <div class="text">
-                    <a href="#">
-                        <h4>Onepice</h4>
-                    </a>
-                    <div class="ngay_update">
-                        <h5>21/10/2022</h5>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="col">
-                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
-                </div>
-                <div class="text">
-                    <a href="#">
-                        <h4>Onepice</h4>
-                    </a>
-                    <div class="ngay_update">
-                        <h5>21/10/2022</h5>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a href="#">
-            <div class="col">
-                <div class="img"><img src="content/img/truyen_moi_cap_nhat/nguoi-o-re-bi-ep-thanh-phan-dien_1594777230.jpg" alt="">
-                </div>
-                <div class="text">
-                    <a href="#">
-                        <h4>Onepice</h4>
-                    </a>
-                    <div class="ngay_update">
-                        <h5>21/10/2022</h5>
-                    </div>
-                </div>
-            </div>
-        </a>
+            <?php } ?>
     </div>
 
     <div class="clear"></div>

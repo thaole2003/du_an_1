@@ -1,14 +1,15 @@
 <?php
 include_once "./DAO/user.php";
 session_start();
-include_once "./DAO/comic.php";
 include_once "./DAO/pdo.php";
 include_once "./DAO/loai.php";
-
+include_once "./DAO/comic.php";
 $list_all_loai = load_all_loai();
 include_once  "./DAO/user.php";
 include_once  "views/header_home_footer/header.php";
 date_default_timezone_set('Asia/Ho_Chi_Minh');
+$comic_by_view = comic_by_view();
+$comic_by_date = comic_by_date();
 
 //Controller
 //Tìm kiếm
@@ -211,6 +212,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
     }
 } else {
+  
     include_once "views/header_home_footer/home.php";
 }
 include_once "views/header_home_footer/footer.php";
