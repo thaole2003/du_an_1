@@ -6,9 +6,9 @@
       
         <div>
             <p class="text-center font-medium text-2xl">Đăng nhập</p>
-            <span>
-    <?php echo isset($_COOKIE["susecdangnhap"]) ? $_COOKIE["susecdangnhap"] : ''?>
-            </span>
+            <p class="text-center text-yellow-600">
+    <?php echo isset($_SESSION['okokok']) ? $_SESSION['okokok'] : ''?>
+            </p>
         </div>
              
   
@@ -18,10 +18,9 @@
                         <label class="m-2" for="">Email</label>
                         <span>
     <?php echo isset($_SESSION['khong_ton_tai_tk']) ? $_SESSION['khong_ton_tai_tk'] : ''?>
-</span>
+</span>      
              </div>
-
-        <input type="text" name="email_login" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12" placeholder=" <?php echo isset($err_email_login) ? $err_email_login : '' ?> ">
+        <input type="text" name="email_login" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12" placeholder=" <?php echo isset($err1_email_login) ? $err1_email_login : ''?> ">
         <div>
         <label class="m-2" for="">Password</label>
 <span>

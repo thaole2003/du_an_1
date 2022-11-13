@@ -1,11 +1,17 @@
 <?php
 session_start();
-include "header.php";
+
+include_once "header.php";
+include_once  "../DAO/user.php";
 require_once "../DAO/pdo.php";
 require_once "../DAO/loai.php";
 require_once "../DAO/comic.php";
-
+if(check_admin_role() == false){
+    header("location:views/login&msg=bạn không có quyền truy cập");
+    die;
+}
 date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 //Controller
 if (isset($_GET['act'])) {
     $act = $_GET['act'];
@@ -30,12 +36,12 @@ if (isset($_GET['act'])) {
                     $thong_bao = "Thêm mới thành công";
                 }
             }
-            include "danh_muc/addloai.php";
+            include_once "danh_muc/addloai.php";
             break;
             //list loại
         case 'list_loai':
             $list_all_loai = load_all_loai();
-            include "danh_muc/listcategories.php";
+            include_once "danh_muc/listcategories.php";
             break;
             // sua loai
 
@@ -44,7 +50,7 @@ if (isset($_GET['act'])) {
                 $id = $_GET['id'];
                 $loai_one = load_one_loai($id);
             }
-            include "danh_muc/editcategory.php";
+            include_once "danh_muc/editcategory.php";
             break;
             //Cập nhật
         case 'cap_nhat_loai':
@@ -79,7 +85,7 @@ if (isset($_GET['act'])) {
                 }
             }
             $list_all_loai = load_all_loai();
-            include "danh_muc/listcategories.php";
+            include_once "danh_muc/listcategories.php";
             //xóa loại
         case 'xoa_loai':
             if (isset($_GET['id'])) {
@@ -88,7 +94,7 @@ if (isset($_GET['act'])) {
                 delete_fk_comic($id);
                 delete_loai_hang($id);
                 $list_all_loai = load_all_loai();
-                include_once 'danh_muc/listcategories.php';
+                include_once  'danh_muc/listcategories.php';
                 $thong_bao = 'Xóa thành công';
             }
             break;
@@ -96,7 +102,7 @@ if (isset($_GET['act'])) {
         case 'list_truyen':
             $list_all_loai = load_all_loai();
             $load_all_truyen = comic_select_all();
-            include_once "../admin/truyen/comic.php";
+            include_once  "../admin/truyen/comic.php";
             break;
         case 'list_truyen_search':
             if (isset($_POST['btn_search'])) {
@@ -109,7 +115,7 @@ if (isset($_GET['act'])) {
             }
             $list_all_loai = load_all_loai();
             $load_all_truyen = comic_select_all_search($key,$category_id);
-            include_once "../admin/truyen/comic.php";
+            include_once  "../admin/truyen/comic.php";
             break;
             //thêm truyện
             case 'add_comic':
@@ -142,7 +148,7 @@ if (isset($_GET['act'])) {
                     comic_insert($namee,$detail,$author,$date,$intro,$view,$like,$category,$img_id);      
                   }
               }
-            include_once './truyen/addcomic.php';
+            include_once  './truyen/addcomic.php';
             break;
             // DELETE Truyện
         case 'xoa_truyen':
@@ -150,7 +156,7 @@ if (isset($_GET['act'])) {
                 $id = $_GET['id'];
                 delete_comic($id);
                 $load_all_truyen = comic_select_all();
-                include_once "../admin/truyen/comic.php";
+                include_once  "../admin/truyen/comic.php";
             }
             break;
             //Sửa truyện
@@ -161,7 +167,7 @@ if (isset($_GET['act'])) {
             }
             $list_all_images = load_all_image();
             $list_all_loai = load_all_loai();
-            include_once 'truyen/editcomic.php';
+            include_once  'truyen/editcomic.php';
             break;
         case 'update_truyen':
             if (isset($_POST['btn-update'])) {
@@ -202,15 +208,15 @@ if (isset($_GET['act'])) {
             }
             $load_all_truyen = comic_select_all();
             $list_all_loai = load_all_loai();
-            include_once 'truyen/comic.php';
+            include_once  'truyen/comic.php';
             break;
-            //ngược lại không tồn tại act thì include "home.php"; 
+            //ngược lại không tồn tại act thì include_once "home.php"; 
         default:
-            include "home.php";
+            include_once "home.php";
             break;
     }
 } else {
-    include "home.php";
+    include_once "home.php";
 }
 
-include "footer.php";
+include_once "footer.php";
