@@ -37,7 +37,7 @@
                     <!--Đăng ký - Đăng nhập-->
                     <form action="#">
                         <a href="#"><input type="button" id="register" value="Đăng ký"></a>
-                        <a href="index.php?act=login"><input type="button" id="login" value="Đăng nhập"></a>
+                        <a href="index.php?act=login"><input type="button"  id="login" value="Đăng nhập"></a>
                     </form>
                     <?php echo  isset($_SESSION['auth']['name'])?  'xin chào,'.$_SESSION['auth']['name'] : ''; ?>
                 </div>
