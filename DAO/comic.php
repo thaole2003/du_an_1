@@ -113,6 +113,26 @@ function search_all( $text){
    
     return pdo_query($sql);
 }
+function comic_by_view(){
+    $sql = "select 
+    c.*,
+    i.name as iname
+from comic c
+join images i
+    on c.images_id = i.comic_id
+ORDER BY `view` DESC LIMIT 0,5";
+return pdo_query($sql);
+}
+function comic_by_date(){
+    $sql = "select 
+    c.*,
+    i.name as iname
+from comic c
+join images i
+    on c.images_id = i.comic_id
+ORDER BY `date` DESC";
+return pdo_query($sql);
+}
 ?>
 
 
