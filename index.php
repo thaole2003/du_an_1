@@ -8,8 +8,11 @@ $list_all_loai = load_all_loai();
 include_once  "./DAO/user.php";
 include_once  "views/header_home_footer/header.php";
 date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+$like_comic = load_all_truyen_like();
 $comic_by_view = comic_by_view();
 $comic_by_date = comic_by_date();
+
 
 //Controller
 //Tìm kiếm

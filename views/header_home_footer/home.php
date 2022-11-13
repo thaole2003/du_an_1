@@ -1,54 +1,80 @@
 <!--Phần article-->
 <article>
     <div class="banner">
-        <table border="0">
-            <!--Truyện nổi bật-->
-            <tr>
-                <td>
+        <!--Truyện nổi bật-->
+        <!-- <div class="col_1">
+            <a href="index.php?act=chi_tiet_truyen" class="item_1">
+                <div class="img"><img src="content/img/banner/banner_1.jpg" alt="">
+                    <div class="ngay_xb">22/12/2022</div>
+                    <div class="text">One Pice</div>
+                </div>
+            </a>
+        </div>
+        <div class="col_2">
+            <a href="index.php?act=chi_tiet_truyen" class="item_1">
+                <div class="img"><img src="content/img/banner/banner_1.jpg" alt="">
+                    <div class="ngay_xb">22/12/2022</div>
+                    <div class="text">One Pice</div>
+                </div>
+            </a>
+        </div>
+        <div class="col_3">
+            <a href="index.php?act=chi_tiet_truyen" class="item_1">
+                <div class="img"><img src="content/img/banner/banner_1.jpg" alt="">
+                    <div class="ngay_xb">22/12/2022</div>
+                    <div class="text">One Pice</div>
+                </div>
+            </a>
+        </div>
+        <div class="col_4">
+            <a href="index.php?act=chi_tiet_truyen" class="item_1">
+                <div class="img"><img src="content/img/banner/banner_1.jpg" alt="">
+                    <div class="ngay_xb">22/12/2022</div>
+                    <div class="text">One Pice</div>
+                </div>
+            </a>
+        </div>
+        <div class="col_5">
+            <a href="index.php?act=chi_tiet_truyen" class="item_1">
+                <div class="img"><img src="content/img/banner/banner_1.jpg" alt="">
+                    <div class="ngay_xb">22/12/2022</div>
+                    <div class="text">One Pice</div>
+                </div>
+            </a>
+        </div>  -->
+        <?php
+            $i = 1;
+            foreach($like_comic as $like){
+                extract($like);
+                // echo '<pre>';
+                // print_r($like);
+                // die;
+                if(($i == 1)){
+                    $number = '3';
+                }elseif($i == 2){
+                    $number = '1';
+                }elseif($i == 3){
+                    $number = '2';
+                }elseif($i == 4){
+                    $number = '4';
+                }elseif($i == 5){
+                    $number = '5';
+                }
+                echo '
+                <div class="col_'.$number.'">
                     <a href="index.php?act=chi_tiet_truyen" class="item_1">
-                        <div class="img"><img src="content/img/banner/banner_1.jpg" alt="">
-                            <div class="ngay_xb">22/12/2022</div>
-                            <div class="text">One Pice</div>
+                        <div class="img"><img src="'.$img.'" alt="">
+                            <div class="ngay_xb">'.substr($date,0,11).'</div>
+                            <div class="text">'.$name.'</div>
                         </div>
                     </a>
-                </td>
-                <td rowspan="2" style="padding: 0px 5px;">
-                    <a href="#" class="item_2">
-                        <div class="img"><img src="content/img/banner/banner_3.jpg" alt="">
-                            <div class="ngay_xb">22/12/2022</div>
-                            <div class="text">Học Viện Anh Hùng</div>
-                        </div>
-                    </a>
-                </td>
-                <td>
-                    <a href="#" class="item_1">
-                        <div class="img"><img src="content/img/banner/banner_4.jpg" alt="">
-                            <div class="ngay_xb">22/12/2022</div>
-                            <div class="text">Fairy Tail 100 Year Quest</div>
-                        </div>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="#" class="item_1">
-                        <div class="img"><img src="content/img/banner/banner_2.jpg" alt="">
-                            <div class="ngay_xb">22/12/2022</div>
-                            <div class="text">Thất Hình Đại Hội</div>
-                        </div>
-                    </a>
-                </td>
-                <td>
-                    <a href="#" class="item_1">
-                        <div class="img"><img src="content/img/banner/banner_5.jpg" alt="">
-                            <div class="ngay_xb">22/12/2022</div>
-                            <div class="text">Black Clover - Thế Giới Phép Thuật</div>
-                        </div>
-                    </a>
-                </td>
-            </tr>
-        </table>
+                </div>
+                ';
+                $i+=1;
+            }
+        ?>
     </div>
+    <div class="clear"></div>
     <!--Truyện hot-->
     <div class="truyen_hot">
         <h3><i class="fa-solid fa-star"></i>Truyện hot</h3>
