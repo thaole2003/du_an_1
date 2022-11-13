@@ -10,10 +10,6 @@
     <?php echo isset($_SESSION['okokok']) ? $_SESSION['okokok'] : ''?>
             </p>
         </div>
-             
-  
-   
-       
              <div>
                         <label class="m-2" for="">Email</label>
                         <span>
