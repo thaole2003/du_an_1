@@ -48,10 +48,9 @@ where email = '$email'";
     return pdo_query_one($sql);
 }
 function check_admin_role(){
-    if(isset($_SESSION['auth']) && $_SESSION['auth']['role_id'] == 2){
+    if(isset($_SESSION['auth']) && $_SESSION['auth']['role'] == 1){
         return true;
     }
-
     return false;
 }
 

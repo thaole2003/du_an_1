@@ -67,6 +67,7 @@ header .up .right {
 header .up .right form input {
     height: 30px;
     width: 110px;
+    font-size: 12px;
     margin-top: 12px;
     border-radius: 5px;
     font-weight: bold;

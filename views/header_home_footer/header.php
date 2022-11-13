@@ -6,12 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="content/css/index.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
+<?php
+    if(isset($_SESSION['okokok'])){
+?>
+<script>
+    alert('<?= $_SESSION['okokok'] ?>');
+</script>
+<?php } ?>
+<?php
+    if(isset($_SESSION['dang_xuat'])){
+?>
+<script>
+    alert('<?= $_SESSION['dang_xuat'] ?>');
+</script>
+<?php } ?>
 <body>
     <div class="home">
         <!--Phần Header-->
@@ -35,52 +47,35 @@
                 </div>
                 <div class="right">
                     <!--Đăng ký - Đăng nhập-->
-                    <form action="#">
+                    <?php
+                    if (isset($_SESSION['auth'])) {
+                        extract($_SESSION['auth']);
+                        // echo '<pre>';
+                        // print_r($_SESSION['auth']);
+                    ?>
+                        <form action="">
+                            <label>Xin chào <strong><?php echo $name ?></strong></label>
+                            <a href="index.php?act=login"><input type="button" value="Cập nhật tài khoản"></a>
+                            <a href="index.php?act=register"><input type="button" value="Quên mật khẩu"></a>
+                            <?php if($_SESSION['auth']['role'] == 1){?>
+                                <a href="admin/index.php"><input type="button" value="Đăng nhập admin"></a>
+                                <?php } ?>
+                            <a href="index.php?act=dang_xuat"><input type="button" value="Đăng xuất"></a>
+                        </form>
+                    <?php } else { ?>
+                        <form action="#">
 
-                        <a href="index.php?act=login"><input type="button"  id="login" value="Đăng nhập"></a>
+                            <a href="index.php?act=login"><input type="button" id="login" value="Đăng nhập"></a>
 
-                        <a href="index.php?act=register"><input type="button" id="register" value="Đăng ký"></a>
+                            <a href="index.php?act=register"><input type="button" id="register" value="Đăng ký"></a>
 
-                    </form>
-                    <?php echo  isset($_SESSION['auth']['name'])?  'xin chào,'.$_SESSION['auth']['name'] : ''; ?>
+                        </form>
+                    <?php } ?>
                 </div>
                 <div class="clear"></div>
             </div>
     </div>
 
-    <!-- <div class="register hidden rounded-lg absolute  flex flex-col w-1/2 m-2 p-2   bg-white ">
-        <p class="text-center font-medium text-2xl">Đăng Kí Mới</p>
-        <form action="" method="POST">
-        <label class="m-2" for="">Email</label>
-        <input type="text" name="email" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 " placeholder="<?php echo isset($err_email) ? $err_email : "" ?>">
-        
-        <label class="m-2" for="">Name</label>
-        <input type="text" name="name" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 "  placeholder="<?php echo isset($err_name) ? $err_name : "" ?> ">
-        
-        <label class="m-2" for="">Phone</label>
-        <input type="text" name="phone" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 "  placeholder="<?php echo isset($err_phone) ? $err_phone : "" ?>">
-        
-        <label class="m-2" for="">Address</label>
-        <input type="text" name="address" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 " placeholder="<?php echo isset($err_address) ? $err_address : "" ?>">
-        
-        <label class="m-2" for="">Password</label>
-        <input type="password" name="pass" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 ">
-        <label class="m-2" for="" >Password nhập lại</label>
-        <input type="password"  name="password" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 ">
-        <div class="flex justify-between border-b-2">
-            <div class="flex m-2 gap-1">
-                <a class="hover:text-sky-500" href="">Đăng Nhập</a>
-            </div>
-            <div class="flex m-2 gap-3">
-                <button class="border border-soild h-8 rounded-lg  h-10 p-2 bg-orange-500"  name="dang_ky">Đăng Kí</button> <button id="cancelregister" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-blue-500">Cancel</button>
-            </div>
-        </div>
-        <div class="flex gap-2 justify-center m-3">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-google"></i>
-        </div>
-        </form>
-    </div> -->
     <div class="nav_full">
         <nav>
             <ul class="menu">
@@ -89,9 +84,9 @@
                     <ul class="sub_menu">
                         <!--Phần đẩy loại truyện-->
                         <div class="vien">
-                            <?php foreach($list_all_loai as $key => $value){?>
-                            <li><a href="index.php?act=loai&ma_loai=<?php echo $value['id'] ?>" ><?php echo $value['name'] ?></a></li>
-                          <?php  } ?>
+                            <?php foreach ($list_all_loai as $key => $value) { ?>
+                                <li><a href="index.php?act=loai&ma_loai=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></li>
+                            <?php  } ?>
                         </div>
                     </ul>
                 </li>
@@ -104,4 +99,3 @@
     </header>
     <div class="clear"></div>
     <div class="home">
-      
