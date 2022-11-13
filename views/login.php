@@ -1,7 +1,7 @@
 <div class=" mx-auto rounded-lg    w-1/2 m-2 p-2   bg-white">
     <form action="" class="flex flex-col" method="POST">
         <?php if (isset($_GET['msg'])) : ?>
-            <h3 style="color: red;"><?= $_GET['msg'] ?></h3>
+            <h3 class="text-center" style="color: red;"><?= $_GET['msg'] ?></h3>
         <?php endif ?>
       
         <div>
