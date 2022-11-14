@@ -54,7 +54,15 @@ function check_admin_role(){
     return false;
 }
 
-
+//select all user
+function all_user(){
+    $sql ="SELECT u.*,
+    r.`name` as r_name
+    FROM `user` u
+    JOIN roles r 
+    ON u.role = r.id";
+    return pdo_query($sql);
+}
 // selct table user
 function select_email_user(){
     $sql = "SELECT email from user";

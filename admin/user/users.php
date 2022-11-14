@@ -9,7 +9,7 @@
                 <tr class="bg-red-200 ">
                     <th class="p-2 border-2">Mã người dùng</th>
                     <th class="p-2 border-2">Email</th>
-                    <th class="p-2 border-2">Password</th>
+                    <th class="p-2 border-2">Address</th>
                     <th class="p-2 border-2">Phone</th>
                     <th class="p-2 border-2">Name</th>
                     <th class="p-2 border-2">Vai trò</th>
@@ -19,54 +19,26 @@
                 </tr>
             </thead>
             <tbody class="font-medium text-lg border-2">
-            <tr class="text-center  ">
-                    <td class="p-2 border-2 border-solid ">4</td>
-                    <td class="p-2 border-2 border-solid ">giapnv@gmail.com</td>
-                    <td class="p-2 border-2 border-solid ">123456</td>
-                    <td class="p-2 border-2 border-solid">0365573456</td>
-                    <td class="p-2 border-2 border-solid ">Nguyễn Văn Giáp</td>
-                    <td class="p-2 border-2 border-solid ">User</td>
+                <?php foreach($all_user as $key => $value){
+extract($value);
+
+
+                    ?>
+                       <tr class="text-center  ">
+                    <td class="p-2 border-2 border-solid "><?= $id ?></td>
+                    <td class="p-2 border-2 border-solid "><?= $email ?></td>
+                    <td class="p-2 border-2 border-solid "><?= $address ?></td>
+                    <td class="p-2 border-2 border-solid"><?= $phone ?></td>
+                    <td class="p-2 border-2 border-solid "><?= $name ?> </td>
+                    <td class="p-2 border-2 border-solid "><?= $r_name ?></td>
                     <td class="p-2 border-2 border-solid flex gap-2">
-                        <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a href="editusers.html">Sửa</a> </button>
+                        <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a href="index.php?act=edituser&id=<?= $id?>">Sửa</a> </button>
                         <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ">Xóa</button>
                     </td>
                 </tr>
-                <tr class="text-center  ">
-                    <td class="p-2 border-2 border-solid ">4</td>
-                    <td class="p-2 border-2 border-solid ">giapnv@gmail.com</td>
-                    <td class="p-2 border-2 border-solid ">123456</td>
-                    <td class="p-2 border-2 border-solid">0365573456</td>
-                    <td class="p-2 border-2 border-solid ">Nguyễn Văn Giáp</td>
-                    <td class="p-2 border-2 border-solid ">User</td>
-                    <td class="p-2 border-2 border-solid flex gap-2">
-                        <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a href="editusers.html">Sửa</a> </button>
-                        <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ">Xóa</button>
-                    </td>
-                </tr>
-                <tr class="text-center  ">
-                    <td class="p-2 border-2 border-solid ">4</td>
-                    <td class="p-2 border-2 border-solid ">giapnv@gmail.com</td>
-                    <td class="p-2 border-2 border-solid ">123456</td>
-                    <td class="p-2 border-2 border-solid">0365573456</td>
-                    <td class="p-2 border-2 border-solid ">Nguyễn Văn Giáp</td>
-                    <td class="p-2 border-2 border-solid ">User</td>
-                    <td class="p-2 border-2 border-solid flex gap-2">
-                        <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a href="editusers.html">Sửa</a> </button>
-                        <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ">Xóa</button>
-                    </td>
-                </tr>
-                <tr class="text-center  ">
-                    <td class="p-2 border-2 border-solid ">4</td>
-                    <td class="p-2 border-2 border-solid ">giapnv@gmail.com</td>
-                    <td class="p-2 border-2 border-solid ">123456</td>
-                    <td class="p-2 border-2 border-solid">0365573456</td>
-                    <td class="p-2 border-2 border-solid ">Nguyễn Văn Giáp</td>
-                    <td class="p-2 border-2 border-solid ">User</td>
-                    <td class="p-2 border-2 border-solid flex gap-2">
-                        <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a href="editusers.html">Sửa</a> </button>
-                        <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ">Xóa</button>
-                    </td>
-                </tr>
+           <?php      } ?>
+         
+               
             </tbody>
         </table>
     </div>

@@ -98,6 +98,15 @@ if (isset($_GET['act'])) {
                 $thong_bao = 'Xóa thành công';
             }
             break;
+            //LIST USER
+            case 'list_kh':
+                $all_user = all_user();
+                include_once './user/users.php';
+                break;
+            //edit USER
+            case 'edituser':
+                include_once 'user/editusers.php';
+                break;    
             //load truyện
         case 'list_truyen':
             $list_all_loai = load_all_loai();
