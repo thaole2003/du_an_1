@@ -443,43 +443,48 @@ article .nen .trangchu_phim a:hover {
     color: cyan;
 }
 
-article .col .product .left {
+article .nen .col .product .left {
     float: left;
+    width: 20%;
+    margin-right: 15px;
 }
 
-article .col .product .left .img {
+article .nen .col .product .left .img {
     margin-right: 20px;
+    width: 100%;
 }
 
-article .col .product .left .img img {
+article .nen .col .product .left .img img {
     border-radius: 5px;
     box-shadow: 0px 0px 10px gray;
+    width: 100%;
+    height: 300px;
 }
 
-article .col .product .right {
-    display: block;
+article .nen .col .product .right {
+    width: 60%;
 }
 
-article .col .product .right h2 {
+article .nen .col .product .right h2 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 31px;
     margin-bottom: 10px;
 }
 
-article .col .product .right table tr {
+article .nen .col .product .right table tr {
     height: 25px;
 }
 
-article .col .product .right table tr td i {
+article .nen .col .product .right table tr td i {
     width: 20px;
 }
 
-article .col .product .right .loai_truyen {
+article .nen .col .product .right .loai_truyen {
     background-color: red;
     width: 1200px;
 }
 
-article .col .product .right .loai_truyen a {
+article .nen .col .product .right .loai_truyen a {
     padding: 5px 5px;
     border-radius: 5px;
     text-decoration: none;
@@ -493,19 +498,19 @@ article .col .product .right .loai_truyen a {
     border: 1px solid #f18121;
 }
 
-article .col .product .right .loai_truyen a:hover {
+article .nen .col .product .right .loai_truyen a:hover {
     background-color: #ffffff;
     color: #f18121;
     border: 1px solid #f18121;
 }
 
-article .col .product .chon {
+article .nen .col .product .chon {
     margin-left: 0px;
     margin-top: 15px;
     margin-bottom: 10px;
 }
 
-article .col .product .chon a {
+article .nen .col .product .chon a {
     padding: 5px 5px;
     margin-right: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -517,7 +522,7 @@ article .col .product .chon a {
     border: 1px solid #45daf4;
 }
 
-article .col .product .chon a:hover {
+article .nen .col .product .chon a:hover {
     background-color: #ffffff;
     color: #45daf4;
     border: 1px solid #45daf4;
