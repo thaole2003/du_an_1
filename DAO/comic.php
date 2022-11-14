@@ -10,7 +10,7 @@ function comic_select_all(){
     ca.name as ca_name
 from comic c
 join images i
-on c.images_id = i.comic_id
+on c.id = i.comic_id
 join category ca
 on c.category_id = ca.id order by c.id desc
     ";
@@ -24,7 +24,7 @@ function comic_select_all_search($key,$category_id){
     ca.name as ca_name
 from comic c
 join images i
-on c.images_id = i.comic_id
+on c.id = i.comic_id
 join category ca
 on c.category_id = ca.id 
     where 1";
@@ -45,7 +45,7 @@ function comic_select_one($id){
     ca.name as ca_name
     from comic c
     join images i
-    on c.images_id = i.comic_id
+    on c.id = i.comic_id
     join category ca
     on c.category_id = ca.id
     where c.id = '$id'
@@ -95,7 +95,7 @@ i.name as img_name,
 ca.name as ca_name
 from comic c
 join images i
-on c.images_id = i.comic_id
+on c.id = i.comic_id
 join category ca
 on c.category_id = ca.id
 WHERE c.category_id= $id";
@@ -107,7 +107,7 @@ function search_all( $text){
     i.name as img_name
     from comic c
     join images i
-    on c.images_id = i.comic_id
+    on c.id = i.comic_id
     where c.name like '%$text%'
     ";
    
@@ -115,7 +115,7 @@ function search_all( $text){
 }
 
 function load_all_truyen_like(){
-    $sql = "SELECT B.name as img,A.name as name, A.date, A.id from comic A INNER JOIN images B on A.images_id = B.id where 1 order by like_comic desc limit 0,5";
+    $sql = "SELECT B.name as img,A.name as name, A.date, A.id from comic A INNER JOIN images B on A.id = B.comic_id where 1 order by like_comic desc limit 0,5";
     $truyen_like = pdo_query($sql);
     return $truyen_like;
 }
@@ -125,7 +125,7 @@ function comic_by_view(){
     i.name as iname
 from comic c
 join images i
-    on c.images_id = i.comic_id
+    on c.id  = i.comic_id
 ORDER BY `view` DESC LIMIT 0,5";
 return pdo_query($sql);
 }
@@ -137,7 +137,7 @@ function detail_comic($id){
     ca.name as ca_name
     from comic c
     join images i
-    on c.images_id = i.comic_id
+    on c.id  = i.comic_id
     join category ca
     on c.category_id = ca.id
     WHERE c.id= $id";
@@ -149,12 +149,16 @@ function comic_by_date(){
     i.name as iname
 from comic c
 join images i
-    on c.images_id = i.comic_id
+    on c.id  = i.comic_id
 ORDER BY `date` DESC";
 return pdo_query($sql);
-
+}
+function select_name_comic(){
+    $sql = "SELECT id,name FROM comic";
+    return pdo_query($sql);
+}
+function up_load_img($id_comic,$name){
+    $sql = "INSERT INTO images (name,comic_id) VALUES ('$name','$id_comic')";
+    pdo_execute($sql);
 }
 ?>
-
-
-

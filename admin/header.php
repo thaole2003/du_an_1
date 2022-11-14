@@ -37,6 +37,7 @@
                     <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium  " href="index.php">Home</a></li>
                     <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_loai">Loại</a></li>
                     <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
+                    <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_img">Ảnh truyện</a></li>
                     <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_kh">Người dùng</a></li>
                     <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_bl">Bình luận</a></li>
                     <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_tk">Thống kê</a></li>
