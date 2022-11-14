@@ -205,7 +205,6 @@ article .banner .col_3{
     top: 0;
     left: 20.5%;
     width: 59%;
-    height: 30%;
 }
 article .banner .col_3 img{
     height: 350px;
@@ -293,6 +292,7 @@ article .truyen_hot .rol {
 
 article .truyen_hot .rol .col {
     float: left;
+    height: 430px;
     width: 20%;
 }
 
@@ -304,6 +304,7 @@ article .truyen_hot .rol .col .product .img img {
     width: 100%;
     border-radius: 16px;
     padding: 10px 10px;
+    height: 400px;
 }
 
 article .truyen_hot .rol .col .product .ngay_update {
@@ -353,6 +354,8 @@ article .truyen .col {
     position: relative;
     float: left;
     width: 25%;
+    border: 1px solid #ccc;
+    height: 430px;
 }
 
 article .truyen .col .img {
@@ -363,6 +366,7 @@ article .truyen .col .img img {
     width: 100%;
     border-radius: 25px;
     padding: 15px 15px;
+    height: 400px;
 }
 
 article .truyen .col .text .ngay_update {
