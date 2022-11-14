@@ -43,7 +43,7 @@ extract($value);
         </table>
     </div>
     <div class="p-4">
-        <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"><a href="adduser.html">Thêm</a></button>
+        <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"><a href="index.php?act=add_user">Thêm</a> </button>
 
     </div>
 </div>
