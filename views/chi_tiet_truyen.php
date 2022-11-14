@@ -45,9 +45,13 @@
                      
                     </div>
                     <div class="clear"></div>
-                    <div class="chon">
+                    <div class="chon flex items-center">
                         <a href="index.php?act=doc_truyen&id=<?= $id ?>">Đọc truyện</a>
-                        <a href="#">Thích</a>
+                        
+                        <form action="" method="POST">
+                           <a href=""> <button name="like">Thích</button></a>
+                        </form>
+                        
                     </div>
                 </div>
                 <div class="clear"></div>

@@ -74,7 +74,10 @@ function update_view($id){
 $sql = "UPDATE comic SET view = view+1 where id = $id";
 pdo_execute($sql);
 }
-
+function update_like($id){
+    $sql = "UPDATE comic SET like_comic	  = like_comic+1 where id = $id";
+    pdo_execute($sql);
+    }
 function comic_insert($name, $detail, $author, $date,$intro,$view,$like,$category_id,$images_id){
     $sqlQuery = "INSERT INTO comic (name,detail,author,date,intro,view,like_comic,category_id,images_id) VALUES ('$name','$detail','$author','$date','$intro',$view,$like,$category_id,$images_id)";
     pdo_execute($sqlQuery);

@@ -111,10 +111,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     $act = $_GET['act'];
 
     switch ($act) {
-            //Xem chi tiết truyện
-        case 'chi_tiet_truyen':
-            include_once "views/chi_tiet_truyen.php";
-            break;
+       
             //Đọc truyện
         case 'doc_truyen':
           
@@ -207,7 +204,9 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 if(isset($_GET['id'])){
                     $id= $_GET['id'];
                 }
-                
+                if(isset($_POST['like'])){
+                 update_like($id);
+                }
                 $detail_comic = detail_comic($id);
               
                 include_once './views/chi_tiet_truyen.php';
