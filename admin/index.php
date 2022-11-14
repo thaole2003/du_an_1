@@ -89,7 +89,6 @@ if (isset($_GET['act'])) {
             //xóa loại
         case 'xoa_loai':
             if (isset($_GET['id'])) {
-
                 $id = $_GET['id'];
                 delete_fk_comic($id);
                 delete_loai_hang($id);
@@ -175,6 +174,16 @@ if (isset($_GET['act'])) {
             case 'list_kh':
                 $all_user = all_user();
                 include_once './user/users.php';
+                break;
+            //DELETE_USER
+            case 'delete_user':
+                echo "click";
+                if(isset($_GET['id'])){
+                    $id=$_GET['id'];
+                    delete_user($id);
+                    $all_user = all_user();
+                    include_once './user/users.php';
+                }
                 break;
             //edit USER
             case 'edituser':

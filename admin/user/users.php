@@ -20,9 +20,9 @@
             </thead>
             <tbody class="font-medium text-lg border-2">
                 <?php foreach($all_user as $key => $value){
-extract($value);
+                extract($value);
 
-
+                $delete_user = "index.php?act=delete_user&id=" . $id;
                     ?>
                        <tr class="text-center  ">
                     <td class="p-2 border-2 border-solid "><?= $id ?></td>
@@ -33,7 +33,7 @@ extract($value);
                     <td class="p-2 border-2 border-solid "><?= $r_name ?></td>
                     <td class="p-2 border-2 border-solid flex gap-2">
                         <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a href="index.php?act=edituser&id=<?= $id?>">Sửa</a> </button>
-                        <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ">Xóa</button>
+                        <button onclick="del('<?php echo $delete_user ?>')" class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ">Xóa</button>
                     </td>
                 </tr>
            <?php      } ?>

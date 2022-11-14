@@ -37,9 +37,9 @@ if (isset($_POST['search'])) {
 
 // Đăng ký user
 $list_email = select_email_user();
-// echo "<pre>";
-// var_dump($list_email);
-// echo "<pre>";
+    // echo "<pre>";
+    // var_dump($list_email);
+    // echo "<pre>";
 if (isset($_POST['dang_ky'])) {
     $email = trim($_POST['email']);
     $name = trim($_POST['name']);

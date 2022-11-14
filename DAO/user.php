@@ -28,8 +28,8 @@ function update_khach_hang_trong_admin($ma_khach_hang,$email,$user,$pass,$dia_ch
     pdo_execute($sql);
 }
 // xoa khách hàng 
-function delete_khach_hang($id){
-    $sql = "delete from khach_hang where ma_khach_hang =".$id;
+function delete_user($id){
+    $sql = "DELETE FROM `user` where id=$id";
     pdo_execute($sql);
 }
 
