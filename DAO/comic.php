@@ -133,6 +133,7 @@ function detail_comic($id){
     $sql = "SELECT 
     c.*, 
     i.name as img_name,
+    ca.id as ca_id,
     ca.name as ca_name
     from comic c
     join images i
