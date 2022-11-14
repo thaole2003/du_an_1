@@ -98,6 +98,79 @@ if (isset($_GET['act'])) {
                 $thong_bao = 'Xóa thành công';
             }
             break;
+            //add user
+            case 'add_user':
+                $list_role=select_role();
+                $list_email =select_email_user();
+                if(isset($_POST['add'])){
+                    $email = trim($_POST['email']);
+                    $name = trim($_POST['name']);
+                    $phone = trim($_POST['phone']);
+                    $address = trim($_POST['address']);
+                    $password = trim($_POST['pass']);
+                    $re_password = trim($_POST['password']);
+                    $hash_password = password_hash($password, PASSWORD_DEFAULT);
+                    $role = trim($_POST['role_id']);
+                    $flag_register = true;
+                    // validate email 
+                    if ($email == "") {
+                        $flag_register = false;
+                        $err_email = "Email không được để trống";
+                    } elseif (!emailValid($email)) {
+                        $flag_register = false;
+                        $err_email = "Email chưa đúng định dạng mail";
+                    }else{
+                        foreach($list_email as $key=>$value){
+                            if($email==$value['email']){
+                                $flag_register=false;
+                                $err_email="Email đã tồn tại";
+                            }
+                        }
+                    }
+                    // validate name
+                    if ($name == "") {
+                        $flag_register = false;
+                        $err_name = "Name không được để trống";
+                    }
+                    //validate phone
+                    if ($phone == "") {
+                        $flag_register = false;
+                        $err_phone = "Số điện thoại không được để trống";
+                    } elseif (!isVietnamesePhoneNumber($phone)) {
+                        $flag_register = false;
+                        $err_phone = "Số điện thoại chưa đúng định dạng";
+                    }
+                    // validate địa chỉ
+                    if ($address == "") {
+                        $flag_register = false;
+                        $err_address = "Địa chỉ không được để trống";
+                    }
+                    // validate password
+                    if ($password == "") {
+                        $flag_register = false;
+                        $err_pass = "Mật khẩu không được để trống";
+                    } elseif (!isPassword($password)) {
+                        $flag_register = false;
+                        $err_pass = "Mật khẩu phải tối thiểu 8 ký tự và ít nhất 1 chữ cái, 1 số";
+                    }
+                    if ($re_password == "") {
+                        $flag_register = false;
+                        $err_repassword = "Mật khẩu nhập lại không được để trống";
+                    } elseif ($password != $re_password) {
+                        $flag_register = false;
+                        $err_repassword = "Mật khẩu và mật khẩu nhập lại phải trùng nhau";
+                    }
+                    if ($flag_register) {
+                        insert_khach_hang($email, $hash_password, $name, $phone, $address, $role);
+                        $thongbao = "Thêm người dùng thành công";
+                        $all_user = all_user();
+                     
+                    } else {
+                        $thongbao = "Thêm người dùng thất bại";
+                    }
+                }
+                include_once './user/adduser.php';
+                break;
             //LIST USER
             case 'list_kh':
                 $all_user = all_user();

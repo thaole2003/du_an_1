@@ -81,4 +81,9 @@ function isVietnamesePhoneNumber($number) {
 function isPassword($password){
     return (bool)preg_match("/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/",$password);
 }
+// select bảng role
+function select_role(){
+    $sql="Select * from roles";
+    return pdo_query($sql);
+}
 ?>
