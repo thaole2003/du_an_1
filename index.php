@@ -117,6 +117,12 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
             //Đọc truyện
         case 'doc_truyen':
+          
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $id = $_GET['id'];
+            }
+            update_view($id);
+            $doc_truyen =comic_select_one($id);
             include_once "views/doc_truyen.php";
             break;
             //Mục yêu thích

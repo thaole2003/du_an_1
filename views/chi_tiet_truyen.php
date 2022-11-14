@@ -46,7 +46,7 @@
                     </div>
                     <div class="clear"></div>
                     <div class="chon">
-                        <a href="index.php?act=doc_truyen">Đọc truyện</a>
+                        <a href="index.php?act=doc_truyen&id=<?= $id ?>">Đọc truyện</a>
                         <a href="#">Thích</a>
                     </div>
                 </div>
