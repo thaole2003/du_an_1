@@ -1,5 +1,13 @@
 <?php
 session_start();
+include_once "./content/PHPMailer-master/src/Exception.php";
+include_once "./content/PHPMailer-master/src/OAuth.php";
+include_once "./content/PHPMailer-master/src/PHPMailer.php";
+include_once "./content/PHPMailer-master/src/SMTP.php";
+include_once "./content/PHPMailer-master/src/POP3.php";
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+  
 include_once "./DAO/user.php";
 include_once "./DAO/pdo.php";
 include_once "./DAO/loai.php";
@@ -198,6 +206,79 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 include_once "./views/loai.php";
             }
             break;
+            //forgot password
+            case 'forgotpw':
+                if(isset($_SESSION['err_pw_em'])){
+                    unset($_SESSION['err_pw_em']);
+                }
+               $flag_pw= true;
+                if(isset($_POST['fg_pw'])){
+
+
+                    if(strlen($_POST['email_fg']) ==0){
+                        $flag_pw=false;
+                        $_SESSION['err_pw_em']='không được để trống';  
+                        
+                        
+                                                }else{
+                      
+                        if(!emailValidate($_POST['email_fg'])){
+                            $flag_pw=false;
+                            $_SESSION['err_pw_em']='email chưa đúng định dạng';               }
+                        if($flag_pw==true){
+                            $check_user = get_one_user_by_email($_POST['email_fg']);
+                            if($check_user != ''){
+                                $id = $check_user['id'];
+                                $email = $check_user['email'];
+                                $name_user = $check_user['name'];
+                                $pass_new = generateRandomString();
+                                setcookie("pass_new", $pass_new, time() + 300);
+                                $hash_pw= password_hash($pass_new, PASSWORD_DEFAULT);
+                                update_password($id,$hash_pw);
+                                $mail = new PHPMailer(true); 
+                                try {
+                                    //Server settings
+                                    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+                                    $mail->isSMTP();                                      // Set mailer to use SMTP
+                                    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                                    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                                    $mail->Username = 'lmt.3102003@gmail.com';                 // SMTP username
+                                    $mail->Password = 'kqiiyqidfgvllter ';                           // SMTP password
+                                    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                                    $mail->Port = 587;                                    // TCP port to connect to
+                                 
+                                    //Recipients
+                                    $mail->setFrom('lmt.3102003@gmail.com ', 'Mailer');
+                                    $mail->addAddress($email,$name_user );     // Add a recipient
+                                    // $mail->addAddress('vietnqph27022@fpt.edu.vn','việt sếch');               // Name is optional
+                                    // $mail->addReplyTo('info@example.com', 'Information');
+                                    $mail->addCC('lmt.3102003@gmail.com');
+                                    // $mail->addBCC('bcc@example.com');
+                                 
+                                    //Attachments
+                                    // $mail->addent('/vAttachmar/tmp/file.tar.gz');         // Add attachments
+                                    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+                                 
+                                    //Content
+                                    $mail->isHTML(true);                                  // Set email format to HTML
+                                    $mail->Subject = 'Mật khẩu mới của bạn';
+                                    $mail->Body    = 'Đây là mật khẩu mới của bạn,có hiệu lực 5 phút kể từ khi bạn click tìm mật khẩu '.$pass_new;
+                                    // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; 
+                                 
+                                    $mail->send();
+                                   $_SESSION['succes_pw']='Mật khẩu mới đã được gửi trong email của bạn.';
+                                   header('location:index.php');
+                                } catch (Exception $e) {
+                                    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                                }
+                            }
+                        }
+                       
+                    }
+                
+                }
+                include_once "./views/forgotpassword.php";
+                break;
             //detail
             case 'detail':
                 if(isset($_GET['id'])){
