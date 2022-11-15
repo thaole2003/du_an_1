@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include_once "header.php";
 include_once  "../DAO/user.php";
 require_once "../DAO/pdo.php";
@@ -176,24 +177,57 @@ if (isset($_GET['act'])) {
             include_once './user/users.php';
             break;
             //DELETE_USER
-            case 'delete_user':
-                if(isset($_GET['id'])){
-                    $id=$_GET['id'];
-                    delete_user($id);
-                    $all_user = all_user();
-                    include_once './user/users.php';
-                }
-                break;
+        case 'delete_user':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                delete_user($id);
+                $all_user = all_user();
+                include_once './user/users.php';
+            }
+            break;
             //edit USER
-            case 'edit_user':
-                if(isset($_GET['id'])){
-                    $id=$_GET['id'];
-                    $list_role=select_role();
-                    $user_id=select_User_Id($id);
+        case 'edit_user':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $list_role = select_role();
+                $user_id = select_User_Id($id);
 
-                include_once 'user/editusers.php';
+                if (isset($_POST['update'])) {
+                    $name = trim($_POST['name']);
+                    $phone = trim($_POST['phone']);
+                    $address = trim($_POST['address']);
+                    $role = trim($_POST['role_id']);
+                    $flag_register = true;
+                    $list_email = select_email_user();
+                    // validate name
+                    if ($name == "") {
+                        $flag_register = false;
+                        $err_name = "Name không được để trống";
+                    }
+                    //validate phone
+                    if ($phone == "") {
+                        $flag_register = false;
+                        $err_phone = "Số điện thoại không được để trống";
+                    } elseif (!isVietnamesePhoneNumber($phone)) {
+                        $flag_register = false;
+                        $err_phone = "Số điện thoại chưa đúng định dạng";
+                    }
+                    // validate địa chỉ
+                    if ($address == "") {
+                        $flag_register = false;
+                        $err_address = "Địa chỉ không được để trống";
+                    }
+                    if ($flag_register) {
+                        update_user($id,$name, $phone, $address, $role);
+                        
+                         header('location:index.php?act=list_kh');
+                    } else {
+                        $thongbao = "UPDATE người dùng thất bại ";
+                    }
                 }
-                break;    
+                include_once 'user/editusers.php';
+            }
+            break;
             //load truyện
         case 'list_truyen':
             $list_all_loai = load_all_loai();
@@ -251,7 +285,7 @@ if (isset($_GET['act'])) {
                 }
                 if ($flag == true) {
                     //Đường dẫn đích
-                    $target_dir = "../content/" . $url_img. "cover_img/";
+                    $target_dir = "../content/" . $url_img . "cover_img/";
 
                     //Đường dẫn vào file đích
                     $target_file = $target_dir . $_FILES["cover_image"]["name"];
@@ -347,7 +381,7 @@ if (isset($_GET['act'])) {
                 }
                 if ($_FILES["cover_image"]['name'] != "") {
                     //Đường dẫn đích
-                    $target_dir = "../content/" . $url_img. "cover_img/";
+                    $target_dir = "../content/" . $url_img . "cover_img/";
 
                     //Đường dẫn vào file đích
                     $target_file = $target_dir . $_FILES["cover_image"]["name"];
@@ -405,6 +439,7 @@ if (isset($_GET['act'])) {
             if (isset($_POST['btn-submit'])) {
                 if (!isset($_FILES["file"])) {
                     $thong_bao = "Không tồn tại file để upload";
+                    break;
                     die();
                 } else {
                     $id_comic = $_POST['id_comic'];
@@ -422,7 +457,6 @@ if (isset($_GET['act'])) {
 
                     //đồng ý upload
                     $allowUpload = true;
-
                     //lấy phần mở rộng của file (là đuôi file, định dạng) vd: png, jpg,...
                     $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
