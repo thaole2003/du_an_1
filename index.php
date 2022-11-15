@@ -208,21 +208,23 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
             //forgot password
             case 'forgotpw':
+                if(isset($_SESSION['err_pw_em'])){
+                    unset($_SESSION['err_pw_em']);
+                }
                $flag_pw= true;
                 if(isset($_POST['fg_pw'])){
 
 
-
-                    if(isset($_POST['email_fg'])){
-                        if(strlen($_POST['email_fg']) ==0){
-$flag_pw=false;
-$err_pw_em='yêu cầu nhập email';
-
-                        }
-                        if(!emailValidate($email_login)){
+                    if(strlen($_POST['email_fg']) ==0){
+                        $flag_pw=false;
+                        $_SESSION['err_pw_em']='không được để trống';  
+                        
+                        
+                                                }else{
+                      
+                        if(!emailValidate($_POST['email_fg'])){
                             $flag_pw=false;
-                            $err_pw_em='email chưa đúng định dạng';  
-                        }
+                            $_SESSION['err_pw_em']='email chưa đúng định dạng';               }
                         if($flag_pw==true){
                             $check_user = get_one_user_by_email($_POST['email_fg']);
                             if($check_user != ''){
@@ -260,7 +262,7 @@ $err_pw_em='yêu cầu nhập email';
                                     //Content
                                     $mail->isHTML(true);                                  // Set email format to HTML
                                     $mail->Subject = 'Mật khẩu mới của bạn';
-                                    $mail->Body    = 'Đây là mật khẩu mới của bạn,có hiệu lực 5 phút kể từ khi bạn click tìm mật khẩu'.$pass_new;
+                                    $mail->Body    = 'Đây là mật khẩu mới của bạn,có hiệu lực 5 phút kể từ khi bạn click tìm mật khẩu '.$pass_new;
                                     // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; 
                                  
                                     $mail->send();
