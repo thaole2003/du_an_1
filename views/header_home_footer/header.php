@@ -21,7 +21,7 @@
     if(isset($_SESSION['succes_pw'])){
 ?>
 <script>
-    alert('<?= $_SESSION['succes_pw'] ?>');
+    alert('<?= $_SESSION['succes_pw'].',bạn nên đổi mật khẩu!' ?>');
 </script>
 <?php 
 unset($_SESSION['succes_pw']);
