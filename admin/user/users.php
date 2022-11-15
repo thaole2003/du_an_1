@@ -32,7 +32,7 @@
                     <td class="p-2 border-2 border-solid "><?= $name ?> </td>
                     <td class="p-2 border-2 border-solid "><?= $r_name ?></td>
                     <td class="p-2 border-2 border-solid flex gap-2">
-                        <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a href="index.php?act=edituser&id=<?= $id?>">Sửa</a> </button>
+                        <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a href="index.php?act=edit_user&id=<?= $id?>">Sửa</a> </button>
                         <button onclick="del('<?php echo $delete_user ?>')" class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ">Xóa</button>
                     </td>
                 </tr>

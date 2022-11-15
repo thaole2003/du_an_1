@@ -15,6 +15,17 @@ function update_khach_hang($ma_khach_hang,$email,$user,$pass,$dia_chi,$dien_thoa
     where ma_khach_hang = $ma_khach_hang";
     pdo_execute($sql);
 }
+// slect khách hàng theo id
+function select_User_Id($id){
+    $sql="SELECT * from user where id=$id";
+    // $sql="SELECT user.*,
+    // roles.`name` as rname
+    // FROM `user` 
+    // join roles
+    // ON `user`.role = roles.id
+    // WHERE `user`.id =$id";
+    return pdo_query_one($sql);
+}
 // update khách hàng trong admin 
 function update_khach_hang_trong_admin($ma_khach_hang,$email,$user,$pass,$dia_chi,$dien_thoai,$vai_tro){
     $sql = "update khach_hang set 
@@ -101,4 +112,5 @@ function select_role(){
     $sql="Select * from roles";
     return pdo_query($sql);
 }
+
 ?>
