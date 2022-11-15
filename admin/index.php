@@ -177,7 +177,6 @@ if (isset($_GET['act'])) {
                 break;
             //DELETE_USER
             case 'delete_user':
-                echo "click";
                 if(isset($_GET['id'])){
                     $id=$_GET['id'];
                     delete_user($id);
@@ -186,8 +185,14 @@ if (isset($_GET['act'])) {
                 }
                 break;
             //edit USER
-            case 'edituser':
+            case 'edit_user':
+                if(isset($_GET['id'])){
+                    $id=$_GET['id'];
+                    $list_role=select_role();
+                    $user_id=select_User_Id($id);
+
                 include_once 'user/editusers.php';
+                }
                 break;    
             //load truyện
         case 'list_truyen':
