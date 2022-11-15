@@ -15,6 +15,17 @@ function update_khach_hang($ma_khach_hang,$email,$user,$pass,$dia_chi,$dien_thoa
     where ma_khach_hang = $ma_khach_hang";
     pdo_execute($sql);
 }
+// slect khách hàng theo id
+function select_User_Id($id){
+    $sql="SELECT * from user where id=$id";
+    // $sql="SELECT user.*,
+    // roles.`name` as rname
+    // FROM `user` 
+    // join roles
+    // ON `user`.role = roles.id
+    // WHERE `user`.id =$id";
+    return pdo_query_one($sql);
+}
 // update khách hàng trong admin 
 function update_khach_hang_trong_admin($ma_khach_hang,$email,$user,$pass,$dia_chi,$dien_thoai,$vai_tro){
     $sql = "update khach_hang set 
@@ -37,6 +48,21 @@ function emailValidate($email)
 {
     return (bool)preg_match ("/^\\S+@\\S+\\.\\S+$/", $email);
 }
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+ function update_password($id,$pw){
+    $sql ="update `user` set 
+    `password`='$pw'
+        where id = $id";
+        pdo_execute($sql);
+ }
 function get_one_user_by_email($email){
     $sql = "select 
     u.*, 
@@ -86,4 +112,5 @@ function select_role(){
     $sql="Select * from roles";
     return pdo_query($sql);
 }
+
 ?>

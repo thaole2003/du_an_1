@@ -1,42 +1,48 @@
 <!-- content  -->
-<div class="py-4 w-full">
+<div class="py-4 w-full ">
     <div class="bg-red-300">
         <h1 class="text-xl font-medium p-4">Sửa người dùng</h1>
     </div>
-    <form action="" method="POST" class="p-4 px-16">
-        <label class="font-medium">Mã người dùng</label><br>
-        <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400" type="text"
-            placeholder="Auto number"><br>
-        <label class="font-medium">Email</label><br>
-        <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 " type="text"
-            name="" placeholder="Email"><br>
-        <label class="font-medium">Password</label><br>
-        <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 " type="text"
-            name="" placeholder="Password"><br>
-        <label class="font-medium">Name</label><br>
-        <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 " type="text"
-            name="" placeholder="Name"><br>
-        <label class="font-medium">Phone number</label><br>
-        <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 " type="text"
-            name="" placeholder="Số điện thoại"><br>
-        <label class="font-medium">Addres</label><br>
-        <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 " type="text"
-            name="" placeholder="Địa chỉ"><br>
-        <label class="font-medium">Vai trò</label><br>
-        <select name="">
-            <option value="1">Admin</option>
-            <option value="2">User</option>
-        </select><br>
-        <div class="mt-4">
-            <button
-                class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"
-                name="btn-edit">Edit</button>
-            <button
-                class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"><a
-                    href="adduser.html">Thêm</a></button>
-            <button
-                class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"><a
-                    href="users.html">Danh sách</a></button>
+    <div class=" rounded-lg   flex flex-col w-2/3 m-4 p-4  bg-white " >
+        <p class="text-center font-medium text-2xl">EDIT ACCOUNT</p>
+        <form action="" method="POST" class="flex flex-col">
+        <label class="m-2" for="">Email</label>
+        <input type="text" name="email" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 " placeholder="<?php echo isset($err_email) ? $err_email : "" ?>" value="<?= $user_id['email'] ?>">
+        <label class="m-2" for="">Name</label>
+        <input type="text" name="name" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 "  placeholder="<?php echo isset($err_name) ? $err_name : "" ?> " value="<?= $user_id['name']?>">
+        <label class="m-2" for="">Phone</label>
+        <input type="text" name="phone" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 "  placeholder="<?php echo isset($err_phone) ? $err_phone : "" ?>" value="<?= $user_id['phone']?>">
+        <label class="m-2" for="">Address</label>
+        <input type="text" name="address" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 " placeholder="<?php echo isset($err_address) ? $err_address : "" ?>" value="<?= $user_id['address']?>">
+        <label class="m-2" for="" >Vai trò</label>
+        <select name="role_id" class="w-[100px] p-2">
+
+           <?php foreach($list_role as $key => $value){
+
+            if($value['id']==$user_id['role']){
+                echo '<option value=' . $value['id'] . ' selected>' . $value['name'] . '</option>';
+            }else{
+                echo '<option value=' . $value['id'] . '>' . $value['name'] . '</option>';
+            }
+
+            }?>
+           
+            
+           
+        </select>
+        <div class="flex justify-between border-b-2">
+            <div class="flex m-2 gap-1">
+                <a class="hover:text-sky-500" href="">Đăng Nhập</a>
+            </div>
+            <span class=""><?php echo isset($thongbao) ? $thongbao : "" ?></span>
+            <div class="flex m-2 gap-3">
+                <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400  border-2 border-solid "  name="add">Thêm</button> <button id="cancelregister" class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400  border-2 border-solid "><a href="index.php?act=list_kh">Danh sách</a></button>
+            </div>
         </div>
-    </form>
+        <div class="flex gap-2 justify-center m-3">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-google"></i>
+        </div>
+        </form>
+</div>
 </div>
