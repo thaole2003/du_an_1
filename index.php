@@ -126,7 +126,10 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $id = $_GET['id'];
             }
             update_view($id);
-            $doc_truyen =comic_select_one($id);
+            $doc_truyen = img_comic($id);
+            // echo '<pre>';
+            // print_r($doc_truyen);
+            // die;
             include_once "views/doc_truyen.php";
             break;
             //Mục yêu thích
@@ -295,16 +298,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
         case 'register':
             include "views/register.php";
             break;
-            //danh mục
-        // case 'loai':
-        //     if (isset($_GET['ma_loai']) && $_GET['ma_loai'] > 0) {
-        //         $id_ma_loai = $_GET['ma_loai'];
-        //     }
-        //     if (isset($id_ma_loai)) {
-        //         $all_comic_by_categoryid =  all_comic_by_categoryid($id_ma_loai);
-        //         include "./views/loai.php";
-        //     }
-        //     break;
         default:
             include_once "views/header_home_footer/home.php";
             break;
@@ -314,3 +307,4 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     include_once "views/header_home_footer/home.php";
 }
 include_once "views/header_home_footer/footer.php";
+?>
