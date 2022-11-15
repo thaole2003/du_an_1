@@ -26,7 +26,7 @@
         <input type="password" name="password_login" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 " placeholder=" <?php echo isset($err_pass_login) ? $err_pass_login : '' ?> ">
         <div class="flex justify-between border-b-2">
             <div class="flex m-2 gap-1">
-                <a class="hover:text-sky-500" href="">Quên mật khẩu</a>|<a class="hover:text-sky-500" href="">Đăng kí</a>
+                <a class="hover:text-sky-500" href="index.php?act=forgotpw">Quên mật khẩu</a>|<a class="hover:text-sky-500" href="">Đăng kí</a>
             </div>
             <div class="flex m-2 gap-3">
                 <button name="loginn" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-orange-500"> Đăng Nhập</button> <button id="cancellogin" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-blue-500">Cancel</button>

@@ -176,19 +176,24 @@ if (isset($_GET['act'])) {
             include_once './user/users.php';
             break;
             //DELETE_USER
-        case 'delete_user':
-            echo "click";
-            if (isset($_GET['id'])) {
-                $id = $_GET['id'];
-                delete_user($id);
-                $all_user = all_user();
-                include_once './user/users.php';
-            }
-            break;
+            case 'delete_user':
+                if(isset($_GET['id'])){
+                    $id=$_GET['id'];
+                    delete_user($id);
+                    $all_user = all_user();
+                    include_once './user/users.php';
+                }
+                break;
             //edit USER
-        case 'edituser':
-            include_once 'user/editusers.php';
-            break;
+            case 'edit_user':
+                if(isset($_GET['id'])){
+                    $id=$_GET['id'];
+                    $list_role=select_role();
+                    $user_id=select_User_Id($id);
+
+                include_once 'user/editusers.php';
+                }
+                break;    
             //load truyện
         case 'list_truyen':
             $list_all_loai = load_all_loai();
