@@ -2,13 +2,13 @@
 <article>
     <div class="nen">
         <div class="trangchu_phim">
-            <a href="#">Trang chủ</a> / <a href="#"><?=  $detail_comic['ca_name'] ?></a>
+            <a href="#">Trang chủ</a> / <a href="index.php?act=detail&id=<?= $id ?>"><?=  $detail_comic['name'] ?></a>
         </div>
         <div class="col">
             <div class="product">
                 <div class="left">
                     <div class="img"><img
-                            src="<?=  $detail_comic['img_name'] ?>" alt="">
+                            src="content/uploads/cover_img/<?=  $detail_comic['img_name'] ?>" alt="">
                     </div>
                 </div>
                 <div class="right">
@@ -78,7 +78,7 @@
                 
         <a href="index.php?act=detail&id=<?=$id?>">
             <div class="col">
-                <div class="img"><img src="<?=$img_name?>" alt="">
+                <div class="img"><img src="content/uploads/cover_img/<?=$img_name?>" alt="">
                 </div>
                 <div class="text">
                     <a href="#">

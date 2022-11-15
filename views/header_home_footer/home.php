@@ -1,47 +1,6 @@
 <!--Phần article-->
 <article>
     <div class="banner">
-        <!--Truyện nổi bật-->
-        <!-- <div class="col_1">
-            <a href="index.php?act=chi_tiet_truyen" class="item_1">
-                <div class="img"><img src="content/img/banner/banner_1.jpg" alt="">
-                    <div class="ngay_xb">22/12/2022</div>
-                    <div class="text">One Pice</div>
-                </div>
-            </a>
-        </div>
-        <div class="col_2">
-            <a href="index.php?act=chi_tiet_truyen" class="item_1">
-                <div class="img"><img src="content/img/banner/banner_1.jpg" alt="">
-                    <div class="ngay_xb">22/12/2022</div>
-                    <div class="text">One Pice</div>
-                </div>
-            </a>
-        </div>
-        <div class="col_3">
-            <a href="index.php?act=chi_tiet_truyen" class="item_1">
-                <div class="img"><img src="content/img/banner/banner_1.jpg" alt="">
-                    <div class="ngay_xb">22/12/2022</div>
-                    <div class="text">One Pice</div>
-                </div>
-            </a>
-        </div>
-        <div class="col_4">
-            <a href="index.php?act=chi_tiet_truyen" class="item_1">
-                <div class="img"><img src="content/img/banner/banner_1.jpg" alt="">
-                    <div class="ngay_xb">22/12/2022</div>
-                    <div class="text">One Pice</div>
-                </div>
-            </a>
-        </div>
-        <div class="col_5">
-            <a href="index.php?act=chi_tiet_truyen" class="item_1">
-                <div class="img"><img src="content/img/banner/banner_1.jpg" alt="">
-                    <div class="ngay_xb">22/12/2022</div>
-                    <div class="text">One Pice</div>
-                </div>
-            </a>
-        </div>  -->
         <?php
         $i = 1;
         foreach ($like_comic as $like) {
@@ -63,7 +22,7 @@
             echo '
                 <div class="col_' . $number . '">
                     <a href="index.php?act=detail&id=' . $id . '" class="item_1">
-                        <div class="img"><img src="' . $img . '" alt="">
+                        <div class="img"><img src="content/uploads/cover_img/' . $img . '" alt="">
                             <div class="ngay_xb">' . substr($date, 0, 11) . '</div>
                             <div class="text">' . $name . '</div>
                         </div>
@@ -86,7 +45,7 @@
                 <a href="index.php?act=detail&id=<?= $id ?>">
                     <div class="col">
                         <div class="product">
-                            <div class="img"><img src="<?= $iname ?>" alt=""></div>
+                            <div class="img"><img src="content/uploads/cover_img/<?= $iname ?>" alt=""></div>
                             <div class="text">
                                 <a href="#">
                                     <h4><?= $name ?></h4>
@@ -113,7 +72,7 @@
             <?php extract($value) ?>
             <a href="index.php?act=detail&id=<?= $id ?>">
                 <div class="col">
-                    <div class="img"><img src="<?= $iname ?>" alt="">
+                    <div class="img"><img src="content/uploads/cover_img/<?= $iname ?>" alt="">
                     </div>
                     <div class="text">
                         <a href="#">

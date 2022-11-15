@@ -9,7 +9,7 @@
         ?>
         <a href="#">
             <div class="">
-                <div class=""><img class="w-[200px] h-[200px]" src="<?php echo $value['img_name'] ?>" alt="">
+                <div class=""><img class="w-[200px] h-[200px]" src="content/uploads/cover_img/<?php echo $value['img_name'] ?>" alt="">
                 </div>
                 <div class="text">
                     <a href="#">

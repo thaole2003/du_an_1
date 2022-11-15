@@ -11,7 +11,6 @@
                     <th class="p-2 border-2">Ảnh truyện</th>
                 </tr>
             </thead>
-
         </table>
     </div>
     <div class="p-4">
