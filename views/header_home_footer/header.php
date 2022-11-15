@@ -18,6 +18,13 @@
 </script>
 <?php } ?>
 <?php
+    if(isset($_SESSION['succes_pw'])){
+?>
+<script>
+    alert('<?= $_SESSION['succes_pw'] ?>');
+</script>
+<?php } ?>
+<?php
     if(isset($_SESSION['dang_xuat'])){
 ?>
 <script>

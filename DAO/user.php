@@ -37,6 +37,21 @@ function emailValidate($email)
 {
     return (bool)preg_match ("/^\\S+@\\S+\\.\\S+$/", $email);
 }
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+ function update_password($id,$pw){
+    $sql ="update `user` set 
+    `password`='$pw'
+        where id = $id";
+        pdo_execute($sql);
+ }
 function get_one_user_by_email($email){
     $sql = "select 
     u.*, 
