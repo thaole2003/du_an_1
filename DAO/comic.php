@@ -155,7 +155,7 @@ function name_comic($id){
     return $name;
 }
 function img_comic($id){
-    $sql = "SELECT A.`name`,B.`name` as img FROM comic A INNER JOIN images B on A.id = B.comic_id WHERE A.id = 40 order by B.`name` desc limit 0,10";
+    $sql = "SELECT A.`name`,B.`name` as img FROM comic A INNER JOIN images B on A.id = B.comic_id WHERE A.id = '$id' order by B.`name` desc limit 0,10";
     $img_comic = pdo_query($sql);
     return $img_comic;
 }
