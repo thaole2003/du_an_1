@@ -171,6 +171,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                         // if(password_verify($pass_login, $user_check['password']))
                         if (password_verify($pass_login, $user_check['password'])) {
                             $_SESSION['auth'] = [
+                                'id' => $user_check['id'],
                                 'email' => $user_check['email'],
                                 'name' => $user_check['name'],
                                 'role' => $user_check['role'],
@@ -192,6 +193,78 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             include_once  './views/login.php';
             break;
+            //thay đổi mật khẩu
+            case 'changepass':
+                // if(isset($_SESSION['err_pb'])){
+                //     unset($_SESSION['err_pb']);
+                // }
+                // if(isset($_SESSION['passw_new'])){
+                //     unset($_SESSION['passw_new']);
+            
+                // }
+                // if(isset($_SESSION['repass'])){
+                //     unset($_SESSION['repass']);
+                // }
+                if(isset($_GET['id'])){
+                    $id = $_GET['id'];
+                }
+                unset($_SESSION['passw_new']);
+                unset($_SESSION['err_pb']);
+                unset($_SESSION['repass']);
+                $flag_change=true;
+                $select_pass = select_pass($id);
+                if(isset($_POST['dmk'])){
+                    if(strlen($_POST['pass_befor'])==0){
+                        $flag_change=false;
+                        $_SESSION['err_pb']='yêu cầu nhập mật khẩu';
+                    }else{
+                        if(password_verify($_POST['pass_befor'], $select_pass['password'])){
+                            $flag_change=true;
+                  
+                        }
+                        else{
+                            $_SESSION['err_pb']='mật khẩu cũ không đúng';
+                            unset($_SESSION['err_pw']);
+                            unset($_SESSION['err_rp']);
+                        }
+                    }
+
+                    if(strlen($_POST['passw_new'])==0){
+                        $flag_change=false;
+                        $_SESSION['err_pw']='yêu cầu nhập mật khẩu mới';
+                        
+                    }
+                    if(strlen($_POST['repass'])==0){
+                        $flag_change=false;
+                        $_SESSION['err_rp']='yêu cầu nhập lại mật khẩu';
+                    }
+                    if(strlen($_POST['passw_new'])!=0){
+                        if(!isPassword($_POST['passw_new'])){
+                            $flag_change=false;
+                            $_SESSION['err_pw']='mật khẩu phải đúng định dạng';
+                        }
+                    }
+                   
+
+                  if(strlen($_POST['repass'])!=0){
+                        if($_POST['repass']!=$_POST['passw_new']){
+                            $flag_change=false;
+                            $_SESSION['err_rp']='mật khẩu mới phải trùng nhau';
+                        }
+                    }
+                   if($flag_change==true){
+                   $pass_up= password_hash($_POST['passw_new'], PASSWORD_DEFAULT);
+                   update_password($id,$pass_up);
+                   unset($_SESSION['passw_new']);
+                   unset($_SESSION['err_pb']);
+                   unset($_SESSION['repass']);
+                   $_SESSION['susess_change']='ban da doi mat khau!';
+                   header('location:index.php');
+                   }
+                }
+
+                include_once './views/changepass.php';
+                break;
             //log-out
         case 'dang_xuat':
             session_unset();

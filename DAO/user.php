@@ -79,6 +79,14 @@ join roles r
 where email = '$email'";
     return pdo_query_one($sql);
 }
+function select_pass($id){
+    $sql = "select 
+    u.`password` 
+from 
+  `user` as u
+where id = $id";
+return pdo_query_one($sql);
+}
 function check_admin_role(){
     if(isset($_SESSION['auth']) && $_SESSION['auth']['role'] == 1){
         return true;
