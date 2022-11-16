@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include_once "header.php";
 include_once  "../DAO/user.php";
 require_once "../DAO/pdo.php";
@@ -176,24 +177,24 @@ if (isset($_GET['act'])) {
             include_once './user/users.php';
             break;
             //DELETE_USER
-        case 'delete_user':
-            if (isset($_GET['id'])) {
-                $id = $_GET['id'];
-                delete_user($id);
-                $all_user = all_user();
-                include_once './user/users.php';
-            }
-            break;
+            case 'delete_user':
+                if(isset($_GET['id'])){
+                    $id=$_GET['id'];
+                    delete_user($id);
+                    $all_user = all_user();
+                    include_once './user/users.php';
+                }
+                break;
             //edit USER
-        case 'edit_user':
-            if (isset($_GET['id'])) {
-                $id = $_GET['id'];
-                $list_role = select_role();
-                $user_id = select_User_Id($id);
+            case 'edit_user':
+                if(isset($_GET['id'])){
+                    $id=$_GET['id'];
+                    $list_role=select_role();
+                    $user_id=select_User_Id($id);
 
                 include_once 'user/editusers.php';
-            }
-            break;
+                }
+                break;    
             //load truyện
         case 'list_truyen':
             $list_all_loai = load_all_loai();
@@ -250,7 +251,7 @@ if (isset($_GET['act'])) {
                     $allowUpload = false;
                 } else {
                     //Đường dẫn đích
-                    $target_dir = "../content/" . $url_img . "cover_img/";
+                    $target_dir = "../content/" . $url_img. "cover_img/";
 
                     //Đường dẫn vào file đích
                     $target_file = $target_dir . $_FILES["cover_image"]["name"];
@@ -394,7 +395,7 @@ if (isset($_GET['act'])) {
                 }
                 if ($_FILES["cover_image"]['name'] != "") {
                     //Đường dẫn đích
-                    $target_dir = "../content/" . $url_img . "cover_img/";
+                    $target_dir = "../content/" . $url_img. "cover_img/";
 
                     //Đường dẫn vào file đích
                     $target_file = $target_dir . $_FILES["cover_image"]["name"];
@@ -443,6 +444,84 @@ if (isset($_GET['act'])) {
             $list_all_loai = load_all_loai();
             include_once  'truyen/comic.php';
             break;
+            //list_comic
+        case 'list_img':
+            include "../admin/comic_img/list_comic.php";
+            break;
+            //add_comic
+        case 'add_img_comic':
+            if (isset($_POST['btn-submit'])) {
+                if (!isset($_FILES["file"])) {
+                    $thong_bao = "Không tồn tại file để upload";
+                    die();
+                } else {
+                    $id_comic = $_POST['id_comic'];
+                    $thong_bao = "";
+
+                    //đếm phần tử trong file
+                    $countfiles = count($_FILES['file']['name']);
+                    //Đường dẫn đích
+                    $target_dir = "../content/" . $url_img . "img_cua_comic/";
+
+                    //Đường dẫn vào file đích
+                    for ($i = 0; $i < $countfiles; $i++) {
+                        $target_file = $target_dir . $_FILES["file"]["name"][$i];
+                    }
+
+                    //đồng ý upload
+                    $allowUpload = true;
+
+                    //lấy phần mở rộng của file (là đuôi file, định dạng) vd: png, jpg,...
+                    $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+
+                    //định dạng được chấp nhận
+                    $allowtype = ["jpg", "jpeg"];
+
+                    //kiểm tra xem phải ảnh ko nếu là ảnh thì trả về true ngược lại
+                    //ko là ảnh trả về false
+                    for ($i = 0; $i < $countfiles; $i++) {
+                        $check = getimagesize($_FILES["file"]["tmp_name"][$i]);
+                        if ($check == false) {
+                            $khong_phai_anh = "Đây không phải là file ảnh";
+                            break;
+                        } else {
+                            $khong_phai_anh = "";
+                        }
+                    }
+
+                    //kiểm tra nếu như file đã tồn tại thì sẽ ko cho phép up nữa
+                    if (file_exists($target_file)) {
+                        $file_ton_tai = "Tên file đã tồn tại trên server ko được ghi đè";
+                        $allowUpload = false;
+                    } else {
+                        $file_ton_tai = "";
+                    }
+
+                    //kiểm tra kiêu file không làm trong định dạng cho phép
+                    if (!in_array($imageFileType, $allowtype)) {
+                        $loi_dinh_dang = "Không được upload những ảnh có định dạng ipg, jpeg";
+                        $allowUpload = false;
+                    } else {
+                        $loi_dinh_dang = "";
+                    }
+
+                    if ($allowUpload == true) {
+                        //xử lý di chuyển file tạm vào thư mục cần lưu trữ
+                        for ($i = 0; $i < $countfiles; $i++) {
+                            $filename = $_FILES["file"]["name"][$i];
+                            // Upload file
+                            move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_dir . $filename);
+                            up_load_img($id_comic, $filename);
+                            // echo '<pre>';
+                            // print_r($filename);
+                            // echo '</br>';
+                        }
+                        $upload_ok = "Upload thành công";
+                    }
+                }
+            }
+            include "../admin/comic_img/add_comic.php";
+            break;
             //ngược lại không tồn tại act thì include_once "home.php"; 
         default:
             include_once "home.php";
@@ -453,3 +532,4 @@ if (isset($_GET['act'])) {
 }
 
 include_once "footer.php";
+?>

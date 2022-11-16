@@ -15,6 +15,14 @@ function update_khach_hang($ma_khach_hang,$email,$user,$pass,$dia_chi,$dien_thoa
     where ma_khach_hang = $ma_khach_hang";
     pdo_execute($sql);
 }
+//Đếm bản ghi theo email
+function count_user_email($email){
+   $sql=" SELECT COUNT(email)
+  FROM user
+  WHERE email='$email'";
+  $count_email=pdo_execute($sql);
+  return $count_email;
+}
 // slect khách hàng theo id
 function select_User_Id($id){
     $sql="SELECT * from user where id=$id";
@@ -26,16 +34,14 @@ function select_User_Id($id){
     // WHERE `user`.id =$id";
     return pdo_query_one($sql);
 }
-// update khách hàng trong admin 
-function update_khach_hang_trong_admin($ma_khach_hang,$email,$user,$pass,$dia_chi,$dien_thoai,$vai_tro){
-    $sql = "update khach_hang set 
-    email='$email',
-    user='$user',
-    pass='$pass',
-    dia_chi='$dia_chi',
-    dien_thoai='$dien_thoai',
-    vai_tro='$vai_tro'
-    where ma_khach_hang = $ma_khach_hang";
+// update khách hàng trong admin
+function update_user($id,$name,$phone,$address,$role){
+    $sql = "update user set 
+    name='$name',
+    phone='$phone',
+    address='$address',
+    role='$role'
+    where id = $id";
     pdo_execute($sql);
 }
 // xoa khách hàng 
@@ -72,6 +78,14 @@ join roles r
     on r.id = u.role
 where email = '$email'";
     return pdo_query_one($sql);
+}
+function select_pass($id){
+    $sql = "select 
+    u.`password` 
+from 
+  `user` as u
+where id = $id";
+return pdo_query_one($sql);
 }
 function check_admin_role(){
     if(isset($_SESSION['auth']) && $_SESSION['auth']['role'] == 1){

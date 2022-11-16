@@ -11,6 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <?php
+   
     if(isset($_SESSION['okokok'])){
 ?>
 <script>
@@ -28,6 +29,15 @@
 unset($_SESSION['succes_pw']);
 } ?>
 
+<?php
+    if(isset(  $_SESSION['susess_change'])){
+?>
+<script>
+    alert('<?=   $_SESSION['susess_change']='ban da doi mat khau!'; ?>');
+</script>
+<?php 
+unset(  $_SESSION['susess_change']);
+} ?>
 <?php
     if(isset($_SESSION['dang_xuat'])){
 ?>
@@ -67,7 +77,7 @@ unset($_SESSION['succes_pw']);
                         <form action="">
                             <label class="text_login">Xin chào <strong><?php echo $name ?></strong></label><br>
                             <a href="index.php?act=login"><input type="button" value="Cập nhật tài khoản"></a>
-                            <a href="index.php?act=register"><input type="button" value="Quên mật khẩu"></a>
+                            <a href="index.php?act=changepass&id=<?=$_SESSION['auth']['id']?>"><input name=""  type="button" value="Thay đổi mật khẩu"></a>
                             <?php if($_SESSION['auth']['role'] == 1){?>
                                 <a href="admin/index.php"><input type="button" value="Đăng nhập admin"></a>
                                 <?php } ?>
