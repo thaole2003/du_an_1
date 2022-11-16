@@ -134,6 +134,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
             //Mục yêu thích
         case 'truyen_yeu_thich':
+            $all_love = all_comic_by_love();
             include_once "views/love.php";
             break;
             //Lịch sử

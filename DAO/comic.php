@@ -100,6 +100,19 @@ WHERE c.category_id= $id";
 return pdo_query($sql);
 
 }
+function all_comic_by_love(){
+    $sql = "SELECT 
+    c.*, 
+    c.cover_image as img_name,
+    ca.name as ca_name
+    from comic c
+    join category ca
+    on c.category_id = ca.id 
+		ORDER BY like_comic DESC LIMIT 0,8";
+    
+    return pdo_query($sql);
+    
+    }
 function search_all($text){
     $sql = "SELECT name,date,cover_image as img_name
     from comic 
