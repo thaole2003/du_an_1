@@ -16,7 +16,7 @@
         <header>
             <div class="up">
                 <div class="left">
-                    <a href="#">
+                    <a href="../index.php">
                         <div class="img"><img src="../content/img/logo.png" alt=""></div>
                     </a>
                 </div>

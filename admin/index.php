@@ -275,6 +275,13 @@ if (isset($_GET['act'])) {
                         $loi_dinh_dang = "Không được upload những ảnh có định dạng ipg, jpeg";
                         $allowUpload = false;
                     }
+
+                    if($allowUpload == true){
+                    //xử lý di chuyển file tạm vào thư mục cần lưu trữ
+                    $name_img = $_FILES["cover_image"]["name"];
+                    // Upload file
+                    move_uploaded_file($_FILES['cover_image']['tmp_name'], $target_dir . $name_img); 
+                    }
                 }
 
                 // echo '<pre>';
@@ -326,11 +333,6 @@ if (isset($_GET['act'])) {
                 }
 
                 if ($allowUpload == true) {
-                    //xử lý di chuyển file tạm vào thư mục cần lưu trữ
-                    $name_img = $_FILES["cover_image"]["name"];
-                    // Upload file
-                    move_uploaded_file($_FILES['cover_image']['tmp_name'], $target_dir . $name_img);
-
                     $id = comic_insert($namee, $detail, $author, $date, $intro, $view, $like, $category, $name_img);
                     //xử lý di chuyển file tạm vào thư mục cần lưu trữ
                     for ($i = 0; $i < $countfiles; $i++) {
