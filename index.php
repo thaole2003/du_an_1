@@ -29,6 +29,7 @@ if (isset($_SESSION['okokok'])) {
 if(isset($_SESSION['dang_xuat'])){
     unset($_SESSION['dang_xuat']);
 }
+
 if (isset($_POST['search'])) {
 
     $length = strlen($_POST['textsearch']);
@@ -195,8 +196,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             //log-out
         case 'dang_xuat':
             session_unset();
-            $_SESSION['dang_xuat'] = "Bạn đã đăng xuất";
             session_destroy();
+            $_SESSION['dang_xuat'] = "Bạn đã đăng xuất";
             header('location:index.php');
             break;
             //danh mục
@@ -221,10 +222,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     if(strlen($_POST['email_fg']) ==0){
                         $flag_pw=false;
                         $_SESSION['err_pw_em']='không được để trống';  
-                        
-                        
-                                                }else{
-                      
+                    }else{
                         if(!emailValidate($_POST['email_fg'])){
                             $flag_pw=false;
                             $_SESSION['err_pw_em']='email chưa đúng định dạng';               }
