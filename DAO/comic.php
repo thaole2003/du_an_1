@@ -71,9 +71,11 @@ function update_like($id){
     $sql = "UPDATE comic SET like_comic	  = like_comic+1 where id = $id";
     pdo_execute($sql);
     }
-function comic_insert($name, $detail, $author, $date,$intro,$view,$like,$category_id,$filename){
-    $sqlQuery = "INSERT INTO comic (name,cover_image,detail,author,date,intro,view,like_comic,category_id) VALUES ('$name','$filename','$detail','$author','$date','$intro',$view,$like,$category_id)";
-    pdo_execute($sqlQuery);
+function comic_insert($name, $detail, $author, $date,$intro,$view,$like,$category_id,$name_img){
+    $n = 'N';
+    $sqlQuery = "INSERT INTO comic (name,cover_image,detail,author,date,intro,view,like_comic,category_id) VALUES ($n'$name',$n'$name_img',$n'$detail',$n'$author',$n'$date',$n'$intro',$view,$like,$category_id)";
+    $id = pdo_query_last_id($sqlQuery);
+    return $id;
 }
 function delete_comic($ma_comic){
     $sql ="DELETE FROM comic where id='$ma_comic' ";

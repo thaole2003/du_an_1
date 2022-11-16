@@ -18,6 +18,7 @@
     alert('<?= $_SESSION['okokok'] ?>');
 </script>
 <?php } ?>
+
 <?php
     if(isset($_SESSION['succes_pw'])){
 ?>
@@ -27,6 +28,7 @@
 <?php 
 unset($_SESSION['succes_pw']);
 } ?>
+
 <?php
     if(isset(  $_SESSION['susess_change'])){
 ?>
