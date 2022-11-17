@@ -6,6 +6,7 @@ include_once  "../DAO/user.php";
 require_once "../DAO/pdo.php";
 require_once "../DAO/loai.php";
 require_once "../DAO/comic.php";
+require_once "../DAO/comment.php";
 include "../global.php";
 if (check_admin_role() == false) {
     header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
@@ -496,11 +497,28 @@ if (isset($_GET['act'])) {
             }
             header('location: index.php?act=sua_truyen&id=' . $id_comic);
             break;
+        //list_coment
+        case 'list_bl':
+        $list_comment=select_comment();
+        include_once  'binh_luan/comment.php';
+        break;
+        //xoa binh luan
+        case 'xoa_comment':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                delete_comment($id);
+                $list_comment = select_comment();
+                include_once  'binh_luan/comment.php';
+            }
+            break;
             //ngược lại không tồn tại act thì include_once "home.php"; 
+        
         default:
             include_once "home.php";
             break;
+
     }
+
 } else {
     include_once "home.php";
 }

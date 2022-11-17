@@ -4,8 +4,8 @@ function insert_binh_luan($date,$detail,$comic_id,$user_id){
     echo $sql;
     pdo_execute($sql);
 }
-function delete_binh_luan($id){
-    $sql = "delete from binh_luan where ma_binh_luan =".$id;
+function delete_comment($id){
+    $sql = "delete from comment where id =".$id;
     pdo_execute($sql);
 }
 
@@ -18,6 +18,11 @@ JOIN `user` u
 ON u.id = c.user_id
  where comic_id = $id
 	order by date desc";
+    return pdo_query($sql);
+}
+//select table comment
+function select_comment(){
+    $sql="SELECT c.*, u.name as u_name, cm.name as comic_name from comment c join user u  ON c.user_id=u.id join comic cm ON c.comic_id=cm.id";
     return pdo_query($sql);
 }
 
