@@ -16,6 +16,9 @@ function update_khach_hang($ma_khach_hang,$email,$user,$pass,$dia_chi,$dien_thoa
     pdo_execute($sql);
 }
 
+
+
+
 // slect khách hàng theo id
 function select_User_Id($id){
     $sql="SELECT * from user where id=$id";
