@@ -113,20 +113,18 @@ if (isset($_GET['act'])) {
                 $hash_password = password_hash($password, PASSWORD_DEFAULT);
                 $role = trim($_POST['role_id']);
                 $flag_register = true;
-                // validate email 
+                // validate email
+                $count_email=count_email_input($email);
+               
                 if ($email == "") {
                     $flag_register = false;
                     $err_email = "Email không được để trống";
                 } elseif (!emailValid($email)) {
                     $flag_register = false;
                     $err_email = "Email chưa đúng định dạng mail";
-                } else {
-                    foreach ($list_email as $key => $value) {
-                        if ($email == $value['email']) {
-                            $flag_register = false;
-                            $err_email = "Email đã tồn tại";
-                        }
-                    }
+                } elseif($count_email!=0) {
+                        $flag_register = false;
+                        $err_email = "Email đã tồn tại";
                 }
                 // validate name
                 if ($name == "") {
