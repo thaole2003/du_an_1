@@ -177,24 +177,24 @@ if (isset($_GET['act'])) {
             include_once './user/users.php';
             break;
             //DELETE_USER
-            case 'delete_user':
-                if(isset($_GET['id'])){
-                    $id=$_GET['id'];
-                    delete_user($id);
-                    $all_user = all_user();
-                    include_once './user/users.php';
-                }
-                break;
+        case 'delete_user':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                delete_user($id);
+                $all_user = all_user();
+                include_once './user/users.php';
+            }
+            break;
             //edit USER
-            case 'edit_user':
-                if(isset($_GET['id'])){
-                    $id=$_GET['id'];
-                    $list_role=select_role();
-                    $user_id=select_User_Id($id);
+        case 'edit_user':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $list_role = select_role();
+                $user_id = select_User_Id($id);
 
                 include_once 'user/editusers.php';
-                }
-                break;    
+            }
+            break;
             //load truyện
         case 'list_truyen':
             $list_all_loai = load_all_loai();
@@ -243,15 +243,12 @@ if (isset($_GET['act'])) {
                     }
                 }
 
-                // echo '<pre>';
-                // print_r($_FILES["cover_image"]);
-                // die();
                 if ($_FILES["cover_image"]['name'] == "") {
                     $khong_tt = 'Không tồn tại file để upload';
                     $allowUpload = false;
                 } else {
                     //Đường dẫn đích
-                    $target_dir = "../content/" . $url_img. "cover_img/";
+                    $target_dir = "../content/" . $url_img . "cover_img/";
 
                     //Đường dẫn vào file đích
                     $target_file = $target_dir . $_FILES["cover_image"]["name"];
@@ -276,17 +273,14 @@ if (isset($_GET['act'])) {
                         $allowUpload = false;
                     }
 
-                    if($allowUpload == true){
-                    //xử lý di chuyển file tạm vào thư mục cần lưu trữ
-                    $name_img = $_FILES["cover_image"]["name"];
-                    // Upload file
-                    move_uploaded_file($_FILES['cover_image']['tmp_name'], $target_dir . $name_img); 
+                    if ($allowUpload == true) {
+                        //xử lý di chuyển file tạm vào thư mục cần lưu trữ
+                        $name_img = $_FILES["cover_image"]["name"];
+                        // Upload file
+                        move_uploaded_file($_FILES['cover_image']['tmp_name'], $target_dir . $name_img);
                     }
                 }
 
-                // echo '<pre>';
-                // print_r($_FILES["file"]['name'][0]);
-                // die();
                 if ($_FILES["file"]["name"][0] == "") {
                     $khong_tt_f = 'Không tồn tại file để upload';
                     $allowUpload = false;
@@ -360,6 +354,7 @@ if (isset($_GET['act'])) {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
                 $load_all_comic = comic_select_one($id);
+                $img_comic = img_comic($id);
             }
             $list_all_images = load_all_image();
             $list_all_loai = load_all_loai();
@@ -395,9 +390,12 @@ if (isset($_GET['act'])) {
                         unset($_SESSION['trung_ten']);
                     }
                 }
-                if ($_FILES["cover_image"]['name'] != "") {
+
+                if ($_FILES["cover_image"]['name'] == "") {
+                    $name_img = name_comic($id)['cover_image'];
+                } else {
                     //Đường dẫn đích
-                    $target_dir = "../content/" . $url_img. "cover_img/";
+                    $target_dir = "../content/" . $url_img . "cover_img/";
 
                     //Đường dẫn vào file đích
                     $target_file = $target_dir . $_FILES["cover_image"]["name"];
@@ -408,60 +406,35 @@ if (isset($_GET['act'])) {
                     //định dạng được chấp nhận
                     $allowtype = ["jpg", "jpeg"];
 
-                    //Đồng ý upload
-                    $allowUpload = true;
-
                     //kiểm tra xem phải ảnh ko nếu là ảnh thì trả về true ngược lại
                     //ko là ảnh trả về false
                     $check = getimagesize($_FILES["cover_image"]["tmp_name"]);
                     if ($check == false) {
                         $khong_phai_anh = "Đây không phải là file ảnh";
-                        break;
-                    } else {
-                        $khong_phai_anh = "";
+                        $allowUpload = false;
                     }
 
                     //kiểm tra kiêu file không làm trong định dạng cho phép
                     if (!in_array($imageFileType, $allowtype)) {
                         $loi_dinh_dang = "Không được upload những ảnh có định dạng ipg, jpeg";
                         $allowUpload = false;
-                    } else {
-                        $loi_dinh_dang = "";
                     }
-                    //xử lý di chuyển file tạm vào thư mục cần lưu trữ
-                    $filename = $_FILES["cover_image"]["name"];
-                    // Upload file
-                    move_uploaded_file($_FILES['cover_image']['tmp_name'], $target_dir . $filename);
-                } else {
-                    $filename = name_comic($id)['cover_image'];
+
+                    if ($allowUpload == true) {
+                        //xử lý di chuyển file tạm vào thư mục cần lưu trữ
+                        $name_img = $_FILES["cover_image"]["name"];
+                        // Upload file
+                        move_uploaded_file($_FILES['cover_image']['tmp_name'], $target_dir . $name_img);
+                    }
                 }
 
-                if ($allowUpload == true) {
-                    update_comic($id, $name, $filename, $detail, $author, $date, $intro, $category_id);
+                if ($_FILES["file"]["name"][0] == "") {
+                    $allowUpload = true;
                 } else {
-                    header('location:index.php?act=sua_truyen&id=' . $id);
-                }
-            }
-            $load_all_truyen = comic_select_all();
-            $list_all_loai = load_all_loai();
-            include_once  'truyen/comic.php';
-            break;
-            //list_comic
-        case 'list_img':
-            include "../admin/comic_img/list_comic.php";
-            break;
-            //add_comic
-        case 'add_img_comic':
-            if (isset($_POST['btn-submit'])) {
-                if (!isset($_FILES["file"])) {
-                    $thong_bao = "Không tồn tại file để upload";
-                    die();
-                } else {
-                    $id_comic = $_POST['id_comic'];
-                    $thong_bao = "";
-
+                    $allowUpload = true;
                     //đếm phần tử trong file
                     $countfiles = count($_FILES['file']['name']);
+
                     //Đường dẫn đích
                     $target_dir = "../content/" . $url_img . "img_cua_comic/";
 
@@ -469,9 +442,6 @@ if (isset($_GET['act'])) {
                     for ($i = 0; $i < $countfiles; $i++) {
                         $target_file = $target_dir . $_FILES["file"]["name"][$i];
                     }
-
-                    //đồng ý upload
-                    $allowUpload = true;
 
                     //lấy phần mở rộng của file (là đuôi file, định dạng) vd: png, jpg,...
                     $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -484,46 +454,129 @@ if (isset($_GET['act'])) {
                     for ($i = 0; $i < $countfiles; $i++) {
                         $check = getimagesize($_FILES["file"]["tmp_name"][$i]);
                         if ($check == false) {
-                            $khong_phai_anh = "Đây không phải là file ảnh";
+                            $khong_phai_anh_f = "Đây không phải là file ảnh";
+                            $allowUpload = false;
                             break;
-                        } else {
-                            $khong_phai_anh = "";
                         }
                     }
 
-                    //kiểm tra nếu như file đã tồn tại thì sẽ ko cho phép up nữa
+                    //kiểm tra nếu như file đã tồn tại thì sẽ ko cho phép up nữa a
                     if (file_exists($target_file)) {
-                        $file_ton_tai = "Tên file đã tồn tại trên server ko được ghi đè";
+                        $file_ton_tai_f = "Tên file đã tồn tại trên server ko được ghi đè";
                         $allowUpload = false;
-                    } else {
-                        $file_ton_tai = "";
                     }
 
                     //kiểm tra kiêu file không làm trong định dạng cho phép
                     if (!in_array($imageFileType, $allowtype)) {
-                        $loi_dinh_dang = "Không được upload những ảnh có định dạng ipg, jpeg";
+                        $loi_dinh_dang_f = "Không được upload những ảnh có định dạng ipg, jpeg";
                         $allowUpload = false;
-                    } else {
-                        $loi_dinh_dang = "";
                     }
-
-                    if ($allowUpload == true) {
+                    for ($i = 0; $i < $countfiles; $i++) {
                         //xử lý di chuyển file tạm vào thư mục cần lưu trữ
-                        for ($i = 0; $i < $countfiles; $i++) {
-                            $filename = $_FILES["file"]["name"][$i];
-                            // Upload file
-                            move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_dir . $filename);
-                            up_load_img($id_comic, $filename);
-                            // echo '<pre>';
-                            // print_r($filename);
-                            // echo '</br>';
-                        }
-                        $upload_ok = "Upload thành công";
+                        $filename = $_FILES["file"]["name"][$i];
+                        // Upload file
+                        move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_dir . $filename);
+                        up_load_img($id, $filename);
                     }
+                    $allowUpload = false;
+                }
+
+                if ($allowUpload == true) {
+                    update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $category_id);
+                } else {
+                    header('location:index.php?act=sua_truyen&id=' . $id);
                 }
             }
-            include "../admin/comic_img/add_comic.php";
+            $load_all_truyen = comic_select_all();
+            $list_all_loai = load_all_loai();
+            include_once  'truyen/comic.php';
             break;
+        case 'xoa_img_comic':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $id_comic = $_GET['id_comic'];
+                delete_img_comic($id);
+            }
+            header('location: index.php?act=sua_truyen&id=' . $id_comic);
+            break;
+            //     //list_comic
+            // case 'list_img':
+            //     include "../admin/comic_img/list_comic.php";
+            //     break;
+            //     //add_comic
+            // case 'add_img_comic':
+            //     if (isset($_POST['btn-submit'])) {
+            //         if (!isset($_FILES["file"])) {
+            //             $thong_bao = "Không tồn tại file để upload";
+            //             die();
+            //         } else {
+            //             $id_comic = $_POST['id_comic'];
+            //             $thong_bao = "";
+
+            //             //đếm phần tử trong file
+            //             $countfiles = count($_FILES['file']['name']);
+            //             //Đường dẫn đích
+            //             $target_dir = "../content/" . $url_img . "img_cua_comic/";
+
+            //             //Đường dẫn vào file đích
+            //             for ($i = 0; $i < $countfiles; $i++) {
+            //                 $target_file = $target_dir . $_FILES["file"]["name"][$i];
+            //             }
+
+            //             //đồng ý upload
+            //             $allowUpload = true;
+
+            //             //lấy phần mở rộng của file (là đuôi file, định dạng) vd: png, jpg,...
+            //             $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+
+            //             //định dạng được chấp nhận
+            //             $allowtype = ["jpg", "jpeg"];
+
+            //             //kiểm tra xem phải ảnh ko nếu là ảnh thì trả về true ngược lại
+            //             //ko là ảnh trả về false
+            //             for ($i = 0; $i < $countfiles; $i++) {
+            //                 $check = getimagesize($_FILES["file"]["tmp_name"][$i]);
+            //                 if ($check == false) {
+            //                     $khong_phai_anh = "Đây không phải là file ảnh";
+            //                     break;
+            //                 } else {
+            //                     $khong_phai_anh = "";
+            //                 }
+            //             }
+
+            //             //kiểm tra nếu như file đã tồn tại thì sẽ ko cho phép up nữa
+            //             if (file_exists($target_file)) {
+            //                 $file_ton_tai = "Tên file đã tồn tại trên server ko được ghi đè";
+            //                 $allowUpload = false;
+            //             } else {
+            //                 $file_ton_tai = "";
+            //             }
+
+            //             //kiểm tra kiêu file không làm trong định dạng cho phép
+            //             if (!in_array($imageFileType, $allowtype)) {
+            //                 $loi_dinh_dang = "Không được upload những ảnh có định dạng ipg, jpeg";
+            //                 $allowUpload = false;
+            //             } else {
+            //                 $loi_dinh_dang = "";
+            //             }
+
+            //             if ($allowUpload == true) {
+            //                 //xử lý di chuyển file tạm vào thư mục cần lưu trữ
+            //                 for ($i = 0; $i < $countfiles; $i++) {
+            //                     $filename = $_FILES["file"]["name"][$i];
+            //                     // Upload file
+            //                     move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_dir . $filename);
+            //                     up_load_img($id_comic, $filename);
+            //                     // echo '<pre>';
+            //                     // print_r($filename);
+            //                     // echo '</br>';
+            //                 }
+            //                 $upload_ok = "Upload thành công";
+            //             }
+            //         }
+            //     }
+            //     include "../admin/comic_img/add_comic.php";
+            //     break;
             //ngược lại không tồn tại act thì include_once "home.php"; 
         default:
             include_once "home.php";
@@ -534,4 +587,3 @@ if (isset($_GET['act'])) {
 }
 
 include_once "footer.php";
-?>
