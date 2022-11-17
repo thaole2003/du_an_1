@@ -367,22 +367,32 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 }
                 $detail_comic = detail_comic($id);
                 $load_cmt = load_all_comic_byid($id);
-                if(isset($_POST['cmt'])){
-                    $flag_cmt=true;
-                    $date = date('m/d/Y h:i:s a', time());
-                    if(isset($_SESSION['auth'])){
-                        $id_u = $_SESSION['auth']['id'];
+
+
+
+            
+                    if(isset($_POST['cmt'])){
+                        if(isset($_SESSION['auth'])){
+                            unset($_SESSION['err_not_dn']);}
+                        $flag_cmt=true;
+                        $date = date('m/d/Y h:i:s a', time());
+                        if(isset($_SESSION['auth'])){
+                            $id_u = $_SESSION['auth']['id'];
+                        }
+                        if(strlen($_POST['text_cmt']) == 0){
+                            $flag_cmt=false;
+                            $_SESSION['err_cmt'] = 'ban chua viet comment';
+                        }
+                        if($flag_cmt == true){
+                            insert_binh_luan($date,$_POST['text_cmt'],$id,$id_u);
+                        unset( $_SESSION['err_cmt']);
+                            header("location: " . $_SERVER['HTTP_REFERER']);
+                        }
+                    }else{
+                        $_SESSION['err_not_dn']='ban can dang nhap de comment';
                     }
-                    if(strlen($_POST['text_cmt']) == 0){
-                        $flag_cmt=false;
-                        $_SESSION['err_cmt'] = 'ban chua viet comment';
-                    }
-                    if($flag_cmt == true){
-                        insert_binh_luan($date,$_POST['text_cmt'],$id,$id_u);
-                    unset( $_SESSION['err_cmt']);
-                        header("location: " . $_SERVER['HTTP_REFERER']);
-                    }
-                }
+                
+             
                 include_once './views/chi_tiet_truyen.php';
                 break;
             // dang ky
