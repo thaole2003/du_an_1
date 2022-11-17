@@ -184,3 +184,23 @@ function delete_img_comic($id){
     $img_comic = pdo_query($sql);
     return $img_comic;
 }
+// thong ke truyen 
+function statistical_truyen(){
+    $sql="SELECT 
+    category.id as category_id,
+    category.name as category_name, 
+     COUNT(comic.id) as so_luong, 
+     SUM(comic.view) as sum_view, 
+     SUM(comic.like_comic) as sum_like, 
+     MAX(comic.view) as max_view, 
+     MIN(comic.view) as min_view, 
+     MAX(comic.like_comic) as max_like, 
+     MIN(comic.like_comic) as min_like, 
+     AVG(comic.view) as avg_view, 
+     AVG(comic.like_comic) as avg_like
+   from category 
+   INNER JOIN comic
+   ON comic.category_id = category.id
+   GROUP BY category_id";
+    return pdo_query($sql);
+}

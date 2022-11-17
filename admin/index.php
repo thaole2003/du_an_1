@@ -511,6 +511,11 @@ if (isset($_GET['act'])) {
                 include_once  'binh_luan/comment.php';
             }
             break;
+        //thong ke
+        case 'list_tk':
+            $statistical=statistical_truyen();
+            include_once 'thong_ke/thongke.php';
+        break;
             //ngược lại không tồn tại act thì include_once "home.php"; 
         
         default:

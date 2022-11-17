@@ -25,22 +25,30 @@
                 </tr>
             </thead>
             <tbody class="font-medium text-lg border-2">
+                <?php  
+                // echo "<pre>";
+                // var_dump($list_loai);
+                // echo "<pre/>";
+                // die();
+                foreach($statistical as $key =>$value){ 
+                extract($value);
+                    ?>
                 <tr class="text-center  ">
-                    <td class="p-2 border-2 border-solid ">1</td>
-                    <td class="p-2 border-2 border-solid ">Truyện cười</td>
-                    <td class="p-2 border-2 border-solid ">6</td>
-                    <td class="p-2 border-2 border-solid">59</td>
-                    <td class="p-2 border-2 border-solid ">15</td>
-                    <td class="p-2 border-2 border-solid ">19</td>
-                    <td class="p-2 border-2 border-solid">32</td>
-                    <td class="p-2 border-2 border-solid ">89</td>
-                    <td class="p-2 border-2 border-solid ">22</td>
-                    <td class="p-2 border-2 border-solid ">30</td>
-                    <td class="p-2 border-2 border-solid ">42</td>
-
+                    <td class="p-2 border-2 border-solid "><?= $category_id ?></td>
+                    <td class="p-2 border-2 border-solid "><?= $category_name ?></td>
+                    
+                    <td class="p-2 border-2 border-solid "><?= $so_luong?></td>
+                    <td class="p-2 border-2 border-solid"><?= $sum_view?> </td>
+                    <td class="p-2 border-2 border-solid "><?= $min_view ?></td>
+                    <td class="p-2 border-2 border-solid "><?= round($avg_view,1)?></td>
+                    <td class="p-2 border-2 border-solid"><?= $max_view?></td>
+                    <td class="p-2 border-2 border-solid "><?= $sum_like?></td>
+                    <td class="p-2 border-2 border-solid "><?= $min_like?></td>
+                    <td class="p-2 border-2 border-solid "><?= round($avg_like,1)?></td>
+                    <td class="p-2 border-2 border-solid "><?= $max_like?></td>
 
                 </tr>
-
+                <?php }?>
 
             </tbody>
         </table>
