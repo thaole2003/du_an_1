@@ -19,6 +19,21 @@
 </script>
 <?php } ?>
 
+
+<?php
+   
+    if(isset($_SESSION['err_not_dn'])){
+?>
+<script>
+    alert('<?= $_SESSION['err_not_dn'] ?>');
+</script>
+<?php
+
+
+}unset($_SESSION['err_not_dn']);?>
+
+
+
 <?php
     if(isset($_SESSION['succes_pw'])){
 ?>

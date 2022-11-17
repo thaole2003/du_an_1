@@ -15,14 +15,10 @@ function update_khach_hang($ma_khach_hang,$email,$user,$pass,$dia_chi,$dien_thoa
     where ma_khach_hang = $ma_khach_hang";
     pdo_execute($sql);
 }
-//Đếm bản ghi theo email
-function count_user_email($email){
-   $sql=" SELECT COUNT(email)
-  FROM user
-  WHERE email='$email'";
-  $count_email=pdo_execute($sql);
-//   return $count_email;
-}
+
+
+
+
 // slect khách hàng theo id
 function select_User_Id($id){
     $sql="SELECT * from user where id=$id";
@@ -107,6 +103,12 @@ function all_user(){
 function select_email_user(){
     $sql = "SELECT email from user";
     return pdo_query($sql);
+}
+// Đếm email theo đầu vào của email
+function count_email_input($email){
+    $sql="SELECT COUNT(*) from user where email='$email'";
+    return pdo_query_value($sql);
+
 }
 // kiểm tra email
 function emailValid($email)

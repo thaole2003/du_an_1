@@ -27,11 +27,11 @@
         <input type="password"  name="password" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 " placeholder="<?php echo isset($err_repassword) ? $err_repassword : "" ?>">
         <div class="flex justify-between border-b-2">
             <div class="flex m-2 gap-1">
-                <a class="hover:text-sky-500" href="">Đăng Nhập</a>
+                <a class="hover:text-sky-500" href="index.php?act=login">Đăng Nhập</a>
             </div>
             <span class=""><?php echo isset($thongbao) ? $thongbao : "" ?></span>
-            <div class="flex m-2 gap-3">
-                <button class="border border-soild h-8 rounded-lg  h-10 p-2 bg-orange-500"  name="dang_ky">Đăng Kí</button> <button id="cancelregister" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-blue-500">Cancel</button>
+            <div class="flex m-2 gap-3 p-2">
+                <button class="border border-soild h-8 rounded-lg  h-10 p-2 bg-orange-500"  name="dang_ky">Đăng Kí</button>
             </div>
         </div>
         <div class="flex gap-2 justify-center m-3">

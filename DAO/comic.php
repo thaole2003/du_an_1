@@ -51,10 +51,10 @@ function load_all_image(){
     $list_img = pdo_query($sql);
     return $list_img;
 }
-function update_comic($id, $name,$filename, $detail, $author, $date, $intro, $category_id){
+function update_comic($id, $name,$name_img, $detail, $author, $date, $intro, $category_id){
     $sql = "update comic set
     name= '".$name."',
-    cover_image= '".$filename."',
+    cover_image= '".$name_img."',
     detail='".$detail."',
     author='".$author."',
     date='".$date."', 
@@ -170,7 +170,17 @@ function name_comic($id){
     return $name;
 }
 function img_comic($id){
-    $sql = "SELECT A.`name`,B.`name` as img FROM comic A INNER JOIN images B on A.id = B.comic_id WHERE A.id = '$id' order by B.`name` desc limit 0,10";
+    $sql = "SELECT A.`name`,B.`name` as img, B.id as id_new FROM comic A INNER JOIN images B on A.id = B.comic_id WHERE A.id = '$id' order by B.`name`";
+    $img_comic = pdo_query($sql);
+    return $img_comic;
+}
+function img_comic_theo_id($id){
+    $sql = "SELECT name FROM images WHERE comic_id = '$id'";
+    $img_comic = pdo_query($sql);
+    return $img_comic;
+}
+function delete_img_comic($id){
+    $sql = "DELETE FROM images WHERE id = '$id'";
     $img_comic = pdo_query($sql);
     return $img_comic;
 }
