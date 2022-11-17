@@ -71,7 +71,7 @@ if (is_array($load_all_comic)) {
         ?>
 
             <img style="float:left;" width="15%" height="200px" src="../content/uploads/img_cua_comic/<?= $img['img'] ?>" alt="">
-            <p><?= $img['name'] ?></p>
+            <p><?= $img['img'] ?></p>
             <a href="<?= $xoa_img_comic ?>">Xóa</a>
         <?php } ?>
         </div>
