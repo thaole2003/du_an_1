@@ -20,9 +20,7 @@ if (isset($_GET['act'])) {
     switch ($act) {
             //Controller danh mục
             //add loại
-
         case 'add_loai':
-           
             if (isset($_POST['btn-add'])) {
                 $ten_loai = trim($_POST['name-loai']);
                 $is_valid = true;
