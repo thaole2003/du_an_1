@@ -7,7 +7,7 @@ include_once "./content/PHPMailer-master/src/SMTP.php";
 include_once "./content/PHPMailer-master/src/POP3.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-  
+include_once "./DAO/comment.php";
 include_once "./DAO/user.php";
 include_once "./DAO/pdo.php";
 include_once "./DAO/loai.php";
@@ -363,7 +363,23 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                  update_like($id);
                 }
                 $detail_comic = detail_comic($id);
-              
+                $load_cmt = load_all_comic_byid($id);
+                if(isset($_POST['cmt'])){
+                    $flag_cmt=true;
+                    $date = date('m/d/Y h:i:s a', time());
+                    if(isset($_SESSION['auth'])){
+                        $id_u = $_SESSION['auth']['id'];
+                    }
+                    if(strlen($_POST['text_cmt']) == 0){
+                        $flag_cmt=false;
+                        $_SESSION['err_cmt'] = 'ban chua viet comment';
+                    }
+                    if($flag_cmt == true){
+                        insert_binh_luan($date,$_POST['text_cmt'],$id,$id_u);
+                    unset( $_SESSION['err_cmt']);
+                        header("location: " . $_SERVER['HTTP_REFERER']);
+                    }
+                }
                 include_once './views/chi_tiet_truyen.php';
                 break;
             // dang ky

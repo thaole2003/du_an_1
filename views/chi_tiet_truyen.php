@@ -65,6 +65,28 @@
         </div>
         <div class="binh_luan">
             <h3><i class="fa-regular fa-comments"></i>Bình luận</h3>
+            <table border="1">
+                <tr class="flex justify-between gap-3">
+                    <td class="border border-solid border-gray-400">noi dung</td>
+                    <td class="border border-solid border-gray-400">Nguoi dung</td>
+                    <td class="border border-solid border-gray-400">ngay binh luan</td>
+                </tr>
+                <?php foreach($load_cmt as $key => $value){ 
+                    extract($value)?>
+                <tr class="flex justify-between gap-3">
+<td class="border border-solid border-gray-400"d> <?= $u_name ?></td>
+<td class="border border-solid border-gray-400">  <?=  $detail ?></td>
+<td class="border border-solid border-gray-400"> <?= $date ?></td>
+                </tr>
+                <?php } ?>
+            </table>
+            <form action="" method="POST">
+        <div class="flex">
+            <input type="text" name='text_cmt' class="border border-solid border-zinc-400" placeholder="<?php echo isset($_SESSION['err_cmt'])?$_SESSION['err_cmt']:'' ?>">
+            <button name="cmt">Bình luận</button>
+        </div>
+     
+    </form>
         </div>
     </div>
     <div class="truyen">

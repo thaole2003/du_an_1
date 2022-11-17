@@ -21,7 +21,7 @@ function count_user_email($email){
   FROM user
   WHERE email='$email'";
   $count_email=pdo_execute($sql);
-  return $count_email;
+//   return $count_email;
 }
 // slect khách hàng theo id
 function select_User_Id($id){
