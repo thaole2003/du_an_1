@@ -362,6 +362,9 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 if(isset($_POST['like'])){
                  update_like($id);
                 }
+                if(isset($_SESSION['err_cmt'])){
+                    unset( $_SESSION['err_cmt']);
+                }
                 $detail_comic = detail_comic($id);
                 $load_cmt = load_all_comic_byid($id);
                 if(isset($_POST['cmt'])){

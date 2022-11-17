@@ -62,6 +62,7 @@ if (is_array($load_all_comic)) {
 
         <label class="font-medium">Ảnh truyện</label><br>
         <div style="width: 100%;">
+        <div class="flex flex-wrap gap-2 justify-items-center">
         <?php
         foreach($img_comic as $img){ 
             // echo '<pre>';
@@ -70,10 +71,15 @@ if (is_array($load_all_comic)) {
         $xoa_img_comic = "index.php?act=xoa_img_comic&id=".$img['id_new']."&id_comic=".$id_comic;
         ?>
 
-            <img style="float:left;" width="15%" height="200px" src="../content/uploads/img_cua_comic/<?= $img['img'] ?>" alt="">
-            <p><?= $img['img'] ?></p>
-            <a href="<?= $xoa_img_comic ?>">Xóa</a>
+    <div class="flex flex-col justify-center content-center items-center w-1/5">
+    <img style="float:left;" width="" height="200px" src="../content/uploads/img_cua_comic/<?= $img['img'] ?>" alt="">
+                <p><?= $img['img'] ?></p>
+                <a  class="border border-solid bg-yellow-300 pr-3 pl-3 border-gray-200 rounded-xl" href="<?= $xoa_img_comic ?>">Xóa</a>
+    </div>
+
+           
         <?php } ?>
+        </div>
         </div>
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="file" name="file[]" id="file" multiple placeholder="Giới thiệu">
         <span class="font-medium text-red-500"><?php if (isset($khong_tt_f)) { echo $khong_tt_f; } ?></span>
