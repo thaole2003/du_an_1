@@ -373,23 +373,25 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             
                     if(isset($_POST['cmt'])){
                         if(isset($_SESSION['auth'])){
-                            unset($_SESSION['err_not_dn']);}
-                        $flag_cmt=true;
-                        $date = date('m/d/Y h:i:s a', time());
-                        if(isset($_SESSION['auth'])){
-                            $id_u = $_SESSION['auth']['id'];
+                            unset($_SESSION['err_not_dn']);
+                            $flag_cmt=true;
+                            $date = date('m/d/Y h:i:s a', time());
+                                $id_u = $_SESSION['auth']['id'];
+                            
+                            if(strlen($_POST['text_cmt']) == 0){
+                                $flag_cmt=false;
+                                $_SESSION['err_cmt'] = 'ban chua viet comment';
+                            }
+                            if($flag_cmt == true){
+                                insert_binh_luan($date,$_POST['text_cmt'],$id,$id_u);
+                            unset( $_SESSION['err_cmt']);
+                                header("location: " . $_SERVER['HTTP_REFERER']);
+                            }
                         }
-                        if(strlen($_POST['text_cmt']) == 0){
-                            $flag_cmt=false;
-                            $_SESSION['err_cmt'] = 'ban chua viet comment';
+                        else{
+                            $_SESSION['err_not_dn']='ban can dang nhap de comment';
                         }
-                        if($flag_cmt == true){
-                            insert_binh_luan($date,$_POST['text_cmt'],$id,$id_u);
-                        unset( $_SESSION['err_cmt']);
-                            header("location: " . $_SERVER['HTTP_REFERER']);
-                        }
-                    }else{
-                        $_SESSION['err_not_dn']='ban can dang nhap de comment';
+                     
                     }
                 
              
@@ -408,4 +410,3 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     include_once "views/header_home_footer/home.php";
 }
 include_once "views/header_home_footer/footer.php";
-?>
