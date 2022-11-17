@@ -22,16 +22,19 @@ if (isset($_GET['act'])) {
             //add loại
 
         case 'add_loai':
-            $is_valid = true;
-            $list_loai = load_all_loai();
+           
             if (isset($_POST['btn-add'])) {
                 $ten_loai = trim($_POST['name-loai']);
-                foreach ($list_loai as $key => $value) {
-                    if ($ten_loai == "" || $ten_loai == $value['name']) {
-                        $thong_bao = "Tên loại không được để trùng hoặc trống";
-                        $is_valid = false;
-                        break;
-                    }
+                $is_valid = true;
+                $count_category=count_category($ten_loai);
+                
+                
+                if($ten_loai==""){
+                    $thong_bao = "Tên loại không được để trống";
+                    $is_valid=false;
+                }elseif($count_category!=0){
+                    $thong_bao="Tên loại đã tồn tại";
+                    $is_valid=false;
                 }
                 if ($is_valid) {
                     insert_loai($ten_loai);
@@ -102,7 +105,6 @@ if (isset($_GET['act'])) {
             //add user
         case 'add_user':
             $list_role = select_role();
-            $list_email = select_email_user();
             if (isset($_POST['add'])) {
                 $email = trim($_POST['email']);
                 $name = trim($_POST['name']);
@@ -115,7 +117,6 @@ if (isset($_GET['act'])) {
                 $flag_register = true;
                 // validate email
                 $count_email=count_email_input($email);
-               
                 if ($email == "") {
                     $flag_register = false;
                     $err_email = "Email không được để trống";

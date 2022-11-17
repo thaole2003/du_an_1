@@ -46,7 +46,6 @@ if (isset($_POST['search'])) {
 }
 
 // Đăng ký user
-$list_email = select_email_user();
 // echo "<pre>";
 // var_dump($list_email);
 // echo "<pre>";
