@@ -15,8 +15,10 @@
             </thead>
             <?php
             foreach ($list_all_loai as $loai_all) {
+              
                 extract($loai_all);
-                $sua_loai = "index.php?act=sua_loai&id=" . $id;
+                $sl= handle_dem_truyen_cung_tl($id);
+                                $sua_loai = "index.php?act=sua_loai&id=" . $id;
                 $xoa_loai = "index.php?act=xoa_loai&id=" . $id;
             ?>
             
@@ -24,7 +26,7 @@
                     <tr class="text-center  ">
                         <td class="p-2 border-2 border-solid "><?php echo $id ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $name ?></td>
-                        <td class="p-2 border-2 border-solid ">8</td>
+                        <td class="p-2 border-2 border-solid "><?php echo $sl["COUNT(*)"] ?></td>
                         <td class="p-2 border-2 border-solid ">
                             <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 mr-2"><a href="<?php echo $sua_loai ?>">Sửa</a></button>
                             <button onclick="delete_category('<?php echo $xoa_loai?>')"   class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ml-2">Xóa</button>

@@ -114,7 +114,17 @@ function all_comic_by_love(){
     
     return pdo_query($sql);
     
-    }
+
+
+}
+
+
+function handle_dem_truyen_cung_tl($id){
+    $sql= "SELECT COUNT(*) FROM comic
+    WHERE category_id = $id";
+    return pdo_query_one($sql);
+}
+
 function search_all($text){
     $sql = "SELECT name,date,cover_image as img_name
     from comic 
