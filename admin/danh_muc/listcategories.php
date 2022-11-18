@@ -18,7 +18,7 @@
               
                 extract($loai_all);
                 $sl= handle_dem_truyen_cung_tl($id);
-                                $sua_loai = "index.php?act=sua_loai&id=" . $id;
+                $sua_loai = "index.php?act=sua_loai&id=" . $id;
                 $xoa_loai = "index.php?act=xoa_loai&id=" . $id;
             ?>
             
