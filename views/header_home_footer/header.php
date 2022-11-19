@@ -28,9 +28,9 @@
     alert('<?= $_SESSION['err_not_dn'] ?>');
 </script>
 <?php
+unset($_SESSION['err_not_dn']);
 
-
-}unset($_SESSION['err_not_dn']);?>
+}?>
 
 
 
