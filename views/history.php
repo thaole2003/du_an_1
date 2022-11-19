@@ -9,7 +9,7 @@ if(isset($_SESSION['auth'])){
     $all_history=history_comic($_SESSION['auth']['id']);
 foreach($all_history as $Key => $value){
     extract($value);?>
-    <a href="#">
+    <a href="index.php?act=detail&id=<?= $id ?>">
     <div class="col">
         <div class="img"><img src="content/uploads/cover_img/<?= $cover_image ?>" alt="">
         </div>
