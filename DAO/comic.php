@@ -67,6 +67,19 @@ function update_view($id){
 $sql = "UPDATE comic SET view = view+1 where id = $id";
 pdo_execute($sql);
 }
+function update_history_comic($idc,$idu){
+    $sql = "INSERT INTO history_comic_user(id_comic,id_user) VALUES($idc,$idu)";
+    pdo_execute($sql);
+}
+function history_comic($id){
+    $sql = "SELECT 
+    c.*
+     FROM comic c
+     join history_comic_user huc
+     on huc.id_comic = c.id
+    WHERE huc.id_user=$id";
+    return pdo_query($sql);
+}
 function update_like($id){
     $sql = "UPDATE comic SET like_comic	  = like_comic+1 where id = $id";
     pdo_execute($sql);
