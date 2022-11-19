@@ -125,10 +125,11 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $id = $_GET['id'];
             }
             update_view($id);
+           
             $doc_truyen = img_comic($id);
-            // echo '<pre>';
-            // print_r($doc_truyen);
-            // die;
+            if(isset($_SESSION['auth'])){
+                update_history_comic($id,$_SESSION['auth']['id']);
+            }
             include_once "views/doc_truyen.php";
             break;
             //Mục yêu thích
@@ -397,12 +398,13 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                         insert_binh_luan($date, $_POST['text_cmt'], $id, $id_u);
                         unset($_SESSION['err_cmt']);
                         header("location: " . $_SERVER['HTTP_REFERER']);
-                    }
+                    };
                 }
-                include_once './views/chi_tiet_truyen.php';
-                break;
+                // include_once './views/chi_tiet_truyen.php';
+                // break;
             }
-
+            include_once './views/chi_tiet_truyen.php';
+            break;
             // dang ky
         case 'register':
             include "views/register.php";
