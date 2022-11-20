@@ -3,6 +3,7 @@ function comic_select_all_name(){
     $sql= 'SELECT * FROM comic';
     return pdo_query($sql);
 }
+
 function comic_select_all(){
     $sql ="SELECT 
     c.*, 

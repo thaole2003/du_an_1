@@ -95,7 +95,7 @@ if (isset($_GET['act'])) {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 delete_fk_comic($id);
-                delete_loai_hang($id);
+                delete_loai($id);
                 $list_all_loai = load_all_loai();
                 include_once  'danh_muc/listcategories.php';
                 $thong_bao = 'Xóa thành công';

@@ -5,7 +5,7 @@
     pdo_execute($sql);
 }
 // xoa loai
-function delete_loai_hang($id){
+function delete_loai($id){
     $sql = "delete from category where id =".$id;
     pdo_execute($sql);
 }

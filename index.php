@@ -267,8 +267,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
         case 'dang_xuat':
             session_unset();
             session_destroy();
-            $_SESSION['dang_xuat'] = "Bạn đã đăng xuất";
             header('location:index.php');
+            $_SESSION['dang_xuat'] = "Bạn đã đăng xuất";
             break;
             //danh mục
         case 'loai':
