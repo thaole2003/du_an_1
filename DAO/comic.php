@@ -81,6 +81,12 @@ function history_comic($id){
     WHERE huc.id_user=$id";
     return pdo_query($sql);
 }
+function select_history_comic_by_user($id){
+$sql = "SELECT 
+*
+ FROM  history_comic_user where id_user =$id";
+ return pdo_query($sql);
+}
 function update_like($id){
     $sql = "UPDATE comic SET like_comic	  = like_comic+1 where id = $id";
     pdo_execute($sql);

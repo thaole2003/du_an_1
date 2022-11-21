@@ -128,7 +128,21 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
            
             $doc_truyen = img_comic($id);
             if(isset($_SESSION['auth'])){
-                update_history_comic($id,$_SESSION['auth']['id']);
+                $update= true;
+                $history_comic_byuser =select_history_comic_by_user($_SESSION['auth']['id']);
+                foreach($history_comic_byuser as $key => $value){
+                if($value['id_comic'] == $id){
+                    $update= false;
+
+                }
+             
+}
+if($update==true){
+    update_history_comic($id,$_SESSION['auth']['id']);
+}
+
+
+                
             }
             include_once "views/doc_truyen.php";
             break;
