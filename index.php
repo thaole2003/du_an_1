@@ -265,10 +265,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
             //log-out
         case 'dang_xuat':
-            session_unset();
-            session_destroy();
-            header('location:index.php');
             $_SESSION['dang_xuat'] = "Bạn đã đăng xuất";
+            header('location:index.php');
             break;
             //danh mục
         case 'loai':

@@ -11,55 +11,58 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <?php
-   
-    if(isset($_SESSION['okokok'])){
+
+if (isset($_SESSION['okokok'])) {
 ?>
-<script>
-    alert('<?= $_SESSION['okokok'] ?>');
-</script>
+    <script>
+        alert('<?= $_SESSION['okokok'] ?>');
+    </script>
 <?php } ?>
 
 
 <?php
-   
-    if(isset($_SESSION['err_not_dn'])){
+
+if (isset($_SESSION['err_not_dn'])) {
 ?>
-<script>
-    alert('<?= $_SESSION['err_not_dn'] ?>');
-</script>
+    <script>
+        alert('<?= $_SESSION['err_not_dn'] ?>');
+    </script>
 <?php
-unset($_SESSION['err_not_dn']);
-
-}?>
+    unset($_SESSION['err_not_dn']);
+} ?>
 
 
 
 <?php
-    if(isset($_SESSION['succes_pw'])){
+if (isset($_SESSION['succes_pw'])) {
 ?>
-<script>
-    alert('<?= $_SESSION['succes_pw'].',bạn nên đổi mật khẩu!' ?>');
-</script>
-<?php 
-unset($_SESSION['succes_pw']);
+    <script>
+        alert('<?= $_SESSION['succes_pw'] . ',bạn nên đổi mật khẩu!' ?>');
+    </script>
+<?php
+    unset($_SESSION['succes_pw']);
 } ?>
 
 <?php
-    if(isset(  $_SESSION['susess_change'])){
+if (isset($_SESSION['susess_change'])) {
 ?>
-<script>
-    alert('<?=   $_SESSION['susess_change']='ban da doi mat khau!'; ?>');
-</script>
-<?php 
-unset(  $_SESSION['susess_change']);
-} ?>
+    <script>
+        alert('<?= $_SESSION['susess_change'] = 'ban da doi mat khau!'; ?>');
+    </script>
 <?php
-    if(isset($_SESSION['dang_xuat'])){
+    unset($_SESSION['susess_change']);
+} ?>
+
+<?php
+if (isset($_SESSION['dang_xuat'])) {
 ?>
-<script>
-    alert('<?= $_SESSION['dang_xuat'] ?>');
-</script>
-<?php } ?>
+    <script>
+        alert('<?= $_SESSION['dang_xuat'] ?>');
+    </script>
+<?php session_unset();
+    session_destroy();
+} ?>
+
 <body>
     <div class="home">
         <!--Phần Header-->
@@ -92,10 +95,10 @@ unset(  $_SESSION['susess_change']);
                         <form action="">
                             <label class="text_login">Xin chào <strong><?php echo $name ?></strong></label><br>
                             <a href="index.php?act=login"><input type="button" value="Cập nhật tài khoản"></a>
-                            <a href="index.php?act=changepass&id=<?=$_SESSION['auth']['id']?>"><input name=""  type="button" value="Thay đổi mật khẩu"></a>
-                            <?php if($_SESSION['auth']['role'] == 1){?>
+                            <a href="index.php?act=changepass&id=<?= $_SESSION['auth']['id'] ?>"><input name="" type="button" value="Thay đổi mật khẩu"></a>
+                            <?php if ($_SESSION['auth']['role'] == 1) { ?>
                                 <a href="admin/index.php"><input type="button" value="Đăng nhập admin"></a>
-                                <?php } ?>
+                            <?php } ?>
                             <a href="index.php?act=dang_xuat"><input type="button" value="Đăng xuất"></a>
                         </form>
                     <?php } else { ?>
