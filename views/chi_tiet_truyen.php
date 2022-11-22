@@ -63,27 +63,30 @@
             <?= $detail_comic['intro'] ?>
             </p>
         </div>
-        <div class="binh_luan">
+        <div class="binh_luan w-[500px]">
             <h3><i class="fa-regular fa-comments"></i>Bình luận</h3>
-            <table border="1">
-                <tr class="flex justify-between gap-3">
-                    <td class="border border-solid border-gray-400">noi dung</td>
-                    <td class="border border-solid border-gray-400">Nguoi dung</td>
-                    <td class="border border-solid border-gray-400">ngay binh luan</td>
-                </tr>
+           
                 <?php foreach($load_cmt as $key => $value){ 
                     extract($value)?>
-                <tr class="flex justify-between gap-3">
-<td class="border border-solid border-gray-400"d> <?= $u_name ?></td>
-<td class="border border-solid border-gray-400">  <?=  $detail ?></td>
-<td class="border border-solid border-gray-400"> <?= $date ?></td>
-                </tr>
+                <div class="flex">
+                <p class="font-medium p-2 text-lg ">Tên:</p>
+                <p class="font-medium p-2 text-lg text-red-400" ><?= $u_name ?></p>
+                </div>
+                <div class="flex">
+                <p class="font-medium p-2 text-lg ">Nội dung:</p>
+                <p class="font-medium p-2 "> <?=  $detail ?></p>
+                </div>
+                <div class="flex">
+                <p class="font-medium p-2 text-lg ">Ngày giờ:</p>
+                <p class="p-2 "><?= $date ?></p>
+                </div>
+               <hr>
                 <?php } ?>
-            </table>
+           
             <form action="" method="POST">
-        <div class="flex">
-            <input type="text" name='text_cmt' class="border border-solid border-zinc-400" placeholder="<?php echo isset($_SESSION['err_cmt'])?$_SESSION['err_cmt']:'' ?>">
-            <button name="cmt">Bình luận</button>
+        <div class="flex p-2 gap-2">
+            <input type="text" name='text_cmt' class="border border-solid border-zinc-400 h-10 w-[300px] rounded-md border-yellow-400" placeholder="<?php echo isset($_SESSION['err_cmt'])?$_SESSION['err_cmt']:'' ?>">
+            <button name="cmt" class="p-2 px-4 rounded-lg bg-orange-400 border-2 border-solid hover:bg-white hover:text-orange-500 text-white border-yellow-400" >Bình luận</button>
         </div>
      
     </form>
