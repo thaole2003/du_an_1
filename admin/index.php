@@ -516,6 +516,14 @@ if (isset($_GET['act'])) {
             $statistical=statistical_truyen();
             include_once 'thong_ke/thongke.php';
         break;
+        case 'bieu_do':
+            // echo "<pre>";
+            $statistical=statistical_truyen();
+            // var_dump($statistical);
+            // echo "</pre>";
+            // die();
+            include_once './thong_ke/bieu_do.php';
+        break;
             //ngược lại không tồn tại act thì include_once "home.php"; 
         
         default:
