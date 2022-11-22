@@ -383,7 +383,7 @@ if($update==true){
 
                     if (strlen($_POST['text_cmt']) == 0) {
                         $flag_cmt = false;
-                        $_SESSION['err_cmt'] = 'ban chua viet comment';
+                        $_SESSION['err_cmt'] = 'Bạn chưa viết comment';
                     }
                     if ($flag_cmt == true) {
                         insert_binh_luan($date, $_POST['text_cmt'], $id, $id_u);
@@ -391,7 +391,7 @@ if($update==true){
                         header("location: " . $_SERVER['HTTP_REFERER']);
                     }
                 } else {
-                    $_SESSION['err_not_dn'] = 'ban can dang nhap de comment';
+                    $_SESSION['err_not_dn'] = 'Bạn hãy đăng nhập để comment';
                     header("location: " . $_SERVER['HTTP_REFERER']);
                 }
 
