@@ -125,30 +125,27 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $id = $_GET['id'];
             }
             update_view($id);
-           
+
             $doc_truyen = img_comic($id);
-            if(isset($_SESSION['auth'])){
-                $update= true;
-                $history_comic_byuser =select_history_comic_by_user($_SESSION['auth']['id']);
-                foreach($history_comic_byuser as $key => $value){
-                if($value['id_comic'] == $id){
-                    $update= false;
-
+            if (isset($_SESSION['auth'])) {
+                $update = true;
+                $history_comic_byuser = select_history_comic_by_user($_SESSION['auth']['id']);
+                foreach ($history_comic_byuser as $key => $value) {
+                    if ($value['id_comic'] == $id) {
+                        $update = false;
+                    }
                 }
-             
-}
-if($update==true){
-    update_history_comic($id,$_SESSION['auth']['id']);
-}
-
-
-                
+                if ($update == true) {
+                    update_history_comic($id, $_SESSION['auth']['id']);
+                }
             }
             include_once "views/doc_truyen.php";
             break;
             //Mục yêu thích
         case 'truyen_yeu_thich':
-            $all_love = all_comic_by_love();
+            if(isset($_SESSION['auth'])){
+                $love_comic = load_all_love_comic($_SESSION['auth']['id']);
+            }
             include_once "views/love.php";
             break;
             //Lịch sử
@@ -366,14 +363,31 @@ if($update==true){
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
-            if (isset($_POST['like'])) {
-                update_like($id);
-            }
+            // if (isset($_POST['like'])) {
+            //     update_like($id);
+            // }
             if (isset($_SESSION['err_not_dn'])) {
                 unset($_SESSION['err_not_dn']);
             }
             $detail_comic = detail_comic($id);
             $load_cmt = load_all_comic_byid($id);
+            // echo '<pre>';
+            // print_r($_SESSION['auth']['id']);
+            if (isset($_POST['love_comic'])) {
+                if(isset($_SESSION['auth'])){
+                    isert_comic($detail_comic['id'], $_SESSION['auth']['id']);
+                    update_like($detail_comic['id']);
+                    header("location: " . $_SERVER['HTTP_REFERER']);
+                }else{
+                    $_SESSION['love_comic_not_login'] = "Bạn cần đăng nhập để thêm truyện vào mục yêu thích";
+                    header("location: " . $_SERVER['HTTP_REFERER']);
+                }
+            }
+            if(isset($_POST['delete_love_comic'])){
+                delete_love_comic($detail_comic['id'], $_SESSION['auth']['id']);
+                update_dislike($detail_comic['id']);
+                header("location: " . $_SERVER['HTTP_REFERER']);
+            }
             if (isset($_POST['cmt'])) {
                 if (isset($_SESSION['auth'])) {
                     unset($_SESSION['err_not_dn']);

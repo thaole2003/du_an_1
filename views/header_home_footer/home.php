@@ -58,10 +58,8 @@
                         </div>
                     </div>
                 </a>
-            <?php          }
+            <?php }
             ?>
-
-
         </div>
     </div>
     <div class="clear"></div>
