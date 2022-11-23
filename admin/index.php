@@ -342,6 +342,10 @@ if (isset($_GET['act'])) {
         case 'xoa_truyen':
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
+                delete_img_history($id);
+                delete_img_comic($id);
+                delete_img_love($id);
+                delete_img_comment($id);
                 delete_comic($id);
                 $load_all_truyen = comic_select_all();
                 include_once  "../admin/truyen/comic.php";

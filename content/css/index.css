@@ -107,10 +107,10 @@ nav ul.menu>li {
 nav ul.menu>li>a {
     text-decoration: none;
     display: block;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: #ffffff;
-    font-size: 16px;
-    line-height: 42px;
+    font-size: 15px;
+    line-height: 43px;
 }
 
 nav ul.menu>li>a:hover {
@@ -122,9 +122,9 @@ nav ul.menu>li>a:hover {
 nav ul.sub_menu {
     position: absolute;
     background-color: #ffffff;
-    width: 600px;
+    width: 1216px;
     display: none;
-    margin-left: -89px;
+    margin-left: -86px;
     text-align: left;
     z-index: 1;
 }
@@ -136,7 +136,7 @@ nav ul.sub_menu>.vien {
 nav ul.sub_menu>.vien>li>a {
     text-decoration: none;
     display: block;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: #444444;
     font-size: 15px;
 }
@@ -266,11 +266,15 @@ article .banner .img .text {
 
 
 /*Truyện hot*/
-
+article .truyen_hot{
+    margin-bottom: 330px;
+}
 article .truyen_hot h3 {
     margin-top: 30px;
     margin-bottom: 10px;
-    color: rgb(255, 64, 64);
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(252, 83, 83);
 }
 
 article .truyen_hot h3 i {
@@ -292,8 +296,8 @@ article .truyen_hot .rol {
 
 article .truyen_hot .rol .col {
     float: left;
-    height: 330px;
-    width: 20%;
+    height: 300px;
+    width: 16.6666666666666%;
 }
 
 article .truyen_hot .rol .col .product {
@@ -304,7 +308,7 @@ article .truyen_hot .rol .col .product .img img {
     width: 100%;
     border-radius: 16px;
     padding: 10px 10px;
-    height: 300px;
+    height: 290px;
 }
 
 article .truyen_hot .rol .col .product .ngay_update {
@@ -316,24 +320,25 @@ article .truyen_hot .rol .col .product .ngay_update {
 }
 
 article .truyen_hot .rol .col .product .ngay_update h5 {
-    padding: 5px 5px;
+    padding: 1px 1px;
     font-size: 15px;
     color: #ffffff;
     font-weight: 400;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 article .truyen_hot .rol .col .product .text {
     text-align: center;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
 }
 
 
 /*Truyện*/
-
 article .truyen h3 {
-    margin: 20px 0px;
+    margin: 10px 0px;
+    font-size: 30px;
+    font-weight: bold;
     color: rgb(25, 235, 235);
 }
 
@@ -353,8 +358,8 @@ article .truyen a:hover {
 article .truyen .col {
     position: relative;
     float: left;
-    width: 25%;
-    height: 430px;
+    width: 16.6666666666666%;
+    height: 330px;
 }
 
 article .truyen .col .img {
@@ -365,34 +370,32 @@ article .truyen .col .img img {
     width: 100%;
     border-radius: 25px;
     padding: 15px 15px;
-    height: 400px;
+    height: 300px;
 }
 
 article .truyen .col .text .ngay_update {
     position: absolute;
     top: 6%;
-    left: 8%;
+    left: 10%;
     background-color: #ed9c56;
-    padding: 5px 5px;
     border-radius: 5px;
     color: #ffffff;
     font-weight: 100;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 article .truyen .text h4 {
     text-align: center;
-    margin-top: -12px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
+    margin-top: -10px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
 }
 
 article .truyen .text h5 {
-    padding-top: 5px;
+    padding-top: 10px;
     text-align: center;
     margin-top: -12px;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 
