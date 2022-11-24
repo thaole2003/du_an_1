@@ -26,14 +26,8 @@
             </thead>
             <tbody class="font-medium text-lg border-2">
                 <?php  
-                // echo "<pre>";
-                // var_dump($list_loai);
-                // echo "<pre/>";
-                // die();
                 foreach($statistical as $key =>$value){ 
                 extract($value);
-                echo '<pre>';
-                print_r($value);
                     ?>
                 <tr class="text-center  ">
                     <td class="p-2 border-2 border-solid "><?= $category_id ?></td>
