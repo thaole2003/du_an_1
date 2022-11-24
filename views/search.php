@@ -1,30 +1,30 @@
-<div class="truyen">
+<article>
+    <div class="truyen_hot">
         <h3 class='text-center'> <i class="fa-solid fa-heart"></i>Từ khóa của bạn tìm là '<?php echo $_POST['textsearch'] ?>'</h3>
         <h4 class='text-center'>Kết quả tìm kiếm</h4>
-        <div class="flex gap-2 flex-wrap">
+        <div class="rol">
+            <?php
+            foreach ($all_search as $key => $value) {
+            ?>
+                <a href="index.php?act=detail&id=<?= $value['id']; ?>">
+                    <div class="col">
+                        <div class="product">
+                            <div class="img"><img class="w-[200px] h-[300px]" src="content/uploads/cover_img/<?php echo $value['img_name'] ?>" alt="">
+                            </div>
+                            <div class="text">
+                                <a href="#">
+                                    <h4><?php echo $value['name'] ?></h4>
 
-
-        <?php 
-        foreach($all_search as $key => $value){
-        ?>
-        <a href="index.php?act=detail&id=<?= $value['id']; ?>">
-            <div class="">
-                <div class=""><img class="w-[200px] h-[300px]" src="content/uploads/cover_img/<?php echo $value['img_name'] ?>" alt="">
-                </div>
-                <div class="text">
-                    <a href="#">
-                        <h4><?php echo $value['name'] ?></h4>
-                      
-                    </a>
-                    <div class="ngay_update">
-                        <h5><?php echo substr($value['date'],0,11) ?></h5>
+                                </a>
+                                <div class="ngay_update">
+                                    <h5><?php echo substr($value['date'], 0, 11) ?></h5>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </a>
-      <?php } ?>
-      </div>
+                </a>
+            <?php } ?>
+        </div>
     </div>
-
     <div class="clear"></div>
 </article>
