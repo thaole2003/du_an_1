@@ -144,6 +144,7 @@ if (isset($_SESSION['dang_xuat'])) {
                 <li><a href="index.php?act=truyen_yeu_thich">Truyện yêu thích</a></li>
                 <li><a href="index.php?act=truyen_da_doc">Lịch sử</a></li>
                 <li><a href="#">Liên hệ</a></li>
+                <li class="coin"><a href="#">Nạp coin</a></li>
             </ul>
         </nav>
     </div>

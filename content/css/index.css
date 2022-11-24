@@ -424,7 +424,7 @@ article .trang a {
 }
 
 article .trang a:hover {
-    background-color: #000;
+    background-color: #ed9c56;
     color: #ffffff;
 }
 
@@ -736,4 +736,9 @@ footer .footer_back .right {
 .text_login{
     height: 1px;
     font-size: 14px;
+}
+/*coin*/
+.coin a{
+    margin-left: 719px;
+    font-weight: bold;
 }
