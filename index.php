@@ -468,7 +468,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $n = $_GET['id'];
                 
                 if ($n == 0) {
-                    $tong = 18;
+                    $tong = 0;
                     $comic_by_date = comic_by_date($tong, 18);
                 } else {
                     $tong = $n * 18;
