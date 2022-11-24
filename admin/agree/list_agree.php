@@ -4,21 +4,6 @@
         <h1 class="text-xl font-medium p-4">Truyện</h1>
     </div>
     <div class="p-4">
-        <form action="index.php?act=list_truyen_search" method="POST" class="">
-            <input type="text" name="key_search" class="w-[300px] h-[44px] rounded-md border-2 border-solid border-yellow-400">
-            <select name="category_id" class="p-2 px-4 rounded-md h-[44px]">
-                <option value="0" selected>Tất cả</option>
-                <?php
-                $list_all_loai = load_all_loai();
-                foreach ($list_all_loai as $KEY => $VAL) {
-                ?>
-                    <option class="font-medium text-xl" value="<?= $VAL['id'] ?>"><?= $VAL['name'] ?></option>
-                <?php } ?>
-            </select>
-            <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400" name="btn_search">Tìm kiếm</button>
-        </form>
-    </div>
-    <div class="p-4">
         <a href="index.php?act=add_comic"> <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400">Thêm</button></a>
     </div>
     <div class="p-4">
@@ -34,16 +19,16 @@
                     <th class="p-2 border-2">Like</th>
                     <th class="p-2 border-2">Loại</th>
                     <th class="p-2 border-2">Ảnh bìa</th>
-                    <th class="p-2 border-2">Chức năng</th>
+                    <th class="p-2 border-2">Duyệt</th>
                     </th>
                 </tr>
             </thead>
             <tbody class="font-medium text-lg border-2">
                 <?php
-                foreach ($load_all_truyen as $key => $value) {
+                foreach ($comic_select_all_bystatus as $key => $value) {
                     extract($value);
-                    $sua_truyen = "index.php?act=sua_truyen&id=" . $id;
-                    $xoa_truyen = "index.php?act=xoa_truyen&id=" . $id;
+                    $yess = "index.php?act=yes&id=" . $id;
+                    $noo = "index.php?act=no&id=" . $id;
                 ?>
                     <tr class="text-center  ">
                         <td class="p-2 border-2 border-solid "><?php echo $id ?></td>
@@ -57,8 +42,9 @@
                         <td class="p-2 border-2 border-solid "><img class="w-[400px] h-[200px]" src="../content/uploads/cover_img/<?php echo $img_name ?>" /></td>
 
                         <td class="p-2 border-2 border-solid ">
-                            <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a href="<?php echo $sua_truyen ?>">Sửa</a> </button><br>
-                            <button onclick="del('<?php echo $xoa_truyen ?>')" class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 mt-2">Xóa</button>
+                            <!-- <form action="" method="post"></form> -->
+                            <a href="<?php echo $yess ?>">  <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ">Đồng ý</button></a> <br>
+                            <a href="<?php echo $noo ?>"> <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 mt-2">Từ chối</button></a>
                         </td>
                     </tr>
                 <?php

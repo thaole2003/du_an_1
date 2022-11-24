@@ -83,13 +83,19 @@ from
 where id = $id";
 return pdo_query_one($sql);
 }
-function check_admin_role(){
-    if(isset($_SESSION['auth']) && $_SESSION['auth']['role'] == 1){
+function check_admin_manager_role(){
+    if(isset($_SESSION['auth']) && ($_SESSION['auth']['role'] == 1 || $_SESSION['auth']['role'] == 3)){
         return true;
     }
     return false;
 }
 
+function check_admin_role(){
+    if(isset($_SESSION['auth']) &&  $_SESSION['auth']['role'] == 1){
+        return true;
+    }
+    return false;
+}
 //select all user
 function all_user(){
     $sql ="SELECT u.*,

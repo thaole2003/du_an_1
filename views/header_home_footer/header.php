@@ -108,7 +108,9 @@ if (isset($_SESSION['dang_xuat'])) {
                             <a href="index.php?act=changepass&id=<?= $_SESSION['auth']['id'] ?>"><input name="" type="button" value="Thay đổi mật khẩu"></a>
                             <?php if ($_SESSION['auth']['role'] == 1) { ?>
                                 <a href="admin/index.php"><input type="button" value="Đăng nhập admin"></a>
-                            <?php } ?>
+                            <?php }if ($_SESSION['auth']['role'] == 3) { ?>
+                                <a href="admin/index.php"><input type="button" value="Đăng truyện"></a>
+                                <?php }?>
                             <a href="index.php?act=dang_xuat"><input type="button" value="Đăng xuất"></a>
                         </form>
                     <?php } else { ?>

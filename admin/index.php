@@ -8,7 +8,15 @@ require_once "../DAO/loai.php";
 require_once "../DAO/comic.php";
 require_once "../DAO/comment.php";
 include "../global.php";
-if (check_admin_role() == false) {
+include_once "../content/PHPMailer-master/src/Exception.php";
+include_once "../content/PHPMailer-master/src/OAuth.php";
+include_once "../content/PHPMailer-master/src/PHPMailer.php";
+include_once "../content/PHPMailer-master/src/SMTP.php";
+include_once "../content/PHPMailer-master/src/POP3.php";
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+if (check_admin_manager_role() == false) {
     header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
     die;
 }
@@ -22,6 +30,10 @@ if (isset($_GET['act'])) {
             //Controller danh mục
             //add loại
         case 'add_loai':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_POST['btn-add'])) {
                 $ten_loai = trim($_POST['name-loai']);
                 $is_valid = true;
@@ -44,12 +56,20 @@ if (isset($_GET['act'])) {
             break;
             //list loại
         case 'list_loai':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             $list_all_loai = load_all_loai();
             include_once "danh_muc/listcategories.php";
             break;
             // sua loai
 
         case 'sua_loai':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
                 $loai_one = load_one_loai($id);
@@ -58,6 +78,10 @@ if (isset($_GET['act'])) {
             break;
             //Cập nhật
         case 'cap_nhat_loai':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_POST['cap_nhat'])) {
                 $name = $_POST['name'];
                 $id = $_POST['id'];
@@ -92,6 +116,10 @@ if (isset($_GET['act'])) {
             include_once "danh_muc/listcategories.php";
             //xóa loại
         case 'xoa_loai':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 delete_fk_comic($id);
@@ -103,6 +131,10 @@ if (isset($_GET['act'])) {
             break;
             //add user
         case 'add_user':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             $list_role = select_role();
             if (isset($_POST['add'])) {
                 $email = trim($_POST['email']);
@@ -171,11 +203,19 @@ if (isset($_GET['act'])) {
             break;
             //LIST USER
         case 'list_kh':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             $all_user = all_user();
             include_once './user/users.php';
             break;
             //DELETE_USER
         case 'delete_user':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 delete_user($id);
@@ -185,6 +225,10 @@ if (isset($_GET['act'])) {
             break;
             //edit USER
         case 'edit_user':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 $list_role = select_role();
@@ -195,6 +239,7 @@ if (isset($_GET['act'])) {
             break;
             //load truyện
         case 'list_truyen':
+            
             $list_all_loai = load_all_loai();
             $load_all_truyen = comic_select_all();
             include_once  "../admin/truyen/comic.php";
@@ -212,6 +257,82 @@ if (isset($_GET['act'])) {
             $load_all_truyen = comic_select_all_search($key, $category_id);
             include_once  "../admin/truyen/comic.php";
             break;
+
+            //phê duyệt truyện
+            case 'agree':
+                $comic_select_all_bystatus = comic_select_all_bystatus();
+                include_once '../admin/agree/list_agree.php';
+                break;
+            //đồng ý phê duyệt
+            case 'yes':
+                if(isset($_GET['id'])){
+                    $id = $_GET['id'];
+                    update_status_yes($id);
+                    header('location:index.php?act=agree');
+                    $_SESSION['yess']='truyện đã được phê duyệt';
+                }
+                break;
+                //không đồng ý phê duyệt
+                case 'no':
+                    if(isset($_GET['id'])){
+                        $id = $_GET['id'];
+                    }
+                   $email_agree= select_email_agree($id);
+
+                    if(isset($_POST['disagree'])){
+                        $flag_no = true;
+                        if(isset($_POST['lido'])){
+                            if(strlen($_POST['lido'])==0){
+                                $flag_no =false;
+
+                            }
+                         
+                            if($flag_no==true){
+                                delete_comic_img($id);
+                                delete_comic($id);
+                              
+                                $mail = new PHPMailer(true);
+                            try {
+                                //Server settings
+                                $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+                                $mail->isSMTP();                                      // Set mailer to use SMTP
+                                $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                                $mail->Username = 'lmt.3102003@gmail.com';                 // SMTP username
+                                $mail->Password = 'kqiiyqidfgvllter ';                           // SMTP password
+                                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                                $mail->Port = 587;                                    // TCP port to connect to
+
+                                //Recipients
+                                $mail->setFrom('lmt.3102003@gmail.com ', 'Mailer');
+                                $mail->addAddress($email_agree['email'],$email_agree['name']);     // Add a recipient
+                                // $mail->addAddress('vietnqph27022@fpt.edu.vn','việt sếch');               // Name is optional
+                                // $mail->addReplyTo('info@example.com', 'Information');
+                                $mail->addCC('lmt.3102003@gmail.com');
+                                // $mail->addBCC('bcc@example.com');
+
+                                //Attachments
+                                // $mail->addent('/vAttachmar/tmp/file.tar.gz');         // Add attachments
+                                // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+                                //Content
+                                $mail->isHTML(true);                                  // Set email format to HTML
+                                $mail->Subject = 'Truyện của bạn không được phê duyệt';
+                                $mail->Body    = 'Truyện của bạn không được phê duyệt với lí do '.$_POST['lido'];
+                                // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; 
+
+                                $mail->send();
+                                $_SESSION['succes_disagree'] = 'Đã gửi lí do đến người đăng.';
+                                header('location:index.php?act=agree');
+                            } catch (Exception $e) {
+                                echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+                            }
+                            }
+                        }
+                   
+                    }
+                    include_once '../admin/agree/disagree.php';
+                    break;
             //thêm truyện
         case 'add_comic':
             $list_all_loai = load_all_loai();
@@ -228,7 +349,15 @@ if (isset($_GET['act'])) {
                 $like = 0;
                 $category = $_POST['category'];
                 $allowUpload = true;
-
+                if(isset($_SESSION['auth']['id'])){
+                if($_SESSION['auth']['role']==1){
+                    $st=2;
+                }
+                elseif($_SESSION['auth']['role']==3){
+                    $st=1;
+                }
+                }
+                $po =  $_SESSION['auth']['id'];
                 if ($length2 == 0) {
                     $rong_ten = 'Không được để trống tên truyện';
                     $allowUpload = false;
@@ -255,7 +384,7 @@ if (isset($_GET['act'])) {
                     $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
                     //định dạng được chấp nhận
-                    $allowtype = ["jpg", "jpeg"];
+                    $allowtype = ["jpg", "jpeg","JPG","JPEG"];
 
                     //kiểm tra xem phải ảnh ko nếu là ảnh thì trả về true ngược lại
                     //ko là ảnh trả về false
@@ -325,7 +454,7 @@ if (isset($_GET['act'])) {
                 }
 
                 if ($allowUpload == true) {
-                    $id = comic_insert($namee, $detail, $author, $date, $intro, $view, $like, $category, $name_img);
+                    $id = comic_insert($namee, $detail, $author, $date, $intro, $view, $like, $category, $name_img,$st,$po);
                     //xử lý di chuyển file tạm vào thư mục cần lưu trữ
                     for ($i = 0; $i < $countfiles; $i++) {
                         $filename = $_FILES["file"]["name"][$i];
@@ -497,7 +626,7 @@ if (isset($_GET['act'])) {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 $id_comic = $_GET['id_comic'];
-                delete_img_comic($id);
+                delete_comic_img($id);
             }
             header('location: index.php?act=sua_truyen&id=' . $id_comic);
             break;
@@ -541,3 +670,4 @@ if (isset($_GET['act'])) {
 }
 
 include_once "footer.php";
+?>
