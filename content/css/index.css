@@ -332,7 +332,14 @@ article .truyen_hot .rol .col .product .text {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
 }
-
+article .truyen_hot .h1_text{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 31px;
+    margin-top: 30px;
+    color: #ed9c56;
+    font-weight: bold;
+}
 
 /*Truyện*/
 article .truyen h3 {
