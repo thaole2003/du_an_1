@@ -7,10 +7,10 @@
         <!-- <a href="index.php?act=add_comic"> <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400">Thêm</button></a> -->
     </div>
     <div class="p-4">
-       <form action="" method="post">
+       <form action="" method="post" class="flex flex-col ">
 
-       <input type="text" name="lido" size="100">
-       <button name="disagree">Gửi lí do</button>
+       <input type="text" name="lido" size="70" class="h-[100px]">
+       <button name="disagree" class="m-2 p-2 bg-pink-400 rounded-2xl w-1/12">Gửi lí do</button>
        
        </form>
     </div>
