@@ -11,7 +11,9 @@ function comic_select_all(){
     ca.name as ca_name
 from comic c
 join category ca
-on c.category_id = ca.id order by c.id desc";
+on c.category_id = ca.id
+where c.status=2
+ order by c.id desc";
     return pdo_query($sql);
 }
 
@@ -91,9 +93,9 @@ function update_like($id){
     $sql = "UPDATE comic SET like_comic	  = like_comic+1 where id = $id";
     pdo_execute($sql);
     }
-function comic_insert($name, $detail, $author, $date,$intro,$view,$like,$category_id,$name_img){
+function comic_insert($name, $detail, $author, $date,$intro,$view,$like,$category_id,$name_img,$st,$po){
     $n = 'N';
-    $sqlQuery = "INSERT INTO comic (name,cover_image,detail,author,date,intro,view,like_comic,category_id) VALUES ($n'$name',$n'$name_img',$n'$detail',$n'$author',$n'$date',$n'$intro',$view,$like,$category_id)";
+    $sqlQuery = "INSERT INTO comic (name,cover_image,detail,author,date,intro,view,like_comic,category_id,status,poster) VALUES ($n'$name',$n'$name_img',$n'$detail',$n'$author',$n'$date',$n'$intro',$view,$like,$category_id,$st,$po)";
     $id = pdo_query_last_id($sqlQuery);
     return $id;
 }
@@ -118,7 +120,7 @@ ca.name as ca_name
 from comic c
 join category ca
 on c.category_id = ca.id
-WHERE c.category_id= $id";
+WHERE c.category_id= $id and c.status=2";
 return pdo_query($sql);
 
 }
@@ -130,6 +132,7 @@ function all_comic_by_love(){
     from comic c
     join category ca
     on c.category_id = ca.id 
+    where c.status =2
 		ORDER BY like_comic DESC LIMIT 0,8";
     
     return pdo_query($sql);
@@ -138,6 +141,33 @@ function all_comic_by_love(){
 
 }
 
+
+
+//lấy truyện để duyệt
+function comic_select_all_bystatus(){
+    $sql ="SELECT 
+    c.*, 
+    c.cover_image as img_name,
+    ca.name as ca_name,
+		u.email as u_email
+from comic c
+join category ca
+on c.category_id = ca.id
+join user u
+on c.poster = u.id
+where c.status=1
+ order by c.id desc;
+";
+    return pdo_query($sql);
+}
+function select_email_agree($id){
+    $sql = "SELECT comic.id,comic.poster ,user.email,user.name
+    FROM comic
+    join user 
+    on comic.poster = user.id
+    WHERE comic.id = $id";
+return pdo_query_one($sql);
+}
 
 function handle_dem_truyen_cung_tl($id){
     $sql= "SELECT COUNT(*) FROM comic
@@ -148,7 +178,7 @@ function handle_dem_truyen_cung_tl($id){
 function search_all($text){
     $sql = "SELECT id,name,date,cover_image as img_name
     from comic 
-    where name like '%$text%'
+    where name like '%$text%' and comic.status=2
     ";
    
     return pdo_query($sql);
@@ -160,9 +190,10 @@ function load_all_truyen_like(){
     return $truyen_like;
 }
 function comic_by_view(){
-    $sql = "select 
+    $sql = "SELECT 
     *,cover_image as iname
 from comic
+WHERE comic.status=2
 ORDER BY `view` DESC LIMIT 0,5";
 return pdo_query($sql);
 }
@@ -179,11 +210,14 @@ function detail_comic($id){
     return pdo_query_one($sql);
 }
 function comic_by_date(){
-    $sql = "select 
+    $sql = "SELECT 
     *,
     cover_image as iname
 from comic
-ORDER BY `date` DESC";
+
+WHERE comic.status=2
+ORDER BY `date`
+ DESC";
 return pdo_query($sql);
 }
 function select_name_comic(){
@@ -209,11 +243,16 @@ function img_comic_theo_id($id){
     $img_comic = pdo_query($sql);
     return $img_comic;
 }
-function delete_img_comic($id){
-    $sql = "DELETE FROM images WHERE id = '$id'";
-    $img_comic = pdo_query($sql);
-    return $img_comic;
+// function delete_img_comic($id){
+//     $sql = "DELETE FROM images WHERE id = '$id'";
+//     $img_comic = pdo_query($sql);
+//     return $img_comic;
+// }
+function delete_comic_img($comic_id){
+    $sql = "DELETE FROM images where comic_id =$comic_id";
+    return pdo_execute($sql);
 }
+
 // thong ke truyen 
 function statistical_truyen(){
     $sql="SELECT 
@@ -234,3 +273,9 @@ function statistical_truyen(){
    GROUP BY category_id";
     return pdo_query($sql);
 }
+
+function update_status_yes($id){
+    $sql = "UPDATE comic SET status	  = 2 where id = $id";
+    pdo_execute($sql);
+    }
+?>

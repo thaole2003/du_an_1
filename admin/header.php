@@ -9,6 +9,23 @@
     <link href="../content/css/index.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<?php if(isset($_SESSION['yess'])){
+    ?>
+<script>
+      alert('<?= $_SESSION['yess'] ?>');
+</script>
+    <?php
+} 
+unset($_SESSION['yess'])?>
+
+<?php if(isset($_SESSION['succes_disagree'])){
+    ?>
+<script>
+      alert('<?= $_SESSION['succes_disagree'] ?>');
+</script>
+    <?php
+} 
+unset($_SESSION['succes_disagree'])?>
 
 <body>
     <div class="home">
@@ -34,11 +51,19 @@
             <!-- nav  -->
             <nav class="text-center p-4 mt-4 bg-orange-400 max-h-max w-[200px] ">
                 <ul>
+                    <?php if ($_SESSION['auth']['role'] == 1){ ?>
                     <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium  " href="index.php">Home</a></li>
                     <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_loai">Loại</a></li>
                     <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
                     <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_kh">Người dùng</a></li>
                     <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_bl">Bình luận</a></li>
                     <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_tk">Thống kê</a></li>
+                    <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=agree">Phê duyệt</a></li>
+                    <?php }elseif($_SESSION['auth']['role'] == 3) {
+                        ?>
+        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
+        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_bl">Bình luận</a></li>
+
+                        <?php } ?>
                 </ul>
             </nav>
