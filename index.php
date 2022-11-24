@@ -143,7 +143,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
             //Mục yêu thích
         case 'truyen_yeu_thich':
-            if(isset($_SESSION['auth'])){
+            if (isset($_SESSION['auth'])) {
                 $love_comic = load_all_love_comic($_SESSION['auth']['id']);
             }
             include_once "views/love.php";
@@ -358,6 +358,46 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             include_once "./views/forgotpassword.php";
             break;
+            //cập nhật tài khoản client
+        case 'cap_nhat_tai_khoan':
+            if ($_SESSION['auth']) {
+                $id = $_SESSION['auth']['id'];
+                $user_id = select_User_Id($id);
+
+                if (isset($_POST['update'])) {
+                    $name = trim($_POST['name']);
+                    $phone = trim($_POST['phone']);
+                    $address = trim($_POST['address']);
+                    $flag_register = true;
+                    $list_email = select_email_user();
+                    // validate name
+                    if ($name == "") {
+                        $flag_register = false;
+                        $err_name = "Name không được để trống";
+                    }
+                    //validate phone
+                    if ($phone == "") {
+                        $flag_register = false;
+                        $err_phone = "Số điện thoại không được để trống";
+                    } elseif (!isVietnamesePhoneNumber($phone)) {
+                        $flag_register = false;
+                        $err_phone = "Số điện thoại chưa đúng định dạng";
+                    }
+                    // validate địa chỉ
+                    if ($address == "") {
+                        $flag_register = false;
+                        $err_address = "Địa chỉ không được để trống";
+                    }
+                    if ($flag_register) {
+                        update_user($id, $name, $phone, $address, $role);
+                        header("location: " . $_SERVER['HTTP_REFERER']);
+                    } else {
+                        $thongbao = "Cập nhật người dùng thất bại ";
+                    }
+                }
+            }
+            include 'views/cap_nhat_tai_khoan.php';
+            break;
             //detail
         case 'detail':
             if (isset($_GET['id'])) {
@@ -374,16 +414,16 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             // echo '<pre>';
             // print_r($_SESSION['auth']['id']);
             if (isset($_POST['love_comic'])) {
-                if(isset($_SESSION['auth'])){
+                if (isset($_SESSION['auth'])) {
                     isert_comic($detail_comic['id'], $_SESSION['auth']['id']);
                     update_like($detail_comic['id']);
                     header("location: " . $_SERVER['HTTP_REFERER']);
-                }else{
+                } else {
                     $_SESSION['love_comic_not_login'] = "Bạn cần đăng nhập để thêm truyện vào mục yêu thích";
                     header("location: " . $_SERVER['HTTP_REFERER']);
                 }
             }
-            if(isset($_POST['delete_love_comic'])){
+            if (isset($_POST['delete_love_comic'])) {
                 delete_love_comic($detail_comic['id'], $_SESSION['auth']['id']);
                 update_dislike($detail_comic['id']);
                 header("location: " . $_SERVER['HTTP_REFERER']);

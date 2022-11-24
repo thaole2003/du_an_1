@@ -234,6 +234,40 @@ if (isset($_GET['act'])) {
                 $list_role = select_role();
                 $user_id = select_User_Id($id);
 
+                if (isset($_POST['update'])) {
+                    $name = trim($_POST['name']);
+                    $phone = trim($_POST['phone']);
+                    $address = trim($_POST['address']);
+                    $role = trim($_POST['role_id']);
+                    $flag_register = true;
+                    $list_email = select_email_user();
+                    // validate name
+                    if ($name == "") {
+                        $flag_register = false;
+                        $err_name = "Name không được để trống";
+                    }
+                    //validate phone
+                    if ($phone == "") {
+                        $flag_register = false;
+                        $err_phone = "Số điện thoại không được để trống";
+                    } elseif (!isVietnamesePhoneNumber($phone)) {
+                        $flag_register = false;
+                        $err_phone = "Số điện thoại chưa đúng định dạng";
+                    }
+                    // validate địa chỉ
+                    if ($address == "") {
+                        $flag_register = false;
+                        $err_address = "Địa chỉ không được để trống";
+                    }
+                    if ($flag_register) {
+                        update_user($id,$name, $phone, $address, $role);
+                        
+                         header('location:index.php?act=list_kh');
+                    } else {
+                        $thongbao = "UPDATE người dùng thất bại ";
+                    }
+                }
+
                 include_once 'user/editusers.php';
             }
             break;
