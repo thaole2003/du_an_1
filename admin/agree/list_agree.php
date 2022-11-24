@@ -10,13 +10,12 @@
         <table class="table-auto w-full">
             <thead class="text-xl border-2">
                 <tr class="bg-red-200 ">
+                    <th class="p-2 border-2">Tên người đăng</th>
                     <th class="p-2 border-2">Mã truyện</th>
                     <th class="p-2 border-2">Tên truyện</th>
                     <th class="p-2 border-2">Tác giả</th>
                     <th class="p-2 border-2">Giới thiệu</th>
                     <th class="p-2 border-2">Ngày giờ</th>
-                    <th class="p-2 border-2">View</th>
-                    <th class="p-2 border-2">Like</th>
                     <th class="p-2 border-2">Loại</th>
                     <th class="p-2 border-2">Ảnh bìa</th>
                     <th class="p-2 border-2">Duyệt</th>
@@ -31,19 +30,18 @@
                     $noo = "index.php?act=no&id=" . $id;
                 ?>
                     <tr class="text-center  ">
+                        <td class="p-2 border-2 border-solid"><?php echo $name_poster ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $id ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $name ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $author ?></td>
                         <td class="p-2 border-2 border-solid"><?php echo $intro ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $date ?></td>
-                        <td class="p-2 border-2 border-solid "><?php echo $view ?></td>
-                        <td class="p-2 border-2 border-solid "><?php echo $like_comic ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $ca_name ?></td>
                         <td class="p-2 border-2 border-solid "><img class="w-[400px] h-[200px]" src="../content/uploads/cover_img/<?php echo $img_name ?>" /></td>
 
                         <td class="p-2 border-2 border-solid ">
                             <!-- <form action="" method="post"></form> -->
-                            <a href="<?php echo $yess ?>">  <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ">Đồng ý</button></a> <br>
+                            <a href="<?php echo $yess ?>"> <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ">Đồng ý</button></a> <br>
                             <a href="<?php echo $noo ?>"> <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 mt-2">Từ chối</button></a>
                         </td>
                     </tr>

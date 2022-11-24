@@ -8,7 +8,12 @@
             }
         }
     function del(aaaa){
-            if( confirm('xác nhận xóa')){
+            if( confirm('Xác nhận xóa')){
+                return document.location = aaaa;
+            }
+        }
+        function delete_img_comic(aaaa){
+            if( confirm('Xác nhận xóa ')){
                 return document.location = aaaa;
             }
         }

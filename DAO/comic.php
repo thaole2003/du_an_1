@@ -88,7 +88,7 @@ function history_comic($id)
      FROM comic c
      join history_comic_user huc
      on huc.id_comic = c.id
-    WHERE huc.id_user=$id";
+    WHERE huc.id_user=$id order by c.id desc";
     return pdo_query($sql);
 }
 function select_history_comic_by_user($id)
@@ -167,7 +167,8 @@ function comic_select_all_bystatus(){
     c.*, 
     c.cover_image as img_name,
     ca.name as ca_name,
-		u.email as u_email
+		u.email as u_email,
+        u.name as name_poster
 from comic c
 join category ca
 on c.category_id = ca.id
@@ -275,21 +276,21 @@ function img_comic_theo_id($id)
     return $img_comic;
 }
 
-// function delete_img_comic($id){
-//     $sql = "DELETE FROM images WHERE id = '$id'";
-//     $img_comic = pdo_query($sql);
-//     return $img_comic;
-// }
+function delete_img_comic($id){
+    $sql = "DELETE FROM images WHERE id = '$id'";
+    $img_comic = pdo_query($sql);
+    return $img_comic;
+}
 function delete_comic_img($comic_id){
     $sql = "DELETE FROM images where comic_id =$comic_id";
     return pdo_execute($sql);
 }
-function delete_img_comic($id)
-{
-    $sql = "DELETE FROM images WHERE comic_id = '$id'";
-    $img_comic = pdo_query($sql);
-    return $img_comic;
-}
+// function delete_img_comic($id)
+// {
+//     $sql = "DELETE FROM images WHERE comic_id = '$id'";
+//     $img_comic = pdo_query($sql);
+//     return $img_comic;
+// }
 function delete_img_history($id)
 {
     $sql = "DELETE FROM history_comic_user WHERE id_comic = '$id'";

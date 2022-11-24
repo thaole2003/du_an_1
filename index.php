@@ -267,7 +267,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     unset($_SESSION['passw_new']);
                     unset($_SESSION['err_pb']);
                     unset($_SESSION['repass']);
-                    $_SESSION['susess_change'] = 'ban da doi mat khau!';
+                    $_SESSION['susess_change'] = 'Đổi mật khẩu thành công!';
                     header('location:index.php');
                 }
             }

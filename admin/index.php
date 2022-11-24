@@ -622,13 +622,14 @@ if (isset($_GET['act'])) {
             $list_all_loai = load_all_loai();
             include_once  'truyen/comic.php';
             break;
+        //xóa truyện trong update
         case 'xoa_img_comic':
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 $id_comic = $_GET['id_comic'];
-                delete_comic_img($id);
+                delete_img_comic($id);
+                header('location: index.php?act=sua_truyen&id=' . $id_comic);
             }
-            header('location: index.php?act=sua_truyen&id=' . $id_comic);
             break;
         //list_coment
         case 'list_bl':
@@ -670,4 +671,3 @@ if (isset($_GET['act'])) {
 }
 
 include_once "footer.php";
-?>
