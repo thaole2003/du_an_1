@@ -252,6 +252,10 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                         $flag_change = false;
                         $_SESSION['err_pw'] = 'mật khẩu phải đúng định dạng';
                     }
+                    if($_POST['passw_new']==$_POST['pass_befor']){
+                        $flag_change = false;
+                        $_SESSION['err_pw'] = 'mật khẩu mới phải khác mật khẩu cũ';
+                    }
                 }
 
 
@@ -260,6 +264,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                         $flag_change = false;
                         $_SESSION['err_rp'] = 'mật khẩu mới phải trùng nhau';
                     }
+                  
                 }
                 if ($flag_change == true) {
                     $pass_up = password_hash($_POST['passw_new'], PASSWORD_DEFAULT);
@@ -267,6 +272,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     unset($_SESSION['passw_new']);
                     unset($_SESSION['err_pb']);
                     unset($_SESSION['repass']);
+                    unset($_SESSION['err_pw']);
                     $_SESSION['susess_change'] = 'Đổi mật khẩu thành công!';
                     header('location:index.php');
                 }
