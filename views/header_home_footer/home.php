@@ -66,7 +66,8 @@
     <!--Truyện-->
     <div class="truyen">
         <h3><i class="fa-solid fa-cloud-arrow-down"></i>Truyện mới cập nhật</h3>
-        <?php foreach ($comic_by_date as $key => $value) { ?>
+        <?php
+        foreach ($comic_by_date as $key => $value) { ?>
             <?php extract($value) ?>
             <a href="index.php?act=detail&id=<?= $id ?>">
                 <div class="col">
@@ -82,14 +83,21 @@
                     </div>
                 </div>
             </a>
-        <?php } ?>
+        <?php }
+        ?>
     </div>
 
     <div class="clear"></div>
-
     <div class="trang">
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
+        <?php
+        $count = count_comic();
+        $dem = $count['soluong'] / 18;
+
+        for ($i = 0; $i < $dem; $i++) {
+        ?>
+            <a href="index.php?act=trang&id=<?= $i ?>"><?= $i+1 ?></a>
+        <?php
+        }
+        ?>
     </div>
 </article>

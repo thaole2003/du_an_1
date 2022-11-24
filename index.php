@@ -22,7 +22,9 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 $like_comic = load_all_truyen_like();
 $comic_by_view = comic_by_view();
-$comic_by_date = comic_by_date();
+$comic_by_date = comic_by_date(0, 18);
+// echo '<pre>';
+// print_r($count);
 //Controller
 //Tìm kiếm
 if (isset($_SESSION['okokok'])) {
@@ -252,7 +254,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                         $flag_change = false;
                         $_SESSION['err_pw'] = 'mật khẩu phải đúng định dạng';
                     }
-                    if($_POST['passw_new']==$_POST['pass_befor']){
+                    if ($_POST['passw_new'] == $_POST['pass_befor']) {
                         $flag_change = false;
                         $_SESSION['err_pw'] = 'mật khẩu mới phải khác mật khẩu cũ';
                     }
@@ -264,7 +266,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                         $flag_change = false;
                         $_SESSION['err_rp'] = 'mật khẩu mới phải trùng nhau';
                     }
-                  
                 }
                 if ($flag_change == true) {
                     $pass_up = password_hash($_POST['passw_new'], PASSWORD_DEFAULT);
@@ -454,33 +455,27 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $_SESSION['err_not_dn'] = 'Bạn hãy đăng nhập để comment';
                     header("location: " . $_SERVER['HTTP_REFERER']);
                 }
-
-                // $detail_comic = detail_comic($id);
-                // $load_cmt = load_all_comic_byid($id);
-                // if (isset($_POST['cmt'])) {
-                //     $flag_cmt = true;
-                //     $date = date('m/d/Y h:i:s a', time());
-                //     if (isset($_SESSION['auth'])) {
-                //         $id_u = $_SESSION['auth']['id'];
-                //     }
-                //     if (strlen($_POST['text_cmt']) == 0) {
-                //         $flag_cmt = false;
-                //         $_SESSION['err_cmt'] = 'ban chua viet comment';
-                //     }
-                //     if ($flag_cmt == true) {
-                //         insert_binh_luan($date, $_POST['text_cmt'], $id, $id_u);
-                //         unset($_SESSION['err_cmt']);
-                //         header("location: " . $_SERVER['HTTP_REFERER']);
-                //     };
-                // }
-                // include_once './views/chi_tiet_truyen.php';
-                // break;
             }
             include_once './views/chi_tiet_truyen.php';
             break;
             // dang ky
         case 'register':
             include "views/register.php";
+            break;
+            //Phân trang 1 2 3 ...
+        case 'trang':
+            if (isset($_GET['id'])) {
+                $n = $_GET['id'];
+                
+                if ($n == 0) {
+                    $tong = 18;
+                    $comic_by_date = comic_by_date($tong, 18);
+                } else {
+                    $tong = $n * 18;
+                    $comic_by_date = comic_by_date($tong, 18);
+                }
+            }
+            include_once "views/header_home_footer/home.php";
             break;
         default:
             include_once "views/header_home_footer/home.php";
