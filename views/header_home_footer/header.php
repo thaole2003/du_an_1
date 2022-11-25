@@ -81,7 +81,8 @@ if (isset($_SESSION['dang_xuat'])) {
     <script>
         alert('<?= $_SESSION['dang_xuat'] ?>');
     </script>
-<?php session_unset();
+<?php
+    session_unset();
     session_destroy();
 } ?>
 
@@ -123,11 +124,11 @@ if (isset($_SESSION['dang_xuat'])) {
                             <?php if ($_SESSION['auth']['role'] == 1) { ?>
                                 <a href="admin/index.php"><input type="button" value="Đăng nhập admin"></a>
                             <?php } ?>
-                            
+
                             <?php if ($_SESSION['auth']['role'] == 3) { ?>
                                 <a href="admin/index.php"><input type="button" value="Đăng truyện"></a>
                             <?php } ?>
-                            
+
                             <a href="index.php?act=dang_xuat"><input type="button" value="Đăng xuất"></a>
                         </form>
                     <?php } else { ?>
@@ -152,7 +153,9 @@ if (isset($_SESSION['dang_xuat'])) {
                     <ul class="sub_menu">
                         <!--Phần đẩy loại truyện-->
                         <div class="vien">
-                            <?php foreach ($list_all_loai as $key => $value) { ?>
+                            <?php
+                            ob_start();
+                            foreach ($list_all_loai as $key => $value) { ?>
                                 <li><a href="index.php?act=loai&ma_loai=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></li>
                             <?php  } ?>
                         </div>

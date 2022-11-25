@@ -190,7 +190,9 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                                 'name' => $user_check['name'],
                                 'role' => $user_check['role'],
                                 'role_name' => $user_check['role_name'],
-                                'coin' => $user_check['coin']
+                                'coin' => $user_check['coin'],
+                                'phone' => $user_check['phone'],
+                                'address' => $user_check['address']
                             ];
                             unset($_SESSION['khong_ton_tai_tk']);
                             unset($_SESSION['sai_mk']);
@@ -461,9 +463,14 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 if (isset($_POST['nap_coin'])) {
                     if ($_POST['price'] != 0) {
                         $price = $_POST['price'];
-                        echo '<pre>';
-                        print_r($price);
+                        $id = $_SESSION['auth']['id'];
+                        $email = $_SESSION['auth']['email'];
+                        $name = $_SESSION['auth']['name'];
+                        $phone = $_SESSION['auth']['phone'];
+                        $address = $_SESSION['auth']['address'];
+
                     } else {
+                        $_SESSION['chon_menh_gia'] = "Bạn chưa chọn mệnh giá";
                         header('location:index.php?act=coin');
                     }
                 }
