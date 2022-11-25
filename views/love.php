@@ -30,7 +30,7 @@
                 }
             }else{
                 ?>
-                <h1>Hãy đăng nhập để có thể thêm truyện yêu thích</h1>
+                <h1 class="h1_text">Hãy đăng nhập để có thể thêm truyện yêu thích</h1>
                 <?php
             }
             ?>

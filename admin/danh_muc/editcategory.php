@@ -18,6 +18,7 @@
             name="name" value="<?php if(isset($name) && ($name != "")) echo $name; ?>"><br>
             <b style="color: red;"><?php echo isset($_SESSION['trong_loai']) ? $_SESSION['trong_loai'] : ""?></b>
             <b style="color: red;"><?php echo isset($_SESSION['trung_loai']) ? $_SESSION['trung_loai'] : ""?></b>
+            <?php unset($_SESSION['trung_loai']); unset($_SESSION['trong_loai']); ?>
             <br>
         <?php unset($_SESSION['trong_loai']); unset($_SESSION['trung_loai']); ?>
         <input type="hidden" name="id" value="<?php if(isset($id) && ($id > 0)) echo $id; ?>">

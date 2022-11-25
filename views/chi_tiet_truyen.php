@@ -62,16 +62,22 @@
                                 <form action="" method="POST">
                                     <a href=""><button name="delete_love_comic">Bỏ Yêu thích</button></a>
                                 </form>
-                        <?php
+                            <?php
                             }
-                        }else{
+                        } else {
                             ?>
                             <form action="" method="POST">
-                                    <a href=""><button name="love_comic">Yêu thích</button></a>
-                                </form>
-                            <?php
+                                <a href=""><button name="love_comic">Yêu thích</button></a>
+                            </form>
+                        <?php
                         }
                         ?>
+                        <?php if($detail_comic['vip'] == 1){
+                        ?>
+                        <form action="#" method="POST">
+                            <a href="#"><button name="coin"><?= $detail_comic['price'] ?> Coin</button></a>
+                        </form>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="clear"></div>

@@ -33,7 +33,9 @@
                     <th class="p-2 border-2">View</th>
                     <th class="p-2 border-2">Like</th>
                     <th class="p-2 border-2">Loại</th>
-                    <th class="p-2 border-2">Thay đổi</th>
+                    <th class="p-2 border-2">Truyện</th>
+                    <th class="p-2 border-2">Giá</th>
+                    <th class="p-2 border-2">Ảnh bìa</th>
                     <th class="p-2 border-2">Chức năng</th>
                     </th>
                 </tr>
@@ -44,6 +46,17 @@
                     extract($value);
                     $sua_truyen = "index.php?act=sua_truyen&id=" . $id;
                     $xoa_truyen = "index.php?act=xoa_truyen&id=" . $id;
+
+                    if($price == 0){
+                        $price_comic = "free";
+                    }else{
+                        $price_comic = $price;
+                    }
+                    if($vip == 0){
+                        $vip_comic = "Thường";
+                    }else{
+                        $vip_comic = "Svip";
+                    }
                 ?>
                     <tr class="text-center  ">
                         <td class="p-2 border-2 border-solid "><?php echo $id ?></td>
@@ -54,7 +67,9 @@
                         <td class="p-2 border-2 border-solid "><?php echo $view ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $like_comic ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $ca_name ?></td>
-                        <td class="p-2 border-2 border-solid "><img class="w-[400px] h-[200px]" src="../content/uploads/cover_img/<?php echo $img_name ?>" /></td>
+                        <td class="p-2 border-2 border-solid "><?php echo $vip_comic ?></td>
+                        <td class="p-2 border-2 border-solid "><?php echo $price_comic ?></td>
+                        <td class="p-2 border-2 border-solid "><img class="w-[100px] h-[100px]" src="../content/uploads/cover_img/<?php echo $img_name ?>" /></td>
 
                         <td class="p-2 border-2 border-solid ">
                             <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a href="<?php echo $sua_truyen ?>">Sửa</a> </button><br>

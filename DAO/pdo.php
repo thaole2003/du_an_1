@@ -11,6 +11,16 @@ function pdo_get_connection(){
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $conn;
 }
+//localhost
+// function pdo_get_connection(){
+//     $dburl = "mysql:host=localhost;dbname=du_an_1_ph20653;charset=utf8";
+//     $username = 'root';
+//     $password = '';
+
+//     $conn = new PDO($dburl, $username, $password);
+//     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//     return $conn;
+// }
 /*
  * Thực thi câu lệnh sql thao tác dữ liệu (INSERT, UPDATE, DELETE)
  * @param string $sql câu lệnh sql

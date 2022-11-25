@@ -22,7 +22,10 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 $like_comic = load_all_truyen_like();
 $comic_by_view = comic_by_view();
-$comic_by_date = comic_by_date();
+$comic_by_date = comic_by_date(0, 18);
+$comic_svip = load_comic_svip();
+// echo '<pre>';
+// print_r($count);
 //Controller
 //Tìm kiếm
 if (isset($_SESSION['okokok'])) {
@@ -117,7 +120,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     $act = $_GET['act'];
 
     switch ($act) {
-
             //Đọc truyện
         case 'doc_truyen':
 
@@ -143,7 +145,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
             //Mục yêu thích
         case 'truyen_yeu_thich':
-            if(isset($_SESSION['auth'])){
+            if (isset($_SESSION['auth'])) {
                 $love_comic = load_all_love_comic($_SESSION['auth']['id']);
             }
             include_once "views/love.php";
@@ -187,7 +189,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                                 'email' => $user_check['email'],
                                 'name' => $user_check['name'],
                                 'role' => $user_check['role'],
-                                'role_name' => $user_check['role_name']
+                                'role_name' => $user_check['role_name'],
+                                'coin' => $user_check['coin']
                             ];
                             unset($_SESSION['khong_ton_tai_tk']);
                             unset($_SESSION['sai_mk']);
@@ -252,6 +255,10 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                         $flag_change = false;
                         $_SESSION['err_pw'] = 'mật khẩu phải đúng định dạng';
                     }
+                    if ($_POST['passw_new'] == $_POST['pass_befor']) {
+                        $flag_change = false;
+                        $_SESSION['err_pw'] = 'mật khẩu mới phải khác mật khẩu cũ';
+                    }
                 }
 
 
@@ -267,7 +274,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     unset($_SESSION['passw_new']);
                     unset($_SESSION['err_pb']);
                     unset($_SESSION['repass']);
-                    $_SESSION['susess_change'] = 'ban da doi mat khau!';
+                    unset($_SESSION['err_pw']);
+                    $_SESSION['susess_change'] = 'Đổi mật khẩu thành công!';
                     header('location:index.php');
                 }
             }
@@ -324,7 +332,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                                 $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                                 $mail->SMTPAuth = true;                               // Enable SMTP authentication
                                 $mail->Username = 'lmt.3102003@gmail.com';                 // SMTP username
-                                $mail->Password = 'kqiiyqidfgvllter ';                           // SMTP password
+                                $mail->Password = 'qukhpoglcowqybog';                           // SMTP password
                                 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                                 $mail->Port = 587;                                    // TCP port to connect to
 
@@ -343,7 +351,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                                 //Content
                                 $mail->isHTML(true);                                  // Set email format to HTML
                                 $mail->Subject = 'Mật khẩu mới của bạn';
-                                $mail->Body    = 'Đây là mật khẩu mới của bạn,có hiệu lực 5 phút kể từ khi bạn click tìm mật khẩu ' . $pass_new;
+                                $mail->Body    = 'Đây là mật khẩu mới của bạn ' . $pass_new;
                                 // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; 
 
                                 $mail->send();
@@ -358,6 +366,46 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             include_once "./views/forgotpassword.php";
             break;
+            //cập nhật tài khoản client
+        case 'cap_nhat_tai_khoan':
+            if ($_SESSION['auth']) {
+                $id = $_SESSION['auth']['id'];
+                $user_id = select_User_Id($id);
+
+                if (isset($_POST['update'])) {
+                    $name = trim($_POST['name']);
+                    $phone = trim($_POST['phone']);
+                    $address = trim($_POST['address']);
+                    $flag_register = true;
+                    $list_email = select_email_user();
+                    // validate name
+                    if ($name == "") {
+                        $flag_register = false;
+                        $err_name = "Name không được để trống";
+                    }
+                    //validate phone
+                    if ($phone == "") {
+                        $flag_register = false;
+                        $err_phone = "Số điện thoại không được để trống";
+                    } elseif (!isVietnamesePhoneNumber($phone)) {
+                        $flag_register = false;
+                        $err_phone = "Số điện thoại chưa đúng định dạng";
+                    }
+                    // validate địa chỉ
+                    if ($address == "") {
+                        $flag_register = false;
+                        $err_address = "Địa chỉ không được để trống";
+                    }
+                    if ($flag_register) {
+                        update_user($id, $name, $phone, $address, $role);
+                        header("location: " . $_SERVER['HTTP_REFERER']);
+                    } else {
+                        $thongbao = "Cập nhật người dùng thất bại ";
+                    }
+                }
+            }
+            include 'views/cap_nhat_tai_khoan.php';
+            break;
             //detail
         case 'detail':
             if (isset($_GET['id'])) {
@@ -371,19 +419,18 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             $detail_comic = detail_comic($id);
             $load_cmt = load_all_comic_byid($id);
-            // echo '<pre>';
-            // print_r($_SESSION['auth']['id']);
+
             if (isset($_POST['love_comic'])) {
-                if(isset($_SESSION['auth'])){
+                if (isset($_SESSION['auth'])) {
                     isert_comic($detail_comic['id'], $_SESSION['auth']['id']);
                     update_like($detail_comic['id']);
                     header("location: " . $_SERVER['HTTP_REFERER']);
-                }else{
+                } else {
                     $_SESSION['love_comic_not_login'] = "Bạn cần đăng nhập để thêm truyện vào mục yêu thích";
                     header("location: " . $_SERVER['HTTP_REFERER']);
                 }
             }
-            if(isset($_POST['delete_love_comic'])){
+            if (isset($_POST['delete_love_comic'])) {
                 delete_love_comic($detail_comic['id'], $_SESSION['auth']['id']);
                 update_dislike($detail_comic['id']);
                 header("location: " . $_SERVER['HTTP_REFERER']);
@@ -409,32 +456,27 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     header("location: " . $_SERVER['HTTP_REFERER']);
                 }
 
-                // $detail_comic = detail_comic($id);
-                // $load_cmt = load_all_comic_byid($id);
-                // if (isset($_POST['cmt'])) {
-                //     $flag_cmt = true;
-                //     $date = date('m/d/Y h:i:s a', time());
-                //     if (isset($_SESSION['auth'])) {
-                //         $id_u = $_SESSION['auth']['id'];
-                //     }
-                //     if (strlen($_POST['text_cmt']) == 0) {
-                //         $flag_cmt = false;
-                //         $_SESSION['err_cmt'] = 'ban chua viet comment';
-                //     }
-                //     if ($flag_cmt == true) {
-                //         insert_binh_luan($date, $_POST['text_cmt'], $id, $id_u);
-                //         unset($_SESSION['err_cmt']);
-                //         header("location: " . $_SERVER['HTTP_REFERER']);
-                //     };
-                // }
-                // include_once './views/chi_tiet_truyen.php';
-                // break;d
             }
             include_once './views/chi_tiet_truyen.php';
             break;
             // dang ky
         case 'register':
             include "views/register.php";
+            break;
+            //Phân trang 1 2 3 ...
+        case 'trang':
+            if (isset($_GET['id'])) {
+                $n = $_GET['id'];
+                
+                if ($n == 0) {
+                    $tong = 0;
+                    $comic_by_date = comic_by_date($tong, 18);
+                } else {
+                    $tong = $n * 18;
+                    $comic_by_date = comic_by_date($tong, 18);
+                }
+            }
+            include_once "views/header_home_footer/home.php";
             break;
         default:
             include_once "views/header_home_footer/home.php";

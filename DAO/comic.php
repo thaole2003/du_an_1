@@ -13,7 +13,9 @@ function comic_select_all()
     ca.name as ca_name
 from comic c
 join category ca
-on c.category_id = ca.id order by c.id desc";
+on c.category_id = ca.id
+where c.status=2
+ order by c.id desc";
     return pdo_query($sql);
 }
 
@@ -56,7 +58,7 @@ function load_all_image()
     $list_img = pdo_query($sql);
     return $list_img;
 }
-function update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $category_id)
+function update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $category_id,$vip,$price)
 {
     $sql = "update comic set
     name= '" . $name . "',
@@ -65,7 +67,9 @@ function update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $c
     author='" . $author . "',
     date='" . $date . "', 
     intro='" . $intro . "', 
-    category_id='$category_id'
+    category_id='$category_id',
+    vip='$vip', 
+    price='$price'
     where id= '$id'";
     pdo_execute($sql);
 }
@@ -86,7 +90,7 @@ function history_comic($id)
      FROM comic c
      join history_comic_user huc
      on huc.id_comic = c.id
-    WHERE huc.id_user=$id";
+    WHERE huc.id_user=$id order by c.id desc";
     return pdo_query($sql);
 }
 function select_history_comic_by_user($id)
@@ -106,10 +110,11 @@ function update_dislike($id)
     $sql = "UPDATE comic SET like_comic	  = like_comic-1 where id = $id";
     pdo_execute($sql);
 }
-function comic_insert($name, $detail, $author, $date, $intro, $view, $like, $category_id, $name_img)
+function comic_insert($name, $detail, $author, $date, $intro, $view, $like, $category_id, $name_img, $st, $po,$vip,$price_comic)
 {
+
     $n = 'N';
-    $sqlQuery = "INSERT INTO comic (name,cover_image,detail,author,date,intro,view,like_comic,category_id) VALUES ($n'$name',$n'$name_img',$n'$detail',$n'$author',$n'$date',$n'$intro',$view,$like,$category_id)";
+    $sqlQuery = "INSERT INTO comic (name,cover_image,detail,author,date,intro,view,like_comic,category_id,status,poster,vip,price) VALUES ($n'$name',$n'$name_img',$n'$detail',$n'$author',$n'$date',$n'$intro',$view,$like,$category_id,$st,$po,$vip,$price_comic)";
     $id = pdo_query_last_id($sqlQuery);
     return $id;
 }
@@ -137,13 +142,66 @@ ca.name as ca_name
 from comic c
 join category ca
 on c.category_id = ca.id
-WHERE c.category_id= $id";
+
+WHERE c.category_id= $id and c.status=2";
+    return pdo_query($sql);
+}
+function all_comic_by_love()
+{
+    $sql = "SELECT 
+    c.*, 
+    c.cover_image as img_name,
+    ca.name as ca_name
+    from comic c
+    join category ca
+    on c.category_id = ca.id 
+    where c.status =2
+		ORDER BY like_comic DESC LIMIT 0,8";
+
+
     return pdo_query($sql);
 }
 
+
+//lấy truyện để duyệt
+function comic_select_all_bystatus()
+{
+    $sql = "SELECT 
+    c.*, 
+    c.cover_image as img_name,
+    ca.name as ca_name,
+		u.email as u_email,
+        u.name as name_poster
+from comic c
+join category ca
+on c.category_id = ca.id
+join user u
+on c.poster = u.id
+where c.status=1
+ order by c.id desc;
+";
+    return pdo_query($sql);
+}
+function select_email_agree($id)
+{
+    $sql = "SELECT comic.id,comic.poster ,user.email,user.name
+    FROM comic
+    join user 
+    on comic.poster = user.id
+    WHERE comic.id = $id";
+    return pdo_query_one($sql);
+}
+function count_comic()
+{
+    $sql = "SELECT COUNT(*) as soluong
+    FROM comic
+    WHERE id > 0;";
+    return pdo_query_one($sql);
+}
 function handle_dem_truyen_cung_tl($id)
 {
     $sql = "SELECT COUNT(*) FROM comic
+
     WHERE category_id = $id";
     return pdo_query_one($sql);
 }
@@ -152,7 +210,7 @@ function search_all($text)
 {
     $sql = "SELECT id,name,date,cover_image as img_name
     from comic 
-    where name like '%$text%'
+    where name like '%$text%' and comic.status=2
     ";
 
     return pdo_query($sql);
@@ -164,11 +222,13 @@ function load_all_truyen_like()
     $truyen_like = pdo_query($sql);
     return $truyen_like;
 }
+
 function comic_by_view()
 {
-    $sql = "select 
+    $sql = "SELECT 
     *,cover_image as iname
 from comic
+WHERE comic.status=2
 ORDER BY `view` DESC LIMIT 0,6";
     return pdo_query($sql);
 }
@@ -185,13 +245,23 @@ function detail_comic($id)
     WHERE c.id= $id";
     return pdo_query_one($sql);
 }
-function comic_by_date()
+
+function comic_by_date($nummber1, $nummber2)
 {
-    $sql = "select 
+    $sql = "SELECT 
     *,
     cover_image as iname
-from comic
-ORDER BY `date` DESC";
+    from comic
+
+    WHERE comic.status=2
+    ORDER BY id
+    DESC ";
+    if ($nummber1 >= 0 && $nummber2 > 0) {
+        $sql .= " LIMIT $nummber1,$nummber2";
+    } else {
+        $sql .= " ";
+    }
+
     return pdo_query($sql);
 }
 function select_name_comic()
@@ -222,12 +292,24 @@ function img_comic_theo_id($id)
     $img_comic = pdo_query($sql);
     return $img_comic;
 }
+
 function delete_img_comic($id)
 {
-    $sql = "DELETE FROM images WHERE comic_id = '$id'";
+    $sql = "DELETE FROM images WHERE id = '$id'";
     $img_comic = pdo_query($sql);
     return $img_comic;
 }
+function delete_comic_img($comic_id)
+{
+    $sql = "DELETE FROM images where comic_id =$comic_id";
+    return pdo_execute($sql);
+}
+// function delete_img_comic($id)
+// {
+//     $sql = "DELETE FROM images WHERE comic_id = '$id'";
+//     $img_comic = pdo_query($sql);
+//     return $img_comic;
+// }
 function delete_img_history($id)
 {
     $sql = "DELETE FROM history_comic_user WHERE id_comic = '$id'";
@@ -246,6 +328,7 @@ function delete_img_comment($id)
     $img_comic = pdo_query($sql);
     return $img_comic;
 }
+
 // thong ke truyen 
 function statistical_truyen()
 {
@@ -267,6 +350,15 @@ function statistical_truyen()
    GROUP BY category_id";
     return pdo_query($sql);
 }
+
+
+function update_status_yes($id)
+{
+    $sql = "UPDATE comic SET status	  = 2 where id = $id";
+    pdo_execute($sql);
+}
+
+
 //Truyện yêu thích
 function check_love_comic($id_comic, $id_user)
 {
@@ -293,4 +385,9 @@ function load_all_love_comic($id_user)
     $sql = "SELECT A.id,A.`name`,A.date,A.cover_image FROM comic A INNER JOIN love B ON A.id = B.id_comic WHERE B.id_user = '$id_user' order by B.id_comic asc";
     $love_comic = pdo_query($sql);
     return $love_comic;
+}
+//load truyện theo svip
+function load_comic_svip(){
+    $sql = "SELECT * from comic ORDER BY id DESC LIMIT 0,6";
+    return pdo_query($sql);
 }
