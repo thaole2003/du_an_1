@@ -20,10 +20,11 @@ if (is_array($load_all_comic)) {
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="text" name="name" value="<?php if (isset($name) && ($name != "")) echo $name; ?>">
         <b style="color: red;"><?php echo isset($_SESSION['trong_truyen']) ? $_SESSION['trong_truyen'] : "" ?></b>
         <b style="color: red;"><?php echo isset($_SESSION['trung_ten']) ? $_SESSION['trung_ten'] : "" ?></b>
+        <?php unset($_SESSION['trong_truyen']); unset($_SESSION['trung_ten']); ?>
         <br>
         <label class="font-medium">Ảnh bìa</label><br>
         <div class="mt-2">
-            <img class="w-[300px] h-[300px]" src="../content/uploads/cover_img/<?php echo $cover_image ?>" />
+            <img class="w-[200px] h-[200px]" src="../content/uploads/cover_img/<?php echo $cover_image ?>" />
         </div><br>
         <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="file" name="cover_image" placeholder="Ảnh bìa"><br>
         <b style="color: red;"><?php echo isset($thong_bao) ? $thong_bao : "" ?></b>
@@ -65,8 +66,6 @@ if (is_array($load_all_comic)) {
             <div class="flex flex-wrap gap-2 justify-items-center">
                 <?php
                 foreach ($img_comic as $img) {
-                    // echo '<pre>';
-                    // print_r($img['id_new']);
                     $them_img_comic = "index.php?act=them_img_comic";
                     $xoa_img_comic = "index.php?act=xoa_img_comic&id=" . $img['id_new'] . "&id_comic=" . $id_comic;
                 ?>
@@ -96,7 +95,22 @@ if (is_array($load_all_comic)) {
                 echo $loi_dinh_dang_f;
             } ?></span>
         <br>
-
+        <label class="font-medium">Truyện</label><br>
+        <?php 
+            if($vip == 0){
+                $checked = "checked";
+                $block_none = "none";
+            }else{
+                $checked_vip = "checked";
+                $block_none = "block";
+            }
+        ?>
+        <input type="radio" value="0" <?php if($vip == 0) echo "checked"; ?> name="vip" onclick="hien_thi(false)" />Truyện thường
+        <input type="radio" value="1" <?php if($vip == 1) echo "checked"; ?> name="vip" onclick="hien_thi(true)" />Truyện Svip
+        <p id="loai_vip" style="display:<?= $block_none ?>">
+            <label>Loại Svip</label><br>
+            <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="text" placeholder="price" name="price_comic" value="<?= $price ?>"/>
+        </p>
         <div class="clear"></div>
         <button style="margin-top: 10px;" class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400" name="btn-update">Cập nhật</a></button>
         <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"><a href="index.php?act=list_truyen">Danh sách</a></button>

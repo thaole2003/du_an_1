@@ -16,6 +16,7 @@ include_once "../content/PHPMailer-master/src/POP3.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 if (check_admin_manager_role() == false) {
     header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
     die;
@@ -37,15 +38,15 @@ if (isset($_GET['act'])) {
             if (isset($_POST['btn-add'])) {
                 $ten_loai = trim($_POST['name-loai']);
                 $is_valid = true;
-                $count_category=count_category($ten_loai);
-                
-                
-                if($ten_loai==""){
+                $count_category = count_category($ten_loai);
+
+
+                if ($ten_loai == "") {
                     $thong_bao = "Tên loại không được để trống";
-                    $is_valid=false;
-                }elseif($count_category!=0){
-                    $thong_bao="Tên loại đã tồn tại";
-                    $is_valid=false;
+                    $is_valid = false;
+                } elseif ($count_category != 0) {
+                    $thong_bao = "Tên loại đã tồn tại";
+                    $is_valid = false;
                 }
                 if ($is_valid) {
                     insert_loai($ten_loai);
@@ -147,16 +148,16 @@ if (isset($_GET['act'])) {
                 $role = trim($_POST['role_id']);
                 $flag_register = true;
                 // validate email
-                $count_email=count_email_input($email);
+                $count_email = count_email_input($email);
                 if ($email == "") {
                     $flag_register = false;
                     $err_email = "Email không được để trống";
                 } elseif (!emailValid($email)) {
                     $flag_register = false;
                     $err_email = "Email chưa đúng định dạng mail";
-                } elseif($count_email!=0) {
-                        $flag_register = false;
-                        $err_email = "Email đã tồn tại";
+                } elseif ($count_email != 0) {
+                    $flag_register = false;
+                    $err_email = "Email đã tồn tại";
                 }
                 // validate name
                 if ($name == "") {
@@ -260,9 +261,9 @@ if (isset($_GET['act'])) {
                         $err_address = "Địa chỉ không được để trống";
                     }
                     if ($flag_register) {
-                        update_user($id,$name, $phone, $address, $role);
-                        
-                         header('location:index.php?act=list_kh');
+                        update_user($id, $name, $phone, $address, $role);
+
+                        header('location:index.php?act=list_kh');
                     } else {
                         $thongbao = "UPDATE người dùng thất bại ";
                     }
@@ -273,7 +274,7 @@ if (isset($_GET['act'])) {
             break;
             //load truyện
         case 'list_truyen':
-            
+
             $list_all_loai = load_all_loai();
             $load_all_truyen = comic_select_all();
             include_once  "../admin/truyen/comic.php";
@@ -293,80 +294,78 @@ if (isset($_GET['act'])) {
             break;
 
             //phê duyệt truyện
-            case 'agree':
-                $comic_select_all_bystatus = comic_select_all_bystatus();
-                include_once '../admin/agree/list_agree.php';
-                break;
+        case 'agree':
+            $comic_select_all_bystatus = comic_select_all_bystatus();
+            include_once '../admin/agree/list_agree.php';
+            break;
             //đồng ý phê duyệt
-            case 'yes':
-                if(isset($_GET['id'])){
-                    $id = $_GET['id'];
-                    update_status_yes($id);
-                    header('location:index.php?act=agree');
-                    $_SESSION['yess']='truyện đã được phê duyệt';
-                }
-                break;
-                //không đồng ý phê duyệt
-                case 'no':
-                    if(isset($_GET['id'])){
-                        $id = $_GET['id'];
+        case 'yes':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                update_status_yes($id);
+                header('location:index.php?act=agree');
+                $_SESSION['yess'] = 'truyện đã được phê duyệt';
+            }
+            break;
+            //không đồng ý phê duyệt
+        case 'no':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+            }
+            $email_agree = select_email_agree($id);
+
+            if (isset($_POST['disagree'])) {
+                $flag_no = true;
+                if (isset($_POST['lido'])) {
+                    if (strlen($_POST['lido']) == 0) {
+                        $flag_no = false;
                     }
-                   $email_agree= select_email_agree($id);
 
-                    if(isset($_POST['disagree'])){
-                        $flag_no = true;
-                        if(isset($_POST['lido'])){
-                            if(strlen($_POST['lido'])==0){
-                                $flag_no =false;
+                    if ($flag_no == true) {
+                        delete_comic_img($id);
+                        delete_comic($id);
 
-                            }
-                         
-                            if($flag_no==true){
-                                delete_comic_img($id);
-                                delete_comic($id);
-                              
-                                $mail = new PHPMailer(true);
-                            try {
-                                //Server settings
-                                $mail->SMTPDebug = 0;                                 // Enable verbose debug output
-                                $mail->isSMTP();                                      // Set mailer to use SMTP
-                                $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-                                $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                                $mail->Username = 'lmt.3102003@gmail.com';                 // SMTP username
-                                $mail->Password = 'kqiiyqidfgvllter ';                           // SMTP password
-                                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-                                $mail->Port = 587;                                    // TCP port to connect to
+                        $mail = new PHPMailer(true);
+                        try {
+                            //Server settings
+                            $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+                            $mail->isSMTP();                                      // Set mailer to use SMTP
+                            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                            $mail->Username = 'lmt.3102003@gmail.com';                 // SMTP username
+                            $mail->Password = 'kqiiyqidfgvllter ';                           // SMTP password
+                            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                            $mail->Port = 587;                                    // TCP port to connect to
 
-                                //Recipients
-                                $mail->setFrom('lmt.3102003@gmail.com ', 'Mailer');
-                                $mail->addAddress($email_agree['email'],$email_agree['name']);     // Add a recipient
-                                // $mail->addAddress('vietnqph27022@fpt.edu.vn','việt sếch');               // Name is optional
-                                // $mail->addReplyTo('info@example.com', 'Information');
-                                $mail->addCC('lmt.3102003@gmail.com');
-                                // $mail->addBCC('bcc@example.com');
+                            //Recipients
+                            $mail->setFrom('lmt.3102003@gmail.com ', 'Mailer');
+                            $mail->addAddress($email_agree['email'], $email_agree['name']);     // Add a recipient
+                            // $mail->addAddress('vietnqph27022@fpt.edu.vn','việt sếch');               // Name is optional
+                            // $mail->addReplyTo('info@example.com', 'Information');
+                            $mail->addCC('lmt.3102003@gmail.com');
+                            // $mail->addBCC('bcc@example.com');
 
-                                //Attachments
-                                // $mail->addent('/vAttachmar/tmp/file.tar.gz');         // Add attachments
-                                // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+                            //Attachments
+                            // $mail->addent('/vAttachmar/tmp/file.tar.gz');         // Add attachments
+                            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
-                                //Content
-                                $mail->isHTML(true);                                  // Set email format to HTML
-                                $mail->Subject = 'Truyện của bạn không được phê duyệt';
-                                $mail->Body    = 'Truyện của bạn không được phê duyệt với lí do '.$_POST['lido'];
-                                // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; 
+                            //Content
+                            $mail->isHTML(true);                                  // Set email format to HTML
+                            $mail->Subject = 'Truyện của bạn không được phê duyệt';
+                            $mail->Body    = 'Truyện của bạn không được phê duyệt với lí do ' . $_POST['lido'];
+                            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; 
 
-                                $mail->send();
-                                $_SESSION['succes_disagree'] = 'Đã gửi lí do đến người đăng.';
-                                header('location:index.php?act=agree');
-                            } catch (Exception $e) {
-                                echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
-                            }
-                            }
+                            $mail->send();
+                            $_SESSION['succes_disagree'] = 'Đã gửi lí do đến người đăng.';
+                            header('location:index.php?act=agree');
+                        } catch (Exception $e) {
+                            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
                         }
-                   
                     }
-                    include_once '../admin/agree/disagree.php';
-                    break;
+                }
+            }
+            include_once '../admin/agree/disagree.php';
+            break;
             //thêm truyện
         case 'add_comic':
             $list_all_loai = load_all_loai();
@@ -382,14 +381,20 @@ if (isset($_GET['act'])) {
                 $view = 0;
                 $like = 0;
                 $category = $_POST['category'];
+                if ($_POST['vip'] == 0) {
+                    $price_comic = 0;
+                    $vip = 0;
+                }else{
+                    $price_comic = $_POST['price_comic'];
+                    $vip = 1;
+                }
                 $allowUpload = true;
-                if(isset($_SESSION['auth']['id'])){
-                if($_SESSION['auth']['role']==1){
-                    $st=2;
-                }
-                elseif($_SESSION['auth']['role']==3){
-                    $st=1;
-                }
+                if (isset($_SESSION['auth']['id'])) {
+                    if ($_SESSION['auth']['role'] == 1) {
+                        $st = 2;
+                    } elseif ($_SESSION['auth']['role'] == 3) {
+                        $st = 1;
+                    }
                 }
                 $po =  $_SESSION['auth']['id'];
                 if ($length2 == 0) {
@@ -418,7 +423,7 @@ if (isset($_GET['act'])) {
                     $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
                     //định dạng được chấp nhận
-                    $allowtype = ["jpg", "jpeg","JPG","JPEG"];
+                    $allowtype = ["jpg", "jpeg", "JPG", "JPEG"];
 
                     //kiểm tra xem phải ảnh ko nếu là ảnh thì trả về true ngược lại
                     //ko là ảnh trả về false
@@ -488,7 +493,7 @@ if (isset($_GET['act'])) {
                 }
 
                 if ($allowUpload == true) {
-                    $id = comic_insert($namee, $detail, $author, $date, $intro, $view, $like, $category, $name_img,$st,$po);
+                    $id = comic_insert($namee, $detail, $author, $date, $intro, $view, $like, $category, $name_img, $st, $po, $vip, $price_comic);
                     //xử lý di chuyển file tạm vào thư mục cần lưu trữ
                     for ($i = 0; $i < $countfiles; $i++) {
                         $filename = $_FILES["file"]["name"][$i];
@@ -537,6 +542,14 @@ if (isset($_GET['act'])) {
                 $category_id = $_POST['category_id'];
                 $name_cu = comic_select_one($id)['name'];
                 $ten_cu = load_all_comic_edit($name_cu);
+                if ($_POST['vip'] == 0) {
+                    $price_comic = 0;
+                    $vip = 0;
+                }else{
+                    $price_comic = $_POST['price_comic'];
+                    $vip = 1;
+                }
+
                 $allowUpload = true;
 
                 if ($name == "") {
@@ -647,7 +660,7 @@ if (isset($_GET['act'])) {
                 }
 
                 if ($allowUpload == true) {
-                    update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $category_id);
+                    update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $category_id,$vip,$price_comic);
                 } else {
                     header('location:index.php?act=sua_truyen&id=' . $id);
                 }
@@ -656,7 +669,7 @@ if (isset($_GET['act'])) {
             $list_all_loai = load_all_loai();
             include_once  'truyen/comic.php';
             break;
-        //xóa truyện trong update
+            //xóa truyện trong update
         case 'xoa_img_comic':
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
@@ -665,12 +678,12 @@ if (isset($_GET['act'])) {
                 header('location: index.php?act=sua_truyen&id=' . $id_comic);
             }
             break;
-        //list_coment
+            //list_coment
         case 'list_bl':
-        $list_comment=select_comment();
-        include_once  'binh_luan/comment.php';
-        break;
-        //xoa binh luan
+            $list_comment = select_comment();
+            include_once  'binh_luan/comment.php';
+            break;
+            //xoa binh luan
         case 'xoa_comment':
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
@@ -679,27 +692,25 @@ if (isset($_GET['act'])) {
                 include_once  'binh_luan/comment.php';
             }
             break;
-        //thong ke
+            //thong ke
         case 'list_tk':
-            $statistical=statistical_truyen();
+            $statistical = statistical_truyen();
             include_once 'thong_ke/thongke.php';
-        break;
+            break;
         case 'bieu_do':
             // echo "<pre>";
-            $statistical=statistical_truyen();
+            $statistical = statistical_truyen();
             // var_dump($statistical);
             // echo "</pre>";
             // die();
             include_once './thong_ke/bieu_do.php';
-        break;
+            break;
             //ngược lại không tồn tại act thì include_once "home.php"; 
-        
+
         default:
             include_once "home.php";
             break;
-
     }
-
 } else {
     include_once "home.php";
 }

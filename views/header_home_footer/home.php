@@ -34,6 +34,42 @@
         ?>
     </div>
     <div class="clear"></div>
+
+    <!--Truyện Svip-->
+    <div class="truyen_svip">
+        <h3><i class="fab fa-hotjar"></i>Truyện Svip</h3>
+
+        <div class="rol">
+            <?php foreach ($comic_svip as $value) {
+                extract($value);
+                // echo '<pre>';
+                // print_r($value);
+            ?>
+                <a href="index.php?act=detail&id=<?= $id ?>">
+                    <div class="col">
+                        <div class="product">
+                            <div class="img"><img src="content/uploads/cover_img/<?= $cover_image ?>"></div>
+                            <div class="text">
+                                <a href="index.php?act=detail&id=<?= $id ?>">
+                                    <?= $name ?>
+                                </a>
+                                <p><?= $price ?> Coin</p>
+                            </div>
+                            <div class="ngay_update">
+                                <h5>
+                                    <?= substr($date, 0, 11) ?>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            <?php
+            }
+            ?>
+        </div>
+
+    </div>
+    <div class="clear"></div>
     <!--Truyện hot-->
     <div class="truyen_hot">
         <h3><i class="fa-solid fa-star"></i>Truyện hot</h3>
@@ -41,15 +77,21 @@
             <?php
             foreach ($comic_by_view as $key => $value) {
                 extract($value);
+                if ($vip == 1) {
+                    $display = "block";
+                } else {
+                    $display = "none";
+                }
             ?>
                 <a href="index.php?act=detail&id=<?= $id ?>">
                     <div class="col">
                         <div class="product">
                             <div class="img"><img src="content/uploads/cover_img/<?= $iname ?>" alt=""></div>
                             <div class="text">
-                                <a href="#">
+                                <a href="index.php?act=detail&id=<?= $id ?>">
                                     <h4><?= $name ?></h4>
                                 </a>
+                                <p style="display: <?= $display ?>;"><?= $price ?> Coin</p>
                             </div>
                             <div class="ngay_update">
                                 <h5><?php echo substr($date, 0, 11) ?>
@@ -63,12 +105,20 @@
         </div>
     </div>
     <div class="clear"></div>
+
     <!--Truyện-->
     <div class="truyen">
         <h3><i class="fa-solid fa-cloud-arrow-down"></i>Truyện mới cập nhật</h3>
         <?php
-        foreach ($comic_by_date as $key => $value) { ?>
-            <?php extract($value) ?>
+        foreach ($comic_by_date as $value) {
+            extract($value);
+            if ($vip == 1) {
+                $display = "block";
+            } else {
+                $display = "none";
+            }
+        ?>
+
             <a href="index.php?act=detail&id=<?= $id ?>">
                 <div class="col">
                     <div class="img"><img src="content/uploads/cover_img/<?= $iname ?>" alt="">
@@ -77,6 +127,7 @@
                         <a href="#">
                             <h4><?= $name ?></h4>
                         </a>
+                        <p style="display: <?= $display ?>;"><?= $price ?> Coin</p>
                         <div class="ngay_update">
                             <h5><?php echo substr($date, 0, 11) ?></h5>
                         </div>
@@ -95,7 +146,7 @@
 
         for ($i = 0; $i < $dem; $i++) {
         ?>
-            <a href="index.php?act=trang&id=<?= $i ?>"><?= $i+1 ?></a>
+            <a href="index.php?act=trang&id=<?= $i ?>"><?= $i + 1 ?></a>
         <?php
         }
         ?>

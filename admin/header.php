@@ -11,6 +11,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script>
+        function hien_thi(visible) {
+            var loai = document.getElementById("loai_vip");
+            loai.style.display = visible ? "" : "none";
+        }
+        $n =setTimeout( click, 1);
+    </script>
 </head>
 <?php if(isset($_SESSION['yess'])){
     ?>
