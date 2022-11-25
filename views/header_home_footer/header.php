@@ -113,8 +113,8 @@ if (isset($_SESSION['dang_xuat'])) {
                     if (isset($_SESSION['auth'])) {
                     ?>
                         <form action="">
-                            <label class="text_login">Xin chào <strong><?php echo $_SESSION['auth']['name'] ?></strong></label>
-                            <label class="text_login" style="float: right;">Coin của bạn: <strong><?php echo $_SESSION['auth']['coin'] ?></strong></label>
+                            <label class="text_login">Xin chào <strong><?= $_SESSION['auth']['name'] ?></strong></label>
+                            <label class="text_login" style="float: right;">Coin của bạn: <strong><?= $_SESSION['auth']['coin'] ?></strong></label>
 
                             <br>
                             <a href="index.php?act=cap_nhat_tai_khoan"><input type="button" value="Cập nhật tài khoản"></a>
@@ -157,7 +157,6 @@ if (isset($_SESSION['dang_xuat'])) {
                             <?php  } ?>
                         </div>
                     </ul>
-
                 </li>
                 <li><a href="index.php?act=truyen_yeu_thich">Truyện yêu thích</a></li>
                 <li><a href="index.php?act=truyen_da_doc">Lịch sử</a></li>
