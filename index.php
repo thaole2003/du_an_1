@@ -332,7 +332,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                                 $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                                 $mail->SMTPAuth = true;                               // Enable SMTP authentication
                                 $mail->Username = 'lmt.3102003@gmail.com';                 // SMTP username
-                                $mail->Password = 'kqiiyqidfgvllter ';                           // SMTP password
+                                $mail->Password = 'qukhpoglcowqybog';                           // SMTP password
                                 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                                 $mail->Port = 587;                                    // TCP port to connect to
 
@@ -351,7 +351,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                                 //Content
                                 $mail->isHTML(true);                                  // Set email format to HTML
                                 $mail->Subject = 'Mật khẩu mới của bạn';
-                                $mail->Body    = 'Đây là mật khẩu mới của bạn,có hiệu lực 5 phút kể từ khi bạn click tìm mật khẩu ' . $pass_new;
+                                $mail->Body    = 'Đây là mật khẩu mới của bạn ' . $pass_new;
                                 // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; 
 
                                 $mail->send();
