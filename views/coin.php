@@ -26,46 +26,52 @@
             </tr>
         </table>
         <table class="thanh_toan">
-            <tr>
-                <td colspan="2">Hình thức thanh toán
-                    <div class="vien"></div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Thanh toán ATM nội địa</p>
-                </td>
-                <td><img src="content/img/logo_coin.png" alt="">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="vien"></div>
-                    <p>Phí giao dịch</p>
-                </td>
-                <td>
-                    <div class="vien"></div>
-                    <span>Miễn phí</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div class="vien"></div>
-                    <select name="" id="">
-                        <option value="0">Mệnh giá</option>
-                        <option value="1">20,000 VNĐ</option>
-                        <option value="2">50,000 VNĐ</option>
-                        <option value="3">100,000 VNĐ</option>
-                        <option value="4">200,000 VNĐ</option>
-                        <option value="5">500,000 VNĐ</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <a href="index.php?act=chi_tiet_coin">Thanh toán</a>
-                </td>
-            </tr>
+            <form action="index.php?act=chi_tiet_coin" method="POST">
+                <tr>
+                    <td colspan="2">Hình thức thanh toán
+                        <div class="vien"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Thanh toán ATM nội địa</p>
+                    </td>
+                    <td><img src="content/img/logo_coin.png" alt="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="vien"></div>
+                        <p>Phí giao dịch</p>
+                    </td>
+                    <td>
+                        <div class="vien"></div>
+                        <span>Miễn phí</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="vien"></div>
+
+                        <select name="price" id="">
+                            <option value="0">Mệnh giá</option>
+                            <option value="20000">20,000 VNĐ</option>
+                            <option value="50000">50,000 VNĐ</option>
+                            <option value="100000">100,000 VNĐ</option>
+                            <option value="200000">200,000 VNĐ</option>
+                            <option value="500000">500,000 VNĐ</option>
+                        </select>
+                        <span class="font-medium text-red-500"><?php if (isset($_SESSION['chon_menh_gia'])) { echo $_SESSION['chon_menh_gia']; } 
+                        unset($_SESSION['chon_menh_gia']);
+                        ?></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" name="nap_coin" id="" value="Thanh toán">
+                    </td>
+                </tr>
+            </form>
         </table>
     </div>
 </article>

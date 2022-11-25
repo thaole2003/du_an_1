@@ -14,8 +14,8 @@ include_once "./DAO/user.php";
 include_once "./DAO/pdo.php";
 include_once "./DAO/loai.php";
 include_once "./DAO/comic.php";
-$list_all_loai = load_all_loai();
 include_once  "./DAO/user.php";
+$list_all_loai = load_all_loai();
 include_once  "views/header_home_footer/header.php";
 include "global.php";
 date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -210,16 +210,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
             //thay đổi mật khẩu
         case 'changepass':
-            // if(isset($_SESSION['err_pb'])){
-            //     unset($_SESSION['err_pb']);
-            // }
-            // if(isset($_SESSION['passw_new'])){
-            //     unset($_SESSION['passw_new']);
-
-            // }
-            // if(isset($_SESSION['repass'])){
-            //     unset($_SESSION['repass']);
-            // }
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
@@ -467,10 +457,17 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             include "views/coin.php";
             break;
         case 'chi_tiet_coin':
-            if($_SESSION['auth']){
-                echo '<pre>';
-                print_r($_SESSION['auth']);
-            }else{
+            if ($_SESSION['auth']) {
+                if (isset($_POST['nap_coin'])) {
+                    if ($_POST['price'] != 0) {
+                        $price = $_POST['price'];
+                        echo '<pre>';
+                        print_r($price);
+                    } else {
+                        header('location:index.php?act=coin');
+                    }
+                }
+            } else {
                 $_SESSION['chua_dn'] = "Bạn cần đăng nhập để nạp coin";
                 header('location:index.php?act=coin');
             }
@@ -496,7 +493,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
     }
 } else {
-
     include_once "views/header_home_footer/home.php";
 }
 include_once "views/header_home_footer/footer.php";

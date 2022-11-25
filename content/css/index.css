@@ -875,17 +875,19 @@ article .thanh_toan tr td select{
     padding-left: 6px;
     padding-right: 6px;
 }
-article .thanh_toan tr td a{
+article .thanh_toan tr td input{
     background: #ff973c;
     color: #ffffff;
     padding: 6px 6px;
     border-radius: 8px;
     font-size: 15px;
+    border: 1px solid #ff973c;
 }
-article .thanh_toan tr td a:hover{
+article .thanh_toan tr td input:hover{
     background-color: #fff;
     border: 1px solid #ff973c;
     color: #ff973c;
+    cursor: pointer;
 }
 /*Chi tiết hóa đơn*/
 article .ct_coin{

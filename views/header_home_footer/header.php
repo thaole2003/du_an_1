@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <?php
 
 if (isset($_SESSION['okokok'])) {
@@ -20,8 +21,9 @@ if (isset($_SESSION['okokok'])) {
     <script>
         alert('<?= $_SESSION['okokok'] ?>');
     </script>
-<?php } ?>
-
+<?php 
+    unset($_SESSION['okokok']);
+} ?>
 
 <?php
 if (isset($_SESSION['love_comic_not_login'])) {
@@ -79,7 +81,8 @@ if (isset($_SESSION['dang_xuat'])) {
     <script>
         alert('<?= $_SESSION['dang_xuat'] ?>');
     </script>
-<?php session_unset();
+<?php 
+    session_unset();
     session_destroy();
 } ?>
 
@@ -109,8 +112,6 @@ if (isset($_SESSION['dang_xuat'])) {
                     <?php
                     if (isset($_SESSION['auth'])) {
                         extract($_SESSION['auth']);
-                        // echo '<pre>';
-                        // print_r($_SESSION['auth']);
                     ?>
                         <form action="">
                             <label class="text_login">Xin chào <strong><?php echo $name ?></strong></label>
@@ -148,9 +149,11 @@ if (isset($_SESSION['dang_xuat'])) {
                     <ul class="sub_menu">
                         <!--Phần đẩy loại truyện-->
                         <div class="vien">
-                            <?php foreach ($list_all_loai as $key => $value) { ?>
-                                <li><a href="index.php?act=loai&ma_loai=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></li>
-                            <?php  } ?>
+                            <?php foreach ($list_all_loai as $value) {
+                                extract($value);
+                                ?>
+                                <li><a href="index.php?act=loai&ma_loai=<?= $id ?>"><?= $name ?></a></li>
+                            <?php } ?>
                         </div>
                     </ul>
                 </li>

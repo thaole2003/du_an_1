@@ -20,7 +20,6 @@
             <b style="color: red;"><?php echo isset($_SESSION['trung_loai']) ? $_SESSION['trung_loai'] : ""?></b>
             <?php unset($_SESSION['trung_loai']); unset($_SESSION['trong_loai']); ?>
             <br>
-        <?php unset($_SESSION['trong_loai']); unset($_SESSION['trung_loai']); ?>
         <input type="hidden" name="id" value="<?php if(isset($id) && ($id > 0)) echo $id; ?>">
         <button
             class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400" name="cap_nhat">Cập nhật</button>
