@@ -455,6 +455,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $_SESSION['err_not_dn'] = 'Bạn hãy đăng nhập để comment';
                     header("location: " . $_SERVER['HTTP_REFERER']);
                 }
+
             }
             include_once './views/chi_tiet_truyen.php';
             break;
