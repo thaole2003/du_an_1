@@ -264,6 +264,80 @@ article .banner .img .text {
     font-size: 15px;
 }
 
+article .truyen_svip{
+    margin-bottom: 330px;
+}
+article .truyen_svip h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(252, 215, 83);
+}
+
+article .truyen_svip h3 i {
+    margin-right: 5px;
+}
+
+article .truyen_svip .rol a {
+    text-decoration: none;
+    color: #000;
+}
+
+article .truyen_svip .rol a:hover {
+    color: rgb(1, 204, 204);
+}
+
+article .truyen_svip .rol {
+    width: 100%;
+}
+
+article .truyen_svip .rol .col {
+    float: left;
+    height: 300px;
+    width: 16.6666666666666%;
+}
+
+article .truyen_svip .rol .col .product {
+    position: relative;
+}
+
+article .truyen_svip .rol .col .product .img img {
+    width: 100%;
+    border-radius: 16px;
+    padding: 10px 10px;
+    height: 290px;
+}
+
+article .truyen_svip .rol .col .product .ngay_update {
+    position: absolute;
+    top: 5%;
+    left: 7%;
+    border-radius: 5px;
+    background-color: #ed9c56;
+}
+
+article .truyen_svip .rol .col .product .ngay_update h5 {
+    padding: 1px 1px;
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 400;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+article .truyen_svip .rol .col .product .text {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+article .truyen_svip .h1_text{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 31px;
+    margin-top: 30px;
+    color: #ed9c56;
+    font-weight: bold;
+}
 
 /*Truyện hot*/
 article .truyen_hot{
@@ -365,6 +439,7 @@ article .truyen a:hover {
 article .truyen .col {
     position: relative;
     float: left;
+    margin-bottom: 10px;
     width: 16.6666666666666%;
     height: 330px;
 }
@@ -379,7 +454,9 @@ article .truyen .col .img img {
     padding: 15px 15px;
     height: 300px;
 }
-
+article .truyen .col .text p{
+    text-align: center;
+}
 article .truyen .col .text .ngay_update {
     position: absolute;
     top: 6%;

@@ -41,6 +41,15 @@
         <span class="font-medium text-red-500"><?php if (isset($file_ton_tai_f)) { echo $file_ton_tai_f; } ?></span>
         <span class="font-medium text-red-500"><?php if (isset($loi_dinh_dang_f)) { echo $loi_dinh_dang_f; } ?></span>
         <br>
+        <label class="font-medium">Truyện</label><br>
+        <input type="radio" value="0" checked name="vip" onclick="hien_thi(false)" />Truyện thường
+        <input type="radio" value="1" name="vip" onclick="hien_thi(true)" />Truyện Svip
+
+        <p id="loai_vip" style="display:none">
+            <label>Loại Svip</label><br>
+            <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="text" placeholder="price" name="price_comic"/>
+        </p>
+        <br>
         <button style="margin-top: 10px;" class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400" name="btnAdd">Thêm</button>
         <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"><a href="index.php?act=list_truyen">Danh sách</a></button>
         <span class="font-medium text-red-500"><?php if (isset($upload_ok)) { echo $upload_ok; } ?></span>

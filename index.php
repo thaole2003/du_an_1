@@ -23,6 +23,7 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 $like_comic = load_all_truyen_like();
 $comic_by_view = comic_by_view();
 $comic_by_date = comic_by_date(0, 18);
+$comic_svip = load_comic_svip();
 // echo '<pre>';
 // print_r($count);
 //Controller
@@ -119,7 +120,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     $act = $_GET['act'];
 
     switch ($act) {
-
             //Đọc truyện
         case 'doc_truyen':
 
@@ -189,7 +189,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                                 'email' => $user_check['email'],
                                 'name' => $user_check['name'],
                                 'role' => $user_check['role'],
-                                'role_name' => $user_check['role_name']
+                                'role_name' => $user_check['role_name'],
+                                'coin' => $user_check['coin']
                             ];
                             unset($_SESSION['khong_ton_tai_tk']);
                             unset($_SESSION['sai_mk']);
@@ -418,8 +419,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             }
             $detail_comic = detail_comic($id);
             $load_cmt = load_all_comic_byid($id);
-            // echo '<pre>';
-            // print_r($_SESSION['auth']['id']);
+
             if (isset($_POST['love_comic'])) {
                 if (isset($_SESSION['auth'])) {
                     isert_comic($detail_comic['id'], $_SESSION['auth']['id']);

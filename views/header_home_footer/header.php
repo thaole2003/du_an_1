@@ -103,7 +103,10 @@ if (isset($_SESSION['dang_xuat'])) {
                         // print_r($_SESSION['auth']);
                     ?>
                         <form action="">
-                            <label class="text_login">Xin chào <strong><?php echo $name ?></strong></label><br>
+                            <label class="text_login">Xin chào <strong><?php echo $name ?></strong></label>
+                            <label class="text_login" style="float: right;">Coin của bạn: <strong><?php echo $coin ?></strong></label>
+
+                            <br>
                             <a href="index.php?act=cap_nhat_tai_khoan"><input type="button" value="Cập nhật tài khoản"></a>
                             <a href="index.php?act=changepass&id=<?= $_SESSION['auth']['id'] ?>"><input name="" type="button" value="Thay đổi mật khẩu"></a>
                             <?php if ($_SESSION['auth']['role'] == 1) { ?>

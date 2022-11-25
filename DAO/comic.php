@@ -58,7 +58,7 @@ function load_all_image()
     $list_img = pdo_query($sql);
     return $list_img;
 }
-function update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $category_id)
+function update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $category_id,$vip,$price)
 {
     $sql = "update comic set
     name= '" . $name . "',
@@ -67,7 +67,9 @@ function update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $c
     author='" . $author . "',
     date='" . $date . "', 
     intro='" . $intro . "', 
-    category_id='$category_id'
+    category_id='$category_id',
+    vip='$vip', 
+    price='$price'
     where id= '$id'";
     pdo_execute($sql);
 }
@@ -108,11 +110,11 @@ function update_dislike($id)
     $sql = "UPDATE comic SET like_comic	  = like_comic-1 where id = $id";
     pdo_execute($sql);
 }
-function comic_insert($name, $detail, $author, $date, $intro, $view, $like, $category_id, $name_img, $st, $po)
+function comic_insert($name, $detail, $author, $date, $intro, $view, $like, $category_id, $name_img, $st, $po,$vip,$price_comic)
 {
 
     $n = 'N';
-    $sqlQuery = "INSERT INTO comic (name,cover_image,detail,author,date,intro,view,like_comic,category_id,status,poster) VALUES ($n'$name',$n'$name_img',$n'$detail',$n'$author',$n'$date',$n'$intro',$view,$like,$category_id,$st,$po)";
+    $sqlQuery = "INSERT INTO comic (name,cover_image,detail,author,date,intro,view,like_comic,category_id,status,poster,vip,price) VALUES ($n'$name',$n'$name_img',$n'$detail',$n'$author',$n'$date',$n'$intro',$view,$like,$category_id,$st,$po,$vip,$price_comic)";
     $id = pdo_query_last_id($sqlQuery);
     return $id;
 }
@@ -383,4 +385,9 @@ function load_all_love_comic($id_user)
     $sql = "SELECT A.id,A.`name`,A.date,A.cover_image FROM comic A INNER JOIN love B ON A.id = B.id_comic WHERE B.id_user = '$id_user' order by B.id_comic asc";
     $love_comic = pdo_query($sql);
     return $love_comic;
+}
+//load truyện theo svip
+function load_comic_svip(){
+    $sql = "SELECT * from comic ORDER BY id DESC LIMIT 0,6";
+    return pdo_query($sql);
 }
