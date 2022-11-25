@@ -34,6 +34,16 @@ if (isset($_SESSION['love_comic_not_login'])) {
 } ?>
 
 <?php
+if (isset($_SESSION['chua_dn'])) {
+?>
+    <script>
+        alert('<?= $_SESSION['chua_dn'] ?>');
+    </script>
+<?php
+    unset($_SESSION['chua_dn']);
+} ?>
+
+<?php
 if (isset($_SESSION['err_not_dn'])) {
 ?>
     <script>
@@ -147,7 +157,7 @@ if (isset($_SESSION['dang_xuat'])) {
                 <li><a href="index.php?act=truyen_yeu_thich">Truyện yêu thích</a></li>
                 <li><a href="index.php?act=truyen_da_doc">Lịch sử</a></li>
                 <li><a href="#">Liên hệ</a></li>
-                <li class="coin"><a href="#">Nạp coin</a></li>
+                <li class="coin"><a href="index.php?act=coin">Nạp coin</a></li>
             </ul>
         </nav>
     </div>

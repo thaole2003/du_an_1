@@ -462,11 +462,25 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
         case 'register':
             include "views/register.php";
             break;
+            //Nạp coin
+        case 'coin':
+            include "views/coin.php";
+            break;
+        case 'chi_tiet_coin':
+            if($_SESSION['auth']){
+                echo '<pre>';
+                print_r($_SESSION['auth']);
+            }else{
+                $_SESSION['chua_dn'] = "Bạn cần đăng nhập để nạp coin";
+                header('location:index.php?act=coin');
+            }
+            include "views/chi_tiet_coint.php";
+            break;
             //Phân trang 1 2 3 ...
         case 'trang':
             if (isset($_GET['id'])) {
                 $n = $_GET['id'];
-                
+
                 if ($n == 0) {
                     $tong = 0;
                     $comic_by_date = comic_by_date($tong, 18);
