@@ -21,7 +21,7 @@ if (isset($_SESSION['okokok'])) {
     <script>
         alert('<?= $_SESSION['okokok'] ?>');
     </script>
-<?php 
+<?php
     unset($_SESSION['okokok']);
 } ?>
 
@@ -81,10 +81,10 @@ if (isset($_SESSION['dang_xuat'])) {
     <script>
         alert('<?= $_SESSION['dang_xuat'] ?>');
     </script>
-<?php 
-    session_unset();
+<?php session_unset();
     session_destroy();
 } ?>
+
 
 <body>
     <div class="home">
@@ -111,20 +111,23 @@ if (isset($_SESSION['dang_xuat'])) {
                     <!--Đăng ký - Đăng nhập-->
                     <?php
                     if (isset($_SESSION['auth'])) {
-                        extract($_SESSION['auth']);
                     ?>
                         <form action="">
-                            <label class="text_login">Xin chào <strong><?php echo $name ?></strong></label>
-                            <label class="text_login" style="float: right;">Coin của bạn: <strong><?php echo $coin ?></strong></label>
+                            <label class="text_login">Xin chào <strong><?php echo $_SESSION['auth']['name'] ?></strong></label>
+                            <label class="text_login" style="float: right;">Coin của bạn: <strong><?php echo $_SESSION['auth']['coin'] ?></strong></label>
 
                             <br>
                             <a href="index.php?act=cap_nhat_tai_khoan"><input type="button" value="Cập nhật tài khoản"></a>
                             <a href="index.php?act=changepass&id=<?= $_SESSION['auth']['id'] ?>"><input name="" type="button" value="Thay đổi mật khẩu"></a>
+
                             <?php if ($_SESSION['auth']['role'] == 1) { ?>
                                 <a href="admin/index.php"><input type="button" value="Đăng nhập admin"></a>
-                            <?php }if ($_SESSION['auth']['role'] == 3) { ?>
+                            <?php } ?>
+                            
+                            <?php if ($_SESSION['auth']['role'] == 3) { ?>
                                 <a href="admin/index.php"><input type="button" value="Đăng truyện"></a>
-                                <?php }?>
+                            <?php } ?>
+                            
                             <a href="index.php?act=dang_xuat"><input type="button" value="Đăng xuất"></a>
                         </form>
                     <?php } else { ?>
@@ -149,13 +152,12 @@ if (isset($_SESSION['dang_xuat'])) {
                     <ul class="sub_menu">
                         <!--Phần đẩy loại truyện-->
                         <div class="vien">
-                            <?php foreach ($list_all_loai as $value) {
-                                extract($value);
-                                ?>
-                                <li><a href="index.php?act=loai&ma_loai=<?= $id ?>"><?= $name ?></a></li>
-                            <?php } ?>
+                            <?php foreach ($list_all_loai as $key => $value) { ?>
+                                <li><a href="index.php?act=loai&ma_loai=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></li>
+                            <?php  } ?>
                         </div>
                     </ul>
+
                 </li>
                 <li><a href="index.php?act=truyen_yeu_thich">Truyện yêu thích</a></li>
                 <li><a href="index.php?act=truyen_da_doc">Lịch sử</a></li>
