@@ -428,7 +428,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 //     };
                 // }
                 // include_once './views/chi_tiet_truyen.php';
-                // break;
+                // break;d
             }
             include_once './views/chi_tiet_truyen.php';
             break;
