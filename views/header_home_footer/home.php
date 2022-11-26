@@ -53,7 +53,7 @@
                                 <a href="index.php?act=detail&id=<?= $id ?>">
                                     <?= $name ?>
                                 </a>
-                                <p><?= $price ?> Coin</p>
+                                <p><?= number_format($price); ?> Coin</p>
                             </div>
                             <div class="ngay_update">
                                 <h5>
@@ -91,7 +91,7 @@
                                 <a href="index.php?act=detail&id=<?= $id ?>">
                                     <h4><?= $name ?></h4>
                                 </a>
-                                <p style="display: <?= $display ?>;"><?= $price ?> Coin</p>
+                                <p style="display: <?= $display ?>;"><?= number_format($price); ?> Coin</p>
                             </div>
                             <div class="ngay_update">
                                 <h5><?php echo substr($date, 0, 11) ?>
@@ -127,7 +127,7 @@
                         <a href="#">
                             <h4><?= $name ?></h4>
                         </a>
-                        <p style="display: <?= $display ?>;"><?= $price ?> Coin</p>
+                        <p style="display: <?= $display ?>;"><?= number_format($price); ?> Coin</p>
                         <div class="ngay_update">
                             <h5><?php echo substr($date, 0, 11) ?></h5>
                         </div>

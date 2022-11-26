@@ -815,7 +815,156 @@ footer .footer_back .right {
     font-size: 14px;
 }
 /*coin*/
-.coin a{
-    margin-left: 719px;
+article .coin_thanh_toan{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 20px;
+}
+article .bang_coin{
+    margin: 30px 0px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #ccc;
+}
+article .bang_coin tr td span{
+    color: red;
+}
+article .bang_coin, article .bang_coin tr, article .bang_coin tr td{
+    border-radius: 10px;
+    border: 1px solid rgb(224, 224, 224);
+    border-collapse: collapse;
+}
+article .thanh_toan{
+    font-family: 'Roboto', sans-serif;
+    margin: 30px 0px;
+    margin-left: 100px;
+    width: 70%;
+    background-color: #ffffff;
+    text-align: center;
+    box-shadow: 0px 0px 10px #ccc;
+}
+article .thanh_toan,article .thanh_toan tr,article .thanh_toan tr td{
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+article .thanh_toan tr td{
+    padding: 10px 0px;
+}
+article .thanh_toan tr td img{
+    float: right;
+    width: 50%;
+    margin-right: 10px;
+    height: 50px;
+}
+article .thanh_toan tr td p{
+    float: left;
+    padding-top: 10px;
+    margin-left: 10px;
+}
+article .thanh_toan tr td span{
+    padding-top: 10px;
+    float: right;
+    margin-right: 10px;
+}
+article .thanh_toan tr td select{
+    width: 100%;
+    float: left;
+    outline: none;
+    padding-top: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+article .thanh_toan tr td input{
+    background: #ff973c;
+    color: #ffffff;
+    padding: 6px 6px;
+    border-radius: 8px;
+    font-size: 15px;
+    border: 1px solid #ff973c;
+}
+article .thanh_toan tr td input:hover{
+    background-color: #fff;
+    border: 1px solid #ff973c;
+    color: #ff973c;
+    cursor: pointer;
+}
+/*Chi tiết hóa đơn*/
+article .ct_coin{
+    font-family: 'Roboto', sans-serif;
+    margin: 30px auto;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0px 0px 15px #ccc;
+    border-radius: 10px;
+    width: 50%;
+}
+article .ct_coin tr td{
+    padding: 10px 0px;
+}
+article .ct_coin tr td h1{
     font-weight: bold;
+    font-size: 25px;
+    color: rgb(255, 194, 89);
+    padding: 10px 0px;
+}
+article .ct_coin tr td p{
+    float: left;
+    margin-left: 10px;
+    padding-top: 10px;
+}
+article .ct_coin tr td input{
+    float: right;
+    text-align: right;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+article .ct_coin tr td button{
+    background: #ff973c;
+    color: #ffffff;
+    padding: 6px 6px;
+    border-radius: 8px;
+    border: 1px solid #ff973c;
+    font-size: 15px;
+}
+article .ct_coin tr td button:hover{
+    background-color: #fff;
+    border: 1px solid #ff973c;
+    color: #ff973c;
+}
+/*Coin*/
+.coin{
+    float: right;
+    font-weight: bold;
+}
+/*Hóa đơn*/
+article .hoa_don_h1{
+    margin-top: 15px;
+    color: rgb(255, 188, 44);
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    font-size: 31px;
+}
+article .hoa_don_h1 i{
+    margin-right: 10px;
+}
+article .hoa_don{
+    text-align: center;
+    margin: 40px auto;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0px 0px 5px;
+}
+article .hoa_don tr th{
+    padding: 10px;
+    border: 1px solid rgb(235, 235, 235);
+}
+article .hoa_don tr td{
+    padding: 10px;
+    border: 1px solid rgb(235, 235, 235);
+}
+
+.vien{
+    border: 0.5px solid rgb(236, 236, 236);
 }

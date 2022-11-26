@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <?php
 
 if (isset($_SESSION['okokok'])) {
@@ -20,8 +21,9 @@ if (isset($_SESSION['okokok'])) {
     <script>
         alert('<?= $_SESSION['okokok'] ?>');
     </script>
-<?php } ?>
-
+<?php
+    unset($_SESSION['okokok']);
+} ?>
 
 <?php
 if (isset($_SESSION['love_comic_not_login'])) {
@@ -31,6 +33,16 @@ if (isset($_SESSION['love_comic_not_login'])) {
     </script>
 <?php
     unset($_SESSION['love_comic_not_login']);
+} ?>
+
+<?php
+if (isset($_SESSION['chua_dn'])) {
+?>
+    <script>
+        alert('<?= $_SESSION['chua_dn'] ?>');
+    </script>
+<?php
+    unset($_SESSION['chua_dn']);
 } ?>
 
 <?php
@@ -64,14 +76,46 @@ if (isset($_SESSION['susess_change'])) {
 } ?>
 
 <?php
+if (isset($_SESSION['tb'])) {
+?>
+    <script>
+        alert('<?= $_SESSION['tb'] ?>');
+    </script>
+<?php
+    unset($_SESSION['tb']);
+} ?>
+
+<?php
+if (isset($_SESSION['khong_du_coin'])) {
+?>
+    <script>
+        alert('<?= $_SESSION['khong_du_coin'] ?>');
+    </script>
+<?php
+    unset($_SESSION['khong_du_coin']);
+} ?>
+
+<?php
+if (isset($_SESSION['hay_dn'])) {
+?>
+    <script>
+        alert('<?= $_SESSION['hay_dn'] ?>');
+    </script>
+<?php
+    unset($_SESSION['hay_dn']);
+} ?>
+
+<?php
 if (isset($_SESSION['dang_xuat'])) {
 ?>
     <script>
         alert('<?= $_SESSION['dang_xuat'] ?>');
     </script>
-<?php session_unset();
+<?php
+    session_unset();
     session_destroy();
 } ?>
+
 
 <body>
     <div class="home">
@@ -98,22 +142,25 @@ if (isset($_SESSION['dang_xuat'])) {
                     <!--Đăng ký - Đăng nhập-->
                     <?php
                     if (isset($_SESSION['auth'])) {
-                        extract($_SESSION['auth']);
                         // echo '<pre>';
                         // print_r($_SESSION['auth']);
                     ?>
                         <form action="">
-                            <label class="text_login">Xin chào <strong><?php echo $name ?></strong></label>
-                            <label class="text_login" style="float: right;">Coin của bạn: <strong><?php echo $coin ?></strong></label>
+                            <label class="text_login">Xin chào <strong><?= $_SESSION['auth']['name'] ?></strong></label>
+                            <label class="text_login" style="float: right;">Coin của bạn: <strong><?= number_format($_SESSION['auth']['coin']); ?> Coin</strong></label>
 
                             <br>
                             <a href="index.php?act=cap_nhat_tai_khoan"><input type="button" value="Cập nhật tài khoản"></a>
                             <a href="index.php?act=changepass&id=<?= $_SESSION['auth']['id'] ?>"><input name="" type="button" value="Thay đổi mật khẩu"></a>
+
                             <?php if ($_SESSION['auth']['role'] == 1) { ?>
                                 <a href="admin/index.php"><input type="button" value="Đăng nhập admin"></a>
-                            <?php }if ($_SESSION['auth']['role'] == 3) { ?>
+                            <?php } ?>
+
+                            <?php if ($_SESSION['auth']['role'] == 3) { ?>
                                 <a href="admin/index.php"><input type="button" value="Đăng truyện"></a>
-                                <?php }?>
+                            <?php } ?>
+
                             <a href="index.php?act=dang_xuat"><input type="button" value="Đăng xuất"></a>
                         </form>
                     <?php } else { ?>
@@ -138,16 +185,21 @@ if (isset($_SESSION['dang_xuat'])) {
                     <ul class="sub_menu">
                         <!--Phần đẩy loại truyện-->
                         <div class="vien">
-                            <?php foreach ($list_all_loai as $key => $value) { ?>
+                            <?php
+                            ob_start();
+                            foreach ($list_all_loai as $key => $value) { ?>
                                 <li><a href="index.php?act=loai&ma_loai=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></li>
-                            <?php  } ?>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </ul>
                 </li>
                 <li><a href="index.php?act=truyen_yeu_thich">Truyện yêu thích</a></li>
-                <li><a href="index.php?act=truyen_da_doc">Lịch sử</a></li>
+                <li><a href="index.php?act=truyen_da_doc">Lịch sử đọc truyện</a></li>
+                <li><a href="index.php?act=hoa_don">Lịch sử nạp coin</a></li>
                 <li><a href="#">Liên hệ</a></li>
-                <li class="coin"><a href="#">Nạp coin</a></li>
+                <li class="coin"><a href="index.php?act=coin">Nạp coin</a></li>
             </ul>
         </nav>
     </div>

@@ -14,6 +14,7 @@ include_once "./DAO/user.php";
 include_once "./DAO/pdo.php";
 include_once "./DAO/loai.php";
 include_once "./DAO/comic.php";
+include_once  "./DAO/bill.php";
 $list_all_loai = load_all_loai();
 include_once  "./DAO/user.php";
 include_once  "views/header_home_footer/header.php";
@@ -122,23 +123,78 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     switch ($act) {
             //Đọc truyện
         case 'doc_truyen':
-
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
             }
-            update_view($id);
-
-            $doc_truyen = img_comic($id);
-            if (isset($_SESSION['auth'])) {
-                $update = true;
-                $history_comic_byuser = select_history_comic_by_user($_SESSION['auth']['id']);
-                foreach ($history_comic_byuser as $key => $value) {
-                    if ($value['id_comic'] == $id) {
-                        $update = false;
+            $comic = comic_select_one($id);
+            // echo '<pre>';
+            // print_r($comic);
+            // die;
+            if ($comic['vip'] == 1) {
+                if(isset($_SESSION['auth'])){
+                    if ($comic['price'] > $_SESSION['auth']['coin']) {
+                        $_SESSION['khong_du_coin'] = "Bạn không đủ coin để đọc truyện hãy nạp thêm";
+                        header('location: index.php?act=detail&id=' . $id);
+                    } else {
+                        $coin = $comic['price'];
+                        $id_user = $_SESSION['auth']['id'];
+                        update_tru_coin($id_user, $coin);
+    
+                        $user = get_one_user($id_user);
+                        $_SESSION['auth'] = [
+                            'id' => $user['id'],
+                            'email' => $user['email'],
+                            'name' => $user['name'],
+                            'role' => $user['role'],
+                            'role_name' => $user['role_name'],
+                            'coin' => $user['coin'],
+                            'phone' => $user['phone'],
+                            'address' => $user['address']
+                        ];
+                        header('location: index.php?act=reload_comic&id=' . $id);
+                    }
+                }else{
+                    $_SESSION['hay_dn'] = "Hãy đăng nhập để đọc truyện Svip";
+                    header('location: index.php?act=detail&id=' . $id);
+                }
+            } else {
+                update_view($id);
+                $doc_truyen = img_comic($id);
+                if (isset($_SESSION['auth'])) {
+                    $update = true;
+                    $history_comic_byuser = select_history_comic_by_user($_SESSION['auth']['id']);
+                    foreach ($history_comic_byuser as $key => $value) {
+                        if ($value['id_comic'] == $id) {
+                            $update = false;
+                        }
+                    }
+                    if ($update == true) {
+                        update_history_comic($id, $_SESSION['auth']['id']);
                     }
                 }
-                if ($update == true) {
-                    update_history_comic($id, $_SESSION['auth']['id']);
+            }
+
+            include_once "views/doc_truyen.php";
+            break;
+        case 'reload_comic':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+
+                $comic = comic_select_one($id);
+
+                update_view($id);
+                $doc_truyen = img_comic($id);
+                if (isset($_SESSION['auth'])) {
+                    $update = true;
+                    $history_comic_byuser = select_history_comic_by_user($_SESSION['auth']['id']);
+                    foreach ($history_comic_byuser as $key => $value) {
+                        if ($value['id_comic'] == $id) {
+                            $update = false;
+                        }
+                    }
+                    if ($update == true) {
+                        update_history_comic($id, $_SESSION['auth']['id']);
+                    }
                 }
             }
             include_once "views/doc_truyen.php";
@@ -182,7 +238,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     //lay xem co email nào khớp với email đã nhập k.
                     $user_check = get_one_user_by_email($email_login);
                     if ($user_check != "") {
-                        // if(password_verify($pass_login, $user_check['password']))
                         if (password_verify($pass_login, $user_check['password'])) {
                             $_SESSION['auth'] = [
                                 'id' => $user_check['id'],
@@ -190,7 +245,9 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                                 'name' => $user_check['name'],
                                 'role' => $user_check['role'],
                                 'role_name' => $user_check['role_name'],
-                                'coin' => $user_check['coin']
+                                'coin' => $user_check['coin'],
+                                'phone' => $user_check['phone'],
+                                'address' => $user_check['address']
                             ];
                             unset($_SESSION['khong_ton_tai_tk']);
                             unset($_SESSION['sai_mk']);
@@ -210,16 +267,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
             //thay đổi mật khẩu
         case 'changepass':
-            // if(isset($_SESSION['err_pb'])){
-            //     unset($_SESSION['err_pb']);
-            // }
-            // if(isset($_SESSION['passw_new'])){
-            //     unset($_SESSION['passw_new']);
-
-            // }
-            // if(isset($_SESSION['repass'])){
-            //     unset($_SESSION['repass']);
-            // }
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
@@ -463,11 +510,69 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
         case 'register':
             include "views/register.php";
             break;
+            //Nạp coin
+        case 'coin':
+            include "views/coin.php";
+            break;
+        case 'chi_tiet_coin':
+            if ($_SESSION['auth']) {
+                if (isset($_POST['nap_coin'])) {
+                    if ($_POST['price'] != 0) {
+                        $price = $_POST['price'];
+                        $id = $_SESSION['auth']['id'];
+                        $email = $_SESSION['auth']['email'];
+                        $name = $_SESSION['auth']['name'];
+                        $phone = $_SESSION['auth']['phone'];
+                        $address = $_SESSION['auth']['address'];
+                    } else {
+                        $_SESSION['chon_menh_gia'] = "Bạn chưa chọn mệnh giá";
+                        header('location:index.php?act=coin');
+                    }
+                }
+            } else {
+                $_SESSION['chua_dn'] = "Bạn cần đăng nhập để nạp coin";
+                header('location:index.php?act=coin');
+            }
+            include "views/chi_tiet_coin.php";
+            break;
+        case 'thanh_toan':
+            if (isset($_POST['nap_coin'])) {
+                $date = date('m/d/Y h:i:s a', time());
+                $id_user = $_SESSION['auth']['id'];
+                $name = $_SESSION['auth']['name'];
+                $price = $_POST['price'];
+                $email = $_SESSION['auth']['email'];
+                $address = $_SESSION['auth']['address'];
+                $phone = $_SESSION['auth']['phone'];
+                $status = 0;
+
+                insert_bill($id_user, $name, $price, $email, $address, $phone, $status, $date);
+                header('location:index.php?act=hoa_don');
+            }
+            break;
+            //Hoa_don
+        case 'hoa_don':
+            if (isset($_SESSION['auth'])) {
+                $id_user = $_SESSION['auth']['id'];
+                $bill = load_all_bill($id_user);
+            }
+            include "views/hoa_don.php";
+            break;
+        case 'delete_gd':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                delete_gd($id);
+                $id_user = $_SESSION['auth']['id'];
+                $bill = load_all_bill($id_user);
+                include_once  'views/hoa_don.php';
+                $thong_bao = 'Xóa thành công';
+            }
+            break;
             //Phân trang 1 2 3 ...
         case 'trang':
             if (isset($_GET['id'])) {
                 $n = $_GET['id'];
-                
+
                 if ($n == 0) {
                     $tong = 0;
                     $comic_by_date = comic_by_date($tong, 18);
@@ -483,7 +588,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
     }
 } else {
-
     include_once "views/header_home_footer/home.php";
 }
 include_once "views/header_home_footer/footer.php";

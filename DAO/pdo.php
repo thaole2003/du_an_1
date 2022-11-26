@@ -13,7 +13,7 @@ function pdo_get_connection(){
 }
 //localhost
 // function pdo_get_connection(){
-//     $dburl = "mysql:host=localhost;dbname=du_an_1_ph20653;charset=utf8";
+//     $dburl = "mysql:host=localhost;dbname=du_an_1;charset=utf8";
 //     $username = 'root';
 //     $password = '';
 
