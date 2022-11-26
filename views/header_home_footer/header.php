@@ -86,6 +86,26 @@ if (isset($_SESSION['tb'])) {
 } ?>
 
 <?php
+if (isset($_SESSION['khong_du_coin'])) {
+?>
+    <script>
+        alert('<?= $_SESSION['khong_du_coin'] ?>');
+    </script>
+<?php
+    unset($_SESSION['khong_du_coin']);
+} ?>
+
+<?php
+if (isset($_SESSION['hay_dn'])) {
+?>
+    <script>
+        alert('<?= $_SESSION['hay_dn'] ?>');
+    </script>
+<?php
+    unset($_SESSION['hay_dn']);
+} ?>
+
+<?php
 if (isset($_SESSION['dang_xuat'])) {
 ?>
     <script>
@@ -122,6 +142,8 @@ if (isset($_SESSION['dang_xuat'])) {
                     <!--Đăng ký - Đăng nhập-->
                     <?php
                     if (isset($_SESSION['auth'])) {
+                        // echo '<pre>';
+                        // print_r($_SESSION['auth']);
                     ?>
                         <form action="">
                             <label class="text_login">Xin chào <strong><?= $_SESSION['auth']['name'] ?></strong></label>

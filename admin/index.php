@@ -385,7 +385,7 @@ if (isset($_GET['act'])) {
                 if ($_POST['vip'] == 0) {
                     $price_comic = 0;
                     $vip = 0;
-                }else{
+                } else {
                     $price_comic = $_POST['price_comic'];
                     $vip = 1;
                 }
@@ -546,7 +546,7 @@ if (isset($_GET['act'])) {
                 if ($_POST['vip'] == 0) {
                     $price_comic = 0;
                     $vip = 0;
-                }else{
+                } else {
                     $price_comic = $_POST['price_comic'];
                     $vip = 1;
                 }
@@ -661,7 +661,7 @@ if (isset($_GET['act'])) {
                 }
 
                 if ($allowUpload == true) {
-                    update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $category_id,$vip,$price_comic);
+                    update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $category_id, $vip, $price_comic);
                 } else {
                     header('location:index.php?act=sua_truyen&id=' . $id);
                 }
@@ -698,16 +698,92 @@ if (isset($_GET['act'])) {
             $statistical = statistical_truyen();
             include_once 'thong_ke/thongke.php';
             break;
+            //biểu đồ
         case 'bieu_do':
-            // echo "<pre>";
             $statistical = statistical_truyen();
-            // var_dump($statistical);
-            // echo "</pre>";
-            // die();
             include_once './thong_ke/bieu_do.php';
             break;
-            //ngược lại không tồn tại act thì include_once "home.php"; 
+            //list_bill
+        case 'lisk_bill':
+            $list_bill = load_bill();
+            include_once '../admin/bill/list_bill.php';
+            break;
+        case 'search_bill':
+            if (isset($_POST['btn_search'])) {
+                $key = $_POST['key_search'];
+                $status = $_POST['status'];
+            } else {
+                $key = '';
+                $status = 3;
+                $list_bill = load_bill();
+            }
+            $list_bill = search_bill($key, $status);
+            include_once  "../admin/bill/list_bill.php";
+            break;
+            //xóa bill
+        case 'delete_bill':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                delete_gd($id);
+                $list_bill = load_bill();
+                include_once  '../admin/bill/list_bill.php';
+                $thong_bao = 'Xóa thành công';
+            }
+            break;
+            //edit_bill
+        case 'edit_bill':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $bill_one = load_one_bill($id);
+            }
+            include_once '../admin/bill/edit_bill.php';
+            break;
+        case 'update_bill':
+            if (isset($_POST['cap_nhat'])) {
+                $status = $_POST['status'];
+                $id = $_POST['id'];
+                $price = $_POST['price'];
+                $id_user = $_POST['id_user'];
 
+                if ($status == 1) {
+                    if ($price == 20000) {
+                        $coin = 20000;
+                    }
+                    if ($price == 50000) {
+                        $coin = 50000;
+                    }
+                    if ($price == 100000) {
+                        $coin = 120000;
+                    }
+                    if ($price == 200000) {
+                        $coin = 240000;
+                    }
+                    if ($price == 500000) {
+                        $coin = 550000;
+                    }
+                    update_bill($id, $status);
+                    update_coin($id_user, $coin);
+                    $user = get_one_user($id_user);
+                    $_SESSION['auth'] = [
+                        'id' => $user['id'],
+                        'email' => $user['email'],
+                        'name' => $user['name'],
+                        'role' => $user['role'],
+                        'role_name' => $user['role_name'],
+                        'coin' => $user['coin'],
+                        'phone' => $user['phone'],
+                        'address' => $user['address']
+                    ];
+                } else if ($status == 2) {
+                    update_bill($id, $status);
+                } else {
+                    update_bill($id, $status);
+                }
+            }
+            $list_bill = load_bill();
+            include_once '../admin/bill/list_bill.php';
+            break;
+            //ngược lại không tồn tại act thì include_once "home.php"; 
         default:
             include_once "home.php";
             break;

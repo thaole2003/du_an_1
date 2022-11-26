@@ -123,23 +123,78 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     switch ($act) {
             //Đọc truyện
         case 'doc_truyen':
-
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
             }
-            update_view($id);
-
-            $doc_truyen = img_comic($id);
-            if (isset($_SESSION['auth'])) {
-                $update = true;
-                $history_comic_byuser = select_history_comic_by_user($_SESSION['auth']['id']);
-                foreach ($history_comic_byuser as $key => $value) {
-                    if ($value['id_comic'] == $id) {
-                        $update = false;
+            $comic = comic_select_one($id);
+            // echo '<pre>';
+            // print_r($comic);
+            // die;
+            if ($comic['vip'] == 1) {
+                if(isset($_SESSION['auth'])){
+                    if ($comic['price'] > $_SESSION['auth']['coin']) {
+                        $_SESSION['khong_du_coin'] = "Bạn không đủ coin để đọc truyện hãy nạp thêm";
+                        header('location: index.php?act=detail&id=' . $id);
+                    } else {
+                        $coin = $comic['price'];
+                        $id_user = $_SESSION['auth']['id'];
+                        update_tru_coin($id_user, $coin);
+    
+                        $user = get_one_user($id_user);
+                        $_SESSION['auth'] = [
+                            'id' => $user['id'],
+                            'email' => $user['email'],
+                            'name' => $user['name'],
+                            'role' => $user['role'],
+                            'role_name' => $user['role_name'],
+                            'coin' => $user['coin'],
+                            'phone' => $user['phone'],
+                            'address' => $user['address']
+                        ];
+                        header('location: index.php?act=reload_comic&id=' . $id);
+                    }
+                }else{
+                    $_SESSION['hay_dn'] = "Hãy đăng nhập để đọc truyện Svip";
+                    header('location: index.php?act=detail&id=' . $id);
+                }
+            } else {
+                update_view($id);
+                $doc_truyen = img_comic($id);
+                if (isset($_SESSION['auth'])) {
+                    $update = true;
+                    $history_comic_byuser = select_history_comic_by_user($_SESSION['auth']['id']);
+                    foreach ($history_comic_byuser as $key => $value) {
+                        if ($value['id_comic'] == $id) {
+                            $update = false;
+                        }
+                    }
+                    if ($update == true) {
+                        update_history_comic($id, $_SESSION['auth']['id']);
                     }
                 }
-                if ($update == true) {
-                    update_history_comic($id, $_SESSION['auth']['id']);
+            }
+
+            include_once "views/doc_truyen.php";
+            break;
+        case 'reload_comic':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+
+                $comic = comic_select_one($id);
+
+                update_view($id);
+                $doc_truyen = img_comic($id);
+                if (isset($_SESSION['auth'])) {
+                    $update = true;
+                    $history_comic_byuser = select_history_comic_by_user($_SESSION['auth']['id']);
+                    foreach ($history_comic_byuser as $key => $value) {
+                        if ($value['id_comic'] == $id) {
+                            $update = false;
+                        }
+                    }
+                    if ($update == true) {
+                        update_history_comic($id, $_SESSION['auth']['id']);
+                    }
                 }
             }
             include_once "views/doc_truyen.php";
@@ -183,7 +238,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     //lay xem co email nào khớp với email đã nhập k.
                     $user_check = get_one_user_by_email($email_login);
                     if ($user_check != "") {
-                        // if(password_verify($pass_login, $user_check['password']))
                         if (password_verify($pass_login, $user_check['password'])) {
                             $_SESSION['auth'] = [
                                 'id' => $user_check['id'],

@@ -75,6 +75,16 @@ join roles r
 where email = '$email'";
     return pdo_query_one($sql);
 }
+function get_one_user($id){
+    $sql = "select 
+    u.*, 
+    r.name as role_name
+from user u
+join roles r
+    on r.id = u.role
+where u.id = '$id'";
+    return pdo_query_one($sql);
+}
 function select_pass($id){
     $sql = "select 
     u.`password` 
@@ -102,7 +112,7 @@ function all_user(){
     r.`name` as r_name
     FROM `user` u
     JOIN roles r 
-    ON u.role = r.id";
+    ON u.role = r.id order by u.id desc";
     return pdo_query($sql);
 }
 // selct table user

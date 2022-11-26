@@ -12,6 +12,7 @@
                     <th class="p-2 border-2">Address</th>
                     <th class="p-2 border-2">Phone</th>
                     <th class="p-2 border-2">Name</th>
+                    <th class="p-2 border-2">Coin</th>
                     <th class="p-2 border-2">Vai trò</th>
                     <th class="p-2 border-2">Thay đổi</th>
 
@@ -30,6 +31,7 @@
                     <td class="p-2 border-2 border-solid "><?= $address ?></td>
                     <td class="p-2 border-2 border-solid"><?= $phone ?></td>
                     <td class="p-2 border-2 border-solid "><?= $name ?> </td>
+                    <td class="p-2 border-2 border-solid "><?= number_format($coin); ?> Coin</td>
                     <td class="p-2 border-2 border-solid "><?= $r_name ?></td>
                     <td class="p-2 border-2 border-solid flex gap-2">
                         <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 "><a href="index.php?act=edit_user&id=<?= $id?>">Sửa</a> </button>
