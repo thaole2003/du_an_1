@@ -14,6 +14,7 @@ include_once "./DAO/user.php";
 include_once "./DAO/pdo.php";
 include_once "./DAO/loai.php";
 include_once "./DAO/comic.php";
+include_once  "./DAO/bill.php";
 $list_all_loai = load_all_loai();
 include_once  "./DAO/user.php";
 include_once  "views/header_home_footer/header.php";
@@ -468,7 +469,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                         $name = $_SESSION['auth']['name'];
                         $phone = $_SESSION['auth']['phone'];
                         $address = $_SESSION['auth']['address'];
-
                     } else {
                         $_SESSION['chon_menh_gia'] = "Bạn chưa chọn mệnh giá";
                         header('location:index.php?act=coin');
@@ -479,6 +479,30 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 header('location:index.php?act=coin');
             }
             include "views/chi_tiet_coint.php";
+            break;
+        case 'thanh_toan':
+            if (isset($_POST['nap_coin'])) {
+                $date = date('m/d/Y h:i:s a', time());
+                $id_user = $_SESSION['auth']['id'];
+                $name = $_SESSION['auth']['name'];
+                $price = $_POST['price'];
+                $email = $_SESSION['auth']['email'];
+                $address = $_SESSION['auth']['address'];
+                $phone = $_SESSION['auth']['phone'];
+                $status = 0;
+
+                insert_bill($id_user, $name, $price, $email, $address, $phone, $status, $date);
+                $_SESSION['tb'] = "Quá trình nạp coin của bạn đang được xử lý";
+                header('location: index.php?act=hoa_don');
+            }
+            break;
+            //Hoa_don
+        case 'hoa_don':
+            if(isset($_SESSION['auth'])){
+                $id_user = $_SESSION['auth']['id'];
+                $bill = load_all_bill($id_user);
+            }
+            include "views/hoa_don.php";
             break;
             //Phân trang 1 2 3 ...
         case 'trang':

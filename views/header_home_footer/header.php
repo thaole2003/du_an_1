@@ -76,6 +76,16 @@ if (isset($_SESSION['susess_change'])) {
 } ?>
 
 <?php
+if (isset($_SESSION['tb'])) {
+?>
+    <script>
+        alert('<?= $_SESSION['tb'] ?>');
+    </script>
+<?php
+    unset($_SESSION['tb']);
+} ?>
+
+<?php
 if (isset($_SESSION['dang_xuat'])) {
 ?>
     <script>
@@ -157,12 +167,15 @@ if (isset($_SESSION['dang_xuat'])) {
                             ob_start();
                             foreach ($list_all_loai as $key => $value) { ?>
                                 <li><a href="index.php?act=loai&ma_loai=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></li>
-                            <?php  } ?>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </ul>
                 </li>
                 <li><a href="index.php?act=truyen_yeu_thich">Truyện yêu thích</a></li>
-                <li><a href="index.php?act=truyen_da_doc">Lịch sử</a></li>
+                <li><a href="index.php?act=truyen_da_doc">Lịch sử đọc truyện</a></li>
+                <li><a href="index.php?act=hoa_don">Lịch sử nạp coin</a></li>
                 <li><a href="#">Liên hệ</a></li>
                 <li class="coin"><a href="index.php?act=coin">Nạp coin</a></li>
             </ul>

@@ -6,6 +6,7 @@ include_once  "../DAO/user.php";
 require_once "../DAO/pdo.php";
 require_once "../DAO/loai.php";
 require_once "../DAO/comic.php";
+require_once "../DAO/bill.php";
 require_once "../DAO/comment.php";
 include "../global.php";
 include_once "../content/PHPMailer-master/src/Exception.php";
