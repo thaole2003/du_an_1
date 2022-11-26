@@ -125,7 +125,7 @@ if (isset($_SESSION['dang_xuat'])) {
                     ?>
                         <form action="">
                             <label class="text_login">Xin chào <strong><?= $_SESSION['auth']['name'] ?></strong></label>
-                            <label class="text_login" style="float: right;">Coin của bạn: <strong><?= $_SESSION['auth']['coin'] ?></strong></label>
+                            <label class="text_login" style="float: right;">Coin của bạn: <strong><?= number_format($_SESSION['auth']['coin']); ?> Coin</strong></label>
 
                             <br>
                             <a href="index.php?act=cap_nhat_tai_khoan"><input type="button" value="Cập nhật tài khoản"></a>

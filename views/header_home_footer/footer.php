@@ -23,9 +23,9 @@
 <script src="content/js/scrip.js"></script>
 </body>
 <script>
-    function thanh_toan(agree) {
-        if (confirm('Đồng ý để xác nhận thanh toán!')) {
-            return document.location = agree;
+    function del_gd(huy_gd) {
+        if (confirm('Xác nhận hủy giao dịch!')) {
+            return document.location = huy_gd;
         }
     }
 </script>

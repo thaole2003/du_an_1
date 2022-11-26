@@ -21,8 +21,8 @@
                 </td>
                 <td>
                     <div class="vien"></div>
-                    <input type="text" name="" value="<?= $price ?>" disabled> 
-                    <input type="hidden" name="price" value="<?= $price ?> VNĐ">
+                    <input type="text" name="" value="<?= number_format($price); ?> VNĐ" disabled> 
+                    <input type="hidden" name="price" value="<?= $price ?>">
                 </td>
             </tr>
             <tr>
@@ -89,7 +89,7 @@
                         $coin = "550000";
                     }
                     ?>
-                    <input type="text" name="coin" value="<?= $coin ?> VNĐ" disabled> 
+                    <input type="text" name="coin" value="<?= number_format($coin) ?> Coin" disabled> 
                 </td>
             </tr>
             <tr>
@@ -103,7 +103,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2"><button name="nap_coin" class="cursor-pointer" onclick="thanh_toan('index.php?act=hoa_don')">Thanh toán</button></td>
+                <td colspan="2"><button name="nap_coin" class="cursor-pointer">Thanh toán</button></td>
             </tr>
         </form>
     </table>

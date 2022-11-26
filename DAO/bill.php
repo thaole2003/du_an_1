@@ -8,3 +8,8 @@ function load_all_bill($id_user){
     $bill = pdo_query($sql);
     return $bill;
 }
+function delete_gd($ma_comic)
+{
+    $sql = "DELETE FROM bill where id='$ma_comic' ";
+    return pdo_execute($sql);
+}

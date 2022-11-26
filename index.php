@@ -478,7 +478,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $_SESSION['chua_dn'] = "Bạn cần đăng nhập để nạp coin";
                 header('location:index.php?act=coin');
             }
-            include "views/chi_tiet_coint.php";
+            include "views/chi_tiet_coin.php";
             break;
         case 'thanh_toan':
             if (isset($_POST['nap_coin'])) {
@@ -492,17 +492,26 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $status = 0;
 
                 insert_bill($id_user, $name, $price, $email, $address, $phone, $status, $date);
-                $_SESSION['tb'] = "Quá trình nạp coin của bạn đang được xử lý";
-                header('location: index.php?act=hoa_don');
+                header('location:index.php?act=hoa_don');
             }
             break;
             //Hoa_don
         case 'hoa_don':
-            if(isset($_SESSION['auth'])){
+            if (isset($_SESSION['auth'])) {
                 $id_user = $_SESSION['auth']['id'];
                 $bill = load_all_bill($id_user);
             }
             include "views/hoa_don.php";
+            break;
+        case 'delete_gd':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                delete_gd($id);
+                $id_user = $_SESSION['auth']['id'];
+                $bill = load_all_bill($id_user);
+                include_once  'views/hoa_don.php';
+                $thong_bao = 'Xóa thành công';
+            }
             break;
             //Phân trang 1 2 3 ...
         case 'trang':
