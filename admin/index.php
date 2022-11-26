@@ -322,8 +322,7 @@ if (isset($_GET['act'])) {
                     }
 
                     if ($flag_no == true) {
-                        delete_comic_img($id);
-                        delete_comic($id);
+                        update_status_no($id);
 
                         $mail = new PHPMailer(true);
                         try {
@@ -332,13 +331,13 @@ if (isset($_GET['act'])) {
                             $mail->isSMTP();                                      // Set mailer to use SMTP
                             $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                             $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                            $mail->Username = 'lmt.3102003@gmail.com';                 // SMTP username
-                            $mail->Password = 'qukhpoglcowqybog';                           // SMTP password
+                            $mail->Username = 'thaolmph27037@fpt.edu.vn';                 // SMTP username
+                            $mail->Password = 'tccyyyjiawlmglmz';                           // SMTP password
                             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                             $mail->Port = 587;                                    // TCP port to connect to
 
                             //Recipients
-                            $mail->setFrom('lmt.3102003@gmail.com ', 'Mailer');
+                            $mail->setFrom('thaolmph27037@fpt.edu.vn', 'Mailer');
                             $mail->addAddress($email_agree['email'], $email_agree['name']);     // Add a recipient
                             // $mail->addAddress('vietnqph27022@fpt.edu.vn','việt sếch');               // Name is optional
                             // $mail->addReplyTo('info@example.com', 'Information');
@@ -366,6 +365,18 @@ if (isset($_GET['act'])) {
             }
             include_once '../admin/agree/disagree.php';
             break;
+            case 'wait':
+                $comic_select_all_bystatus_3= comic_select_all_bystatus_3();
+                include_once "../admin/agree/waitagree.php";
+                break;
+                case 'again':
+                    if (isset($_GET['id'])) {
+                        $id = $_GET['id'];
+                        update_status_again($id);
+                        header('location:index.php?act=wait');
+                        $_SESSION['again'] = 'truyện đã được gửi phê duyệt lại';
+                    }
+                    break;    
             //thêm truyện
         case 'add_comic':
             $list_all_loai = load_all_loai();
