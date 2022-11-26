@@ -18,7 +18,10 @@ where c.status=2
  order by c.id desc";
     return pdo_query($sql);
 }
-
+function update_status_no($id){
+    $sql = "UPDATE comic SET status	  = 3 where id = $id";
+    pdo_execute($sql);
+}
 function comic_select_all_search($key, $category_id)
 {
     $sql = "SELECT 
@@ -178,6 +181,24 @@ on c.category_id = ca.id
 join user u
 on c.poster = u.id
 where c.status=1
+ order by c.id desc;
+";
+    return pdo_query($sql);
+}
+function comic_select_all_bystatus_3()
+{
+    $sql = "SELECT 
+    c.*, 
+    c.cover_image as img_name,
+    ca.name as ca_name,
+		u.email as u_email,
+        u.name as name_poster
+from comic c
+join category ca
+on c.category_id = ca.id
+join user u
+on c.poster = u.id
+where c.status=3
  order by c.id desc;
 ";
     return pdo_query($sql);
@@ -358,6 +379,11 @@ function update_status_yes($id)
     pdo_execute($sql);
 }
 
+function update_status_again($id)
+{
+    $sql = "UPDATE comic SET status	  = 1 where id = $id";
+    pdo_execute($sql);
+}
 
 //Truyện yêu thích
 function check_love_comic($id_comic, $id_user)
@@ -388,6 +414,6 @@ function load_all_love_comic($id_user)
 }
 //load truyện theo svip
 function load_comic_svip(){
-    $sql = "SELECT * from comic ORDER BY id DESC LIMIT 0,6";
+    $sql = "SELECT * from comic where vip = 1 and status =2  ORDER BY id DESC LIMIT 0,6";
     return pdo_query($sql);
 }

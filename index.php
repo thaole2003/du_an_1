@@ -378,17 +378,17 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                                 $mail->isSMTP();                                      // Set mailer to use SMTP
                                 $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                                 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                                $mail->Username = 'lmt.3102003@gmail.com';                 // SMTP username
-                                $mail->Password = 'kqiiyqidfgvllter ';                           // SMTP password
+                                $mail->Username = 'nqv31032003@gmail.com';                 // SMTP username
+                                $mail->Password = 'xaylurdindyluteq';                               // SMTP password
                                 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                                 $mail->Port = 587;                                    // TCP port to connect to
 
                                 //Recipients
-                                $mail->setFrom('lmt.3102003@gmail.com ', 'Mailer');
+                                $mail->setFrom('nqv31032003@gmail.com', 'Mailer');
                                 $mail->addAddress($email, $name_user);     // Add a recipient
                                 // $mail->addAddress('vietnqph27022@fpt.edu.vn','việt sếch');               // Name is optional
                                 // $mail->addReplyTo('info@example.com', 'Information');
-                                $mail->addCC('lmt.3102003@gmail.com');
+                                $mail->addCC('nqv31032003@gmail.com');
                                 // $mail->addBCC('bcc@example.com');
 
                                 //Attachments
@@ -398,7 +398,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                                 //Content
                                 $mail->isHTML(true);                                  // Set email format to HTML
                                 $mail->Subject = 'Mật khẩu mới của bạn';
-                                $mail->Body    = 'Đây là mật khẩu mới của bạn,có hiệu lực 5 phút kể từ khi bạn click tìm mật khẩu ' . $pass_new;
+                                $mail->Body    = 'Đây là mật khẩu mới của bạn ' . $pass_new;
                                 // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; 
 
                                 $mail->send();
@@ -502,6 +502,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     $_SESSION['err_not_dn'] = 'Bạn hãy đăng nhập để comment';
                     header("location: " . $_SERVER['HTTP_REFERER']);
                 }
+
             }
             include_once './views/chi_tiet_truyen.php';
             break;

@@ -37,6 +37,16 @@ unset($_SESSION['yess']) ?>
 }
 unset($_SESSION['succes_disagree']) ?>
 
+
+<?php if(isset($_SESSION['again'])){
+    ?>
+<script>
+      alert('<?= $_SESSION['again'] ?>');
+</script>
+    <?php
+} 
+unset($_SESSION['again'])?>
+
 <body>
     <div class="home">
         <!--Phần Header-->
@@ -61,6 +71,7 @@ unset($_SESSION['succes_disagree']) ?>
             <!-- nav  -->
             <nav class="text-center p-4 mt-4 bg-orange-400 max-h-max w-[200px] ">
                 <ul>
+
                     <?php if ($_SESSION['auth']['role'] == 1) { ?>
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium  " href="index.php">Home</a></li>
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_loai">Loại</a></li>
@@ -73,7 +84,9 @@ unset($_SESSION['succes_disagree']) ?>
                     <?php } elseif ($_SESSION['auth']['role'] == 3) {
                     ?>
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
+                                <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=wait">Duyệt lại</a></li>D
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_bl">Bình luận</a></li>
+
 
                     <?php } ?>
                 </ul>

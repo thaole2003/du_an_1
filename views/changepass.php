@@ -1,3 +1,5 @@
+
+<?php ob_start()?>
 <div class=" rounded-lg mx-auto flex flex-col w-1/2 m-2 p-2   bg-white">
     <form action="" method='post'>
         <p class="text-center font-medium text-2xl">Thay đổi mật khẩu</p>
