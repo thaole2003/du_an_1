@@ -138,7 +138,10 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     } else {
                         $coin = $comic['price'];
                         $id_user = $_SESSION['auth']['id'];
-                        update_tru_coin($id_user, $coin);
+
+                        if(check_his($id,$id_user) == ""){
+                            update_tru_coin($id_user, $coin);
+                        }
     
                         $user = get_one_user($id_user);
                         $_SESSION['auth'] = [

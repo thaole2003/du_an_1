@@ -48,3 +48,8 @@ function update_tru_coin($id,$coin){
     $sql = "update user set coin=coin-$coin where id = '$id'";
     pdo_execute($sql);
 }
+function check_his($id_comic,$id_user){
+    $sql = "SELECT * FROM history_comic_user WHERE id_comic = $id_comic and id_user = $id_user";
+    $his = pdo_query_one($sql);
+    return $his;
+}
