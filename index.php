@@ -331,17 +331,17 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                                 $mail->isSMTP();                                      // Set mailer to use SMTP
                                 $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                                 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                                $mail->Username = 'thaolmph27037@fpt.edu.vn';                 // SMTP username
-                                $mail->Password = 'tccyyyjiawlmglmz';                               // SMTP password
+                                $mail->Username = 'nqv31032003@gmail.com';                 // SMTP username
+                                $mail->Password = 'xaylurdindyluteq';                               // SMTP password
                                 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                                 $mail->Port = 587;                                    // TCP port to connect to
 
                                 //Recipients
-                                $mail->setFrom('thaolmph27037@fpt.edu.vn', 'Mailer');
+                                $mail->setFrom('nqv31032003@gmail.com', 'Mailer');
                                 $mail->addAddress($email, $name_user);     // Add a recipient
                                 // $mail->addAddress('vietnqph27022@fpt.edu.vn','việt sếch');               // Name is optional
                                 // $mail->addReplyTo('info@example.com', 'Information');
-                                $mail->addCC('thaolmph27037@fpt.edu.vn');
+                                $mail->addCC('nqv31032003@gmail.com');
                                 // $mail->addBCC('bcc@example.com');
 
                                 //Attachments
