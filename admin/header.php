@@ -73,6 +73,7 @@ unset($_SESSION['again'])?>
                 <ul>
 
                     <?php if ($_SESSION['auth']['role'] == 1) { ?>
+
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium  " href="index.php">Home</a></li>
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=list_loai">Loại</a></li>
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
@@ -86,6 +87,7 @@ unset($_SESSION['again'])?>
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
                                 <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=wait">Duyệt lại</a></li>
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=list_bl">Bình luận</a></li>
+
 
 
                     <?php } ?>

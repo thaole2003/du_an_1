@@ -8,11 +8,19 @@
         <p>Chi tiết mục lục</p>
 
         <div class="ul">
+        <?php if ($_SESSION['auth']['role'] == 1) { ?>
             <li>Loại - Quản lý thể loại truyện</li>
             <li>Truyện - Quản lý truyện của website</li>
             <li>Người dùng - Quản lý tài khoản của người dùng</li>
             <li>Bình luận - Quản lý bình luận của người dùng</li>
             <li>Thống kê - Thống kê số liệu của website</li>
+            <li>Bill - Quản lí nạp tiền khách hàng</li>
+            <?php }else{
+                ?>
+<li>Truyện - Quản lý truyện của website</li>
+<li>Bình luận - Quản lý bình luận của người dùng</li>
+
+           <?php } ?>
         </div>
         <div class="back_website">
             <a href="../index.php">Quay về trang web</a>

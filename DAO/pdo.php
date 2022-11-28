@@ -1,7 +1,7 @@
 <?php
 /**
  * Mở kết nối đến CSDL sử dụng PDO
- */
+  */
 function pdo_get_connection(){
     $dburl = "mysql:host=202.92.5.49;dbname=fumpddnwhosting_duan1;charset=utf8";
     $username = 'fumpddnwhosting_duan1';
