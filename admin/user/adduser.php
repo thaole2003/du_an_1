@@ -1,23 +1,23 @@
 <!-- content  -->
 <div class="py-4 w-full ">
-    <div class="bg-red-300">
+    <div class="bg-[#F5E4AF]">
         <h1 class="text-xl font-medium p-4">Thêm người dùng</h1>
     </div>
     <div class=" rounded-lg   flex flex-col w-2/3 m-4 p-4  bg-white " >
         <p class="text-center font-medium text-2xl">Đăng Kí Mới</p>
         <form action="index.php?act=add_user" method="POST" class="flex flex-col">
         <label class="m-2" for="">Email</label>
-        <input type="text" name="email" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 " placeholder="<?php echo isset($err_email) ? $err_email : "" ?>">
+        <input type="text" name="email" class="email m-2 content-between  border border-soild h-8  w-11/12 h-[40px]" placeholder="<?php echo isset($err_email) ? $err_email : "" ?>">
         <label class="m-2" for="">Name</label>
-        <input type="text" name="name" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 "  placeholder="<?php echo isset($err_name) ? $err_name : "" ?> ">
+        <input type="text" name="name" class="email m-2 content-between  border border-soild h-8  w-11/12 h-[40px] "  placeholder="<?php echo isset($err_name) ? $err_name : "" ?> ">
         <label class="m-2" for="">Phone</label>
-        <input type="text" name="phone" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 "  placeholder="<?php echo isset($err_phone) ? $err_phone : "" ?>">
+        <input type="text" name="phone" class="email m-2 content-between  border border-soild h-8  w-11/12 h-[40px] "  placeholder="<?php echo isset($err_phone) ? $err_phone : "" ?>">
         <label class="m-2" for="">Address</label>
-        <input type="text" name="address" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 " placeholder="<?php echo isset($err_address) ? $err_address : "" ?>">
+        <input type="text" name="address" class="email m-2 content-between  border border-soild h-8   w-11/12 h-[40px] " placeholder="<?php echo isset($err_address) ? $err_address : "" ?>">
         <label class="m-2" for="">Password</label>
-        <input type="password" name="pass" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 " placeholder="<?php echo isset($err_pass) ? $err_pass : "" ?>">
+        <input type="password" name="pass" class="email m-2 content-between  border border-soild h-8  w-11/12 h-[40px] " placeholder="<?php echo isset($err_pass) ? $err_pass : "" ?>">
         <label class="m-2" for="" >Password nhập lại</label>
-        <input type="password" name="password" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 " placeholder="<?php echo isset($err_repassword) ? $err_repassword : "" ?>">
+        <input type="password" name="password" class="email m-2 content-between  border border-soild h-8  w-11/12 h-[40px]" placeholder="<?php echo isset($err_repassword) ? $err_repassword : "" ?>">
         <label class="m-2" for="" >Vai trò</label>
         <select name="role_id" class="w-[100px] p-2">
             <?php foreach($list_role as $key =>$value){ ?>
@@ -26,12 +26,10 @@
             <?php } ?>
         </select>
         <div class="flex justify-between border-b-2">
-            <div class="flex m-2 gap-1">
-                <a class="hover:text-sky-500" href="">Đăng Nhập</a>
-            </div>
+            
             <span class=""><?php echo isset($thongbao) ? $thongbao : "" ?></span>
             <div class="flex m-2 gap-3">
-                <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400  border-2 border-solid "  name="add">Thêm</button> <button id="cancelregister" class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400  border-2 border-solid "><a href="index.php?act=list_kh">Danh sách</a></button>
+                <button class="p-2 px-4 bg-orange-400  text-white hover:bg-white hover:text-orange-400  border border-solid "  name="add">Thêm</button> <button id="cancelregister" class="p-2 px-4 bg-orange-400  text-white hover:bg-white hover:text-orange-400  border border-solid "><a href="index.php?act=list_kh">Danh sách</a></button>
             </div>
         </div>
         <div class="flex gap-2 justify-center m-3">

@@ -1,20 +1,20 @@
 <!-- content  -->
 <div class="py-4 w-full">
-    <div class="bg-red-300">
+    <div class="bg-[#F5E4AF]">
         <h1 class="text-xl font-medium p-4">Bình luận</h1>
     </div>
     <div class="p-4">
         <table class="table-auto w-full">
             <thead class="text-xl border-2">
-                <tr class="bg-red-200 ">
-                    <th class="p-2 border-2">Mã bình luận</th>
-                    <th class="p-2 border-2">Mã người dùng</th>
-                    <th class="p-2 border-2">Tên người dùng</th>
-                    <th class="p-2 border-2">Thời gian</th>
-                    <th class="p-2 border-2">Nội dung</th>
-                    <th class="p-2 border-2">Mã comic</th>
-                    <th  class="p-2 border-2">Tên truyện</th>
-                    <th class="p-2 border-2">Thay đổi</th>
+                <tr class="bg-[#F5E4AF] ">
+                    <th class="p-2 border">Mã bình luận</th>
+                    <th class="p-2 border">Mã người dùng</th>
+                    <th class="p-2 border">Tên người dùng</th>
+                    <th class="p-2 border">Thời gian</th>
+                    <th class="p-2 border">Nội dung</th>
+                    <th class="p-2 border">Mã comic</th>
+                    <th  class="p-2 border">Tên truyện</th>
+                    <th class="p-2 border">Thay đổi</th>
 
 
                 </tr>
@@ -33,7 +33,7 @@
                     <td class="p-2 border-2 border-solid "><?= $value['comic_id'] ?></td>
                     <td class="p-2 border-2 border-solid "><?= $value['comic_name'] ?></td>
                     <td class="p-2 border-2 border-solid ">
-                        <button onclick="del('<?php echo $xoa_comment ?>')" class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 mt-2 ">Xóa</button>
+                        <button onclick="del('<?php echo $xoa_comment ?>')" class="p-2 px-4 bg-orange-400  text-white hover:bg-white hover:text-orange-400 mt-2 ">Xóa</button>
                     </td>
                 </tr>
                 <?php }?>

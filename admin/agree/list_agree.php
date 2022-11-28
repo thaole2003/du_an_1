@@ -1,15 +1,15 @@
 <!-- content  -->
 <div class="py-4 w-full">
-    <div class="bg-red-300">
+    <div class="bg-[#F5E4AF]">
         <h1 class="text-xl font-medium p-4">Truyện chờ phê duyệt</h1>
     </div>
     <div class="p-4">
-        <a href="index.php?act=add_comic"> <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400">Thêm</button></a>
+        <a href="index.php?act=add_comic"> <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400">Thêm</button></a>
     </div>
     <div class="p-4">
         <table class="table-auto w-full">
             <thead class="text-xl border-2">
-                <tr class="bg-red-200 ">
+                <tr class="bg-[#F5E4AF] ">
                     <th class="p-2 border-2">Tên người đăng</th>
                     <th class="p-2 border-2">Mã truyện</th>
                     <th class="p-2 border-2">Tên truyện</th>
@@ -41,8 +41,8 @@
 
                         <td class="p-2 border-2 border-solid ">
                             <!-- <form action="" method="post"></form> -->
-                            <a href="<?php echo $yess ?>"> <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ">Đồng ý</button></a> <br>
-                            <a href="<?php echo $noo ?>"> <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 mt-2">Từ chối</button></a>
+                            <a href="<?php echo $yess ?>"> <button class="p-2 px-4 bg-orange-400 border border-solid text-white hover:bg-white hover:text-orange-400 ">Đồng ý</button></a> <br>
+                            <a href="<?php echo $noo ?>"> <button class="p-2 px-4 bg-orange-400  border border-solid text-white hover:bg-white hover:text-orange-400 mt-2">Từ chối</button></a>
                         </td>
                     </tr>
                 <?php
