@@ -208,6 +208,7 @@ article .banner .col_3{
 }
 article .banner .col_3 img{
     height: 350px;
+    image-rendering: pixelated;
 }
 article .banner .col_4{
     position: absolute;
