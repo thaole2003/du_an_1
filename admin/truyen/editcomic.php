@@ -109,7 +109,7 @@ if (is_array($load_all_comic)) {
         <input type="radio" value="1" <?php if($vip == 1) echo "checked"; ?> name="vip" onclick="hien_thi(true)" />Truyện Svip
         <p id="loai_vip" style="display:<?= $block_none ?>">
             <label>Loại Svip</label><br>
-            <input class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="text" placeholder="price" name="price_comic" value="<?= $price ?>"/>
+            <input placeholder="Nhập giá truyện" class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="text" placeholder="price" name="price_comic" value="<?= $price ?>"/>
         </p>
         <div class="clear"></div>
         <button style="margin-top: 10px;" class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400" name="btn-update">Cập nhật</a></button>
