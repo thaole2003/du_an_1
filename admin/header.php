@@ -81,12 +81,13 @@ unset($_SESSION['again'])?>
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_tk">Thống kê</a></li>
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=agree">Phê duyệt</a></li>
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=lisk_bill">Bill</a></li>
+                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_contact">Contact</a></li>
                     <?php } elseif ($_SESSION['auth']['role'] == 3) {
                     ?>
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
-                                <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=wait">Duyệt lại</a></li>D
+                                <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=wait">Duyệt lại</a></li>
                         <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_bl">Bình luận</a></li>
-
+                      <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_contact">Contact</a></li>
 
                     <?php } ?>
                 </ul>
