@@ -491,11 +491,11 @@ if (isset($_GET['act'])) {
                         }
                     }
 
-                    // //kiểm tra nếu như file đã tồn tại thì sẽ ko cho phép up nữa a
-                    // if (file_exists($target_file)) {
-                    //     $file_ton_tai_f = "Tên file đã tồn tại trên server ko được ghi đè";
-                    //     $allowUpload = false;
-                    // }
+                    //kiểm tra nếu như file đã tồn tại thì sẽ ko cho phép up nữa a
+                    if (file_exists($target_file)) {
+                        $file_ton_tai_f = "Tên file đã tồn tại trên server ko được ghi đè";
+                        $allowUpload = false;
+                    }
 
                     //kiểm tra kiêu file không làm trong định dạng cho phép
                     if (!in_array($imageFileType, $allowtype)) {
