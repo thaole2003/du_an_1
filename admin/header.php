@@ -47,7 +47,7 @@ unset($_SESSION['succes_disagree']) ?>
 } 
 unset($_SESSION['again'])?>
 
-<body>
+<body class="bg-slate-100">
     <div class="home">
         <!--Phần Header-->
         <header>
@@ -62,32 +62,33 @@ unset($_SESSION['again'])?>
             </div>
     </div>
     <div class="home">
-        <div class="bg-orange-400">
+        <div class="bg-orange-300">
             <h1 class="p-4 font-medium text-2xl text-white">Quản trị website</h1>
         </div>
     </div>
     <div class="home">
         <div class="flex">
             <!-- nav  -->
-            <nav class="text-center p-4 mt-4 bg-orange-400 max-h-max w-[200px] ">
+            <nav class="text-center p-4 mt-4 bg-orange-300 max-h-max w-[200px] ">
                 <ul>
 
                     <?php if ($_SESSION['auth']['role'] == 1) { ?>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium  " href="index.php">Home</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_loai">Loại</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_kh">Người dùng</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_bl">Bình luận</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_tk">Thống kê</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=agree">Phê duyệt</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=lisk_bill">Bill</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_contact">Contact</a></li>
+
+                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium  " href="index.php">Home</a></li>
+                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=list_loai">Loại</a></li>
+                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
+                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 px-4 font-medium " href="index.php?act=list_kh">Người dùng</a></li>
+                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 px-4 font-medium " href="index.php?act=list_bl">Bình luận</a></li>
+                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=list_tk">Thống kê</a></li>
+                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=agree">Phê duyệt</a></li>
+                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 px-4 font-medium " href="index.php?act=lisk_bill">Bill</a></li>
                     <?php } elseif ($_SESSION['auth']['role'] == 3) {
                     ?>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
-                                <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=wait">Duyệt lại</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_bl">Bình luận</a></li>
-                      <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 rounded-lg px-4 font-medium " href="index.php?act=list_contact">Contact</a></li>
+                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
+                                <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=wait">Duyệt lại</a></li>
+                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=list_bl">Bình luận</a></li>
+
+
 
                     <?php } ?>
                 </ul>

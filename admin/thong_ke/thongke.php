@@ -1,12 +1,12 @@
 <!-- content  -->
 <div class="py-4 w-full">
-    <div class="bg-red-300">
-        <h1 class="text-xl font-medium p-4">Người dùng</h1>
+    <div class="bg-[#F5E4AF]">
+        <h1 class="text-xl font-medium p-4">Thống kê</h1>
     </div>
     <div class="p-4">
         <table class="table-auto w-full">
             <thead class="text-xl border-2">
-                <tr class="bg-red-200 ">
+                <tr class="bg-[#F5E4AF]">
                     <th class="p-2 border-2">Mã loại</th>
                     <th class="p-2 border-2">Tên loại</th>
                     <th class="p-2 border-2">Số lượng</th>
@@ -50,7 +50,7 @@
         </table>
     </div>
     <div class="p-4">
-        <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400"><a href="index.php?act=bieu_do">Xem biểu đồ</a></button>
+        <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400"><a href="index.php?act=bieu_do">Xem biểu đồ</a></button>
 
     </div>
 </div>
