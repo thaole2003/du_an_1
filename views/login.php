@@ -29,7 +29,7 @@
                 <a class="hover:text-sky-500" href="index.php?act=forgotpw">Quên mật khẩu</a>|<a class="hover:text-sky-500" href="index.php?act=register">Đăng kí</a>
             </div>
             <div class="flex m-2 gap-3">
-                <button name="loginn" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-orange-500"> Đăng Nhập</button> <button id="cancellogin" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-blue-500">Cancel</button>
+                <button name="loginn" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-orange-500"> Đăng Nhập</button> <button id="cancellogin" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-blue-500"><a href="index.php">Cancel</a></button>
             </div>
         </div>
         <div class="flex gap-2 justify-center m-3">

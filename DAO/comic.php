@@ -325,12 +325,6 @@ function delete_comic_img($comic_id)
     $sql = "DELETE FROM images where comic_id =$comic_id";
     return pdo_execute($sql);
 }
-// function delete_img_comic($id)
-// {
-//     $sql = "DELETE FROM images WHERE comic_id = '$id'";
-//     $img_comic = pdo_query($sql);
-//     return $img_comic;
-// }
 function delete_img_history($id)
 {
     $sql = "DELETE FROM history_comic_user WHERE id_comic = '$id'";
