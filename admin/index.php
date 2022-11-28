@@ -542,6 +542,7 @@ if (isset($_GET['act'])) {
             $list_all_loai = load_all_loai();
             include_once  'truyen/editcomic.php';
             break;
+            
             //Update_truyen
         case 'update_truyen':
             if (isset($_POST['btn-update'])) {
@@ -794,6 +795,10 @@ if (isset($_GET['act'])) {
             $list_bill = load_bill();
             include_once '../admin/bill/list_bill.php';
             break;
+            case 'list_contact':
+                $list_contact = select_contact();
+                include_once '../admin/contact.php';
+                break;
             //ngược lại không tồn tại act thì include_once "home.php"; 
         default:
             include_once "home.php";

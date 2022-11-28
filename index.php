@@ -571,6 +571,39 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $thong_bao = 'Xóa thành công';
             }
             break;
+            case "lien_he":
+                unset($_SESSION['send_hoten']);
+                unset($_SESSION['send_email']);
+                unset($_SESSION['send_comment']);
+                if(isset($_POST['btn_send'])){
+                    $flag_send = true;
+                    if(strlen(trim($_POST['ho_ten']))==0){
+                        $flag_send = false;
+                        $_SESSION['send_hoten']='không được để trống';
+                    }
+                    if(strlen(trim($_POST['email']))==0){
+                        $flag_send = false;
+                        $_SESSION['send_email']='không được để trống';
+                    } 
+                      if (!emailValid(trim($_POST['email']))) {
+                        $flag_send = false;
+                        $_SESSION['send_email']='Email phải đúng định dạng';
+                    }
+                    if(strlen(trim($_POST['comment']))==0){
+                        $flag_send = false;
+                        $_SESSION['send_comment']='không được để trống';
+                    }
+                 
+                    if($flag_send ==true){
+                        unset($_SESSION['send_hoten']);
+                        unset($_SESSION['send_email']);
+                        unset($_SESSION['send_comment']);
+                        add_contact(trim($_POST['ho_ten']),trim($_POST['email']),trim($_POST['comment']));
+                        $_SESSION['send_succes']='Đã gửi ý kiến của bạn';
+                    }
+                }
+                include_once 'views/lienhe.php';
+                break;
             //Phân trang 1 2 3 ...
         case 'trang':
             if (isset($_GET['id'])) {

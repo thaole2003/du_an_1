@@ -106,6 +106,17 @@ if (isset($_SESSION['hay_dn'])) {
 } ?>
 
 <?php
+if (isset($_SESSION['send_succes'])) {
+?>
+    <script>
+        alert('<?= $_SESSION['send_succes'] ?>');
+    </script>
+<?php
+    unset($_SESSION['send_succes']);
+} ?>
+
+
+<?php
 if (isset($_SESSION['dang_xuat'])) {
 ?>
     <script>
@@ -198,7 +209,7 @@ if (isset($_SESSION['dang_xuat'])) {
                 <li><a href="index.php?act=truyen_yeu_thich">Truyện yêu thích</a></li>
                 <li><a href="index.php?act=truyen_da_doc">Lịch sử đọc truyện</a></li>
                 <li><a href="index.php?act=hoa_don">Lịch sử nạp coin</a></li>
-                <li><a href="#">Liên hệ</a></li>
+                <li><a href="index.php?act=lien_he">Liên hệ</a></li>
                 <li class="coin"><a href="index.php?act=coin">Nạp coin</a></li>
             </ul>
         </nav>

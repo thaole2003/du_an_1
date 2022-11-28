@@ -145,4 +145,14 @@ function select_role(){
     return pdo_query($sql);
 }
 
+
+
+function add_contact($name,$email,$comment){
+    $sql = "INSERT into contact(name,email,comment) values('$name','$email','$comment')";
+    pdo_execute($sql);
+}
+function select_contact(){
+    $sql = "SELECT * from contact";
+    return pdo_query($sql);
+}
 ?>
