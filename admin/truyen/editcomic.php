@@ -6,7 +6,7 @@ if (is_array($load_all_comic)) {
 }
 ?>
 <div class="py-4 w-full">
-    <div class="bg-[#F5E4AF]">
+    <div class="bg-[#]">
         <h1 class="text-xl font-medium p-4">Sửa Truyện</h1>
     </div>
     <form action="index.php?act=update_truyen" method="POST" class="p-4 w-[100%]" enctype="multipart/form-data">

@@ -1,17 +1,41 @@
+
+<!-- admin coppy -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="../content/css/index.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="utf-8">
+    <title>Manager</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <!-- <link href="img/favicon.ico" rel="icon"> -->
+
+    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <script>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../content/csslib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../content/csslib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="../content/css/bootstrap.min.css">
+
+
+    <!-- Template Stylesheet -->
+    <link href="../content/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../content/css/index.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<script>
         function hien_thi(visible) {
             var loai = document.getElementById("loai_vip");
             loai.style.display = visible ? "" : "none";
@@ -46,50 +70,92 @@ unset($_SESSION['succes_disagree']) ?>
     <?php
 } 
 unset($_SESSION['again'])?>
-
-<body class="bg-slate-100">
-    <div class="home">
-        <!--Phần Header-->
-        <header>
-            <div class="up">
-                <div class="left">
-                    <a href="../index.php">
-                        <div class="img"><img src="../content/img/logo.png" alt=""></div>
-                    </a>
-                </div>
-
-                <div class="clear"></div>
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
-    </div>
-    <div class="home">
-        <div class="bg-orange-300">
-            <h1 class="p-4 font-medium text-2xl text-white">Quản trị website</h1>
         </div>
-    </div>
-    <div class="home">
-        <div class="flex">
-            <!-- nav  -->
-            <nav class="text-center p-4 mt-4 bg-orange-300 max-h-max w-[200px] ">
-                <ul>
-
-                    <?php if ($_SESSION['auth']['role'] == 1) { ?>
-
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium  " href="index.php">Home</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=list_loai">Loại</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 px-4 font-medium " href="index.php?act=list_kh">Người dùng</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 px-4 font-medium " href="index.php?act=list_bl">Bình luận</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=list_tk">Thống kê</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=agree">Phê duyệt</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500 px-4 font-medium " href="index.php?act=lisk_bill">Bill</a></li>
-                    <?php } elseif ($_SESSION['auth']['role'] == 3) {
-                    ?>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=list_truyen">Truyện</a></li>
-                                <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=wait">Duyệt lại</a></li>
-                        <li class="my-2"><a class="p-2 text-white hover:bg-white hover:text-orange-500  px-4 font-medium " href="index.php?act=list_bl">Bình luận</a></li>
+        <!-- Spinner End -->
 
 
-
-                    <?php } ?>
-                </ul>
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <a href="index.php" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="https://png.pngtree.com/png-clipart/20190904/original/pngtree-hand-drawn-flat-wind-user-avatar-icon-png-image_4492039.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0"><?php echo $_SESSION['auth']['name'] ?></h6>
+                        <span>Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <!-- <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a> -->
+                    <div class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Truyện</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="index.php?act=add_comic" class="dropdown-item">Thêm truyện</a>
+                            <a href="index.php?act=list_truyen" class="dropdown-item">Danh sách truyện</a>
+                        </div>
+                    </div>
+                    <a href="index.php?act=list_kh" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Người dùng</a>
+                    <a href="index.php?act=list_bl" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Bình luận</a>
+                    <a href="index.php?act=list_tk" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Thống kê</a>
+                    <a href="index.php?act=agree" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Phê duyệt</a>
+                    <a href="index.php?act=lisk_bill" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Hóa đơn</a>
+            
+                </div>
+            </nav>
+        </div>
+        <div  class="content">
+            <!-- nav start -->
+        <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <div class="navbar-nav align-items-center ms-auto">
+                    
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Notificatin</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Profile updated</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">New user added</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0">Password changed</h6>
+                                <small>15 minutes ago</small>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item text-center">See all notifications</a>
+                        </div>
+                    </div>
+                    <div class=" ">
+                        <a href="" class="nav-link ">
+                            <img class="rounded-circle me-lg-2" src="https://png.pngtree.com/png-clipart/20190904/original/pngtree-hand-drawn-flat-wind-user-avatar-icon-png-image_4492039.jpg" alt="" style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex ml-[5px]"><?php echo $_SESSION['auth']['name'] ?></span>
+                        </a>
+                     
+                    </div>
+                </div>
             </nav>

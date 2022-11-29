@@ -1,6 +1,6 @@
 <!-- content  -->
 <div class="py-4 w-full ">
-    <div class="bg-[#F5E4AF]">
+    <div class="">
         <h1 class="text-xl font-medium p-4">Danh sách loại truyện</h1>
     </div>
     <div class="p-4">

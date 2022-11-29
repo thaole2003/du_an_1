@@ -1,4 +1,4 @@
-<div class="py-4 w-full">
+<div class="py-4 w-full h-screen  mt-10">
     <div class="home_admin">
         <h1>Chào mừng bạn đến với giao diện quản lý website</h1>
         <h4>

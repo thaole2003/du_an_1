@@ -1,6 +1,6 @@
 <!-- content  -->
 <div class="py-4 w-full">
-    <div class="bg-red-300">
+    <div class="">
         <h1 class="text-xl font-medium p-4">Cập nhật bill</h1>
     </div>
     <form action="index.php?act=update_bill" method="POST" class="p-4">

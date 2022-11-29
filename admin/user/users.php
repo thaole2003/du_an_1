@@ -1,6 +1,6 @@
 <!-- content  -->
 <div class="py-4 w-full">
-    <div class="bg-[#F5E4AF]">
+    <div class="bg-[#]">
         <h1 class="text-xl font-medium p-4">Người dùng</h1>
     </div>
     <div class="p-4">
@@ -10,7 +10,7 @@
     <div class="p-4">
         <table class="table-auto w-full">
             <thead class="text-xl border-2">
-                <tr class="bg-[#F5E4AF] ">
+                <tr class="bg-[#47C5FC] ">
                     <th class="p-2 border-2">Mã người dùng</th>
                     <th class="p-2 border-2">Email</th>
                     <th class="p-2 border-2">Address</th>

@@ -5,7 +5,7 @@
     }
 ?>
 <div class="py-4 w-full">
-    <div class="bg-[#F5E4AF]">
+    <div class="">
         <h1 class="text-xl font-medium p-4">Sửa loại truyện</h1>
     </div>
     <form action="index.php?act=cap_nhat_loai" method="POST" class="p-4">

@@ -1,6 +1,6 @@
 <!-- content  -->
 <div class="py-4 w-full">
-    <div class="bg-[#F5E4AF]">
+    <div class="bg-[#]">
         <h1 class="text-xl font-medium p-4">Thêm Truyện</h1>
     </div>
     <form action="" method="POST" enctype="multipart/form-data" class="p-4 w-[500px]">
