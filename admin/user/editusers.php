@@ -1,6 +1,6 @@
 <!-- content  -->
 <div class="py-4 w-full ">
-    <div class="bg-[#F5E4AF]">
+    <div class="bg-[#]">
         <h1 class="text-xl font-medium p-4">Sửa người dùng</h1>
     </div>
     <div class=" rounded-lg   flex flex-col w-2/3 m-4 p-4  bg-white " >

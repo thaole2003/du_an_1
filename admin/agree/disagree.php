@@ -1,6 +1,6 @@
 <!-- content  -->
 <div class="py-4 w-full">
-    <div class="bg-red-300">
+    <div class="">
         <h1 class="text-xl font-medium p-4">Lí do từ chối</h1>
     </div>
     <div class="p-4">
