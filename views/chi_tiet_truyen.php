@@ -75,7 +75,7 @@
                         <?php if($detail_comic['vip'] == 1){
                         ?>
                         <form action="#" method="POST">
-                            <a href="index.php?act=coin"><button name="coin"><?= $detail_comic['price'] ?> Coin</button></a>
+                            <a href="index.php?act=coin"><button name="coin"><?= number_format($detail_comic['price']); ?> Coin</button></a>
                         </form>
                         <?php } ?>
                     </div>

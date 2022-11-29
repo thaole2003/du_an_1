@@ -93,7 +93,7 @@ function history_comic($id)
      FROM comic c
      join history_comic_user huc
      on huc.id_comic = c.id
-    WHERE huc.id_user=$id order by c.id desc";
+    WHERE huc.id_user=$id order by huc.id desc";
     return pdo_query($sql);
 }
 function select_history_comic_by_user($id)
