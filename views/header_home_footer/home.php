@@ -146,7 +146,17 @@
 
         for ($i = 0; $i < $dem; $i++) {
         ?>
-            <a href="index.php?act=trang&id=<?= $i ?>"><?= $i + 1 ?></a>
+            <a style="background-color: 
+            <?php
+                if(isset($_GET['id'])){
+                    if($_GET['id'] == $i){
+                        echo '#ed9c56;';
+                    }else{
+                        echo "";
+                    }
+                }
+            ?>
+            " href="index.php?act=trang&id=<?= $i ?>"><?= $i + 1 ?></a>
         <?php
         }
         ?>
