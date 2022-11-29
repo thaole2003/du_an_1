@@ -154,11 +154,12 @@
                     }else{
                         echo "";
                     }
-                }
-                if($i == 0){
-                    echo '#ed9c56;';
                 }else{
-                    echo "";
+                    if($i == 0){
+                        echo '#ed9c56;';
+                    }else{
+                        echo "";
+                    }
                 }
             ?>
             " href="index.php?act=trang&id=<?= $i ?>"><?= $i + 1 ?></a>
