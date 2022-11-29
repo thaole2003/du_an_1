@@ -2,7 +2,7 @@
 <article>
     <div class="nen">
         <div class="trangchu_phim">
-            <a href="#">Trang chủ</a> / <a href="index.php?act=detail&id=<?= $id ?>"><?= $detail_comic['name'] ?></a>
+            <a href="index.php">Trang chủ</a> / <a href="index.php?act=detail&id=<?= $id ?>"><?= $detail_comic['name'] ?></a>
         </div>
         <div class="col">
             <div class="product">
