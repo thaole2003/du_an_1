@@ -593,6 +593,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                         break;
                         
                     }
+
                     else{
                         if (!in_array($imageFileType, $allowType)) {
                             $_SESSION['bill'] = "Chỉ được upload những định dạng jpg, jpeg,png";
@@ -600,8 +601,14 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                             include "views/chi_tiet_coin.php";   
                             break;
                         }
+                        if (file_exists($target_file)) {
+                            $_SESSION['bill']= ' file đã tồn tại trên sever không được ghi đè';
+                            $flag_bill = false;
+                            include "views/chi_tiet_coin.php";   
+                            break;
+                        }
                     }
-                    //kiểm tra kiêu file không làm trong định dạng cho phép
+              
           
 
                     if ($flag_bill == true) {
