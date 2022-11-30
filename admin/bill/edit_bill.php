@@ -37,7 +37,7 @@
         <input type="radio" value="2" name="status" onclick="hien_thi(true)" />Từ chối
         <p id="loai_vip" style="display:none">
             <label>Lý do</label><br>
-            <input placeholder="Nhập giá truyện" class=" border-0 my-2 focus:outline-none border-solid border border-yellow-400 w-full  h-[40px] " type="text" placeholder="Mời nhập lý do" name="price_comic"/>
+            <input  class=" border-0 my-2 focus:outline-none border-solid border border-yellow-400 w-full  h-[40px] " type="text" placeholder="Mời nhập lý do" name="why_not"/>
         </p>
         <br>
         <div class="py-2">
