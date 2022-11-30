@@ -13,7 +13,7 @@
                 <th>Mệnh giá</th>
                 <th>Tình trạng</th>
                 <th>Coin nhận được</th>
-                <th></th>
+                <th>Hóa đơn</th>
             </tr>
             <?php
             foreach ($bill as $value) {
@@ -62,13 +62,9 @@
                     <td><?= number_format($price); ?> VNĐ</td>
                     <td style="color:<?= $color ?>"><?= $st ?></td>
                     <td><?= $coin ?> Coin</td>
-                    <?php
-                    if ($status != 1) {
-                    ?>
-                        <td><a class=" p-2 px-4 bg-orange-400 text-white hover:bg-blue-400 cursor-pointer" onclick="del_gd('<?= $huy_don ?>')">Hủy giao dịch</a></td>
-                    <?php
-                    }
-                    ?>
+                 
+                     <td class="p-2 border-2 border-solid "><img class="w-[50px] h-[70px]" src="./content/uploads/bill/<?= $images ?>" alt="">  </td>
+                 
 
                 </tr>
             <?php
