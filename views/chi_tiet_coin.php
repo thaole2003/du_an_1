@@ -1,6 +1,6 @@
 <article>
     <table class="ct_coin">
-        <form action="index.php?act=thanh_toan" method="POST">
+        <form action="index.php?act=thanh_toan" method="POST" enctype="multipart/form-data">
             <tr>
                 <td colspan="2">
                     <h1>Chi tiết giao dịch</h1>
@@ -93,6 +93,18 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <div class="vien mt-[-6px]"></div>
+                    <p class="">Hóa đơn chuyển tiền</p>
+                    <br>
+                    <span><?php echo isset($_SESSION['bill'])?$_SESSION['bill']:'' ?></span>
+                </td>
+                <td class="items-center">
+                    <div class="vien "></div>
+                    <input  type="file" name="fileupload" id="fileToUpload">
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2">
                     <div class="vien"></div>
                     <b>Chuyển khoản tới ngân hàng BIDV <br>
@@ -102,6 +114,7 @@
                     </b>
                 </td>
             </tr>
+        
             <tr>
                 <td colspan="2"><button name="nap_coin" class="cursor-pointer">Thanh toán</button></td>
             </tr>

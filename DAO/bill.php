@@ -1,6 +1,6 @@
 <?php 
-function insert_bill($id_user,$name,$price,$email,$address,$phone,$status,$date){
-    $sql = "insert into bill(id_user,name,price,email,address,phone,status,date) values('$id_user','$name','$price','$email','$address','$phone','$status','$date')";
+function insert_bill($id_user,$name,$price,$email,$address,$phone,$status,$date,$name_img){
+    $sql = "insert into bill(id_user,name,price,email,address,phone,status,date,images) values('$id_user','$name','$price','$email','$address','$phone','$status','$date','$name_img')";
     pdo_execute($sql);
 }
 function load_all_bill($id_user){

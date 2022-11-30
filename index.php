@@ -539,6 +539,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             include "views/chi_tiet_coin.php";
             break;
         case 'thanh_toan':
+            unset($_SESSION['bill']);
             if (isset($_POST['nap_coin'])) {
                 $date = date('m/d/Y h:i:s a', time());
                 $id_user = $_SESSION['auth']['id'];
@@ -548,9 +549,65 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $address = $_SESSION['auth']['address'];
                 $phone = $_SESSION['auth']['phone'];
                 $status = 0;
+                $flag_bill=true;
+                // echo '<pre>';
+                // var_dump($_FILES["fileupload"]);
+                // die;
+                if ($_FILES["fileupload"]['name']=='') {
+                    $_SESSION['bill'] = 'Không tồn tại file để upload';
+                    include "views/chi_tiet_coin.php";   
+                    break;
+                } else {
+                    //đã tồn tại
+                    //Đường dẫn đích
+                    $target_dir = "./content/" . $url_img . "bill/";
 
-                insert_bill($id_user, $name, $price, $email, $address, $phone, $status, $date);
-                header('location:index.php?act=hoa_don');
+                    //Đường dẫn vào file đích
+                    $target_file = $target_dir . $_FILES['fileupload']['name'];
+
+                    //lấy phần mở rộng của file (là đuôi file, định dạng) vd: png, jpg,...
+                    $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+
+                    //định dạng được chấp nhận
+                    $allowType = ['jpg', 'png','JPG','PNG'];
+
+                    //kiểm tra xem phải ảnh ko nếu là ảnh thì trả về true ngược lại
+                    //ko là ảnh trả về false
+                    $check = getimagesize($_FILES['fileupload']['tmp_name']);
+                    if ($check == false) {
+                        $_SESSION['bill'] = "Đây không phải là file ảnh";
+                        $flag_bill = false;
+                        include "views/chi_tiet_coin.php";   
+                        break;
+                        
+                    }
+                    else{
+                        if (!in_array($imageFileType, $allowType)) {
+                            $_SESSION['bill'] = "Chỉ được upload những định dạng jpg, jpeg,png";
+                            $flag_bill = false;
+                            include "views/chi_tiet_coin.php";   
+                            break;
+                        }
+                    }
+                    //kiểm tra kiêu file không làm trong định dạng cho phép
+          
+
+                    if ($flag_bill == true) {
+                        //xử lý di chuyển file tạm vào thư mục cần lưu trữ
+                        $name_img = $_FILES["fileupload"]["name"];
+                        // Upload file
+                        move_uploaded_file($_FILES['fileupload']['tmp_name'],  $target_file);
+                        insert_bill($id_user, $name, $price, $email, $address, $phone, $status, $date,$name_img);
+                        header('location:index.php?act=hoa_don');
+                    }
+                }
+                
+                  
+                    
+               
+                 
+
+                
             }
             break;
             //Hoa_don
@@ -627,3 +684,6 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     include_once "views/header_home_footer/home.php";
 }
 include_once "views/header_home_footer/footer.php";
+?>
+<img src="./" alt="">
+

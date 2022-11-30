@@ -28,6 +28,8 @@
                     <th class="p-2 border">Thời gian nạp</th>
                     <th class="p-2 border">Mệnh giá</th>
                     <th class="p-2 border">Tình trạng</th>
+                    <th class="p-2 border">Bằng chứng</th>
+                    
                     <th></th>
                 </tr>
             </thead>
@@ -64,6 +66,7 @@
                             <td class="p-2 border-2 border-solid "><?= $date ?></td>
                             <td class="p-2 border-2 border-solid "><?= number_format($price); ?> VNĐ</td>
                             <td class="p-2 border-2 border-solid " style="color: <?= $color ?>"><?= $status ?></td>
+                            <td class="p-2 border-2 border-solid "><img class="w-[50px] h-[70px]" src="../content/uploads/bill/<?= $images ?>" alt="">  </td>
                             <td class="p-2 border-2 border-solid ">
                                 <?php
                                 if ($status != "Giao dịch thành công") {
