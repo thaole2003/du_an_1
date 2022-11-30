@@ -293,7 +293,6 @@ if (isset($_GET['act'])) {
             $load_all_truyen = comic_select_all_search($key, $category_id);
             include_once  "../admin/truyen/comic.php";
             break;
-
             //phê duyệt truyện
         case 'agree':
             $comic_select_all_bystatus = comic_select_all_bystatus();
@@ -708,6 +707,8 @@ if (isset($_GET['act'])) {
             //thong ke
         case 'list_tk':
             $statistical = statistical_truyen();
+            $statistical_coin=thong_ke_coin();
+            $top_coin=select_top_coin();
             include_once 'thong_ke/thongke.php';
             break;
             //biểu đồ

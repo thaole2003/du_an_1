@@ -16,10 +16,10 @@
                         <div class="flex flex-col p-2 m-5 w-1/2">
                             <label class="w-4/12 " for="">
                                 <i class="fas fa-xs fa-star-of-life pt-2"></i> Họ Tên</label>
-                                <input placeholder="<?php echo isset($_SESSION['send_hoten'])? $_SESSION['send_hoten'] : '' ?>" class="w-12/12 h-[35px] rounded-lg mt-2" type="text" name="ho_ten"></div>
-                        <div class="flex flex-col p-2 m-5 w-1/2"><label class="w-4/12 " for=""><i class="fas fa-xs fa-star-of-life pt-2"></i> Email</label> <input placeholder="<?php echo isset($_SESSION['send_email'])? $_SESSION['send_email'] : '' ?>" class="w-12/12 h-[35px] rounded-lg mt-2" type="text" name="email"></div>
+                                <input placeholder="<?php echo isset($_SESSION['send_hoten'])? $_SESSION['send_hoten'] : '' ?>" class="w-12/12 h-[35px]  mt-2" type="text" name="ho_ten"></div>
+                        <div class="flex flex-col p-2 m-5 w-1/2"><label class="w-4/12 " for=""><i class="fas fa-xs fa-star-of-life pt-2"></i> Email</label> <input placeholder="<?php echo isset($_SESSION['send_email'])? $_SESSION['send_email'] : '' ?>" class="w-12/12 h-[35px]  mt-2" type="text" name="email"></div>
                         </div>
-                        <div class="flex flex-col p-2 m-5 w-full "><label class="w-2/12 " for=""><i class="fas fa-xs fa-star-of-life pt-2"></i> Bình luận</label> <textarea placeholder="<?php echo isset($_SESSION['send_comment'])? $_SESSION['send_comment'] : '' ?>" class="w-10/12 h-[100px] rounded-lg mt-2" type="text" name="comment"></textarea></div>
+                        <div class="flex flex-col p-2 m-5 w-full "><label class="w-2/12 " for=""><i class="fas fa-xs fa-star-of-life pt-2"></i> Bình luận</label> <textarea placeholder="<?php echo isset($_SESSION['send_comment'])? $_SESSION['send_comment'] : '' ?>" class="w-10/12 h-[100px]  mt-2" type="text" name="comment"></textarea></div>
 </div>
 <div class="text-center pb-5">
 <button name="btn_send" class="rounded-lg m-2 bg-blue-300 p-2 hover:bg-yellow-300 justify-items-center">Send it</button>

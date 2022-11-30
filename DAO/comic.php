@@ -363,6 +363,8 @@ function statistical_truyen()
    INNER JOIN comic
    ON comic.category_id = category.id
    GROUP BY category_id";
+   
+  
     return pdo_query($sql);
 }
 

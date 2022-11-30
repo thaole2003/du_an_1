@@ -1,9 +1,11 @@
 <!-- content  -->
 <div class="py-4 w-full">
-    <div class="">
-        <h1 class="text-xl font-medium p-4">Thống kê</h1>
-    </div>
+   
+   
+    
     <div class="p-4">
+    <h1 class=" font-medium text-2xl p-2 ">Thống kê Truyện theo loại</h1>
+   
         <table class="table-auto w-full">
             <thead class="text-xl border-2">
                 <tr class="bg-[#47C5FC]">
@@ -42,6 +44,47 @@
                     <td class="p-2 border-2 border-solid "><?= $min_like?></td>
                     <td class="p-2 border-2 border-solid "><?= round($avg_like,1)?></td>
                     <td class="p-2 border-2 border-solid "><?= $max_like?></td>
+
+                </tr>
+                <?php }?>
+
+            </tbody>
+        </table>
+        <h1 class=" font-medium text-2xl p-2 ">Thống kê Coin</h1>
+        <div class="">
+            <h1 class="font-medium p-2">Số lượng người nạp coin:<?=$statistical_coin['number'] ?></h1>
+            <h1 class="font-medium p-2">Tổng coin nạp:<?= number_format ($statistical_coin['coin_sum'] )?></h1>
+            <h1 class="font-medium p-2">Coin nạp trung bình:<?= number_format( $statistical_coin['coin_tb'] )?></h1>
+            <h1 class="font-medium p-2">Coin nạp ít nhât:<?= number_format( $statistical_coin['coin_min'] )?></h1>
+            <h1 class="font-medium p-2">Coin nạp nhiều nhất:<?= number_format( $statistical_coin['coin_max'] )?></h1>
+        </div>
+        <h1 class="font-medium text-xl">Top 5 người nạp coin nhiều nhất</h1>
+        <table class="table-auto w-10/12">
+            <thead class="text-xl border-2">
+                <tr class="bg-[#47C5FC]">
+                    <th class="p-2 border-2">ID</th>
+                    <th class="p-2 border-2">Name</th>
+                    <th class="p-2 border-2">Coin</th>
+                    <th class="p-2 border-2">Email</th>
+                    <th class="p-2 border-2">Phone number</th>
+                    <th class="p-2 border-2">Time</th>
+                </tr>
+            </thead>
+            <tbody class="font-medium text-lg border-2">
+                <?php  
+                // echo "<pre>";
+                // var_dump($top_coin);
+                foreach($top_coin  as $key =>$val){ 
+                extract($val);
+                    ?>
+                <tr class="text-center  ">
+                    <td class="p-2 border-2 border-solid "><?= $id_user ?></td>
+                    <td class="p-2 border-2 border-solid "><?= $name ?></td>
+                    <td class="p-2 border-2 border-solid "><?= number_format( $total_price )?></td>
+                    <td class="p-2 border-2 border-solid "><?= $email ?></td>
+                    <td class="p-2 border-2 border-solid "><?= $phone ?></td>
+                    <td class="p-2 border-2 border-solid "><?= $date ?></td>
+                   
 
                 </tr>
                 <?php }?>
