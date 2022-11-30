@@ -97,7 +97,11 @@
                     <div class="vien mt-[-6px]"></div>
                     <p class="">Hóa đơn chuyển tiền</p>
                     <br>
-                    <span><?php echo isset($_SESSION['bill'])?$_SESSION['bill']:'' ?></span>
+                    
+                    <span>
+                        <br><?php echo isset($_SESSION['bill'])?$_SESSION['bill']:'' ?>
+                    
+                    <?php  unset($_SESSION['bill']) ?></span>
                 </td>
                 <td class="items-center">
                     <div class="vien "></div>

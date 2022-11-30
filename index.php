@@ -17,6 +17,9 @@ include_once "./DAO/comic.php";
 include_once  "./DAO/bill.php";
 $list_all_loai = load_all_loai();
 include_once  "./DAO/user.php";
+if(isset($_SESSION['auth'])){
+    $select_tb= select_tb($_SESSION['auth']['id']);
+}
 include_once  "views/header_home_footer/header.php";
 include "global.php";
 date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -25,6 +28,8 @@ $like_comic = load_all_truyen_like();
 $comic_by_view = comic_by_view();
 $comic_by_date = comic_by_date(0, 18);
 $comic_svip = load_comic_svip();
+
+
 // echo '<pre>';
 // print_r($count);
 //Controller
@@ -517,6 +522,13 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
         case 'coin':
             include "views/coin.php";
             break;
+        case 'del_tb':
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                
+            }del_tb($id);
+            header("location:index.php");
+            break;
         case 'chi_tiet_coin':
             if ($_SESSION['auth']) {
                 if (isset($_POST['nap_coin'])) {
@@ -581,6 +593,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                         break;
                         
                     }
+
                     else{
                         if (!in_array($imageFileType, $allowType)) {
                             $_SESSION['bill'] = "Chỉ được upload những định dạng jpg, jpeg,png";
@@ -588,8 +601,14 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                             include "views/chi_tiet_coin.php";   
                             break;
                         }
+                        if (file_exists($target_file)) {
+                            $_SESSION['bill']= ' file đã tồn tại trên sever không được ghi đè';
+                            $flag_bill = false;
+                            include "views/chi_tiet_coin.php";   
+                            break;
+                        }
                     }
-                    //kiểm tra kiêu file không làm trong định dạng cho phép
+              
           
 
                     if ($flag_bill == true) {

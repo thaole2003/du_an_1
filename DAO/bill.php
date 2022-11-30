@@ -53,6 +53,7 @@ function check_his($id_comic,$id_user){
     $his = pdo_query_one($sql);
     return $his;
 }
+
 // thong ke coin
 function thong_ke_coin(){
     $sql="SELECT COUNT(id) as number, 
@@ -67,3 +68,19 @@ function select_top_coin(){
     GROUP BY bill.id_user ORDER BY total_price DESC  LIMIT 5;";
     return pdo_query($sql);
 }
+
+function select_tb($id_user){
+    $sql = "SELECT * FROM thongbao WHERE id_user = $id_user order by id desc ";
+    return pdo_query($sql);
+}
+
+function insert_tb($id_user,$content,$date){
+    $sql = "INSERT INTO thongbao(id_user,content,date) VALUES ('$id_user','$content','$date')";
+    pdo_execute($sql);
+}
+function del_tb($id){
+    $sql = "DELETE from thongbao where id = $id";
+    pdo_execute($sql);
+}
+
+?>
