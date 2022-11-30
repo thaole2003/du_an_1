@@ -53,3 +53,17 @@ function check_his($id_comic,$id_user){
     $his = pdo_query_one($sql);
     return $his;
 }
+// thong ke coin
+function thong_ke_coin(){
+    $sql="SELECT COUNT(id) as number, 
+    SUM(price) as coin_sum, 
+    AVG(price) as coin_tb,
+    MIN(price)as coin_min , 
+    MAX(price) as coin_max FROM bill WHERE `status`=1";
+    return pdo_query_one($sql);
+}
+function select_top_coin(){
+    $sql="SELECT bill.id_user, name, SUM(price) as total_price,bill.email,bill.phone,bill.date FROM bill WHERE `status`=1
+    GROUP BY bill.id_user ORDER BY total_price DESC  LIMIT 5;";
+    return pdo_query($sql);
+}
