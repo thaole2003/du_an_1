@@ -756,7 +756,7 @@ if (isset($_GET['act'])) {
                 $id = $_POST['id'];
                 $price = $_POST['price'];
                 $id_user = $_POST['id_user'];
-
+                $date = date('m/d/Y h:i:s a', time());
                 if ($status == 1) {
                     if ($price == 20000) {
                         $coin = 20000;
@@ -773,8 +773,10 @@ if (isset($_GET['act'])) {
                     if ($price == 500000) {
                         $coin = 550000;
                     }
+                    $content = 'bạn đã được cộng '.$coin.'coin';
                     update_bill($id, $status);
                     update_coin($id_user, $coin);
+                    insert_tb($id_user,$content,$date);
                     $user = get_one_user($id_user);
                     $_SESSION['auth'] = [
                         'id' => $user['id'],
@@ -787,11 +789,22 @@ if (isset($_GET['act'])) {
                         'address' => $user['address']
                     ];
                 } else if ($status == 2) {
-                    update_bill($id, $status);
-                } else {
+                    if(strlen(trim($_POST['why_not'])) !=0){
+                        
+                        $content='bạn không được duyệt với lí do '.$_POST['why_not'];
+                        insert_tb($id_user,$content,$date);
+                        update_bill($id, $status);
+                    }else{
+                         $_SESSION['err_whynot'] ='yêu cầu nhập lí do';
+                        header('location:index.php?act=edit_bill&id='.$id);
+                   }
+                   
+                } else if($status ==0) {
                     update_bill($id, $status);
                 }
+             
             }
+
             $list_bill = load_bill();
             include_once '../admin/bill/list_bill.php';
             break;

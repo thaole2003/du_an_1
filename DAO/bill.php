@@ -53,3 +53,18 @@ function check_his($id_comic,$id_user){
     $his = pdo_query_one($sql);
     return $his;
 }
+function select_tb($id_user){
+    $sql = "SELECT * FROM thongbao WHERE id_user = $id_user order by id desc ";
+    return pdo_query($sql);
+}
+
+function insert_tb($id_user,$content,$date){
+    $sql = "INSERT INTO thongbao(id_user,content,date) VALUES ('$id_user','$content','$date')";
+    pdo_execute($sql);
+}
+function del_tb($id){
+    $sql = "DELETE from thongbao where id = $id";
+    pdo_execute($sql);
+}
+
+?>
