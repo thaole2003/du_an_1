@@ -393,6 +393,8 @@ if (isset($_GET['act'])) {
                 $view = 0;
                 $like = 0;
                 $category = $_POST['category'];
+                $number_chapter = $_POST['number_chapter'];
+                $noi_dung = $_POST['noi_dung'];
                 if ($_POST['vip'] == 0) {
                     $price_comic = 0;
                     $vip = 0;
@@ -492,10 +494,10 @@ if (isset($_GET['act'])) {
                     }
 
                     //kiểm tra nếu như file đã tồn tại thì sẽ ko cho phép up nữa a
-                    if (file_exists($target_file)) {
-                        $file_ton_tai_f = "Tên file đã tồn tại trên server ko được ghi đè";
-                        $allowUpload = false;
-                    }
+                    // if (file_exists($target_file)) {
+                    //     $file_ton_tai_f = "Tên file đã tồn tại trên server ko được ghi đè";
+                    //     $allowUpload = false;
+                    // }
 
                     //kiểm tra kiêu file không làm trong định dạng cho phép
                     if (!in_array($imageFileType, $allowtype)) {
@@ -506,12 +508,13 @@ if (isset($_GET['act'])) {
 
                 if ($allowUpload == true) {
                     $id = comic_insert($namee, $detail, $author, $date, $intro, $view, $like, $category, $name_img, $st, $po, $vip, $price_comic);
+                    isert_chapter($number_chapter, $noi_dung,$id);
                     //xử lý di chuyển file tạm vào thư mục cần lưu trữ
                     for ($i = 0; $i < $countfiles; $i++) {
                         $filename = $_FILES["file"]["name"][$i];
                         // Upload file
                         move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_dir . $filename);
-                        up_load_img($id, $filename);
+                        up_load_img($number_chapter, $filename);
                     }
                     $upload_ok = "Upload thành công";
                 }
@@ -523,7 +526,7 @@ if (isset($_GET['act'])) {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 delete_img_history($id);
-                delete_comic_img($id);
+                // delete_comic_img($id);
                 delete_img_love($id);
                 delete_img_comment($id);
                 delete_comic($id);
@@ -535,8 +538,8 @@ if (isset($_GET['act'])) {
         case 'sua_truyen':
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
-                $load_all_comic = comic_select_one($id);
-                $img_comic = img_comic($id);
+                $load_all_comic = comic_select_one($id,2);
+                $img_comic = img_comic_chapter(2,$id);
             }
             $list_all_images = load_all_image();
             $list_all_loai = load_all_loai();
@@ -553,7 +556,7 @@ if (isset($_GET['act'])) {
                 $author = $_POST['author'];
                 $intro = $_POST['intro'];
                 $category_id = $_POST['category_id'];
-                $name_cu = comic_select_one($id)['name'];
+                $name_cu = comic_select_one($id,2)['name'];
                 $ten_cu = load_all_comic_edit($name_cu);
                 if ($_POST['vip'] == 0) {
                     $price_comic = 0;

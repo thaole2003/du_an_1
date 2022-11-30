@@ -41,7 +41,7 @@ on c.category_id = ca.id
     $sql .= " order by c.id desc";
     return pdo_query($sql);
 }
-function comic_select_one($id)
+function comic_select_one($id,$number_chapter)
 {
     $sql = "SELECT 
     c.*, 
@@ -50,7 +50,11 @@ function comic_select_one($id)
     from comic c
     join category ca
     on c.category_id = ca.id
-    where c.id = '$id'
+    JOIN chapter ch 
+    on C.id = ch.id_comic
+    JOIN images i
+    ON ch.number_chapter = i.number_chapter
+    where c.id = $id and ch.number_chapter = $number_chapter
     ";
     $truyen = pdo_query_one($sql);
     return $truyen;
@@ -290,9 +294,9 @@ function select_name_comic()
     $sql = "SELECT id,name FROM comic";
     return pdo_query($sql);
 }
-function up_load_img($id_comic, $name)
+function up_load_img($number_chapter, $name)
 {
-    $sql = "INSERT INTO images (name,comic_id) VALUES ('$name','$id_comic')";
+    $sql = "INSERT INTO images (name,number_chapter) VALUES ('$name','$number_chapter')";
     pdo_execute($sql);
 }
 function name_comic($id)
@@ -304,6 +308,15 @@ function name_comic($id)
 function img_comic($id)
 {
     $sql = "SELECT A.`name`,B.`name` as img, B.id as id_new FROM comic A INNER JOIN images B on A.id = B.comic_id WHERE A.id = '$id' order by B.`name`";
+    $img_comic = pdo_query($sql);
+    return $img_comic;
+}
+function img_comic_chapter($number_chapter,$id_comic)
+{
+    $sql = "SELECT C.name as img, C.id as id_new
+    FROM comic A INNER JOIN chapter B on A.id = B.id_comic
+    INNER JOIN images C ON B.number_chapter = C.number_chapter
+    WHERE B.number_chapter = '$number_chapter' and A.id = '$id_comic' order by c.`name`";
     $img_comic = pdo_query($sql);
     return $img_comic;
 }
@@ -410,4 +423,10 @@ function load_all_love_comic($id_user)
 function load_comic_svip(){
     $sql = "SELECT * from comic where vip = 1 and status =2  ORDER BY id DESC LIMIT 0,6";
     return pdo_query($sql);
+}
+//chapter
+function isert_chapter($number_chapter, $noi_dung,$id_comic)
+{
+    $sql = "INSERT INTO chapter (number_chapter,noi_dung,id_comic) VALUES ('$number_chapter','$noi_dung','$id_comic')";
+    pdo_execute($sql);
 }
