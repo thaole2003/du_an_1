@@ -126,7 +126,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
             }
-            $comic = comic_select_one($id);
+            $comic = comic_select_one($id,2);
             // echo '<pre>';
             // print_r($comic);
             // die;
@@ -183,7 +183,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
 
-                $comic = comic_select_one($id);
+                $comic = comic_select_one($id,2);
 
                 update_view($id);
                 $doc_truyen = img_comic($id);
