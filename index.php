@@ -17,6 +17,9 @@ include_once "./DAO/comic.php";
 include_once  "./DAO/bill.php";
 $list_all_loai = load_all_loai();
 include_once  "./DAO/user.php";
+if(isset($_SESSION['auth'])){
+    $select_tb= select_tb($_SESSION['auth']['id']);
+}
 include_once  "views/header_home_footer/header.php";
 include "global.php";
 date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -25,6 +28,8 @@ $like_comic = load_all_truyen_like();
 $comic_by_view = comic_by_view();
 $comic_by_date = comic_by_date(0, 18);
 $comic_svip = load_comic_svip();
+
+
 // echo '<pre>';
 // print_r($count);
 //Controller

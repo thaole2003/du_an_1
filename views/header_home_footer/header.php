@@ -11,6 +11,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="./content/csslib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="./content/csslib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="./content/css/bootstrap.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="./content/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="./content/css/index.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -184,6 +200,7 @@ if (isset($_SESSION['dang_xuat'])) {
                         </form>
                     <?php } ?>
                 </div>
+                <?php ob_start(); ?>
                 <div class="clear"></div>
             </div>
     </div>
@@ -210,7 +227,36 @@ if (isset($_SESSION['dang_xuat'])) {
                 <li><a href="index.php?act=truyen_da_doc">Lịch sử đọc truyện</a></li>
                 <li><a href="index.php?act=hoa_don">Lịch sử nạp coin</a></li>
                 <li><a href="index.php?act=lien_he">Liên hệ</a></li>
-                <li class="coin"><a href="index.php?act=coin">Nạp coin</a></li>
+               
+               <li><a href="index.php?act=coin">Nạp coin</a></li>
+                <!-- <li class="coin"><a href="">Nạp coin</a></li> -->
+                <?php 
+                if(isset($_SESSION['auth'])){?>
+             
+                <li><a href=""> <div class="nav-item dropdown">
+                  
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fa fa-bell me-lg-2"></i>
+                            <span class="d-none d-lg-inline-flex">Thông báo<object data="o" type=""></object></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                           
+                        <?php foreach($select_tb as $key => $value){ 
+                            extract($value)?>
+
+                        <a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0"><?php echo $content ?></h6>
+                           
+                            </a>
+                            <button onclick="del(a)">xóa</button>
+                            <hr class="dropdown-divider">
+                            <?php  } ?>
+                           
+                            <!-- <hr class="dropdown-divider"> -->
+                        
+                        </div>
+                    </div></a></li>
+                    <?php  }?>
             </ul>
         </nav>
     </div>

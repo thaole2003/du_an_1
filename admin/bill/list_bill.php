@@ -75,8 +75,6 @@
                                 <?php
                                 }
                                 ?>
-
-                                <button onclick="del('<?php echo $xoa_bill ?>')" class="p-2 px-8 bg-orange-400  text-white hover:bg-white hover:text-orange-400 mt-2 border border-yellow-400 ">Xóa</button>
                             </td>
                         </tr>
                     </form>
