@@ -789,18 +789,22 @@ if (isset($_GET['act'])) {
                         'address' => $user['address']
                     ];
                 } else if ($status == 2) {
-                    if(isset($_POST['why_not'])){
-                        $content='bạn không được duyệt với lí do';
+                    if(strlen(trim($_POST['why_not'])) !=0){
+                        
+                        $content='bạn không được duyệt với lí do '.$_POST['why_not'];
                         insert_tb($id_user,$content,$date);
                         update_bill($id, $status);
                     }else{
-                        $err_whynot='yêu cầu nhập lí do';
-                    }
+                         $_SESSION['err_whynot'] ='yêu cầu nhập lí do';
+                        header('location:index.php?act=edit_bill&id='.$id);
+                   }
                    
                 } else if($status ==0) {
                     update_bill($id, $status);
                 }
+             
             }
+
             $list_bill = load_bill();
             include_once '../admin/bill/list_bill.php';
             break;

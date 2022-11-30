@@ -522,6 +522,13 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
         case 'coin':
             include "views/coin.php";
             break;
+        case 'del_tb':
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                
+            }del_tb($id);
+            header("location:index.php");
+            break;
         case 'chi_tiet_coin':
             if ($_SESSION['auth']) {
                 if (isset($_POST['nap_coin'])) {

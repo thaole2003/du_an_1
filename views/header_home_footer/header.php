@@ -243,12 +243,17 @@ if (isset($_SESSION['dang_xuat'])) {
                            
                         <?php foreach($select_tb as $key => $value){ 
                             extract($value)?>
+<div class="flex">
 
-                        <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0"><?php echo $content ?></h6>
+<a href="#" class="dropdown-item">
+                                <h6 class="fw-normal mb-0"><?php echo $content; ?></h6>
                            
                             </a>
-                            <button onclick="del(a)">xóa</button>
+                            <div class="text-center">
+                            <button class="cursor-pointer  bg-blue-200 rounded-xl pl-2 pr-2" onclick="del('index.php?act=del_tb&id=<?php echo $id?>')">xóa</button>
+
+                            </div>
+</div>
                             <hr class="dropdown-divider">
                             <?php  } ?>
                            

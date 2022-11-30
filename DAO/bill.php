@@ -60,7 +60,10 @@ function select_tb($id_user){
 
 function insert_tb($id_user,$content,$date){
     $sql = "INSERT INTO thongbao(id_user,content,date) VALUES ('$id_user','$content','$date')";
-    echo $sql;
+    pdo_execute($sql);
+}
+function del_tb($id){
+    $sql = "DELETE from thongbao where id = $id";
     pdo_execute($sql);
 }
 

@@ -36,6 +36,11 @@
 
 </body>
 <script>
+        function del(aaaa){
+            if( confirm('Xác nhận xóa')){
+                return document.location = aaaa;
+            }
+        }
     function del_gd(huy_gd) {
         if (confirm('Xác nhận hủy giao dịch!')) {
             return document.location = huy_gd;

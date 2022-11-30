@@ -93,7 +93,7 @@ unset($_SESSION['again'])?>
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0"><?php echo $_SESSION['auth']['name'] ?></h6>
+                        <h6 class="mb-0"><?php ob_start(); echo $_SESSION['auth']['name'] ?></h6>
                         <span>Admin</span>
                     </div>
                 </div>
@@ -104,6 +104,13 @@ unset($_SESSION['again'])?>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="index.php?act=add_comic" class="dropdown-item">Thêm truyện</a>
                             <a href="index.php?act=list_truyen" class="dropdown-item">Danh sách truyện</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Thể loại</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="index.php?act=list_loai" class="dropdown-item">Danh sách</a>
+                            <a href="index.php?act=add_loai" class="dropdown-item">Thêm loại</a>
                         </div>
                     </div>
                     <a href="index.php?act=list_kh" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Người dùng</a>
@@ -125,31 +132,7 @@ unset($_SESSION['again'])?>
                     <i class="fa fa-bars"></i>
                 </a>
                 <div class="navbar-nav align-items-center ms-auto">
-                    
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notificatin</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Profile updated</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">New user added</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all notifications</a>
-                        </div>
-                    </div>
+
                     <div class=" ">
                         <a href="" class="nav-link ">
                             <img class="rounded-circle me-lg-2" src="https://png.pngtree.com/png-clipart/20190904/original/pngtree-hand-drawn-flat-wind-user-avatar-icon-png-image_4492039.jpg" alt="" style="width: 40px; height: 40px;">
