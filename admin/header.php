@@ -94,12 +94,18 @@ unset($_SESSION['again'])?>
                     </div>
                     <div class="ms-3">
                         <h6 class="mb-0"><?php ob_start(); echo $_SESSION['auth']['name'] ?></h6>
-                        <span>Admin</span>
+                        <span><?php if($_SESSION['auth']['role']==1){
+echo ' Admin';
+                        }else{
+                            echo 'Manager';
+                        } ?> </span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
                     <!-- <a href="index.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a> -->
-                    <div class="nav-item dropdown">
+                    <?php if($_SESSION['auth']['role']==1){
+                        ?>
+<div class="nav-item dropdown">
                         <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Truyện</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="index.php?act=add_comic" class="dropdown-item">Thêm truyện</a>
@@ -118,6 +124,32 @@ unset($_SESSION['again'])?>
                     <a href="index.php?act=list_tk" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Thống kê</a>
                     <a href="index.php?act=agree" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Phê duyệt</a>
                     <a href="index.php?act=lisk_bill" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Hóa đơn</a>
+                    <a href="index.php?act=list_contact" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Ý kiến của KH</a>
+
+                   <?php } ?>
+                   <?php if($_SESSION['auth']['role']==3){
+                        ?>
+<div class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Truyện</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="index.php?act=add_comic" class="dropdown-item">Thêm truyện</a>
+                            <a href="index.php?act=list_truyen" class="dropdown-item">Danh sách truyện</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Thể loại</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="index.php?act=list_loai" class="dropdown-item">Danh sách</a>
+                            <a href="index.php?act=add_loai" class="dropdown-item">Thêm loại</a>
+                        </div>
+                    </div>
+                  
+                    
+                    <a href="index.php?act=list_bl" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Bình luận</a>
+                    <a href="index.php?act=lisk_bill" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Hóa đơn</a>
+
+                   <?php } ?>
+                    
             
                 </div>
             </nav>
