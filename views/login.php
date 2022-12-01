@@ -16,14 +16,14 @@
     <?php echo isset($_SESSION['khong_ton_tai_tk']) ? $_SESSION['khong_ton_tai_tk'] : ''?>
 </span>      
              </div>
-        <input type="text" name="email_login" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12" placeholder=" <?php echo isset($err1_email_login) ? $err1_email_login : ''?> ">
+        <input type="text" name="email_login" class="email m-2 content-between  border border-soild h-8 w-11/12" placeholder=" <?php echo isset($err1_email_login) ? $err1_email_login : ''?> ">
         <div>
         <label class="m-2" for="">Password</label>
 <span>
     <?php echo isset($_SESSION['sai_mk']) ?$_SESSION['sai_mk'] :''?>
 </span>
         </div>
-        <input type="password" name="password_login" class="email m-2 content-between  border border-soild h-8 rounded-lg w-11/12 " placeholder=" <?php echo isset($err_pass_login) ? $err_pass_login : '' ?> ">
+        <input type="password" name="password_login" class="email m-2 content-between  border border-soild h-8  w-11/12 " placeholder=" <?php echo isset($err_pass_login) ? $err_pass_login : '' ?> ">
         <div class="flex justify-between border-b-2">
             <div class="flex m-2 gap-1">
                 <a class="hover:text-sky-500" href="index.php?act=forgotpw">Quên mật khẩu</a>|<a class="hover:text-sky-500" href="index.php?act=register">Đăng kí</a>
