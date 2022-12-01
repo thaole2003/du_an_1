@@ -58,20 +58,14 @@ if (isset($_GET['act'])) {
             break;
             //list loại
         case 'list_loai':
-            if (check_admin_role() == false) {
-                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
-                die;
-            }
+          
             $list_all_loai = load_all_loai();
             include_once "danh_muc/listcategories.php";
             break;
             // sua loai
 
         case 'sua_loai':
-            if (check_admin_role() == false) {
-                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
-                die;
-            }
+          
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
                 $loai_one = load_one_loai($id);
@@ -80,10 +74,7 @@ if (isset($_GET['act'])) {
             break;
             //Cập nhật
         case 'cap_nhat_loai':
-            if (check_admin_role() == false) {
-                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
-                die;
-            }
+            
             if (isset($_POST['cap_nhat'])) {
                 $name = $_POST['name'];
                 $id = $_POST['id'];
@@ -118,10 +109,7 @@ if (isset($_GET['act'])) {
             include_once "danh_muc/listcategories.php";
             //xóa loại
         case 'xoa_loai':
-            if (check_admin_role() == false) {
-                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
-                die;
-            }
+           
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 delete_fk_comic($id);
@@ -300,6 +288,10 @@ if (isset($_GET['act'])) {
             break;
             //đồng ý phê duyệt
         case 'yes':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 update_status_yes($id);
@@ -309,6 +301,10 @@ if (isset($_GET['act'])) {
             break;
             //không đồng ý phê duyệt
         case 'no':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
@@ -706,6 +702,10 @@ if (isset($_GET['act'])) {
             break;
             //thong ke
         case 'list_tk':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             $statistical = statistical_truyen();
             $statistical_coin=thong_ke_coin();
             $top_coin=select_top_coin();
@@ -713,6 +713,10 @@ if (isset($_GET['act'])) {
             break;
             //biểu đồ
         case 'bieu_do':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             $statistical = statistical_truyen();
             include_once './thong_ke/bieu_do.php';
             break;
@@ -722,6 +726,10 @@ if (isset($_GET['act'])) {
             include_once '../admin/bill/list_bill.php';
             break;
         case 'search_bill':
+              if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_POST['btn_search'])) {
                 $key = $_POST['key_search'];
                 $status = $_POST['status'];
@@ -735,6 +743,10 @@ if (isset($_GET['act'])) {
             break;
             //xóa bill
         case 'delete_bill':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 delete_gd($id);
@@ -745,6 +757,10 @@ if (isset($_GET['act'])) {
             break;
             //edit_bill
         case 'edit_bill':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 $bill_one = load_one_bill($id);
@@ -752,6 +768,10 @@ if (isset($_GET['act'])) {
             include_once '../admin/bill/edit_bill.php';
             break;
         case 'update_bill':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_POST['cap_nhat'])) {
                 $status = $_POST['status'];
                 $id = $_POST['id'];
