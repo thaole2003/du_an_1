@@ -8,7 +8,7 @@
 
     </div>
     <div class="p-4">
-        <table class="table-auto w-full shadow-2xl bg-[#FCEAA2]">
+        <table class="table-auto w-full shadow-2xl ">
             <thead class="text-xl border-2">
                 <tr class="bg-[#F5DBB0] ">
                     <th class="p-2 border-2">Mã truyện</th>

@@ -243,7 +243,7 @@ if (isset($_SESSION['dang_xuat'])) {
                 <?php
                 if (isset($_SESSION['auth'])) { ?>
 
-                <li><a href="">
+                <li class="float-right mt-[-5px]"><a href="">
                         <div class="nav-item dropdown">
 
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">

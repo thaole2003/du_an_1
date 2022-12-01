@@ -32,10 +32,7 @@ if (isset($_GET['act'])) {
             //Controller danh mục
             //add loại
         case 'add_loai':
-            if (check_admin_role() == false) {
-                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
-                die;
-            }
+      
             if (isset($_POST['btn-add'])) {
                 $ten_loai = trim($_POST['name-loai']);
                 $is_valid = true;
@@ -726,10 +723,7 @@ if (isset($_GET['act'])) {
             include_once '../admin/bill/list_bill.php';
             break;
         case 'search_bill':
-              if (check_admin_role() == false) {
-                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
-                die;
-            }
+       
             if (isset($_POST['btn_search'])) {
                 $key = $_POST['key_search'];
                 $status = $_POST['status'];
