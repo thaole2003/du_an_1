@@ -33,7 +33,7 @@
                     <td class="p-2 border-2 border-solid "><?= $value['comic_id'] ?></td>
                     <td class="p-2 border-2 border-solid "><?= $value['comic_name'] ?></td>
                     <td class="p-2 border-2 border-solid ">
-                        <button onclick="del('<?php echo $xoa_comment ?>')" class="p-2 px-4 bg-orange-400  text-white hover:bg-white hover:text-orange-400 mt-2 ">Xóa</button>
+                        <button onclick="del('<?php echo $xoa_comment ?>')" class="p-2 px-4 bg-orange-400  text-white hover:bg-blue-500  hover:text-orange-400 mt-2 ">Xóa</button>
                     </td>
                 </tr>
                 <?php }?>

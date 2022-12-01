@@ -29,7 +29,7 @@
             
             <span class=""><?php echo isset($thongbao) ? $thongbao : "" ?></span>
             <div class="flex m-2 gap-3">
-                <button class="p-2 px-4 bg-orange-400  text-white hover:bg-white hover:text-orange-400  border border-solid "  name="add">Thêm</button> <button id="cancelregister" class="p-2 px-4 bg-orange-400  text-white hover:bg-white hover:text-orange-400  border border-solid "><a href="index.php?act=list_kh">Danh sách</a></button>
+                <button class="p-2 px-4 bg-orange-400  text-white hover:bg-blue-500  hover:text-orange-400  border border-solid "  name="add">Thêm</button> <button id="cancelregister" class="p-2 px-4 bg-orange-400  text-white hover:bg-blue-500  hover:text-orange-400  border border-solid "><a class="text-white" href="index.php?act=list_kh">Danh sách</a></button>
             </div>
         </div>
         <div class="flex gap-2 justify-center m-3">

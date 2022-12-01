@@ -13,11 +13,11 @@
             echo $thong_bao;
         } ?></span><br>
         <button
-            class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border border-yellow-400"
+            class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400"
             name="btn-add">Thêm</button>
         <button
-            class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border border-yellow-400"><a
-                href="index.php?act=list_loai">Danh sách</a></button>
+            class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400"><a
+              class="text-white"   href="index.php?act=list_loai">Danh sách</a></button>
 
     </form>
 </div>

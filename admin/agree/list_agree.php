@@ -3,9 +3,7 @@
     <div class="">
         <h1 class="text-xl font-medium p-4">Truyện chờ phê duyệt</h1>
     </div>
-    <div class="p-4">
-        <a href="index.php?act=add_comic"> <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400">Thêm</button></a>
-    </div>
+    
     <div class="p-4">
         <table class="table-auto w-full">
             <thead class="text-xl border-2">
@@ -41,8 +39,8 @@
 
                         <td class="p-2 border-2 border-solid ">
                             <!-- <form action="" method="post"></form> -->
-                            <a href="<?php echo $yess ?>"> <button class="p-2 px-4 bg-orange-400 border border-solid text-white hover:bg-white hover:text-orange-400 ">Đồng ý</button></a> <br>
-                            <a href="<?php echo $noo ?>"> <button class="p-2 px-4 bg-orange-400  border border-solid text-white hover:bg-white hover:text-orange-400 mt-2">Từ chối</button></a>
+                            <a href="<?php echo $yess ?>"> <button class="p-2 px-4 bg-orange-400 border border-solid text-white hover:bg-blue-500  hover:text-orange-400 ">Đồng ý</button></a> <br>
+                            <a href="<?php echo $noo ?>"> <button class="p-2 px-4 bg-orange-400  border border-solid text-white hover:bg-blue-500  hover:text-orange-400 mt-2">Từ chối</button></a>
                         </td>
                     </tr>
                 <?php

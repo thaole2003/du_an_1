@@ -4,7 +4,7 @@
         <h1 class="text-xl font-medium p-4">Người dùng</h1>
     </div>
     <div class="p-4">
-        <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border border-yellow-400"><a href="index.php?act=add_user">Thêm</a> </button>
+        <button class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border border-yellow-400"><a class="text-white" href="index.php?act=add_user">Thêm</a> </button>
 
     </div>
     <div class="p-4">
@@ -38,8 +38,8 @@
                     <td class="p-2 border-2 border-solid "><?= number_format($coin); ?> Coin</td>
                     <td class="p-2 border-2 border-solid "><?= $r_name ?></td>
                     <td class="p-2 border-2 border-solid flex gap-2">
-                        <button class="p-2 px-4 bg-orange-400  text-white hover:bg-white hover:text-orange-400 "><a href="index.php?act=edit_user&id=<?= $id?>">Sửa</a> </button>
-                        <button onclick="del('<?php echo $delete_user ?>')" class="p-2 px-4 bg-orange-400  text-white hover:bg-white hover:text-orange-400 ">Xóa</button>
+                        <button class="p-2 px-4 bg-orange-400  text-white hover:bg-blue-500  hover:text-orange-400 "><a class="text-white" href="index.php?act=edit_user&id=<?= $id?>">Sửa</a> </button>
+                        <button onclick="del('<?php echo $delete_user ?>')" class="p-2 px-4 bg-orange-400  text-white hover:bg-blue-500  hover:text-orange-400 ">Xóa</button>
                     </td>
                 </tr>
            <?php      } ?>
