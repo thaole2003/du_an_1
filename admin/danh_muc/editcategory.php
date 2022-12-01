@@ -22,9 +22,9 @@
             <br>
         <input type="hidden" name="id" value="<?php if(isset($id) && ($id > 0)) echo $id; ?>">
         <button
-            class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="cap_nhat">Cập nhật</button>
+            class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="cap_nhat">Cập nhật</button>
         <button
-            class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400"><a
-                href="index.php?act=list_loai">Danh sách</a></button>
+            class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400"><a
+            class="text-white"    href="index.php?act=list_loai">Danh sách</a></button>
     </form>
 </div>

@@ -4,7 +4,7 @@
         <h1 class="text-xl font-medium p-4">Truyện cần sửa lại</h1>
     </div>
     <div class="p-4">
-        <a href="index.php?act=add_comic"> <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400">Thêm</button></a>
+        <a href="index.php?act=add_comic"> <button class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400">Thêm</button></a>
     </div>
     <div class="p-4">
         <table class="table-auto w-full">
@@ -42,8 +42,8 @@
 
                         <td class="p-2 border-2 border-solid ">
                             <!-- <form action="" method="post"></form> -->
-                            <a href="<?php echo $sua_truyen ?>"> <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 ">sửa</button></a> <br>
-                            <a href="<?php echo $again ?>"> <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400 mt-2">đăng lại</button></a>
+                            <a href="<?php echo $sua_truyen ?>"> <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-blue-500  hover:text-orange-400 ">sửa</button></a> <br>
+                            <a href="<?php echo $again ?>"> <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-blue-500  hover:text-orange-400 mt-2">đăng lại</button></a>
                         </td>
                     </tr>
                 <?php

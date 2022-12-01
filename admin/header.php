@@ -124,6 +124,9 @@ echo ' Admin';
                     <a href="index.php?act=list_tk" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Thống kê</a>
                     <a href="index.php?act=agree" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Phê duyệt</a>
                     <a href="index.php?act=lisk_bill" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Hóa đơn</a>
+
+                    
+
                     <a href="index.php?act=list_contact" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Ý kiến của KH</a>
 
                    <?php } ?>
@@ -151,6 +154,7 @@ echo ' Admin';
                    <?php } ?>
                     
             
+
                 </div>
             </nav>
         </div>

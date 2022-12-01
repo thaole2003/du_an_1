@@ -15,11 +15,11 @@
                     <option class="font-medium text-xl" value="<?= $VAL['id'] ?>"><?= $VAL['name'] ?></option>
                 <?php } ?>
             </select>
-            <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="btn_search">Tìm kiếm</button>
+            <button class="bg-orange-400 hover:bg-blue-500 hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="btn_search">Tìm kiếm</button>
         </form>
     </div>
     <div class="p-4">
-        <a href="index.php?act=add_comic"> <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border border-yellow-400">Thêm</button></a>
+        <a href="index.php?act=add_comic"> <button class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border border-yellow-400">Thêm</button></a>
     </div>
     <div class="p-4">
         <table class="table-auto w-full">
@@ -72,8 +72,8 @@
                         <td class="p-2 border-2 border-solid "><img class="w-[400px] h-[100px]" src="../content/uploads/cover_img/<?php echo $img_name ?>" /></td>
 
                         <td class="p-2 border-2 border-solid ">
-                            <button class="p-2 px-4 bg-orange-400 border text-white hover:bg-white hover:text-orange-400 "><a href="<?php echo $sua_truyen ?>">Sửa</a> </button><br>
-                            <button onclick="del('<?php echo $xoa_truyen ?>')" class="p-2 px-4 bg-orange-400 border text-white hover:bg-white hover:text-orange-400 mt-2">Xóa</button>
+                            <button class="p-2 px-4 bg-orange-400 border text-white hover:bg-blue-500  hover:text-orange-400 "><a class="hover:text-white" href="<?php echo $sua_truyen ?>">Sửa</a> </button><br>
+                            <button onclick="del('<?php echo $xoa_truyen ?>')" class="p-2 px-4 bg-orange-400 border text-white hover:bg-blue-500  hover:text-orange-400 mt-2">Xóa</button>
                         </td>
                     </tr>
                 <?php
