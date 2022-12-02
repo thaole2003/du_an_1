@@ -32,7 +32,7 @@ if (isset($_GET['act'])) {
             //Controller danh mục
             //add loại
         case 'add_loai':
-      
+
             if (isset($_POST['btn-add'])) {
                 $ten_loai = trim($_POST['name-loai']);
                 $is_valid = true;
@@ -55,14 +55,14 @@ if (isset($_GET['act'])) {
             break;
             //list loại
         case 'list_loai':
-          
+
             $list_all_loai = load_all_loai();
             include_once "danh_muc/listcategories.php";
             break;
             // sua loai
 
         case 'sua_loai':
-          
+
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
                 $loai_one = load_one_loai($id);
@@ -71,7 +71,7 @@ if (isset($_GET['act'])) {
             break;
             //Cập nhật
         case 'cap_nhat_loai':
-            
+
             if (isset($_POST['cap_nhat'])) {
                 $name = $_POST['name'];
                 $id = $_POST['id'];
@@ -106,13 +106,40 @@ if (isset($_GET['act'])) {
             include_once "danh_muc/listcategories.php";
             //xóa loại
         case 'xoa_loai':
-           
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
+                $all = load_all_loai_fk($id);
+                foreach($all as $value){
+                    extract($value);
+                    delete_comic_img($id_chapter);
+                }
+                foreach($all as $value){
+                    extract($value);
+                    delete_comic_chapter($id_comic);
+                }
+
+                $all_his = load_all_history($id);
+                foreach($all_his as $value){
+                    extract($value);
+                    delete_img_history($id);
+                }
+
+                $all_love = load_all_love($id);
+                foreach($all_love as $value){
+                    extract($value);
+                    delete_img_love($id);
+                }
+
+                $all_comment = load_all_comment($id);
+                foreach($all_comment as $value){
+                    extract($value);
+                    delete_img_comment($id);
+                }
+
                 delete_fk_comic($id);
                 delete_loai($id);
                 $list_all_loai = load_all_loai();
-                include_once  'danh_muc/listcategories.php';
+                header('location:index.php?act=list_loai');
                 $thong_bao = 'Xóa thành công';
             }
             break;
@@ -325,7 +352,7 @@ if (isset($_GET['act'])) {
                             $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                             $mail->SMTPAuth = true;                               // Enable SMTP authentication
                             $mail->Username = 'nqv31032003@gmail.com';                 // SMTP username
-                                $mail->Password = 'xaylurdindyluteq';                         // SMTP password
+                            $mail->Password = 'xaylurdindyluteq';                         // SMTP password
                             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
                             $mail->Port = 587;                                    // TCP port to connect to
 
@@ -358,18 +385,18 @@ if (isset($_GET['act'])) {
             }
             include_once '../admin/agree/disagree.php';
             break;
-            case 'wait':
-                $comic_select_all_bystatus_3= comic_select_all_bystatus_3();
-                include_once "../admin/agree/waitagree.php";
-                break;
-                case 'again':
-                    if (isset($_GET['id'])) {
-                        $id = $_GET['id'];
-                        update_status_again($id);
-                        header('location:index.php?act=wait');
-                        $_SESSION['again'] = 'truyện đã được gửi phê duyệt lại';
-                    }
-                    break;    
+        case 'wait':
+            $comic_select_all_bystatus_3 = comic_select_all_bystatus_3();
+            include_once "../admin/agree/waitagree.php";
+            break;
+        case 'again':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                update_status_again($id);
+                header('location:index.php?act=wait');
+                $_SESSION['again'] = 'truyện đã được gửi phê duyệt lại';
+            }
+            break;
             //thêm truyện
         case 'add_comic':
             $list_all_loai = load_all_loai();
@@ -385,6 +412,9 @@ if (isset($_GET['act'])) {
                 $view = 0;
                 $like = 0;
                 $category = $_POST['category'];
+                $number_chapter = $_POST['number_chapter'];
+                $noi_dung = $_POST['noi_dung'];
+
                 if ($_POST['vip'] == 0) {
                     $price_comic = 0;
                     $vip = 0;
@@ -393,6 +423,10 @@ if (isset($_GET['act'])) {
                     $vip = 1;
                 }
                 $allowUpload = true;
+                if ($noi_dung == "") {
+                    $noi_dung_trong = 'Không được để trống nội dung tập';
+                    $allowUpload = false;
+                }
                 if (isset($_SESSION['auth']['id'])) {
                     if ($_SESSION['auth']['role'] == 1) {
                         $st = 2;
@@ -484,10 +518,10 @@ if (isset($_GET['act'])) {
                     }
 
                     //kiểm tra nếu như file đã tồn tại thì sẽ ko cho phép up nữa a
-                    if (file_exists($target_file)) {
-                        $file_ton_tai_f = "Tên file đã tồn tại trên server ko được ghi đè";
-                        $allowUpload = false;
-                    }
+                    // if (file_exists($target_file)) {
+                    //     $file_ton_tai_f = "Tên file đã tồn tại trên server ko được ghi đè";
+                    //     $allowUpload = false;
+                    // }
 
                     //kiểm tra kiêu file không làm trong định dạng cho phép
                     if (!in_array($imageFileType, $allowtype)) {
@@ -497,25 +531,103 @@ if (isset($_GET['act'])) {
                 }
 
                 if ($allowUpload == true) {
-                    $id = comic_insert($namee, $detail, $author, $date, $intro, $view, $like, $category, $name_img, $st, $po, $vip, $price_comic);
+                    $id_comic = comic_insert($namee, $detail, $author, $date, $intro, $view, $like, $category, $name_img, $st, $po, $vip, $price_comic);
+
+                    $id_chapter = isert_chapter($number_chapter, $noi_dung, $id_comic,$date);
                     //xử lý di chuyển file tạm vào thư mục cần lưu trữ
                     for ($i = 0; $i < $countfiles; $i++) {
                         $filename = $_FILES["file"]["name"][$i];
                         // Upload file
                         move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_dir . $filename);
-                        up_load_img($id, $filename);
+                        up_load_img($filename, $id_chapter);
                     }
                     $upload_ok = "Upload thành công";
                 }
             }
             include_once  'truyen/addcomic.php';
             break;
+        case 'add_chapter':
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $id = $_GET['id'];
+                $id_chapter = $_GET['add'];
+                $date = date('m/d/Y h:i:s a', time());
+                $count_chapter = count_chapter($id);
+                // echo '<pre>';
+                // print_r($count_chapter);
+                // die;
+                if (isset($_POST['btnAdd'])) {
+                    $number_chapter = $_POST['number_chapter'];
+                    $noi_dung = $_POST['noi_dung'];
+                    $allowUpload = true;
+                    if ($noi_dung == "") {
+                        $noi_dung_trong = 'Không được để trống nội dung tập';
+                        $allowUpload = false;
+                    }
+
+                    if ($_FILES["file"]["name"][0] == "") {
+                        $khong_tt_f = 'Không tồn tại file để upload';
+                        $allowUpload = false;
+                    } else {
+                        //đếm phần tử trong file
+                        $countfiles = count($_FILES['file']['name']);
+
+                        //Đường dẫn đích
+                        $target_dir = "../content/" . $url_img . "img_cua_comic/";
+
+                        //Đường dẫn vào file đích
+                        for ($i = 0; $i < $countfiles; $i++) {
+                            $target_file = $target_dir . $_FILES["file"]["name"][$i];
+                        }
+
+                        //lấy phần mở rộng của file (là đuôi file, định dạng) vd: png, jpg,...
+                        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+
+                        //định dạng được chấp nhận
+                        $allowtype = ["jpg", "jpeg"];
+
+                        //kiểm tra xem phải ảnh ko nếu là ảnh thì trả về true ngược lại
+                        //ko là ảnh trả về false
+                        for ($i = 0; $i < $countfiles; $i++) {
+                            $check = getimagesize($_FILES["file"]["tmp_name"][$i]);
+                            if ($check == false) {
+                                $khong_phai_anh_f = "Đây không phải là file ảnh";
+                                $allowUpload = false;
+                                break;
+                            }
+                        }
+
+                        //kiểm tra kiêu file không làm trong định dạng cho phép
+                        if (!in_array($imageFileType, $allowtype)) {
+                            $loi_dinh_dang_f = "Không được upload những ảnh có định dạng ipg, jpeg";
+                            $allowUpload = false;
+                        }
+                    }
+
+                    if ($allowUpload == true) {
+                        $id_chapter = isert_chapter($number_chapter, $noi_dung, $id,$date);
+                        //xử lý di chuyển file tạm vào thư mục cần lưu trữ
+                        for ($i = 0; $i < $countfiles; $i++) {
+                            $filename = $_FILES["file"]["name"][$i];
+                            // Upload file
+                            move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_dir . $filename);
+                            up_load_img($filename, $id_chapter);
+                        }
+                        header('location:index.php?act=sua_truyen&id=' . $id);
+                    }
+                }
+            }
+            $list_all_images = load_all_image();
+            $list_all_loai = load_all_loai();
+            include_once  'truyen/add_chapter.php';
+            break;
             // DELETE Truyện
         case 'xoa_truyen':
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
+                $id_chapter = select_id_chapter($id)['id'];
                 delete_img_history($id);
-                delete_comic_img($id);
+                delete_comic_img($id_chapter);
+                delete_comic_chapter($id);
                 delete_img_love($id);
                 delete_img_comment($id);
                 delete_comic($id);
@@ -528,13 +640,104 @@ if (isset($_GET['act'])) {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
                 $load_all_comic = comic_select_one($id);
-                $img_comic = img_comic($id);
+                $count_chapter = count_chapter($id);
+                $all_chapter = load_all_chapter($id);
+                // echo '<pre>';
+                // print_r($count_chapter);
+                // die;
             }
             $list_all_images = load_all_image();
             $list_all_loai = load_all_loai();
             include_once  'truyen/editcomic.php';
             break;
-            
+            //Xóa chapter
+        case 'xoa_chapter':
+            if(isset($_GET['id_chapter'])){
+                $id_chapter = $_GET['id_chapter'];
+                $id = $_GET['id'];
+                $number_chapter = $_GET['number_chapter'];
+                delete_comic_img($id_chapter);
+                $limit = select_limit_chapter($number_chapter,$id);
+                foreach($limit as $value){
+                    extract($value);
+                    tru_chapter($value['number_chapter'],$id);
+                }
+                delete_chapter($id_chapter);
+                header('location:index.php?act=sua_truyen&id='.$id);
+            }
+            break;
+        case 'sua_chapter':
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $id = $_GET['id'];
+                $id_chapter = $_GET['id_chapter'];
+                $img_comic = img_comic($id, $id_chapter);
+                $load_one = load_one_chapter($id, $id_chapter);
+                $count_chapter = count_chapter($id);
+                // echo '<pre>';
+                // print_r($id_chapter);
+                // die;
+                if (isset($_POST['btn-update'])) {
+                    $noi_dung = $_POST['noi_dung'];
+                    $allowUpload = true;
+
+                    if ($_FILES["file"]["name"][0] == "") {
+                        $allowUpload = true;
+                    } else {
+                        $allowUpload = true;
+                        //đếm phần tử trong file
+                        $countfiles = count($_FILES['file']['name']);
+
+                        //Đường dẫn đích
+                        $target_dir = "../content/" . $url_img . "img_cua_comic/";
+
+                        //Đường dẫn vào file đích
+                        for ($i = 0; $i < $countfiles; $i++) {
+                            $target_file = $target_dir . $_FILES["file"]["name"][$i];
+                        }
+
+                        //lấy phần mở rộng của file (là đuôi file, định dạng) vd: png, jpg,...
+                        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+
+                        //định dạng được chấp nhận
+                        $allowtype = ["jpg", "jpeg"];
+
+                        //kiểm tra xem phải ảnh ko nếu là ảnh thì trả về true ngược lại
+                        //ko là ảnh trả về false
+                        for ($i = 0; $i < $countfiles; $i++) {
+                            $check = getimagesize($_FILES["file"]["tmp_name"][$i]);
+                            if ($check == false) {
+                                $khong_phai_anh_f = "Đây không phải là file ảnh";
+                                $allowUpload = false;
+                                break;
+                            }
+                        }
+
+                        //kiểm tra kiêu file không làm trong định dạng cho phép
+                        if (!in_array($imageFileType, $allowtype)) {
+                            $loi_dinh_dang_f = "Không được upload những ảnh có định dạng ipg, jpeg";
+                            $allowUpload = false;
+                        }
+                    }
+
+                    if ($allowUpload == true) {
+                        update_chapter($noi_dung, $load_one['id_ch']);
+                        if ($_FILES["file"]["name"][0] != "") {
+                            for ($i = 0; $i < $countfiles; $i++) {
+                                //xử lý di chuyển file tạm vào thư mục cần lưu trữ
+                                $filename = $_FILES["file"]["name"][$i];
+                                // Upload file
+                                move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_dir . $filename);
+                                up_load_img($filename, $load_one['id_ch']);
+                            }
+                        }
+                        header("location: " . $_SERVER['HTTP_REFERER']);
+                    }
+                }
+            }
+            $list_all_images = load_all_image();
+            $list_all_loai = load_all_loai();
+            include_once  'truyen/edit_chapter.php';
+            break;
             //Update_truyen
         case 'update_truyen':
             if (isset($_POST['btn-update'])) {
@@ -611,59 +814,6 @@ if (isset($_GET['act'])) {
                     }
                 }
 
-                if ($_FILES["file"]["name"][0] == "") {
-                    $allowUpload = true;
-                } else {
-                    $allowUpload = true;
-                    //đếm phần tử trong file
-                    $countfiles = count($_FILES['file']['name']);
-
-                    //Đường dẫn đích
-                    $target_dir = "../content/" . $url_img . "img_cua_comic/";
-
-                    //Đường dẫn vào file đích
-                    for ($i = 0; $i < $countfiles; $i++) {
-                        $target_file = $target_dir . $_FILES["file"]["name"][$i];
-                    }
-
-                    //lấy phần mở rộng của file (là đuôi file, định dạng) vd: png, jpg,...
-                    $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
-
-                    //định dạng được chấp nhận
-                    $allowtype = ["jpg", "jpeg"];
-
-                    //kiểm tra xem phải ảnh ko nếu là ảnh thì trả về true ngược lại
-                    //ko là ảnh trả về false
-                    for ($i = 0; $i < $countfiles; $i++) {
-                        $check = getimagesize($_FILES["file"]["tmp_name"][$i]);
-                        if ($check == false) {
-                            $khong_phai_anh_f = "Đây không phải là file ảnh";
-                            $allowUpload = false;
-                            break;
-                        }
-                    }
-
-                    //kiểm tra nếu như file đã tồn tại thì sẽ ko cho phép up nữa a
-                    if (file_exists($target_file)) {
-                        $file_ton_tai_f = "Tên file đã tồn tại trên server ko được ghi đè";
-                        $allowUpload = false;
-                    }
-
-                    //kiểm tra kiêu file không làm trong định dạng cho phép
-                    if (!in_array($imageFileType, $allowtype)) {
-                        $loi_dinh_dang_f = "Không được upload những ảnh có định dạng ipg, jpeg";
-                        $allowUpload = false;
-                    }
-                    for ($i = 0; $i < $countfiles; $i++) {
-                        //xử lý di chuyển file tạm vào thư mục cần lưu trữ
-                        $filename = $_FILES["file"]["name"][$i];
-                        // Upload file
-                        move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_dir . $filename);
-                        up_load_img($id, $filename);
-                    }
-                    $allowUpload = false;
-                }
-
                 if ($allowUpload == true) {
                     update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $category_id, $vip, $price_comic);
                 } else {
@@ -679,8 +829,9 @@ if (isset($_GET['act'])) {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
                 $id_comic = $_GET['id_comic'];
+                $id_chapter = $_GET['id_chapter'];
                 delete_img_comic($id);
-                header('location: index.php?act=sua_truyen&id=' . $id_comic);
+                header('location: index.php?act=sua_chapter&id=' . $id_comic . '&id_chapter=' . $id_chapter);
             }
             break;
             //list_coment
@@ -704,8 +855,8 @@ if (isset($_GET['act'])) {
                 die;
             }
             $statistical = statistical_truyen();
-            $statistical_coin=thong_ke_coin();
-            $top_coin=select_top_coin();
+            $statistical_coin = thong_ke_coin();
+            $top_coin = select_top_coin();
             include_once 'thong_ke/thongke.php';
             break;
             //biểu đồ
@@ -723,7 +874,7 @@ if (isset($_GET['act'])) {
             include_once '../admin/bill/list_bill.php';
             break;
         case 'search_bill':
-       
+
             if (isset($_POST['btn_search'])) {
                 $key = $_POST['key_search'];
                 $status = $_POST['status'];
@@ -788,10 +939,10 @@ if (isset($_GET['act'])) {
                     if ($price == 500000) {
                         $coin = 550000;
                     }
-                    $content = 'bạn đã được cộng '.$coin.'coin';
+                    $content = 'bạn đã được cộng ' . $coin . 'coin';
                     update_bill($id, $status);
                     update_coin($id_user, $coin);
-                    insert_tb($id_user,$content,$date);
+                    insert_tb($id_user, $content, $date);
                     $user = get_one_user($id_user);
                     $_SESSION['auth'] = [
                         'id' => $user['id'],
@@ -804,29 +955,27 @@ if (isset($_GET['act'])) {
                         'address' => $user['address']
                     ];
                 } else if ($status == 2) {
-                    if(strlen(trim($_POST['why_not'])) !=0){
-                        
-                        $content='bạn không được duyệt với lí do '.$_POST['why_not'];
-                        insert_tb($id_user,$content,$date);
+                    if (strlen(trim($_POST['why_not'])) != 0) {
+
+                        $content = 'bạn không được duyệt với lí do ' . $_POST['why_not'];
+                        insert_tb($id_user, $content, $date);
                         update_bill($id, $status);
-                    }else{
-                         $_SESSION['err_whynot'] ='yêu cầu nhập lí do';
-                        header('location:index.php?act=edit_bill&id='.$id);
-                   }
-                   
-                } else if($status ==0) {
+                    } else {
+                        $_SESSION['err_whynot'] = 'yêu cầu nhập lí do';
+                        header('location:index.php?act=edit_bill&id=' . $id);
+                    }
+                } else if ($status == 0) {
                     update_bill($id, $status);
                 }
-             
             }
 
             $list_bill = load_bill();
             include_once '../admin/bill/list_bill.php';
             break;
-            case 'list_contact':
-                $list_contact = select_contact();
-                include_once '../admin/contact.php';
-                break;
+        case 'list_contact':
+            $list_contact = select_contact();
+            include_once '../admin/contact.php';
+            break;
             //ngược lại không tồn tại act thì include_once "home.php"; 
         default:
             include_once "home.php";

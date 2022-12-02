@@ -18,7 +18,8 @@ where c.status=2
  order by c.id desc";
     return pdo_query($sql);
 }
-function update_status_no($id){
+function update_status_no($id)
+{
     $sql = "UPDATE comic SET status	  = 3 where id = $id";
     pdo_execute($sql);
 }
@@ -50,7 +51,11 @@ function comic_select_one($id)
     from comic c
     join category ca
     on c.category_id = ca.id
-    where c.id = '$id'
+    INNER JOIN
+    chapter ch on c.id = ch.id_comic
+    INNER JOIN 
+    images i on ch.id = i.id_chapter
+    where c.id = $id
     ";
     $truyen = pdo_query_one($sql);
     return $truyen;
@@ -61,7 +66,7 @@ function load_all_image()
     $list_img = pdo_query($sql);
     return $list_img;
 }
-function update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $category_id,$vip,$price)
+function update_comic($id, $name, $name_img, $detail, $author, $date, $intro, $category_id, $vip, $price)
 {
     $sql = "update comic set
     name= '" . $name . "',
@@ -113,7 +118,7 @@ function update_dislike($id)
     $sql = "UPDATE comic SET like_comic	  = like_comic-1 where id = $id";
     pdo_execute($sql);
 }
-function comic_insert($name, $detail, $author, $date, $intro, $view, $like, $category_id, $name_img, $st, $po,$vip,$price_comic)
+function comic_insert($name, $detail, $author, $date, $intro, $view, $like, $category_id, $name_img, $st, $po, $vip, $price_comic)
 {
 
     $n = 'N';
@@ -290,9 +295,9 @@ function select_name_comic()
     $sql = "SELECT id,name FROM comic";
     return pdo_query($sql);
 }
-function up_load_img($id_comic, $name)
+function up_load_img($name, $id_chapter)
 {
-    $sql = "INSERT INTO images (name,comic_id) VALUES ('$name','$id_comic')";
+    $sql = "INSERT INTO images (name,id_chapter) VALUES ('$name',$id_chapter)";
     pdo_execute($sql);
 }
 function name_comic($id)
@@ -301,9 +306,12 @@ function name_comic($id)
     $name = pdo_query_one($sql);
     return $name;
 }
-function img_comic($id)
+function img_comic($id, $id_chapter)
 {
-    $sql = "SELECT A.`name`,B.`name` as img, B.id as id_new FROM comic A INNER JOIN images B on A.id = B.comic_id WHERE A.id = '$id' order by B.`name`";
+    $sql = "SELECT A.`name`,C.`name` as img, C.id as id_new,B.noi_dung FROM 
+    comic A INNER JOIN chapter B on A.id = B.id_comic 
+    INNER JOIN images C on B.id = C.id_chapter
+    WHERE A.id = $id and B.number_chapter = $id_chapter order by C.name";
     $img_comic = pdo_query($sql);
     return $img_comic;
 }
@@ -320,9 +328,21 @@ function delete_img_comic($id)
     $img_comic = pdo_query($sql);
     return $img_comic;
 }
-function delete_comic_img($comic_id)
+function select_id_chapter($id_comic)
 {
-    $sql = "DELETE FROM images where comic_id =$comic_id";
+    $sql = "SELECT B.id FROM comic A INNER JOIN chapter B ON A.id = B.id_comic 
+    INNER JOIN images C ON B.id = C.id_chapter WHERE A.id = $id_comic";
+    $id = pdo_query_one($sql);
+    return $id;
+}
+function delete_comic_img($id_chapter)
+{
+    $sql = "DELETE FROM images where id_chapter = $id_chapter";
+    return pdo_execute($sql);
+}
+function delete_comic_chapter($id_comic)
+{
+    $sql = "DELETE FROM chapter where id_comic = $id_comic";
     return pdo_execute($sql);
 }
 function delete_img_history($id)
@@ -363,8 +383,8 @@ function statistical_truyen()
    INNER JOIN comic
    ON comic.category_id = category.id
    GROUP BY category_id";
-   
-  
+
+
     return pdo_query($sql);
 }
 
@@ -409,7 +429,75 @@ function load_all_love_comic($id_user)
     return $love_comic;
 }
 //load truyện theo svip
-function load_comic_svip(){
+function load_comic_svip()
+{
     $sql = "SELECT * from comic where vip = 1 and status =2  ORDER BY id DESC LIMIT 0,6";
     return pdo_query($sql);
+}
+//chapter
+function isert_chapter($number_chapter, $noi_dung, $id_comic, $date)
+{
+    $n = 'N';
+    $sql = "INSERT INTO chapter (number_chapter,noi_dung,date,id_comic) VALUES ('$number_chapter',$n'$noi_dung',$n'$date','$id_comic')";
+    $id = pdo_query_last_id($sql);
+    return $id;
+}
+function count_chapter($id_comic)
+{
+    $sql = "SELECT COUNT(*) as sl,B.noi_dung
+    FROM comic A INNER JOIN chapter B
+    ON A.id = B.id_comic
+    WHERE B.id_comic = $id_comic";
+    $count = pdo_query_one($sql);
+    return $count;
+}
+function load_all_chapter($id_comic)
+{
+    $sql = "SELECT B.number_chapter
+    FROM comic A INNER JOIN chapter B
+    ON A.id = B.id_comic
+    WHERE B.id_comic = $id_comic";
+    $chapter = pdo_query($sql);
+    return $chapter;
+}
+function load_one_chapter($id, $id_chapter)
+{
+    $sql = "SELECT A.`name`,C.`name` as img, C.id as id_new,B.id as id_ch,B.noi_dung FROM 
+    comic A INNER JOIN chapter B on A.id = B.id_comic 
+    INNER JOIN images C on B.id = C.id_chapter
+    WHERE A.id = $id and B.number_chapter = $id_chapter order by C.name";
+    $img_comic = pdo_query_one($sql);
+    return $img_comic;
+}
+function update_chapter($noi_dung, $id)
+{
+    $sql = "UPDATE chapter SET noi_dung='$noi_dung' where id= $id";
+    pdo_execute($sql);
+}
+function delete_chapter($id)
+{
+    $sql = "DELETE FROM chapter WHERE id = '$id'";
+    $img_comic = pdo_query($sql);
+    return $img_comic;
+}
+function select_limit_chapter($number_chapter, $id_comic)
+{
+    $sql = "SELECT number_chapter FROM `chapter` WHERE id_comic = '$id_comic' LIMIT $number_chapter,100000";
+    $number_chapter = pdo_query($sql);
+    return $number_chapter;
+}
+function tru_chapter($number_chapter, $id)
+{
+    $sql = "UPDATE chapter SET number_chapter=number_chapter-1 where number_chapter= $number_chapter and id_comic = $id";
+    $number_chapter = pdo_query($sql);
+    return $number_chapter;
+}
+//client chapter
+function client_chapter($id)
+{
+    $sql = "SELECT A.id as id_comic, B.*
+    FROM comic A INNER JOIN chapter B ON A.id = B.id_comic
+    WHERE A.id = $id";
+    $chapter = pdo_query($sql);
+    return $chapter;
 }

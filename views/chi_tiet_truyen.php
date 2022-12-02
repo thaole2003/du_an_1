@@ -45,12 +45,10 @@
                     </div>
                     <div class="clear"></div>
                     <div class="chon flex items-center">
-                        <a href="index.php?act=doc_truyen&id=<?= $id ?>">Đọc truyện</a>
+                        <a href="index.php?act=doc_truyen&id=<?= $id ?>&number_chapter=1&noi_dung=<?= $client_chapter[0]['noi_dung'] ?>">Đọc từ đầu</a>
 
                         <?php
                         if (isset($_SESSION['auth'])) {
-
-
                             if (check_love_comic($detail_comic['id'], $_SESSION['auth']['id']) == "") {
                         ?>
                                 <form action="" method="POST">
@@ -72,16 +70,38 @@
                         <?php
                         }
                         ?>
-                        <?php if($detail_comic['vip'] == 1){
+                        <?php if ($detail_comic['vip'] == 1) {
                         ?>
-                        <form action="#" method="POST">
-                            <a href="index.php?act=coin"><button name="coin"><?= number_format($detail_comic['price']); ?> Coin</button></a>
-                        </form>
+                            <form action="#" method="POST">
+                                <a href="index.php?act=coin"><button name="coin"><?= number_format($detail_comic['price']); ?> Coin</button></a>
+                            </form>
                         <?php } ?>
                     </div>
                 </div>
                 <div class="clear"></div>
             </div>
+        </div>
+        <div class="gioi_thieu">
+            <h3><i class="fa-solid fa-book-open"></i>Tập</h3>
+            <table class="chapter">
+                <tr>
+                    <th>Tập</th>
+                    <th>Tiêu đề</th>
+                    <th style="float: right;">Ngày đăng</th>
+                </tr>
+                <?php
+                foreach ($client_chapter as $value) {
+                    extract($value);
+                ?>
+                    <tr>
+                        <td><a href="index.php?act=doc_truyen&id=<?= $id_comic ?>&number_chapter=<?= $number_chapter ?>&noi_dung=<?= $noi_dung ?>">Tập <?= $number_chapter ?></a></td>
+                        <td><?= $noi_dung ?></td>
+                        <td style="float: right;"><?= substr($date, 0, 11) ?></td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </table>
         </div>
         <div class="gioi_thieu">
             <h3><i class="fa-solid fa-info"></i>Giới thiệu</h3>
