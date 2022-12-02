@@ -141,6 +141,19 @@ function load_all_comic_edit($name)
     $sql = "select * from comic where name != '$name'";
     return pdo_query($sql);
 }
+function all_comic_by_categoryiddetail($id,$id_comic)
+{
+    $sql = "SELECT 
+c.*, 
+c.cover_image as img_name,
+ca.name as ca_name
+from comic c
+join category ca
+on c.category_id = ca.id
+
+WHERE c.category_id= $id and c.status=2 and c.id != $id_comic";
+    return pdo_query($sql);
+}
 function all_comic_by_categoryid($id)
 {
     $sql = "SELECT 
@@ -151,7 +164,7 @@ from comic c
 join category ca
 on c.category_id = ca.id
 
-WHERE c.category_id= $id and c.status=2";
+WHERE c.category_id= $id and c.status=2 ";
     return pdo_query($sql);
 }
 function all_comic_by_love()

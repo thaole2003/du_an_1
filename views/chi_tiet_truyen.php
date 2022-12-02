@@ -140,29 +140,32 @@
     </div>
     <div class="truyen">
         <h3> <i class="fa-solid fa-flag"></i>Truyện cùng thể loại</h3>
-        <div class="flex flex-wrap">
+        <div class="rol">
             <?php
-            $truyen_tuong_tu = all_comic_by_categoryid($detail_comic['ca_id']);
+            $truyen_tuong_tu = all_comic_by_categoryiddetail($detail_comic['ca_id'],$detail_comic['id']);
             foreach ($truyen_tuong_tu as $key => $value) {
                 extract($value);
             ?>
-                <a href="index.php?act=detail&id=<?= $id ?>">
-                    <div class="col">
-                        <div class="img"><img src="content/uploads/cover_img/<?= $img_name ?>" alt="">
-                        </div>
-                        <div class="text">
-                            <a href="#">
-                                <h4><?= $name ?></h4>
-                            </a>
-                            <div class="ngay_update">
-                                <h5><?= substr($date, 0, 11) ?></h5>
-                            </div>
+            <a href="index.php?act=detail&id=<?= $id ?>">
+                <div class="col">
+                    <div class="img"><img src="content/uploads/cover_img/<?= $img_name ?>" alt="">
+                    </div>
+                    <div class="text">
+                        <a href="#">
+                            <h4><?= $name ?></h4>
+                        </a>
+                        <p style="display: <?= $display ?>;"><?= number_format($price); ?> Coin</p>
+                        <div class="ngay_update">
+                            <h5><?php echo substr($date, 0, 11) ?></h5>
                         </div>
                     </div>
-                </a>
+                </div>
+            </a>
+            
             <?php  } ?>
         </div>
 
 
     </div>
+    <div class="clear"></div>
 </article>
