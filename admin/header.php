@@ -150,7 +150,6 @@ unset($_SESSION['again']) ?>
 
 
                         <a href="index.php?act=list_bl" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Bình luận</a>
-                        <a href="index.php?act=lisk_bill" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Hóa đơn</a>
                         <a href="index.php?act=wait" class="nav-item nav-link"><i class="far fa-file-alt me-2"></i>Sửa lại truyện </a>
 
                     <?php } ?>

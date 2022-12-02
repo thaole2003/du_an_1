@@ -941,11 +941,18 @@ if (isset($_GET['act'])) {
             break;
             //list_bill
         case 'lisk_bill':
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             $list_bill = load_bill();
             include_once '../admin/bill/list_bill.php';
             break;
         case 'search_bill':
-
+            if (check_admin_role() == false) {
+                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
+                die;
+            }
             if (isset($_POST['btn_search'])) {
                 $key = $_POST['key_search'];
                 $status = $_POST['status'];
@@ -984,10 +991,7 @@ if (isset($_GET['act'])) {
             include_once '../admin/bill/edit_bill.php';
             break;
         case 'update_bill':
-            if (check_admin_role() == false) {
-                header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
-                die;
-            }
+       
             if (isset($_POST['cap_nhat'])) {
                 $status = $_POST['status'];
                 $id = $_POST['id'];

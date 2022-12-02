@@ -1,5 +1,5 @@
 <!-- content  -->
-<div class="py-4 w-full ">
+<div class="py-4 w-full justify-center flex">
     <div class=" rounded-lg   flex flex-col w-2/3 m-4 p-4  bg-white " style="margin: 0px auto;">
         <p class="text-center font-medium text-2xl">EDIT ACCOUNT</p>
         <form action="" method="POST" class="flex flex-col">
