@@ -33,7 +33,8 @@
                         <td class="p-2 border-2 border-solid "><?php echo $sl["COUNT(*)"] ?></td>
                         <td class="p-2 border-2 border-solid ">
                             <button class="p-2 px-4 bg-orange-400  text-white hover:bg-blue-500  hover:text-orange-400 border mr-2"><a class="text-white" href="<?php echo $sua_loai ?>">Sửa</a></button>
-                            <button onclick="delete_category('<?php echo $xoa_loai?>')"   class="p-2 px-4 bg-orange-400 border text-white hover:bg-blue-500  hover:text-orange-400 ml-2">Xóa</button>
+                            <a href="<?= $xoa_loai ?>" onclick="return confirm('Bạn chắc chắn muốn xóa loại này?')" class="p-2 px-4 bg-orange-400 border text-white hover:bg-blue-500  hover:text-orange-400 ml-2">Xóa</a>
+
                         </td>
                     </tr>
                 </tbody>

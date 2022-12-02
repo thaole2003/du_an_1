@@ -171,6 +171,7 @@ if (isset($_SESSION['dang_xuat'])) {
                 <div class="right">
                     <!--Đăng ký - Đăng nhập-->
                     <?php
+                    ob_start();
                     if (isset($_SESSION['auth'])) {
                         // echo '<pre>';
                         // print_r($_SESSION['auth']);
@@ -208,7 +209,6 @@ if (isset($_SESSION['dang_xuat'])) {
                     </form>
                     <?php } ?>
                 </div>
-                <?php ob_start(); ?>
                 <div class="clear"></div>
             </div>
     </div>

@@ -38,4 +38,36 @@ function load_one_loai($id){
     $lh = pdo_query_one($sql);
     return $lh;
 }
+function load_all_loai_fk($id){
+    $sql = "SELECT A.id,C.id_comic,D.id_chapter FROM comic A INNER JOIN category B on A.category_id = B.id INNER JOIN chapter C ON A.id = C.id_comic INNER JOIN images D ON C.id = D.id_chapter WHERE B.id = $id";
+    $all = pdo_query($sql);
+    return $all;
+}
+
+function load_all_history($id){
+    $sql = "SELECT A.id 
+    FROM comic A INNER JOIN category B on A.category_id = B.id
+    INNER JOIN history_comic_user C on A.id = C.id_comic
+    WHERE B.id = $id";
+    $all = pdo_query($sql);
+    return $all;
+}
+
+function load_all_love($id){
+    $sql = "SELECT A.id 
+    FROM comic A INNER JOIN category B on A.category_id = B.id
+    INNER JOIN love C on A.id = C.id_comic
+    WHERE B.id = $id";
+    $all = pdo_query($sql);
+    return $all;
+}
+
+function load_all_comment($id){
+    $sql = "SELECT A.id 
+    FROM comic A INNER JOIN category B on A.category_id = B.id
+    INNER JOIN comment C on A.id = C.comic_id
+    WHERE B.id = $id";
+    $all = pdo_query($sql);
+    return $all;
+}
 ?>

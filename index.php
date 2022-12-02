@@ -130,10 +130,13 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
         case 'doc_truyen':
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
+                $number_chapter = $_GET['number_chapter'];
+                $noi_dung = $_GET['noi_dung'];
+                $client_chapter = client_chapter($id);
             }
             $comic = comic_select_one($id);
             // echo '<pre>';
-            // print_r($comic);
+            // print_r($client_chapter);
             // die;
             if ($comic['vip'] == 1) {
                 if(isset($_SESSION['auth'])){
@@ -159,7 +162,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                             'phone' => $user['phone'],
                             'address' => $user['address']
                         ];
-                        header('location: index.php?act=reload_comic&id=' . $id);
+                        header('location: index.php?act=reload_comic&id=' . $id.'&number_chapter='.$number_chapter.'&noi_dung='.$noi_dung);
                     }
                 }else{
                     $_SESSION['hay_dn'] = "Hãy đăng nhập để đọc truyện Svip";
@@ -167,7 +170,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 }
             } else {
                 update_view($id);
-                $doc_truyen = img_comic($id);
+                $doc_truyen = img_comic($id,$number_chapter);
                 if (isset($_SESSION['auth'])) {
                     $update = true;
                     $history_comic_byuser = select_history_comic_by_user($_SESSION['auth']['id']);
@@ -187,11 +190,13 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
         case 'reload_comic':
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-
+                $number_chapter = $_GET['number_chapter'];
+                $noi_dung = $_GET['noi_dung'];
+                $client_chapter = client_chapter($id);
                 $comic = comic_select_one($id);
 
                 update_view($id);
-                $doc_truyen = img_comic($id);
+                $doc_truyen = img_comic($id,$number_chapter);
                 if (isset($_SESSION['auth'])) {
                     $update = true;
                     $history_comic_byuser = select_history_comic_by_user($_SESSION['auth']['id']);
@@ -466,14 +471,12 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
-            // if (isset($_POST['like'])) {
-            //     update_like($id);
-            // }
             if (isset($_SESSION['err_not_dn'])) {
                 unset($_SESSION['err_not_dn']);
             }
             $detail_comic = detail_comic($id);
             $load_cmt = load_all_comic_byid($id);
+            $client_chapter = client_chapter($id);
 
             if (isset($_POST['love_comic'])) {
                 if (isset($_SESSION['auth'])) {

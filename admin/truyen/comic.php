@@ -48,7 +48,7 @@
                     $xoa_truyen = "index.php?act=xoa_truyen&id=" . $id;
 
                     if ($price == 0) {
-                        $price_comic = "free";
+                        $price_comic = 0;
                     } else {
                         $price_comic = $price;
                     }
@@ -68,7 +68,7 @@
                         <td class="p-2 border-2 border-solid "><?php echo $like_comic ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $ca_name ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $vip_comic ?></td>
-                        <td class="p-2 border-2 border-solid "><?php echo $price_comic ?></td>
+                        <td class="p-2 border-2 border-solid "><?php echo number_format($price_comic); ?> VNĐ</td>
                         <td class="p-2 border-2 border-solid "><img class="w-[400px] h-[100px]" src="../content/uploads/cover_img/<?php echo $img_name ?>" /></td>
 
                         <td class="p-2 border-2 border-solid ">

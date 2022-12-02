@@ -1,4 +1,58 @@
 <!-- content  -->
+<!-- content  -->
+<style>
+    .accordion {
+        background-color: white;
+        margin-top: 10px;
+        color: rgb(165, 165, 165);
+        cursor: pointer;
+        padding: 5px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .active,
+    .accordion:hover {
+        background-color: rgb(255, 247, 247);
+    }
+
+    .panel {
+        padding: 0 5px;
+        display: none;
+        background-color: white;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .m {
+        outline: none;
+        margin: 5px 0px;
+        padding: 5px 0px;
+        border: 1px solid #ccc;
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .add_chapter {
+        background: #ff973c;
+        color: #ffffff;
+        padding: 4px 4px;
+        line-height: 40px;
+        border-radius: 6px;
+        border: 1px solid #ff973c;
+        font-size: 15px;
+    }
+
+    .add_chapter:hover {
+        background-color: white;
+    }
+</style>
 <?php
 if (is_array($load_all_comic)) {
     extract($load_all_comic);
@@ -20,7 +74,8 @@ if (is_array($load_all_comic)) {
         <input class=" border-0 my-2 focus:outline-none border-solid border border-yellow-400 w-full  h-[40px]" type="text" name="name" value="<?php if (isset($name) && ($name != "")) echo $name; ?>">
         <b style="color: red;"><?php echo isset($_SESSION['trong_truyen']) ? $_SESSION['trong_truyen'] : "" ?></b>
         <b style="color: red;"><?php echo isset($_SESSION['trung_ten']) ? $_SESSION['trung_ten'] : "" ?></b>
-        <?php unset($_SESSION['trong_truyen']); unset($_SESSION['trung_ten']); ?>
+        <?php unset($_SESSION['trong_truyen']);
+        unset($_SESSION['trung_ten']); ?>
         <br>
         <label class="font-medium">Ảnh bìa</label><br>
         <div class="mt-2">
@@ -58,58 +113,46 @@ if (is_array($load_all_comic)) {
                 }
             }
             ?>
-        </select>
-        <br>
+        </select><br>
 
-        <label class="font-medium">Ảnh truyện</label><br>
-        <div style="width: 100%;">
-            <div class="flex flex-wrap gap-2 justify-items-center">
-                <?php
-                foreach ($img_comic as $img) {
-                    $them_img_comic = "index.php?act=them_img_comic";
-                    $xoa_img_comic = "index.php?act=xoa_img_comic&id=" . $img['id_new'] . "&id_comic=" . $id_comic;
-                ?>
-                    <div class="flex flex-col justify-center content-center items-center w-1/5">
-                        <img style="float:left;" class="h-[200px]" src="../content/uploads/img_cua_comic/<?= $img['img'] ?>" alt="">
-                        <p><?= $img['img'] ?></p>
-                        <a class="border border-solid bg-yellow-300 pr-3 pl-3 border-gray-200  cursor-pointer hover:bg-white hover:text-orange-500" onclick="delete_img_comic('<?php echo $xoa_img_comic ?>')">Xóa</a>
-                    </div>
-                <?php } ?>
-            </div>
+        <!--Tập-->
+        <div class="accordion">
+            Tập
         </div>
-        <input class=" border-0 my-2 focus:outline-none border-solid border border-yellow-400 w-full  h-[40px] p-1 " type="file" name="file[]" id="file" multiple placeholder="Giới thiệu">
-        <span class="font-medium text-red-500">
-            <?php if (isset($khong_tt_f)) {
-                echo $khong_tt_f;
-            } ?></span>
-        <span class="font-medium text-red-500">
-            <?php if (isset($khong_phai_anh_f)) {
-                echo $khong_phai_anh_f;
-            } ?></span>
-        <span class="font-medium text-red-500">
-            <?php if (isset($file_ton_tai_f)) {
-                echo $file_ton_tai_f;
-            } ?></span>
-        <span class="font-medium text-red-500">
-            <?php if (isset($loi_dinh_dang_f)) {
-                echo $loi_dinh_dang_f;
-            } ?></span>
-        <br>
-        <label class="font-medium">Truyện</label><br>
-        <?php 
-            if($vip == 0){
-                $checked = "checked";
-                $block_none = "none";
-            }else{
-                $checked_vip = "checked";
-                $block_none = "block";
+
+        <div class="panel" style="display: block;">
+            <?php
+            foreach ($all_chapter as $chapter) {
+                extract($chapter);
+
+            ?>
+                <a class="add_chapter" href="index.php?act=sua_chapter&id=<?= $id_comic ?>&id_chapter=<?= $number_chapter ?>">Tập <?= $number_chapter ?></a>
+            <?php
             }
+            ?>
+            <br>
+            <a class="add_chapter" href="index.php?act=add_chapter&id=<?= $id_comic ?>&add=<?= $count_chapter['sl'] + 1 ?>">Thêm tập</a>
+
+        </div>
+
+
+
+        <!--Svip-->
+        <label class="font-medium">Truyện</label><br>
+        <?php
+        if ($vip == 0) {
+            $checked = "checked";
+            $block_none = "none";
+        } else {
+            $checked_vip = "checked";
+            $block_none = "block";
+        }
         ?>
-        <input type="radio" value="0" <?php if($vip == 0) echo "checked"; ?> name="vip" onclick="hien_thi(false)" />Truyện thường
-        <input type="radio" value="1" <?php if($vip == 1) echo "checked"; ?> name="vip" onclick="hien_thi(true)" />Truyện Svip
+        <input type="radio" value="0" <?php if ($vip == 0) echo "checked"; ?> name="vip" onclick="hien_thi(false)" />Truyện thường
+        <input type="radio" value="1" <?php if ($vip == 1) echo "checked"; ?> name="vip" onclick="hien_thi(true)" />Truyện Svip
         <p id="loai_vip" style="display:<?= $block_none ?>">
             <label>Loại Svip</label><br>
-            <input placeholder="Nhập giá truyện" class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="text" placeholder="price" name="price_comic" value="<?= $price ?>"/>
+            <input placeholder="Nhập giá truyện" class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="text" placeholder="price" name="price_comic" value="<?= $price ?>" />
         </p>
         <div class="clear"></div>
         <button style="margin-top: 10px;" class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="btn-update">Cập nhật</a></button>

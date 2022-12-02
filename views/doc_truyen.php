@@ -3,7 +3,7 @@
     <!--Đọc truyện-->
     <div class="truyen_doc">
         <div class="title_truyen">
-            <a href="#">Trang chủ</a> / <a href="index.php?act=detail&id=<?= $id ?>"><?= $doc_truyen[0]['name'] ?></a>
+            <a href="#">Trang chủ</a> / <a href="index.php?act=detail&id=<?= $id ?>"><?= $doc_truyen[0]['name'] ?></a>/ <a href="index.php?act=detail&id=<?= $id ?>">Tập <?= $number_chapter ?>: <?= $noi_dung ?></a>
             <h2>Bạn đang đọc truyện</h2>
             <h1><?= $doc_truyen[0]['name'] ?></h1>
         </div>
