@@ -55,12 +55,21 @@ if (isset($_GET['act'])) {
             break;
             //list loại
         case 'list_loai':
-
             $list_all_loai = load_all_loai();
             include_once "danh_muc/listcategories.php";
             break;
+            //search loại
+        case 'search_category':
+            if (isset($_POST['btn_search'])) {
+                $key = $_POST['key_search'];
+            } else {
+                $key = '';
+                $list_all_loai = load_all_loai();
+            }
+            $list_all_loai = load_all_loai_search($key);
+            include_once "danh_muc/listcategories.php";
+            break;
             // sua loai
-
         case 'sua_loai':
 
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -107,40 +116,44 @@ if (isset($_GET['act'])) {
             //xóa loại
         case 'xoa_loai':
             if (isset($_GET['id'])) {
-                $id = $_GET['id'];
-                $all = load_all_loai_fk($id);
-                foreach($all as $value){
-                    extract($value);
-                    delete_comic_img($id_chapter);
-                }
-                foreach($all as $value){
-                    extract($value);
-                    delete_comic_chapter($id_comic);
+                $id_category = $_GET['id'];
+                $all = load_all_loai_fk($id_category);
+                $all_comment = load_all_comment($id_category);
+                $all_love = load_all_love($id_category);
+                $all_his = load_all_history($id_category);
+
+                if ($all_his) {
+                    foreach ($all_his as $value) {
+                        extract($value);
+                        delete_img_history($id_history);
+                    }
                 }
 
-                $all_his = load_all_history($id);
-                foreach($all_his as $value){
-                    extract($value);
-                    delete_img_history($id);
+                if ($all_love) {
+                    foreach ($all_love as $value) {
+                        extract($value);
+                        delete_img_love($id_love);
+                    }
                 }
 
-                $all_love = load_all_love($id);
-                foreach($all_love as $value){
-                    extract($value);
-                    delete_img_love($id);
+                if ($all_comment) {
+                    foreach ($all_comment as $value) {
+                        extract($value);
+                        delete_img_comment($id_cmt);
+                    }
                 }
 
-                $all_comment = load_all_comment($id);
-                foreach($all_comment as $value){
-                    extract($value);
-                    delete_img_comment($id);
+                if ($all) {
+                    foreach ($all as $value) {
+                        extract($value);
+                        delete_comic_img($id_chapter);
+                        delete_comic_chapter($id_comic);
+                    }
                 }
-
-                delete_fk_comic($id);
-                delete_loai($id);
-                $list_all_loai = load_all_loai();
-                header('location:index.php?act=list_loai');
-                $thong_bao = 'Xóa thành công';
+                delete_fk_comic($id_category);
+                delete_loai($id_category);
+                header("location: index.php?act=list_loai");
+                // $list_all_loai = load_all_loai();
             }
             break;
             //add user
@@ -222,6 +235,23 @@ if (isset($_GET['act'])) {
                 die;
             }
             $all_user = all_user();
+            $role = load_all_roll();
+            // echo '<pre>';
+            // print_r($all_user);
+            // die;
+            include_once './user/users.php';
+            break;
+            //search user
+        case 'search_user':
+            if (isset($_POST['btn_search'])) {
+                $key = $_POST['key_search'];
+                $role = $_POST['role'];
+            } else {
+                $key = '';
+                $role = 0;
+                $all_user = all_user();
+            }
+            $all_user = all_user_searh($key, $role);
             include_once './user/users.php';
             break;
             //DELETE_USER
@@ -308,6 +338,16 @@ if (isset($_GET['act'])) {
             //phê duyệt truyện
         case 'agree':
             $comic_select_all_bystatus = comic_select_all_bystatus();
+            include_once '../admin/agree/list_agree.php';
+            break;
+        case 'search_agree':
+            if (isset($_POST['btn_search'])) {
+                $key = $_POST['key_search'];
+            } else {
+                $key = '';
+                $comic_select_all_bystatus = comic_select_all_bystatus();
+            }
+            $comic_select_all_bystatus = comic_select_all_bystatus_search($key);
             include_once '../admin/agree/list_agree.php';
             break;
             //đồng ý phê duyệt
@@ -533,7 +573,7 @@ if (isset($_GET['act'])) {
                 if ($allowUpload == true) {
                     $id_comic = comic_insert($namee, $detail, $author, $date, $intro, $view, $like, $category, $name_img, $st, $po, $vip, $price_comic);
 
-                    $id_chapter = isert_chapter($number_chapter, $noi_dung, $id_comic,$date);
+                    $id_chapter = isert_chapter($number_chapter, $noi_dung, $id_comic, $date);
                     //xử lý di chuyển file tạm vào thư mục cần lưu trữ
                     for ($i = 0; $i < $countfiles; $i++) {
                         $filename = $_FILES["file"]["name"][$i];
@@ -604,7 +644,7 @@ if (isset($_GET['act'])) {
                     }
 
                     if ($allowUpload == true) {
-                        $id_chapter = isert_chapter($number_chapter, $noi_dung, $id,$date);
+                        $id_chapter = isert_chapter($number_chapter, $noi_dung, $id, $date);
                         //xử lý di chuyển file tạm vào thư mục cần lưu trữ
                         for ($i = 0; $i < $countfiles; $i++) {
                             $filename = $_FILES["file"]["name"][$i];
@@ -626,10 +666,10 @@ if (isset($_GET['act'])) {
                 $id = $_GET['id'];
                 $id_chapter = select_id_chapter($id)['id'];
                 delete_img_history($id);
-                delete_comic_img($id_chapter);
-                delete_comic_chapter($id);
                 delete_img_love($id);
                 delete_img_comment($id);
+                delete_comic_img($id_chapter);
+                delete_comic_chapter($id);
                 delete_comic($id);
                 $load_all_truyen = comic_select_all();
                 include_once  "../admin/truyen/comic.php";
@@ -652,18 +692,18 @@ if (isset($_GET['act'])) {
             break;
             //Xóa chapter
         case 'xoa_chapter':
-            if(isset($_GET['id_chapter'])){
+            if (isset($_GET['id_chapter'])) {
                 $id_chapter = $_GET['id_chapter'];
                 $id = $_GET['id'];
                 $number_chapter = $_GET['number_chapter'];
                 delete_comic_img($id_chapter);
-                $limit = select_limit_chapter($number_chapter,$id);
-                foreach($limit as $value){
+                $limit = select_limit_chapter($number_chapter, $id);
+                foreach ($limit as $value) {
                     extract($value);
-                    tru_chapter($value['number_chapter'],$id);
+                    tru_chapter($value['number_chapter'], $id);
                 }
                 delete_chapter($id_chapter);
-                header('location:index.php?act=sua_truyen&id='.$id);
+                header('location:index.php?act=sua_truyen&id=' . $id);
             }
             break;
         case 'sua_chapter':
@@ -839,6 +879,23 @@ if (isset($_GET['act'])) {
             $list_comment = select_comment();
             include_once  'binh_luan/comment.php';
             break;
+            //list_coment search
+        case 'search_bl':
+            if (isset($_POST['btn_search'])) {
+                $key = $_POST['key_search'];
+                $id_comic = $_POST['id_comic'];
+                // echo '<pre>';
+                // echo $key;
+                // echo $id_comic;
+                // die;
+            } else {
+                $key = '';
+                $id_comic = 0;
+                $list_comment = select_comment();
+            }
+            $list_comment = select_comment_search($key, $id_comic);
+            include_once  'binh_luan/comment.php';
+            break;
             //xoa binh luan
         case 'xoa_comment':
             if (isset($_GET['id'])) {
@@ -860,6 +917,20 @@ if (isset($_GET['act'])) {
             include_once 'thong_ke/thongke.php';
             break;
             //biểu đồ
+        case 'search_tk_dm':
+            if (isset($_POST['btn_search'])) {
+                $key = $_POST['key_search'];
+            } else {
+                $key = '';
+                $statistical = statistical_truyen();
+                $statistical_coin = thong_ke_coin();
+                $top_coin = select_top_coin();
+            }
+            $statistical = statistical_truyen_search($key);
+            $statistical_coin = thong_ke_coin();
+            $top_coin = select_top_coin();
+            include_once 'thong_ke/thongke.php';
+            break;
         case 'bieu_do':
             if (check_admin_role() == false) {
                 header("location:../index.php?act=login&msg= Bạn không có quyền truy cập");
@@ -972,8 +1043,19 @@ if (isset($_GET['act'])) {
             $list_bill = load_bill();
             include_once '../admin/bill/list_bill.php';
             break;
+            //list ý kiến
         case 'list_contact':
             $list_contact = select_contact();
+            include_once '../admin/contact.php';
+            break;
+        case 'search_y_kien':
+            if (isset($_POST['btn_search'])) {
+                $key = $_POST['key_search'];
+            } else {
+                $key = '';
+                $list_contact = select_contact();
+            }
+            $list_contact = select_contact_search($key);
             include_once '../admin/contact.php';
             break;
             //ngược lại không tồn tại act thì include_once "home.php"; 

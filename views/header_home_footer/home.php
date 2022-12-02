@@ -107,7 +107,7 @@
     <div class="clear"></div>
 
     <!--Truyện-->
-    <div class="truyen">
+    <div class="truyen" style="margin-top: 35px;">
         <h3><i class="fa-solid fa-cloud-arrow-down"></i>Truyện mới cập nhật</h3>
         <?php
         foreach ($comic_by_date as $value) {
@@ -129,7 +129,7 @@
                         </a>
                         <p style="display: <?= $display ?>;"><?= number_format($price); ?> Coin</p>
                         <div class="ngay_update">
-                            <h5><?php echo substr($date, 0, 11) ?></h5>
+                            <h5 style="color:white;"><?php echo substr($date, 0, 11) ?></h5>
                         </div>
                     </div>
                 </div>

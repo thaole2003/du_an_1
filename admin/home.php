@@ -14,12 +14,14 @@
             <li>Người dùng - Quản lý tài khoản của người dùng</li>
             <li>Bình luận - Quản lý bình luận của người dùng</li>
             <li>Thống kê - Thống kê số liệu của website</li>
-            <li>Bill - Quản lí nạp tiền khách hàng</li>
+            <li>Hóa đơn - Quản lí nạp tiền khách hàng</li>
             <?php }else{
                 ?>
-<li>Truyện - Quản lý truyện của website</li>
-<li>Bình luận - Quản lý bình luận của người dùng</li>
-
+            <li>Truyện - Quản lý truyện của website</li>
+            <li>Loại - Quản lý thể loại truyện</li>
+            <li>Bình luận - Quản lý bình luận của người dùng</li>
+            <li>Hóa đơn - Quản lí nạp tiền khách hàng</li>
+            <li>Sửa lại truyện - Sửa lại truyện bị từ chối đăng</li>
            <?php } ?>
         </div>
         <div class="back_website">

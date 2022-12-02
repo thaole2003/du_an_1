@@ -73,7 +73,7 @@
 
                         <td class="p-2 border-2 border-solid ">
                             <button class="p-2 px-4 bg-orange-400 border text-white hover:bg-blue-500  hover:text-orange-400 "><a class="hover:text-white" href="<?php echo $sua_truyen ?>">Sửa</a> </button><br>
-                            <button onclick="del('<?php echo $xoa_truyen ?>')" class="p-2 px-4 bg-orange-400 border text-white hover:bg-blue-500  hover:text-orange-400 mt-2">Xóa</button>
+                            <a style="line-height: 50px;" class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="btn-update" href="<?= $xoa_truyen ?>" onclick="return confirm('Bạn chắc chắn muốn xóa truyện này không?')">Xóa</a>
                         </td>
                     </tr>
                 <?php

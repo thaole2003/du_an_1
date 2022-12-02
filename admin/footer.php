@@ -21,27 +21,7 @@
 
 
 </body>
-<script>
 
-    function del(aaaa) {
-        if (confirm('Xác nhận xóa')) {
-            return document.location = aaaa;
-        }
-    }
-
-    function dele(a) {
-        if (confirm('Xác nhận xóa tập')) {
-            return window.location = a;
-            break;
-        }
-    }
-
-    function delete_img_comic(aaaa) {
-        if (confirm('Xác nhận xóa ')) {
-            return document.location = aaaa;
-        }
-    }
-</script>
 <script>
     var acc = document.getElementsByClassName("accordion");
     var i;
