@@ -141,7 +141,7 @@ function load_all_comic_edit($name)
     $sql = "select * from comic where name != '$name'";
     return pdo_query($sql);
 }
-function all_comic_by_categoryiddetail($id,$id_comic)
+function all_comic_by_categoryiddetail($id, $id_comic)
 {
     $sql = "SELECT 
 c.*, 
@@ -200,6 +200,27 @@ join user u
 on c.poster = u.id
 where c.status=1
  order by c.id desc;
+";
+    return pdo_query($sql);
+}
+function comic_select_all_bystatus_search($key)
+{
+    $sql = "SELECT 
+    c.*, 
+    c.cover_image as img_name,
+    ca.name as ca_name,
+		u.email as u_email,
+        u.name as name_poster
+from comic c
+join category ca
+on c.category_id = ca.id
+join user u
+on c.poster = u.id
+where c.status=1";
+    if ($key != "") {
+        $sql .= " and u.name like '%" . $key . "%'";
+    }
+    $sql .= " order by c.id desc;
 ";
     return pdo_query($sql);
 }
@@ -396,12 +417,34 @@ function statistical_truyen()
    INNER JOIN comic
    ON comic.category_id = category.id
    GROUP BY category_id";
-
-
     return pdo_query($sql);
 }
 
+function statistical_truyen_search($key)
+{
+    $sql = "SELECT 
+    category.id as category_id,
+    category.name as category_name, 
+     COUNT(comic.id) as so_luong, 
+     SUM(comic.view) as sum_view, 
+     SUM(comic.like_comic) as sum_like, 
+     MAX(comic.view) as max_view, 
+     MIN(comic.view) as min_view, 
+     MAX(comic.like_comic) as max_like, 
+     MIN(comic.like_comic) as min_like, 
+     AVG(comic.view) as avg_view, 
+     AVG(comic.like_comic) as avg_like
+   from category 
+   INNER JOIN comic
+   ON comic.category_id = category.id 
+    where 1";
+    if ($key != "") {
+        $sql .= " and category.name like '%" . $key . "%'";
+    }
 
+    $sql .= " GROUP BY category_id";
+    return pdo_query($sql);
+}
 function update_status_yes($id)
 {
     $sql = "UPDATE comic SET status	  = 2 where id = $id";

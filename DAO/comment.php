@@ -25,5 +25,18 @@ function select_comment(){
     $sql="SELECT c.*, u.name as u_name, cm.name as comic_name from comment c join user u  ON c.user_id=u.id join comic cm ON c.comic_id=cm.id";
     return pdo_query($sql);
 }
+function select_comment_search($key,$id_comic)
+{
+    $sql = "SELECT c.*, u.name as u_name, cm.name as comic_name,cm.id as id_comic from comment c join user u  ON c.user_id=u.id join comic cm ON c.comic_id=cm.id where 1";
 
+    if ($key != "") {
+        $sql.= " and u.name like '%" . $key . "%'";
+    }
+    if ($id_comic > 0) {
+        $sql .= " and cm.id = $id_comic";
+    }
+
+    $sql .= " order by u.id desc";
+    return pdo_query($sql);
+}
 ?>

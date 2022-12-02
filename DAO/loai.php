@@ -20,6 +20,16 @@ function load_all_loai(){
     $list_loai = pdo_query($sql);
     return $list_loai;
 }
+function load_all_loai_search($key){
+    $sql = "select * from category where 1";
+
+    if($key != ""){
+        $sql .= " and name like '%" . $key . "%'";
+    }
+    $sql.= " order by id desc";
+    $list_loai = pdo_query($sql);
+    return $list_loai;
+}
 //DEM ban ghi theo name category nhap vao
 function count_category($name){
     $sql="SELECT COUNT(*) from category where name='$name'";
@@ -45,7 +55,7 @@ function load_all_loai_fk($id){
 }
 
 function load_all_history($id){
-    $sql = "SELECT A.id 
+    $sql = "SELECT A.id as id_history
     FROM comic A INNER JOIN category B on A.category_id = B.id
     INNER JOIN history_comic_user C on A.id = C.id_comic
     WHERE B.id = $id";
@@ -54,7 +64,7 @@ function load_all_history($id){
 }
 
 function load_all_love($id){
-    $sql = "SELECT A.id 
+    $sql = "SELECT A.id  as id_love
     FROM comic A INNER JOIN category B on A.category_id = B.id
     INNER JOIN love C on A.id = C.id_comic
     WHERE B.id = $id";
@@ -63,7 +73,7 @@ function load_all_love($id){
 }
 
 function load_all_comment($id){
-    $sql = "SELECT A.id 
+    $sql = "SELECT A.id as id_cmt
     FROM comic A INNER JOIN category B on A.category_id = B.id
     INNER JOIN comment C on A.id = C.comic_id
     WHERE B.id = $id";
