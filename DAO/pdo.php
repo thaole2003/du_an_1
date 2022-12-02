@@ -2,25 +2,25 @@
 /**
  * Mở kết nối đến CSDL sử dụng PDO
   */
-function pdo_get_connection(){
-    $dburl = "mysql:host=202.92.5.49;dbname=fumpddnwhosting_duan1;charset=utf8";
-    $username = 'fumpddnwhosting_duan1';
-    $password = '3eSKHX7pszLl';
-
-    $conn = new PDO($dburl, $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $conn;
-}
-//localhost
 // function pdo_get_connection(){
-//     $dburl = "mysql:host=localhost;dbname=du_an_1;charset=utf8";
-//     $username = 'root';
-//     $password = '';
+//     $dburl = "mysql:host=202.92.5.49;dbname=fumpddnwhosting_duan1;charset=utf8";
+//     $username = 'fumpddnwhosting_duan1';
+//     $password = '3eSKHX7pszLl';
 
 //     $conn = new PDO($dburl, $username, $password);
 //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 //     return $conn;
 // }
+//localhost
+function pdo_get_connection(){
+    $dburl = "mysql:host=localhost;dbname=du_an_1;charset=utf8";
+    $username = 'root';
+    $password = '';
+
+    $conn = new PDO($dburl, $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $conn;
+}
 /*
  * Thực thi câu lệnh sql thao tác dữ liệu (INSERT, UPDATE, DELETE)
  * @param string $sql câu lệnh sql
@@ -87,39 +87,14 @@ function pdo_query_one($sql){
         unset($conn);
     }
 }
-function pdo_query_last_id($sql)
-{
-    //Get last inserted id
-    $servername = "202.92.5.49";
-    $username = "fumpddnwhosting_duan1";
-    $password = "3eSKHX7pszLl";
-    $dbname = "fumpddnwhosting_duan1";
-    //Create connection
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-    //Check connection
-    if ($conn->connect_error) {
-        die("failed: " . $conn->connect_error);
-    }
-
-    //Action
-    if ($conn->query($sql)) {
-        $last_id = $conn->insert_id;
-        return $last_id;
-    }else{
-        echo "error".$sql."</br>".$conn->error;
-    }
-    
-    //Close connection
-    $conn->close();
-}
+//Navicat
 // function pdo_query_last_id($sql)
 // {
 //     //Get last inserted id
-//     $servername = "localhost";
-//     $username = "root";
-//     $password = "";
-//     $dbname = "du_an_1";
+//     $servername = "202.92.5.49";
+//     $username = "fumpddnwhosting_duan1";
+//     $password = "3eSKHX7pszLl";
+//     $dbname = "fumpddnwhosting_duan1";
 //     //Create connection
 //     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -139,6 +114,33 @@ function pdo_query_last_id($sql)
 //     //Close connection
 //     $conn->close();
 // }
+//Localhost
+function pdo_query_last_id($sql)
+{
+    //Get last inserted id
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "du_an_1";
+    //Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+    //Check connection
+    if ($conn->connect_error) {
+        die("failed: " . $conn->connect_error);
+    }
+
+    //Action
+    if ($conn->query($sql)) {
+        $last_id = $conn->insert_id;
+        return $last_id;
+    }else{
+        echo "error".$sql."</br>".$conn->error;
+    }
+    
+    //Close connection
+    $conn->close();
+}
 /**
  * Thực thi câu lệnh sql truy vấn một giá trị
  * @param string $sql câu lệnh sql
