@@ -536,9 +536,9 @@ function delete_chapter($id)
     $img_comic = pdo_query($sql);
     return $img_comic;
 }
-function select_limit_chapter($number_chapter, $id_comic)
+function select_limit_chapter($number_chapter, $id_comic, $number)
 {
-    $sql = "SELECT number_chapter FROM `chapter` WHERE id_comic = '$id_comic' LIMIT $number_chapter,100000";
+    $sql = "SELECT number_chapter FROM `chapter` WHERE id_comic = '$id_comic' LIMIT $number_chapter,$number";
     $number_chapter = pdo_query($sql);
     return $number_chapter;
 }
@@ -556,4 +556,23 @@ function client_chapter($id)
     WHERE A.id = $id";
     $chapter = pdo_query($sql);
     return $chapter;
+}
+//count chapter
+function count_chapter_delete($id_comic){
+    $sql = "SELECT count(number_chapter)
+    FROM comic A INNER JOIN chapter B 
+    ON A.id = B.id_comic
+    WHERE B.id_comic =  $id_comic";
+    $count = pdo_query_value($sql);
+    return $count;
+}
+//delte_comic
+function id_images_comic($id_comic)
+{
+    $sql = "SELECT C.id_chapter
+    FROM comic A INNER JOIN chapter B ON A.id = B.id_comic 
+    INNER JOIN images C ON B.id = C.id_chapter 
+    WHERE A.id = $id_comic";
+    $all = pdo_query($sql);
+    return $all;
 }
