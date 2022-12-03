@@ -581,3 +581,11 @@ function all_svip(){
     $sql = "SELECT * FROM comic WHERE vip = 1";
     return pdo_query($sql);
 }
+//Count ảnh
+function count_images($id_comic,$id_chapter){
+    $sql = "SELECT count(C.name) FROM 
+    comic A INNER JOIN chapter B on A.id = B.id_comic 
+    INNER JOIN images C on B.id = C.id_chapter
+    WHERE A.id = $id_comic and B.number_chapter = $id_chapter order by C.name";
+    return pdo_query_value($sql);
+}

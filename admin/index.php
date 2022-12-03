@@ -721,9 +721,13 @@ if (isset($_GET['act'])) {
                 $img_comic = img_comic($id, $id_chapter);
                 $load_one = load_one_chapter($id, $id_chapter);
                 $count_chapter = count_chapter($id);
+                $count_img = count_images($id,$id_chapter);
                 // echo '<pre>';
-                // print_r($id_chapter);
-                // die;
+                // echo $id;
+                echo $count_img;
+                // echo '</br>';
+                // print_r($img_comic);
+                die;
                 if (isset($_POST['btn-update'])) {
                     $noi_dung = $_POST['noi_dung'];
                     $allowUpload = true;
