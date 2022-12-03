@@ -10,6 +10,10 @@
         
         if (isset($id) && ($id != "")) echo $id; ?>">
         <br>
+        <label class="font-medium text-xl ">Ảnh chụp hóa đơn</label><br>
+        <img class="w-[400px] h-[500px]" src="../content/uploads/bill/<?= $bill_one['images'] ?>" alt="">
+
+        <br>
         <label class="font-medium text-xl ">Tình trạng</label><br>
         <span class='text-red-500'><?php echo isset( $_SESSION['err_whynot'])?  $_SESSION['err_whynot']:'' ?>
         <?php unset( $_SESSION['err_whynot'])?>

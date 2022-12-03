@@ -11,7 +11,7 @@
                     <p>Phương thức thanh toán</p>
                 </td>
                 <td>
-                    <input type="text" name="" value="Chuyển khoản ngân hàng" disabled> 
+                    <input type="text" name="" value="Chuyển khoản ngân hàng" disabled>
                 </td>
             </tr>
             <tr>
@@ -21,7 +21,7 @@
                 </td>
                 <td>
                     <div class="vien"></div>
-                    <input type="text" name="" value="<?= number_format($price); ?> VNĐ" disabled> 
+                    <input type="text" name="" value="<?= number_format($price); ?> VNĐ" disabled>
                     <input type="hidden" name="price" value="<?= $price ?>">
                 </td>
             </tr>
@@ -32,7 +32,7 @@
                 </td>
                 <td>
                     <div class="vien"></div>
-                    <input type="text" name="name" value="<?= $name ?>" disabled> 
+                    <input type="text" name="name" value="<?= $name ?>" disabled>
                 </td>
             </tr>
             <tr>
@@ -42,7 +42,7 @@
                 </td>
                 <td>
                     <div class="vien"></div>
-                    <input type="text" name="email" value="<?= $email ?>" disabled> 
+                    <input type="text" name="email" value="<?= $email ?>" disabled>
                 </td>
             </tr>
             <tr>
@@ -52,7 +52,7 @@
                 </td>
                 <td>
                     <div class="vien"></div>
-                    <input type="text" name="address" value="<?= $address ?>" disabled> 
+                    <input type="text" name="address" value="<?= $address ?>" disabled>
                 </td>
             </tr>
             <tr>
@@ -62,7 +62,7 @@
                 </td>
                 <td>
                     <div class="vien"></div>
-                    <input type="text" name="phone" value="<?= $phone ?>" disabled> 
+                    <input type="text" name="phone" value="<?= $phone ?>" disabled>
                 </td>
             </tr>
             <tr>
@@ -89,23 +89,23 @@
                         $coin = "550000";
                     }
                     ?>
-                    <input type="text" name="coin" value="<?= number_format($coin) ?> Coin" disabled> 
+                    <input type="text" name="coin" value="<?= number_format($coin) ?> Coin" disabled>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <div class="vien mt-[-6px]"></div>
+                    <div class="vien"></div>
                     <p class="">Hóa đơn chuyển tiền</p>
                     <br>
-                    
+
                     <span>
-                        <br><?php echo isset($_SESSION['bill'])?$_SESSION['bill']:'' ?>
-                    
-                    <?php  unset($_SESSION['bill']) ?></span>
+                        <br><?php echo isset($_SESSION['bill']) ? $_SESSION['bill'] : '' ?>
+
+                        <?php unset($_SESSION['bill']) ?></span>
                 </td>
                 <td class="items-center">
-                    <div class="vien "></div>
-                    <input  type="file" name="fileupload" id="fileToUpload">
+                    <div class="vien" style="margin-top: -9px;"></div>
+                    <input type="file" name="fileupload" id="fileToUpload">
                 </td>
             </tr>
             <tr>
@@ -118,7 +118,7 @@
                     </b>
                 </td>
             </tr>
-        
+
             <tr>
                 <td colspan="2"><button name="nap_coin" class="cursor-pointer">Thanh toán</button></td>
             </tr>

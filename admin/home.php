@@ -9,7 +9,7 @@
 
         <div class="ul">
         <?php if ($_SESSION['auth']['role'] == 1) { ?>
-            <li>Loại - Quản lý thể loại truyện</li>
+            <li>Thể Loại - Quản lý thể loại truyện</li>
             <li>Truyện - Quản lý truyện của website</li>
             <li>Người dùng - Quản lý tài khoản của người dùng</li>
             <li>Bình luận - Quản lý bình luận của người dùng</li>
@@ -17,8 +17,8 @@
             <li>Hóa đơn - Quản lí nạp tiền khách hàng</li>
             <?php }else{
                 ?>
+            <li>Thể Loại - Quản lý thể loại truyện</li>
             <li>Truyện - Quản lý truyện của website</li>
-            <li>Loại - Quản lý thể loại truyện</li>
             <li>Bình luận - Quản lý bình luận của người dùng</li>
             <li>Hóa đơn - Quản lí nạp tiền khách hàng</li>
             <li>Sửa lại truyện - Sửa lại truyện bị từ chối đăng</li>

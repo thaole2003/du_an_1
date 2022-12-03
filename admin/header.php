@@ -134,17 +134,18 @@ unset($_SESSION['again']) ?>
                     <?php if ($_SESSION['auth']['role'] == 3) {
                     ?>
                         <div class="nav-item dropdown">
-                            <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Truyện</a>
-                            <div class="dropdown-menu bg-transparent border-0">
-                                <a href="index.php?act=add_comic" class="dropdown-item">Thêm truyện</a>
-                                <a href="index.php?act=list_truyen" class="dropdown-item">Danh sách truyện</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
                             <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Thể loại</a>
                             <div class="dropdown-menu bg-transparent border-0">
                                 <a href="index.php?act=list_loai" class="dropdown-item">Danh sách</a>
                                 <a href="index.php?act=add_loai" class="dropdown-item">Thêm loại</a>
+                            </div>
+                        </div>
+
+                        <div class="nav-item dropdown">
+                            <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Truyện</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a href="index.php?act=add_comic" class="dropdown-item">Thêm truyện</a>
+                                <a href="index.php?act=list_truyen" class="dropdown-item">Danh sách truyện</a>
                             </div>
                         </div>
 

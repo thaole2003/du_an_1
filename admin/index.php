@@ -147,10 +147,13 @@ if (isset($_GET['act'])) {
                     foreach ($all as $value) {
                         extract($value);
                         delete_comic_img($id_chapter);
+                    }
+                    foreach ($all as $value) {
+                        extract($value);
                         delete_comic_chapter($id_comic);
                     }
+                    delete_fk_comic($id_category);
                 }
-                delete_fk_comic($id_category);
                 delete_loai($id_category);
                 header("location: index.php?act=list_loai");
                 // $list_all_loai = load_all_loai();
@@ -664,11 +667,15 @@ if (isset($_GET['act'])) {
         case 'xoa_truyen':
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-                $id_chapter = select_id_chapter($id)['id'];
+                $id_chapter = id_images_comic($id);
+
                 delete_img_history($id);
                 delete_img_love($id);
                 delete_img_comment($id);
-                delete_comic_img($id_chapter);
+                foreach($id_chapter as $value){
+                    extract($value);
+                    delete_comic_img($id_chapter);
+                }
                 delete_comic_chapter($id);
                 delete_comic($id);
                 $load_all_truyen = comic_select_all();
@@ -696,8 +703,9 @@ if (isset($_GET['act'])) {
                 $id_chapter = $_GET['id_chapter'];
                 $id = $_GET['id'];
                 $number_chapter = $_GET['number_chapter'];
+                $count = count_chapter_delete($id);
                 delete_comic_img($id_chapter);
-                $limit = select_limit_chapter($number_chapter, $id);
+                $limit = select_limit_chapter($number_chapter, $id,$count);
                 foreach ($limit as $value) {
                     extract($value);
                     tru_chapter($value['number_chapter'], $id);
