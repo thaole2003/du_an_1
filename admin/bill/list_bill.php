@@ -67,11 +67,11 @@
                             <td class="p-2 border-2 border-solid "><?= number_format($price); ?> VNĐ</td>
                             <td class="p-2 border-2 border-solid " style="color: <?= $color ?>"><?= $status ?></td>
                             <td class="p-2 border-2 border-solid "><img class="w-[50px] h-[70px]" src="../content/uploads/bill/<?= $images ?>" alt="">  </td>
-                            <td class="p-2 border-2 border-solid ">
+                            <td class="p-2 border-2 border-solid " style="width: 150px;">
                                 <?php
                                 if ($status != "Giao dịch thành công") {
                                 ?>
-                                    <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-3 border-solid border border-yellow-400"><a href="<?= $sua_bill ?>">Cập nhật</a></button>
+                                    <a class="bg-orange-400 hover:bg-blue-500 hover:text-orange-400 font-medium text-white p-1 px-1  border-solid border border-yellow-300" href="<?= $sua_bill ?>">Cập nhật</a>
                                 <?php
                                 }
                                 ?>
