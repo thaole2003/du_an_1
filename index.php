@@ -669,10 +669,12 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     if(strlen(trim($_POST['email']))==0){
                         $flag_send = false;
                         $_SESSION['send_email']='không được để trống';
-                    } 
-                      if (!emailValid(trim($_POST['email']))) {
-                        $flag_send = false;
-                        $_SESSION['send_email']='Email phải đúng định dạng';
+                    }else{
+                        if (!emailValid(trim($_POST['email']))) {
+                            $flag_send = false;
+                            $_SESSION['send_email']='Email phải đúng định dạng';
+                    }
+                     
                     }
                     if(strlen(trim($_POST['comment']))==0){
                         $flag_send = false;
