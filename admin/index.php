@@ -689,9 +689,6 @@ if (isset($_GET['act'])) {
                 $load_all_comic = comic_select_one($id);
                 $count_chapter = count_chapter($id);
                 $all_chapter = load_all_chapter($id);
-                // echo '<pre>';
-                // print_r($count_chapter);
-                // die;
             }
             $list_all_images = load_all_image();
             $list_all_loai = load_all_loai();
@@ -721,8 +718,9 @@ if (isset($_GET['act'])) {
                 $img_comic = img_comic($id, $id_chapter);
                 $load_one = load_one_chapter($id, $id_chapter);
                 $count_chapter = count_chapter($id);
+                $noi_dung_id = load_one_noi_dung_chapter($id, $id_chapter);
                 // echo '<pre>';
-                // print_r($id_chapter);
+                // print_r($noi_dung);
                 // die;
                 if (isset($_POST['btn-update'])) {
                     $noi_dung = $_POST['noi_dung'];
@@ -768,14 +766,14 @@ if (isset($_GET['act'])) {
                     }
 
                     if ($allowUpload == true) {
-                        update_chapter($noi_dung, $load_one['id_ch']);
+                        update_chapter($noi_dung, $noi_dung_id['id_ch']);
                         if ($_FILES["file"]["name"][0] != "") {
                             for ($i = 0; $i < $countfiles; $i++) {
                                 //xử lý di chuyển file tạm vào thư mục cần lưu trữ
                                 $filename = $_FILES["file"]["name"][$i];
                                 // Upload file
                                 move_uploaded_file($_FILES['file']['tmp_name'][$i], $target_dir . $filename);
-                                up_load_img($filename, $load_one['id_ch']);
+                                up_load_img($filename, $noi_dung_id['id_ch']);
                             }
                         }
                         header("location: " . $_SERVER['HTTP_REFERER']);

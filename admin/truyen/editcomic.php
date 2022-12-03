@@ -122,11 +122,17 @@ if (is_array($load_all_comic)) {
 
         <div class="panel" style="display: block;">
             <?php
-            foreach ($all_chapter as $chapter) {
-                extract($chapter);
+            if ($all_chapter) {
+                foreach ($all_chapter as $chapter) {
+                    extract($chapter);
 
             ?>
-                <a class="add_chapter" href="index.php?act=sua_chapter&id=<?= $id_comic ?>&id_chapter=<?= $number_chapter ?>">Tập <?= $number_chapter ?></a>
+                    <a class="add_chapter" href="index.php?act=sua_chapter&id=<?= $id_comic ?>&id_chapter=<?= $number_chapter ?>">Tập <?= $number_chapter ?></a>
+                <?php
+                }
+            } else {
+                ?>
+                <h1 style="margin-top: 10px; color:red;">Không có tập</h1>
             <?php
             }
             ?>
