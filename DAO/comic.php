@@ -576,3 +576,8 @@ function id_images_comic($id_comic)
     $all = pdo_query($sql);
     return $all;
 }
+//load all svip
+function all_svip(){
+    $sql = "SELECT * FROM comic WHERE vip = 1";
+    return pdo_query($sql);
+}

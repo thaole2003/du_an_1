@@ -217,6 +217,7 @@ if (isset($_SESSION['dang_xuat'])) {
                     <ul class="sub_menu">
                         <!--Phần đẩy loại truyện-->
                         <div class="vien">
+                            <li><a href="index.php?act=loai&ma_svip">Svip</a></li>
                             <?php
                             ob_start();
                             foreach ($list_all_loai as $key => $value) { ?>

@@ -356,6 +356,12 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $all_comic_by_categoryid =  all_comic_by_categoryid($id_ma_loai);
                 include_once "./views/loai.php";
             }
+            if(isset($_GET['ma_svip'])){
+                $all_svip = all_svip();
+                // echo '<pre>';
+                // print_r($all_svip);
+                include_once "./views/loai.php";
+            }
             break;
             //forgot password
         case 'forgotpw':
