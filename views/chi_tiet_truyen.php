@@ -44,9 +44,22 @@
 
                     </div>
                     <div class="clear"></div>
-                    <div class="chon flex items-center">
-                        <a href="index.php?act=doc_truyen&id=<?= $id ?>&number_chapter=1&noi_dung=<?= $client_chapter[0]['noi_dung'] ?>">Đọc từ đầu</a>
 
+                    <?php
+                    if ($detail_comic['vip'] == 1) {
+                        $id_user = $_SESSION['auth']['id'];
+
+                        if (check_his($id, $id_user) == "") {
+                            $onclick = "return confirm('Bạn chắc chắn muốn đọc truyện này! để đọc truyện này bạn sẽ mất " . number_format($detail_comic['price']) . " Coin')";
+                        } else {
+                            $onclick = "";
+                        }
+                    } else {
+                        $onclick = "";
+                    }
+                    ?>
+                    <div class="chon flex items-center">
+                        <a href="index.php?act=doc_truyen&id=<?= $id ?>&number_chapter=1&noi_dung=<?= $client_chapter[0]['noi_dung'] ?>" onclick="<?= $onclick ?>">Đọc từ đầu</a>
                         <?php
                         if (isset($_SESSION['auth'])) {
                             if (check_love_comic($detail_comic['id'], $_SESSION['auth']['id']) == "") {
@@ -72,7 +85,7 @@
                         ?>
                         <?php if ($detail_comic['vip'] == 1) {
                         ?>
-                            <form action="#" method="POST">
+                            <form action="index.php?act=coin" method="POST">
                                 <a href="index.php?act=coin"><button name="coin"><?= number_format($detail_comic['price']); ?> Coin</button></a>
                             </form>
                         <?php } ?>
@@ -94,7 +107,7 @@
                     extract($value);
                 ?>
                     <tr>
-                        <td><a href="index.php?act=doc_truyen&id=<?= $id_comic ?>&number_chapter=<?= $number_chapter ?>&noi_dung=<?= $noi_dung ?>">Tập <?= $number_chapter ?></a></td>
+                        <td><a href="index.php?act=doc_truyen&id=<?= $id_comic ?>&number_chapter=<?= $number_chapter ?>&noi_dung=<?= $noi_dung ?>" onclick="<?= $onclick ?>">Tập <?= $number_chapter ?></a></td>
                         <td><?= $noi_dung ?></td>
                         <td style="float: right;"><?= substr($date, 0, 11) ?></td>
                     </tr>
@@ -142,26 +155,26 @@
         <h3> <i class="fa-solid fa-flag"></i>Truyện cùng thể loại</h3>
         <div class="rol">
             <?php
-            $truyen_tuong_tu = all_comic_by_categoryiddetail($detail_comic['ca_id'],$detail_comic['id']);
+            $truyen_tuong_tu = all_comic_by_categoryiddetail($detail_comic['ca_id'], $detail_comic['id']);
             foreach ($truyen_tuong_tu as $key => $value) {
                 extract($value);
             ?>
-            <a href="index.php?act=detail&id=<?= $id ?>">
-                <div class="col">
-                    <div class="img"><img src="content/uploads/cover_img/<?= $img_name ?>" alt="">
-                    </div>
-                    <div class="text">
-                        <a href="#">
-                            <h4><?= $name ?></h4>
-                        </a>
-                        <p style="display: <?= $display ?>;"><?= number_format($price); ?> Coin</p>
-                        <div class="ngay_update">
-                            <h5><?php echo substr($date, 0, 11) ?></h5>
+                <a href="index.php?act=detail&id=<?= $id ?>">
+                    <div class="col">
+                        <div class="img"><img src="content/uploads/cover_img/<?= $img_name ?>" alt="">
+                        </div>
+                        <div class="text">
+                            <a href="#">
+                                <h4><?= $name ?></h4>
+                            </a>
+                            <p style="display: <?= $display ?>;"><?= number_format($price); ?> Coin</p>
+                            <div class="ngay_update">
+                                <h5><?php echo substr($date, 0, 11) ?></h5>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            
+                </a>
+
             <?php  } ?>
         </div>
 

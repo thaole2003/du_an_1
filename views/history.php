@@ -2,9 +2,7 @@
 <article>
     <div class="truyen">
         <h3> <i class="fa-solid fa-flag"></i><?php echo isset($_SESSION['auth']) ? "lịch sử đọc của bạn" : "bạn cần đăng nhập để xem lịch sử" ?> </h3>
-        <div class="flex flex-wrap">
-
-
+        <div class="rol">
             <?php
             if (isset($_SESSION['auth'])) {
                 $all_history = history_comic($_SESSION['auth']['id']);
@@ -19,7 +17,7 @@
                                     <h4><?= $name ?></h4>
                                 </a>
                                 <div class="ngay_update">
-                                    <h5><?= $date ?></h5>
+                                    <h5><?= substr($date, 0, 11) ?></h5>
                                 </div>
                             </div>
                         </div>

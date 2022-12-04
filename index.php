@@ -484,6 +484,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             $load_cmt = load_all_comic_byid($id);
             $client_chapter = client_chapter($id);
 
+            //truyện yêu thích
             if (isset($_POST['love_comic'])) {
                 if (isset($_SESSION['auth'])) {
                     isert_comic($detail_comic['id'], $_SESSION['auth']['id']);
@@ -499,6 +500,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 update_dislike($detail_comic['id']);
                 header("location: " . $_SERVER['HTTP_REFERER']);
             }
+            //comment
             if (isset($_POST['cmt'])) {
                 if (isset($_SESSION['auth'])) {
                     unset($_SESSION['err_not_dn']);
