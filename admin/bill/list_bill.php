@@ -1,11 +1,11 @@
 <!-- content  -->
 <div class="py-4 w-full">
     <div class="">
-        <h1 class="text-xl font-medium p-4">Danh sách coin</h1>
+        <h1 class="text-xl font-medium p-4">Danh sách hóa đơn</h1>
     </div>
     <div class="p-4">
         <form action="index.php?act=search_bill" method="POST">
-            <input type="text" name="key_search" class="w-[300px] h-[44px]  border border-solid border-yellow-400">
+            <input placeholder="Mời nhập tên người dùng muốn tìm kiếm" type="text" name="key_search" class="w-[300px] h-[44px]  border border-solid border-yellow-400">
             <select name="status" class="p-2 px-4 rounded-md h-[44px]">
                 <option value="3" selected>Tất cả</option>
                 <option class="font-medium text-xl" value="0">Đang xử lý</option>

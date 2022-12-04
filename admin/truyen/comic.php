@@ -5,7 +5,7 @@
     </div>
     <div class="p-4">
         <form action="index.php?act=list_truyen_search" method="POST" class="">
-            <input type="text" name="key_search" class="w-[300px] h-[44px]  border border-solid border-yellow-400">
+            <input placeholder="Mời nhập tên truyện muốn tìm kiếm" type="text" name="key_search" class="w-[300px] h-[44px]  border border-solid border-yellow-400">
             <select name="category_id" class="p-2 px-4 rounded-md h-[44px]">
                 <option value="0" selected>Tất cả</option>
                 <?php

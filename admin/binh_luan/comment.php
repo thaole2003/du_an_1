@@ -5,7 +5,7 @@
     </div>
     <div class="p-4">
         <form action="index.php?act=search_bl" method="POST" class="">
-            <input type="text" name="key_search" class="w-[300px] h-[44px]  border border-solid border-yellow-400">
+            <input placeholder="Mời nhập tên người dùng muốn tìm kiếm" type="text" name="key_search" class="w-[300px] h-[44px]  border border-solid border-yellow-400">
             <select name="id_comic" class="p-2 px-4 rounded-md h-[44px]">
                 <option value="0" selected>Tất cả</option>
                 <?php

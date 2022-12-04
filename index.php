@@ -221,12 +221,12 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             if (isset($_POST['dmk'])) {
                 if (strlen($_POST['pass_befor']) == 0) {
                     $flag_change = false;
-                    $_SESSION['err_pb'] = 'yêu cầu nhập mật khẩu';
+                    $_SESSION['err_pb'] = 'Yêu cầu nhập mật khẩu';
                 } else {
                     if (password_verify($_POST['pass_befor'], $select_pass['password'])) {
                         $flag_change = true;
                     } else {
-                        $_SESSION['err_pb'] = 'mật khẩu cũ không đúng';
+                        $_SESSION['err_pb'] = 'Mật khẩu cũ không đúng';
                         unset($_SESSION['err_pw']);
                         unset($_SESSION['err_rp']);
                     }
@@ -234,20 +234,20 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
 
                 if (strlen($_POST['passw_new']) == 0) {
                     $flag_change = false;
-                    $_SESSION['err_pw'] = 'yêu cầu nhập mật khẩu mới';
+                    $_SESSION['err_pw'] = 'Yêu cầu nhập mật khẩu mới';
                 }
                 if (strlen($_POST['repass']) == 0) {
                     $flag_change = false;
-                    $_SESSION['err_rp'] = 'yêu cầu nhập lại mật khẩu';
+                    $_SESSION['err_rp'] = 'Yêu cầu nhập lại mật khẩu';
                 }
                 if (strlen($_POST['passw_new']) != 0) {
                     if (!isPassword($_POST['passw_new'])) {
                         $flag_change = false;
-                        $_SESSION['err_pw'] = 'mật khẩu phải đúng định dạng';
+                        $_SESSION['err_pw'] = 'Mật khẩu phải đúng định dạng';
                     }
                     if ($_POST['passw_new'] == $_POST['pass_befor']) {
                         $flag_change = false;
-                        $_SESSION['err_pw'] = 'mật khẩu mới phải khác mật khẩu cũ';
+                        $_SESSION['err_pw'] = 'Mật khẩu mới phải khác mật khẩu cũ';
                     }
                 }
 
@@ -255,7 +255,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 if (strlen($_POST['repass']) != 0) {
                     if ($_POST['repass'] != $_POST['passw_new']) {
                         $flag_change = false;
-                        $_SESSION['err_rp'] = 'mật khẩu mới phải trùng nhau';
+                        $_SESSION['err_rp'] = 'Mật khẩu mới phải trùng nhau';
                     }
                 }
                 if ($flag_change == true) {
