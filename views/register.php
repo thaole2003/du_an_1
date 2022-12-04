@@ -14,7 +14,7 @@
 
     <div style="margin: 20px auto; width:600px; background-color:white;  border-radius: 6px;    box-shadow: 0px 0px 7px;">
         <p class="text-center font-medium text-2xl">Đăng Kí Mới</p>
-        <form action="" method="POST" class="flex flex-col">
+        <form action="index.php?act=register" method="POST" class="flex flex-col">
             <label class="m-2" for="">Email</label>
             <input type="text" name="email" class="email m-2 content-between  border border-soild h-8  w-11/12 " placeholder="<?php echo isset($err_email) ? $err_email : "" ?>">
             <label class="m-2" for="">Name</label>
