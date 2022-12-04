@@ -73,11 +73,11 @@ unset($_SESSION['again']) ?>
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
-        <!-- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
-        </div> -->
+        </div>
         <!-- Spinner End -->
 
 
@@ -93,7 +93,8 @@ unset($_SESSION['again']) ?>
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0"><?php ob_start();
+                        <h6 class="mb-0"><?php
+                                            ob_start();
                                             echo $_SESSION['auth']['name'] ?></h6>
                         <span><?php if ($_SESSION['auth']['role'] == 1) {
                                     echo ' Admin';
@@ -107,17 +108,17 @@ unset($_SESSION['again']) ?>
                     <?php if ($_SESSION['auth']['role'] == 1) {
                     ?>
                         <div class="nav-item dropdown">
-                            <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Truyện</a>
-                            <div class="dropdown-menu bg-transparent border-0">
-                                <a href="index.php?act=add_comic" class="dropdown-item">Thêm truyện</a>
-                                <a href="index.php?act=list_truyen" class="dropdown-item">Danh sách truyện</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
                             <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Thể loại</a>
                             <div class="dropdown-menu bg-transparent border-0">
                                 <a href="index.php?act=list_loai" class="dropdown-item">Danh sách</a>
                                 <a href="index.php?act=add_loai" class="dropdown-item">Thêm loại</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Truyện</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a href="index.php?act=add_comic" class="dropdown-item">Thêm truyện</a>
+                                <a href="index.php?act=list_truyen" class="dropdown-item">Danh sách truyện</a>
                             </div>
                         </div>
                         <a href="index.php?act=list_kh" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Người dùng</a>
