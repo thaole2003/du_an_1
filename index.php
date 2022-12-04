@@ -356,6 +356,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                             } catch (Exception $e) {
                                 echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
                             }
+                        }else{
+                            $_SESSION['err_pw_em'] = 'Email chưa đăng ký!'; 
                         }
                     }
                 }
