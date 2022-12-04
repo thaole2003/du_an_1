@@ -32,7 +32,7 @@
                             <input placeholder="<?php echo isset($_SESSION['send_email']) ? $_SESSION['send_email'] : '' ?>" class="w-full h-[35px]  mt-2" type="text" value="<?= $email ?>" name="email">
                         </div>
                     </div>
-                    <div class="flex flex-col p-2  w-full "><label class="w-1/2 " for=""><i class="fas fa-xs fa-star-of-life pt-2"></i> Bình luận</label>
+                    <div class="flex flex-col p-2  w-full "><label class="w-1/2 " for=""><i class="fas fa-xs fa-star-of-life pt-2"></i> Góp ý</label>
                         <textarea placeholder="<?php echo isset($_SESSION['send_comment']) ? $_SESSION['send_comment'] : '' ?>" class=" h-[100px]  mt-2" type="text" name="comment"></textarea>
                     </div>
                 </div>
