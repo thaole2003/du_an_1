@@ -135,9 +135,7 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $client_chapter = client_chapter($id);
             }
             $comic = comic_select_one($id);
-            // echo '<pre>';
-            // print_r($client_chapter);
-            // die;
+
             if ($comic['vip'] == 1) {
                 if(isset($_SESSION['auth'])){
                     if ($comic['price'] > $_SESSION['auth']['coin']) {

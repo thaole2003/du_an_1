@@ -457,15 +457,20 @@ if (isset($_GET['act'])) {
                 $category = $_POST['category'];
                 $number_chapter = $_POST['number_chapter'];
                 $noi_dung = $_POST['noi_dung'];
+                $allowUpload = true;
 
                 if ($_POST['vip'] == 0) {
                     $price_comic = 0;
                     $vip = 0;
                 } else {
                     $price_comic = $_POST['price_comic'];
+                    if($price_comic < 0){
+                        $tien_nho_hon_0 = 'Giá tiền phải là dương!';
+                        $allowUpload = false;
+                    }
                     $vip = 1;
                 }
-                $allowUpload = true;
+
                 if ($noi_dung == "") {
                     $noi_dung_trong = 'Không được để trống nội dung tập';
                     $allowUpload = false;
@@ -560,12 +565,6 @@ if (isset($_GET['act'])) {
                         }
                     }
 
-                    //kiểm tra nếu như file đã tồn tại thì sẽ ko cho phép up nữa a
-                    // if (file_exists($target_file)) {
-                    //     $file_ton_tai_f = "Tên file đã tồn tại trên server ko được ghi đè";
-                    //     $allowUpload = false;
-                    // }
-
                     //kiểm tra kiêu file không làm trong định dạng cho phép
                     if (!in_array($imageFileType, $allowtype)) {
                         $loi_dinh_dang_f = "Không được upload những ảnh có định dạng ipg, jpeg";
@@ -595,9 +594,7 @@ if (isset($_GET['act'])) {
                 $id_chapter = $_GET['add'];
                 $date = date('m/d/Y h:i:s a', time());
                 $count_chapter = count_chapter($id);
-                // echo '<pre>';
-                // print_r($count_chapter);
-                // die;
+
                 if (isset($_POST['btnAdd'])) {
                     $number_chapter = $_POST['number_chapter'];
                     $noi_dung = $_POST['noi_dung'];
@@ -719,9 +716,7 @@ if (isset($_GET['act'])) {
                 $load_one = load_one_chapter($id, $id_chapter);
                 $count_chapter = count_chapter($id);
                 $noi_dung_id = load_one_noi_dung_chapter($id, $id_chapter);
-                // echo '<pre>';
-                // print_r($noi_dung);
-                // die;
+
                 if (isset($_POST['btn-update'])) {
                     $noi_dung = $_POST['noi_dung'];
                     $allowUpload = true;
@@ -796,15 +791,20 @@ if (isset($_GET['act'])) {
                 $category_id = $_POST['category_id'];
                 $name_cu = comic_select_one($id)['name'];
                 $ten_cu = load_all_comic_edit($name_cu);
+
+                $allowUpload = true;
+
                 if ($_POST['vip'] == 0) {
                     $price_comic = 0;
                     $vip = 0;
                 } else {
                     $price_comic = $_POST['price_comic'];
+                    if($price_comic < 0){
+                        $_SESSION['tien_nho'] = 'Giá tiền phải là dương!';
+                        $allowUpload = false;
+                    }
                     $vip = 1;
                 }
-
-                $allowUpload = true;
 
                 if ($name == "") {
                     $_SESSION['trong_truyen'] = "Không được để trống tên truyện!";

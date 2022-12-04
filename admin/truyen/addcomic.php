@@ -130,13 +130,27 @@
             <br>
         </div>
         <!--Svip-->
+        <?php 
+            if(isset($tien_nho_hon_0)){
+                $checked = "checked";
+                $none = "block;";
+            }else{
+                $none = "none;";
+                $checked = "";
+            }
+        ?>
+
         <label class="font-medium">Truyện</label><br>
         <input type="radio" value="0" checked name="vip" onclick="hien_thi(false)" />Truyện thường
-        <input type="radio" value="1" name="vip" onclick="hien_thi(true)" />Truyện Svip
+        <input type="radio" value="1" <?= $checked ?> name="vip" onclick="hien_thi(true)" />Truyện Svip
 
-        <p id="loai_vip" style="display:none">
+        <p id="loai_vip" style="display: <?= $none ?>">
             <label>Loại Svip</label><br>
             <input placeholder="Nhập giá truyện" class=" border-0 my-2 focus:outline-none border-solid border border-yellow-400 w-full  h-[40px] " type="text" placeholder="price" name="price_comic" />
+            <span class="font-medium text-red-500">
+            <?php if (isset($tien_nho_hon_0)) {
+                echo $tien_nho_hon_0;
+            } ?></span>
         </p>
         <br>
         <button style="margin-top: 10px;" class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="btnAdd">Thêm</button>
