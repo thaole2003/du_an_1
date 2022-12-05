@@ -322,33 +322,25 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                             update_password($id, $hash_pw);
                             $mail = new PHPMailer(true);
                             try {
-                                //Server settings
-                                $mail->SMTPDebug = 0;                                 // Enable verbose debug output
-                                $mail->isSMTP();                                      // Set mailer to use SMTP
-                                $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-                                $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                                $mail->Username = 'nqv31032003@gmail.com';                 // SMTP username
-                                $mail->Password = 'xaylurdindyluteq';                               // SMTP password
-                                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-                                $mail->Port = 587;                                    // TCP port to connect to
+                                $mail->SMTPDebug = 0;                               
+                                $mail->isSMTP();                                      
+                                $mail->Host = 'smtp.gmail.com';  
+                                $mail->SMTPAuth = true;                        
+                                $mail->Username = 'nqv31032003@gmail.com';               
+                                $mail->Password = 'xaylurdindyluteq';                             
+                                $mail->SMTPSecure = 'tls';                            
+                                $mail->Port = 587;                                 
 
-                                //Recipients
+                      
                                 $mail->setFrom('nqv31032003@gmail.com', 'Mailer');
-                                $mail->addAddress($email, $name_user);     // Add a recipient
-                                // $mail->addAddress('vietnqph27022@fpt.edu.vn','việt sếch');               // Name is optional
-                                // $mail->addReplyTo('info@example.com', 'Information');
+                                $mail->addAddress($email, $name_user);   
+                               
                                 $mail->addCC('nqv31032003@gmail.com');
-                                // $mail->addBCC('bcc@example.com');
-
-                                //Attachments
-                                // $mail->addent('/vAttachmar/tmp/file.tar.gz');         // Add attachments
-                                // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-                                //Content
-                                $mail->isHTML(true);                                  // Set email format to HTML
+                               
+                                $mail->isHTML(true);                              
                                 $mail->Subject = 'Mật khẩu mới của bạn';
                                 $mail->Body    = 'Đây là mật khẩu mới của bạn ' . $pass_new;
-                                // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients'; 
+                          
 
                                 $mail->send();
                                 $_SESSION['succes_pw'] = 'Mật khẩu mới đã được gửi trong email của bạn.';
