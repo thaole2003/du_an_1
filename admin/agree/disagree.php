@@ -4,7 +4,7 @@
         <h1 class="text-xl font-medium p-4">Lí do từ chối</h1>
     </div>
     <div class="p-4">
-        <!-- <a href="index.php?act=add_comic"> <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400">Thêm</button></a> -->
+        <!-- <a href="index.php?act=add_comic"> <button class="bg-orange-400 hover:bg-blue-500 hover:text-orange-400 font-medium text-white p-2 px-4 rounded-md border-solid border-2 border-yellow-400">Thêm</button></a> -->
     </div>
     <div class="p-4">
        <form action="" method="post" class="flex flex-col ">

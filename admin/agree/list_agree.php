@@ -7,7 +7,7 @@
         <form action="index.php?act=search_agree" method="POST">
             <input type="text" placeholder="Mời nhập tên người đăng" name="key_search" class="w-[300px] h-[44px]  border border-solid border-yellow-400">
 
-            <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="btn_search">Tìm kiếm</button>
+            <button class="bg-orange-400 hover:bg-blue-500 hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="btn_search">Tìm kiếm</button>
         </form>
     </div>
     <div class="p-4">

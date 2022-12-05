@@ -12,7 +12,7 @@
                 <option class="font-medium text-xl" value="1">Giao dịch thành công</option>
                 <option class="font-medium text-xl" value="2">Giao dịch thất bại</option>
             </select>
-            <button class="bg-orange-400 hover:bg-white hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="btn_search">Tìm kiếm</button>
+            <button class="bg-orange-400 hover:bg-blue-500 hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="btn_search">Tìm kiếm</button>
         </form>
     </div>
     <div class="p-4">

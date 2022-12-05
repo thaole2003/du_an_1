@@ -145,7 +145,7 @@
             <form action="" method="POST">
                 <div class="flex p-2 gap-2">
                     <input type="text" name='text_cmt' class="border border-solid border-zinc-400 h-10 w-[300px] rounded-md border-yellow-400" placeholder="<?php echo isset($_SESSION['err_cmt']) ? $_SESSION['err_cmt'] : '' ?>">
-                    <button name="cmt" class="p-2 px-4 rounded-lg bg-orange-400 border-2 border-solid hover:bg-white hover:text-orange-500 text-white border-yellow-400">Bình luận</button>
+                    <button name="cmt" class="p-2 px-4 rounded-lg bg-orange-400 border-2 border-solid hover:bg-blue-500 hover:text-orange-500 text-white border-yellow-400">Bình luận</button>
                 </div>
 
             </form>

@@ -14,7 +14,7 @@
         <span class="m-2 text-red-500"><?php echo isset($err_address) ? $err_address : "" ?></span>
         <div class="flex justify-between border-b-2">
             <div class="flex m-2 gap-3">
-                <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-white hover:text-orange-400  border-2 border-solid" name="update">UPDATE</button> 
+                <button class="p-2 px-4 bg-orange-400 rounded-md text-white hover:bg-blue-500 hover:text-orange-400  border-2 border-solid" name="update">UPDATE</button> 
                 <?php echo isset($thongbao) ? $thongbao : "" ?></span>
             </div>
         </div>
