@@ -16,6 +16,8 @@
                 <th>Hóa đơn</th>
             </tr>
             <?php
+            if($bill){
+
             foreach ($bill as $value) {
                 extract($value);
                 // echo '<pre>';
@@ -68,7 +70,14 @@
 
                 </tr>
             <?php
-            }
+            }            
+        }{
+            ?>
+            <tr>
+            <td colspan="9"><h1 style="text-align: center; font-size:31px; font-weight:bold; margin: 20px auto; color:red;">Chưa có lịch sử giao dịch</h1></td>
+            </tr>
+            <?php
+        }
         } else {
             ?>
             <h1 class="text-center font-medium text-orange-500 p-2 px-4 text-3xl rounded border-1 border-solid border-yellow-500">Bạn cần đăng nhập để xem lịch sử giao dịch</h1>
