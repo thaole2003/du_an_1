@@ -99,7 +99,7 @@
         }
         ?>;">
             <label>Tập truyện</label><br>
-            <input class="m" value="Tập 1" disabled placeholder="Nhập tập truyện"/><br>
+            <input class="m" value="Tập 1" disabled placeholder="Nhập tập truyện" /><br>
             <input type="hidden" value="1" name="number_chapter">
 
             <label>Nội dung tập</label><br>
@@ -130,14 +130,14 @@
             <br>
         </div>
         <!--Svip-->
-        <?php 
-            if(isset($tien_nho_hon_0)){
-                $checked = "checked";
-                $none = "block;";
-            }else{
-                $none = "none;";
-                $checked = "";
-            }
+        <?php
+        if (isset($tien_nho_hon_0) || isset($sai_dinh_dang)) {
+            $checked = "checked";
+            $none = "block;";
+        } else {
+            $none = "none;";
+            $checked = "";
+        }
         ?>
 
         <label class="font-medium">Truyện</label><br>
@@ -148,9 +148,13 @@
             <label>Loại Svip</label><br>
             <input placeholder="Nhập giá truyện" class=" border-0 my-2 focus:outline-none border-solid border border-yellow-400 w-full  h-[40px] " type="text" placeholder="price" name="price_comic" />
             <span class="font-medium text-red-500">
-            <?php if (isset($tien_nho_hon_0)) {
-                echo $tien_nho_hon_0;
-            } ?></span>
+                <?php if (isset($tien_nho_hon_0)) {
+                    echo $tien_nho_hon_0;
+                }
+                if (isset($sai_dinh_dang)) {
+                    echo $sai_dinh_dang;
+                }
+                ?></span>
         </p>
         <br>
         <button style="margin-top: 10px;" class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="btnAdd">Thêm</button>

@@ -162,6 +162,11 @@ function count_email_input($email)
     $sql = "SELECT COUNT(*) from user where email='$email'";
     return pdo_query_value($sql);
 }
+// kiểm tra nhập số
+function nhap_so($nhap_so)
+{
+    return (bool)preg_match("/[0-9]/", $nhap_so);
+}
 // kiểm tra email
 function emailValid($email)
 {

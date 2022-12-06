@@ -491,7 +491,7 @@ if (isset($_GET['act'])) {
                 $all_name_comic = comic_select_all_name();
                 $flag = true;
                 $date = date('m/d/Y h:i:s a', time());
-                $namee = $_POST['name_comic'];
+                $namee = trim($_POST['name_comic']);
                 $length2 = strlen($namee);
                 $detail = $_POST['detail'];
                 $author = $_POST['author'];
@@ -510,6 +510,10 @@ if (isset($_GET['act'])) {
                     $price_comic = $_POST['price_comic'];
                     if ($price_comic < 0) {
                         $tien_nho_hon_0 = 'Giá tiền phải là dương!';
+                        $allowUpload = false;
+                    }
+                    if(!nhap_so($price_comic)){
+                        $sai_dinh_dang = 'Không được nhập chữ!';
                         $allowUpload = false;
                     }
                     $vip = 1;
@@ -641,7 +645,7 @@ if (isset($_GET['act'])) {
 
                 if (isset($_POST['btnAdd'])) {
                     $number_chapter = $_POST['number_chapter'];
-                    $noi_dung = $_POST['noi_dung'];
+                    $noi_dung = trim($_POST['noi_dung']);
                     $allowUpload = true;
                     if ($noi_dung == "") {
                         $noi_dung_trong = 'Không được để trống nội dung tập';
@@ -762,7 +766,7 @@ if (isset($_GET['act'])) {
                 $noi_dung_id = load_one_noi_dung_chapter($id, $id_chapter);
 
                 if (isset($_POST['btn-update'])) {
-                    $noi_dung = $_POST['noi_dung'];
+                    $noi_dung = trim($_POST['noi_dung']);
                     $allowUpload = true;
 
                     if ($_FILES["file"]["name"][0] == "") {
@@ -828,7 +832,7 @@ if (isset($_GET['act'])) {
             if (isset($_POST['btn-update'])) {
                 $date = date('m/d/Y h:i:s a', time());
                 $id = $_POST['id'];
-                $name = $_POST['name'];
+                $name = trim($_POST['name']);
                 $detail = $_POST['detail'];
                 $author = $_POST['author'];
                 $intro = $_POST['intro'];
