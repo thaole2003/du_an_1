@@ -64,8 +64,8 @@ function thong_ke_coin(){
     return pdo_query_one($sql);
 }
 function select_top_coin(){
-    $sql="SELECT bill.id_user, name, SUM(price) as total_price,bill.email,bill.phone,bill.date FROM bill WHERE `status`=1
-    GROUP BY bill.id_user ORDER BY total_price DESC  LIMIT 5;";
+    $sql="SELECT bill.id,bill.id_user, `user`.name as name, SUM(price) as total_price,`user`.email as email,`user`.address as address,`user`.phone as phone,bill.date as date FROM bill INNER JOIN `user` ON bill.id_user=`user`.id WHERE `status`=1
+    GROUP BY bill.id_user ORDER BY total_price DESC  LIMIT 5";
     return pdo_query($sql);
 }
 
