@@ -32,7 +32,7 @@
                 </td>
                 <td>
                     <div class="vien"></div>
-                    <input type="text" name="name" value="<?= $name ?>" disabled>
+                    <input type="text" name="name" value="<?= $_SESSION['auth']['name']; ?>" disabled>
                 </td>
             </tr>
             <tr>
@@ -42,7 +42,7 @@
                 </td>
                 <td>
                     <div class="vien"></div>
-                    <input type="text" name="email" value="<?= $email ?>" disabled>
+                    <input type="text" name="email" value="<?= $_SESSION['auth']['email']; ?>" disabled>
                 </td>
             </tr>
             <tr>
@@ -52,7 +52,7 @@
                 </td>
                 <td>
                     <div class="vien"></div>
-                    <input type="text" name="address" value="<?= $address ?>" disabled>
+                    <input type="text" name="address" value="<?= $_SESSION['auth']['address']; ?>" disabled>
                 </td>
             </tr>
             <tr>
@@ -62,7 +62,7 @@
                 </td>
                 <td>
                     <div class="vien"></div>
-                    <input type="text" name="phone" value="<?= $phone ?>" disabled>
+                    <input type="text" name="phone" value="<?= $_SESSION['auth']['phone']; ?>" disabled>
                 </td>
             </tr>
             <tr>
@@ -96,16 +96,16 @@
                 <td>
                     <div class="vien"></div>
                     <p class="">Hóa đơn chuyển tiền</p>
-                    <br>
-
-                    <span>
-                        <br><?php echo isset($_SESSION['bill']) ? $_SESSION['bill'] : '' ?>
-
-                        <?php unset($_SESSION['bill']) ?></span>
                 </td>
                 <td class="items-center">
-                    <div class="vien" style="margin-top: -9px;"></div>
+                    <div class="vien" style="margin-top: 5px;"></div>
                     <input type="file" name="fileupload" id="fileToUpload">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <b style="color:red; margin-left: 200px"><?php echo isset($_SESSION['bill']) ? $_SESSION['bill'] : '' ?></b>
+                    <?php unset($_SESSION['bill']) ?>
                 </td>
             </tr>
             <tr>

@@ -17,7 +17,8 @@
                 <a class="hover:text-sky-500" href="">Đăng nhập</a>|<a class="hover:text-sky-500" href="">Đăng kí</a>
             </div>
             <div class="flex m-2 gap-3">
-                <button name="dmk" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-orange-500"> Đổi mật khẩu</button> <button id="cancellogin" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-blue-500">Cancel</button>
+                <button name="dmk" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-orange-500"> Đổi mật khẩu</button>
+                <a class="border border-soild h-8 rounded-lg  h-10 p-2 bg-blue-500" href="index.php">Cancel</a>
             </div>
         </div>
         <div class="flex gap-2 justify-center m-3">

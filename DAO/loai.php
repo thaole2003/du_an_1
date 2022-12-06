@@ -62,7 +62,16 @@ function load_all_loai_fk($id)
     $all = pdo_query($sql);
     return $all;
 }
-
+function load_all_comic_not_chapter($id){
+    $sql = "SELECT A.id as id_not_chapter FROM comic A INNER JOIN category B on A.category_id = B.id WHERE B.id = $id";
+    $all = pdo_query($sql);
+    return $all;
+}
+function load_all_comic_not_images($id){
+    $sql = "SELECT A.id,C.id_comic FROM comic A INNER JOIN category B on A.category_id = B.id INNER JOIN chapter C ON A.id = C.id_comic WHERE B.id = $id";
+    $all = pdo_query($sql);
+    return $all;
+}
 function load_all_history($id)
 {
     $sql = "SELECT A.id as id_history

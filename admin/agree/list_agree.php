@@ -28,6 +28,7 @@
             </thead>
             <tbody class="font-medium text-lg border-2">
                 <?php
+                if($comic_select_all_bystatus){
                 foreach ($comic_select_all_bystatus as $key => $value) {
                     extract($value);
                     $yess = "index.php?act=yes&id=" . $id;
@@ -51,6 +52,11 @@
                     </tr>
                 <?php
                 }
+            }else{
+                ?>
+                <td colspan="9"><h1 style="text-align: center; font-size:31px; font-weight:bold; margin: 20px auto; color:red;">Chưa có truyện để duyệt</h1></td>
+                <?php
+            }
                 ?>
             </tbody>
         </table>

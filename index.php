@@ -516,6 +516,19 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
             //Nạp coin
         case 'coin':
+            if ($_SESSION['auth']) {
+                if (isset($_POST['nap_coin'])) {
+                    if ($_POST['price'] != 0) {
+                        $price = $_POST['price'];
+                        header('location:index.php?act=chi_tiet_coin&price='.$price);
+                    } else {
+                        $menh_gia = "Bạn chưa chọn mệnh giá";
+                    }
+                }
+            } else {
+                $_SESSION['chua_dn'] = "Bạn cần đăng nhập để nạp coin";
+                header('location:index.php?act=coin');
+            }
             include "views/coin.php";
             break;
         case 'del_tb':
@@ -526,23 +539,8 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             header("location:index.php");
             break;
         case 'chi_tiet_coin':
-            if ($_SESSION['auth']) {
-                if (isset($_POST['nap_coin'])) {
-                    if ($_POST['price'] != 0) {
-                        $price = $_POST['price'];
-                        $id = $_SESSION['auth']['id'];
-                        $email = $_SESSION['auth']['email'];
-                        $name = $_SESSION['auth']['name'];
-                        $phone = $_SESSION['auth']['phone'];
-                        $address = $_SESSION['auth']['address'];
-                    } else {
-                        $_SESSION['chon_menh_gia'] = "Bạn chưa chọn mệnh giá";
-                        header('location:index.php?act=coin');
-                    }
-                }
-            } else {
-                $_SESSION['chua_dn'] = "Bạn cần đăng nhập để nạp coin";
-                header('location:index.php?act=coin');
+            if(isset($_GET['price'])){
+                $price = $_GET['price'];
             }
             include "views/chi_tiet_coin.php";
             break;
@@ -558,12 +556,10 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                 $phone = $_SESSION['auth']['phone'];
                 $status = 0;
                 $flag_bill = true;
-                // echo '<pre>';
-                // var_dump($_FILES["fileupload"]);
-                // die;
+
                 if ($_FILES["fileupload"]['name'] == '') {
                     $_SESSION['bill'] = 'Không tồn tại file để upload';
-                    include "views/chi_tiet_coin.php";
+                    header('location:index.php?act=chi_tiet_coin&price='.$price);
                     break;
                 } else {
                     //đã tồn tại
@@ -585,31 +581,23 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
                     if ($check == false) {
                         $_SESSION['bill'] = "Đây không phải là file ảnh";
                         $flag_bill = false;
-                        include "views/chi_tiet_coin.php";
+                        header('location:index.php?act=chi_tiet_coin&price='.$price);
                         break;
                     } else {
                         if (!in_array($imageFileType, $allowType)) {
                             $_SESSION['bill'] = "Chỉ được upload những định dạng jpg, jpeg,png";
                             $flag_bill = false;
-                            include "views/chi_tiet_coin.php";
-                            break;
-                        }
-                        if (file_exists($target_file)) {
-                            $_SESSION['bill'] = ' file đã tồn tại trên sever không được ghi đè';
-                            $flag_bill = false;
-                            include "views/chi_tiet_coin.php";
+                            header('location:index.php?act=chi_tiet_coin&price='.$price);
                             break;
                         }
                     }
-
-
 
                     if ($flag_bill == true) {
                         //xử lý di chuyển file tạm vào thư mục cần lưu trữ
                         $name_img = $_FILES["fileupload"]["name"];
                         // Upload file
                         move_uploaded_file($_FILES['fileupload']['tmp_name'],  $target_file);
-                        insert_bill($id_user, $name, $price, $email, $address, $phone, $status, $date, $name_img);
+                        insert_bill($id_user, $price, $status, $date, $name_img);
                         header('location:index.php?act=hoa_don');
                     }
                 }

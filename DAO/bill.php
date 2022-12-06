@@ -1,15 +1,17 @@
 <?php 
-function insert_bill($id_user,$name,$price,$email,$address,$phone,$status,$date,$name_img){
-    $sql = "insert into bill(id_user,name,price,email,address,phone,status,date,images) values('$id_user','$name','$price','$email','$address','$phone','$status','$date','$name_img')";
+function insert_bill($id_user,$price,$status,$date,$name_img){
+    $sql = "insert into bill(id_user,price,status,date,images) values('$id_user','$price','$status','$date','$name_img')";
     pdo_execute($sql);
 }
 function load_all_bill($id_user){
-    $sql = "select * from bill where id_user='$id_user' order by id desc";
+    $sql = "select * from bill A INNER JOIN user B ON A.id_user = B.id
+    where id_user= $id_user order by A.id desc";
     $bill = pdo_query($sql);
     return $bill;
 }
 function load_bill(){
-    $sql = "select * from bill order by id desc";
+    $sql = "select A.id,A.price,A.status,A.date,A.id_user,A.images,B.name,B.phone,B.address,B.email from bill A INNER JOIN user B ON A.id_user = B.id
+    order by A.id desc";
     $bill = pdo_query($sql);
     return $bill;
 }
@@ -19,7 +21,8 @@ function delete_gd($ma_comic)
     return pdo_execute($sql);
 }
 function load_one_bill($id){
-    $sql = "select * from bill where id='$id' order by id desc";
+    $sql = "select A.id,A.price,A.status,A.date,A.id_user,A.images,B.name,B.phone,B.address,B.email from bill A INNER JOIN user B ON A.id_user = B.id where A.id = $id
+    order by A.id desc";
     $bill = pdo_query_one($sql);
     return $bill;
 }
@@ -33,7 +36,7 @@ function update_coin($id,$coin){
 }
 function search_bill($key, $status)
 {
-    $sql = "select * from bill where 1";
+    $sql = "select A.id,A.price,A.status,A.date,A.id_user,A.images,B.name,B.phone,B.address,B.email from bill A INNER JOIN user B ON A.id_user = B.id where 1";
 
     if ($key != "") {
         $sql .= " and name like '%" . $key . "%'";

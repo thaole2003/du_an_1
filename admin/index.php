@@ -121,6 +121,8 @@ if (isset($_GET['act'])) {
                 $all_comment = load_all_comment($id_category);
                 $all_love = load_all_love($id_category);
                 $all_his = load_all_history($id_category);
+                $all_not_chapter = load_all_comic_not_chapter($id_category);
+                $all_loai_not_images_chapter = load_all_comic_not_images($id_category);
 
                 if ($all_his) {
                     foreach ($all_his as $value) {
@@ -148,12 +150,22 @@ if (isset($_GET['act'])) {
                         extract($value);
                         delete_comic_img($id_chapter);
                     }
-                    foreach ($all as $value) {
+                }
+
+                if ($all_loai_not_images_chapter) {
+                    foreach ($all_loai_not_images_chapter as $value) {
                         extract($value);
                         delete_comic_chapter($id_comic);
                     }
-                    delete_fk_comic($id_category);
                 }
+
+                if ($all_not_chapter) {
+                    foreach ($all_not_chapter as $value) {
+                        extract($value);
+                        delete_comic($id_not_chapter);
+                    }
+                }
+                delete_fk_comic($id_category);
                 delete_loai($id_category);
                 header("location: index.php?act=list_loai");
                 // $list_all_loai = load_all_loai();
@@ -239,9 +251,7 @@ if (isset($_GET['act'])) {
             }
             $all_user = all_user();
             $role = load_all_roll();
-            // echo '<pre>';
-            // print_r($all_user);
-            // die;
+
             include_once './user/users.php';
             break;
             //search user
@@ -265,6 +275,27 @@ if (isset($_GET['act'])) {
             }
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
+                $all_chapter = all_chapter_poster($id);
+                $all_images = all_images_poster($id);
+
+                delete_user_love($id);
+                delete_user_cmt($id);
+                delete_user_his($id);
+
+                if ($all_images) {
+                    foreach ($all_images as $value) {
+                        delete_images_poster($value['id_chapter']);
+                    }
+                }
+
+                if ($all_chapter) {
+                    foreach ($all_chapter as $value) {
+                        delete_chapter_poster($value['id']);
+                    }
+                }
+
+                delete_comic_user($id);
+
                 delete_user($id);
                 $all_user = all_user();
                 include_once './user/users.php';
@@ -432,6 +463,19 @@ if (isset($_GET['act'])) {
             $comic_select_all_bystatus_3 = comic_select_all_bystatus_3();
             include_once "../admin/agree/waitagree.php";
             break;
+        case 'search_wait':
+            if (isset($_POST['btn_search'])) {
+                $key = $_POST['key_search'];
+                $category_id = $_POST['category_id'];
+            } else {
+                $key = '';
+                $category_id = 0;
+                $comic_select_all_bystatus_3 = comic_select_all_bystatus_3();
+            }
+            $list_all_loai = load_all_loai();
+            $comic_select_all_bystatus_3 = comic_select_all_bystatus_3_search($key, $category_id);
+            include_once "../admin/agree/waitagree.php";
+            break;
         case 'again':
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
@@ -464,7 +508,7 @@ if (isset($_GET['act'])) {
                     $vip = 0;
                 } else {
                     $price_comic = $_POST['price_comic'];
-                    if($price_comic < 0){
+                    if ($price_comic < 0) {
                         $tien_nho_hon_0 = 'Giá tiền phải là dương!';
                         $allowUpload = false;
                     }
@@ -669,7 +713,7 @@ if (isset($_GET['act'])) {
                 delete_img_history($id);
                 delete_img_love($id);
                 delete_img_comment($id);
-                foreach($id_chapter as $value){
+                foreach ($id_chapter as $value) {
                     extract($value);
                     delete_comic_img($id_chapter);
                 }
@@ -699,7 +743,7 @@ if (isset($_GET['act'])) {
                 $number_chapter = $_GET['number_chapter'];
                 $count = count_chapter_delete($id);
                 delete_comic_img($id_chapter);
-                $limit = select_limit_chapter($number_chapter, $id,$count);
+                $limit = select_limit_chapter($number_chapter, $id, $count);
                 foreach ($limit as $value) {
                     extract($value);
                     tru_chapter($value['number_chapter'], $id);
@@ -799,7 +843,7 @@ if (isset($_GET['act'])) {
                     $vip = 0;
                 } else {
                     $price_comic = $_POST['price_comic'];
-                    if($price_comic < 0){
+                    if ($price_comic < 0) {
                         $_SESSION['tien_nho'] = 'Giá tiền phải là dương!';
                         $allowUpload = false;
                     }
@@ -997,7 +1041,7 @@ if (isset($_GET['act'])) {
             include_once '../admin/bill/edit_bill.php';
             break;
         case 'update_bill':
-       
+
             if (isset($_POST['cap_nhat'])) {
                 $status = $_POST['status'];
                 $id = $_POST['id'];

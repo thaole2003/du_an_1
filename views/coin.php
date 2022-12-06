@@ -26,7 +26,7 @@
             </tr>
         </table>
         <table class="thanh_toan">
-            <form action="index.php?act=chi_tiet_coin" method="POST">
+            <form action="index.php?act=coin" method="POST">
                 <tr>
                     <td colspan="2">Hình thức thanh toán
                         <div class="vien"></div>
@@ -61,8 +61,7 @@
                             <option value="200000">200,000 VNĐ</option>
                             <option value="500000">500,000 VNĐ</option>
                         </select>
-                        <span class="font-medium text-red-500"><?php if (isset($_SESSION['chon_menh_gia'])) { echo $_SESSION['chon_menh_gia']; } 
-                        unset($_SESSION['chon_menh_gia']);
+                        <span class="font-medium text-red-500"><?php if (isset($menh_gia)) { echo $menh_gia; } 
                         ?></span>
                     </td>
                 </tr>

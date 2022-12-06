@@ -238,6 +238,30 @@ where c.status=3
 ";
     return pdo_query($sql);
 }
+function comic_select_all_bystatus_3_search($key,$category_id)
+{
+    $sql = "SELECT 
+    c.*, 
+    c.cover_image as img_name,
+    ca.name as ca_name,
+		u.email as u_email,
+        u.name as name_poster
+from comic c
+join category ca
+on c.category_id = ca.id
+join user u
+on c.poster = u.id
+where c.status=3";
+    if ($key != "") {
+        $sql .= " and c.name like '%" . $key . "%'";
+    }
+    if ($category_id > 0) {
+        $sql .= " and c.category_id = '" . $category_id . "'";
+    }
+    $sql .= " order by c.id desc";
+    return pdo_query($sql);
+}
+
 function select_email_agree($id)
 {
     $sql = "SELECT comic.id,comic.poster ,user.email,user.name

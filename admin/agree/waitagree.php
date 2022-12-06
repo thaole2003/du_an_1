@@ -3,12 +3,25 @@
     <div class="">
         <h1 class="text-xl font-medium p-4">Truyện cần sửa lại</h1>
     </div>
-   
+    <div class="p-4">
+        <form action="index.php?act=search_wait" method="POST" class="">
+            <input placeholder="Mời nhập tên truyện muốn tìm kiếm" type="text" name="key_search" class="w-[300px] h-[44px]  border border-solid border-yellow-400">
+            <select name="category_id" class="p-2 px-4 rounded-md h-[44px]">
+                <option value="0" selected>Tất cả</option>
+                <?php
+                $list_all_loai = load_all_loai();
+                foreach ($list_all_loai as $KEY => $VAL) {
+                ?>
+                    <option class="font-medium text-xl" value="<?= $VAL['id'] ?>"><?= $VAL['name'] ?></option>
+                <?php } ?>
+            </select>
+            <button class="bg-orange-400 hover:bg-blue-500 hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="btn_search">Tìm kiếm</button>
+        </form>
+    </div>
     <div class="p-4">
         <table class="table-auto w-full">
             <thead class="text-xl border-2">
                 <tr class="bg-red-200 ">
-                    <th class="p-2 border-2">Tên người đăng</th>
                     <th class="p-2 border-2">Mã truyện</th>
                     <th class="p-2 border-2">Tên truyện</th>
                     <th class="p-2 border-2">Tác giả</th>
@@ -29,7 +42,6 @@
                     // $noo = "index.php?act=no&id=" . $id;
                 ?>
                     <tr class="text-center  ">
-                        <td class="p-2 border-2 border-solid"><?php echo $name_poster ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $id ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $name ?></td>
                         <td class="p-2 border-2 border-solid "><?php echo $author ?></td>

@@ -14,6 +14,11 @@
                 <?php
                 if ($all_comic_by_categoryid) {
                     foreach ($all_comic_by_categoryid as $key => $value) {
+                        if ($value['vip'] == 1) {
+                            $display = "block";
+                        } else {
+                            $display = "none";
+                        }
                 ?>
                         <a href="index.php?act=detail&id=<?= $value['id'] ?>">
                             <div class="col">
@@ -23,15 +28,17 @@
                                     <a href="index.php?act=detail&id=<?= $value['id'] ?>">
                                         <h4><?php echo $value['name'] ?></h4>
                                     </a>
+                                    <p style="display: <?= $display ?>;"><?= number_format($value['price']); ?> Coin</p>
                                     <div class="ngay_update">
-                                        <h5><?php echo substr($value['date'], 0, 11) ?></h5>
+                                        <h5 style="color: white;"><?php echo substr($value['date'], 0, 11) ?></h5>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </a>
                     <?php }
                 } else { ?>
-                    <h1 class="text-center font-medium text-orange-500 p-2 px-4 text-3xl rounded border-1 border-solid border-yellow-500">Chưa có truyện</h1>
+                    <h1 class="text-center font-medium text-orange-500 p-2 px-4 text-3xl rounded">Chưa có truyện</h1>
                 <?php
                 }
             } else {

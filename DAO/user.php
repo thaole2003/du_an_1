@@ -206,3 +206,47 @@ function select_contact_search($key)
     $sql .= " order by id desc";
     return pdo_query($sql);
 }
+function load_all_comic_user($id_user){
+    $sql = "SELECT A.id,C.id_comic,D.id_chapter FROM comic A INNER JOIN user B on A.poster = B.id INNER JOIN chapter C ON A.id = C.id_comic INNER JOIN images D ON C.id = D.id_chapter WHERE B.id = $id_user";
+    $all = pdo_query($sql);
+    return $all;
+}
+function delete_comic_user($id_user){
+    $sql = "DELETE FROM comic where poster = $id_user";
+    return pdo_execute($sql);
+}
+function all_chapter_poster($id_user){
+    $sql = "SELECT A.id FROM comic A INNER JOIN user B on A.poster = B.id
+    INNER JOIN chapter C ON A.id = C.id_comic 
+    WHERE B.id = $id_user";
+    $all = pdo_query($sql);
+    return $all;
+}
+function delete_chapter_poster($id_comic){
+    $sql = "DELETE FROM chapter where id_comic = $id_comic";
+    return pdo_execute($sql);
+}
+function all_images_poster($id_user){
+    $sql = "SELECT D.id_chapter FROM comic A INNER JOIN user B on A.poster = B.id
+    INNER JOIN chapter C ON A.id = C.id_comic 
+    INNER JOIN images D ON C.id = D.id_chapter
+    WHERE B.id = $id_user";
+    $all = pdo_query($sql);
+    return $all;
+}
+function delete_images_poster($id_chapter){
+    $sql = "DELETE FROM images where id_chapter = $id_chapter";
+    return pdo_execute($sql);
+}
+function delete_user_his($id_user){
+    $sql = "DELETE FROM history_comic_user where id_user = $id_user";
+    return pdo_execute($sql);
+}
+function delete_user_cmt($id_user){
+    $sql = "DELETE FROM comment where user_id = $id_user";
+    return pdo_execute($sql);
+}
+function delete_user_love($id_user){
+    $sql = "DELETE FROM love where id_user = $id_user";
+    return pdo_execute($sql);
+}

@@ -17,12 +17,11 @@
                                     <h4><?= $name ?></h4>
                                 </a>
                                 <div class="ngay_update">
-                                    <h5><?= substr($date, 0, 11) ?></h5>
+                                    <h5 style="color: white;"><?= substr($date, 0, 11) ?></h5>
                                 </div>
                             </div>
                         </div>
                     </a>
-
             <?php
                 }
             } ?>
