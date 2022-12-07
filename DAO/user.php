@@ -265,3 +265,11 @@ function delete_user_love($id_user){
     $sql = "DELETE FROM love where id_user = $id_user";
     return pdo_execute($sql);
 }
+function delete_user_thong_bao($id_user){
+    $sql = "DELETE FROM thongbao where id_user = $id_user";
+    return pdo_execute($sql);
+}
+function delete_user_bill($id_user){
+    $sql = "DELETE FROM bill where id_user = $id_user";
+    return pdo_execute($sql);
+}

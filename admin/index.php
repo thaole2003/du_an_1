@@ -281,6 +281,8 @@ if (isset($_GET['act'])) {
                 delete_user_love($id);
                 delete_user_cmt($id);
                 delete_user_his($id);
+                delete_user_thong_bao($id);
+                delete_user_bill($id);
 
                 if ($all_images) {
                     foreach ($all_images as $value) {
@@ -1068,7 +1070,7 @@ if (isset($_GET['act'])) {
                     if ($price == 500000) {
                         $coin = 550000;
                     }
-                    $content = 'bạn đã được cộng ' . $coin . 'coin';
+                    $content = 'bạn đã được cộng ' . number_format($coin) . ' coin';
                     update_bill($id, $status);
                     update_coin($id_user, $coin);
                     insert_tb($id_user, $content, $date);
