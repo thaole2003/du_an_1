@@ -85,5 +85,4 @@ function del_tb($id){
     $sql = "DELETE from thongbao where id = $id";
     pdo_execute($sql);
 }
-
 ?>

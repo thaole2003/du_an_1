@@ -44,6 +44,16 @@ function update_user($id, $name, $phone, $address, $role)
     where id = $id";
     pdo_execute($sql);
 }
+//update khách hàng client
+function update_client($id, $name, $phone, $address)
+{
+    $sql = "update user set 
+    name='$name',
+    phone='$phone',
+    address='$address'
+    where id = $id";
+    pdo_execute($sql);
+}
 // xoa khách hàng 
 function delete_user($id)
 {
