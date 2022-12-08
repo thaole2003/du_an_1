@@ -853,6 +853,10 @@ if (isset($_GET['act'])) {
                         $_SESSION['tien_nho'] = 'Giá tiền phải là dương!';
                         $allowUpload = false;
                     }
+                    if(!nhap_so($price_comic)){
+                        $_SESSION['nhap_chu'] = 'Không được nhập chữ!';
+                        $allowUpload = false;
+                    }
                     $vip = 1;
                 }
 

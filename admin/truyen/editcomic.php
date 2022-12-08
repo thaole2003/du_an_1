@@ -161,11 +161,17 @@ if (is_array($load_all_comic)) {
             <label>Loại Svip</label><br>
             <input placeholder="Nhập giá truyện" class="rounded-md border-0 my-2 focus:outline-none border-solid border-2 border-yellow-400 w-full " type="text" placeholder="price" name="price_comic" value="<?= $price ?>" />
             <span class="font-medium text-red-500">
-            <?php if (isset($_SESSION['tien_nho'])) {
-                echo $_SESSION['tien_nho'];
-            } ?></span>
+                <?php if (isset($_SESSION['tien_nho'])) {
+                    echo $_SESSION['tien_nho'];
+                }
+                if (isset($_SESSION['nhap_chu'])) {
+                    echo $_SESSION['nhap_chu'];
+                }
+                ?></span>
         </p>
-        <?php unset($_SESSION['tien_nho']); ?>
+        <?php unset($_SESSION['tien_nho']);
+        unset($_SESSION['nhap_chu']);
+        ?>
         <div class="clear"></div>
         <button style="margin-top: 10px;" class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400" name="btn-update">Cập nhật</a></button>
         <button class="bg-orange-400 hover:bg-blue-500  hover:text-orange-400 font-medium text-white p-2 px-4  border-solid border border-yellow-400"><a class="text-white" href="index.php?act=list_truyen">Danh sách</a></button>
