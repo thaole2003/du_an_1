@@ -85,7 +85,7 @@ if (isset($_SESSION['succes_pw'])) {
 if (isset($_SESSION['susess_change'])) {
 ?>
     <script>
-        alert('<?= $_SESSION['susess_change'] = 'ban da doi mat khau!'; ?>');
+        alert('<?= $_SESSION['susess_change']; ?>');
     </script>
 <?php
     unset($_SESSION['susess_change']);
