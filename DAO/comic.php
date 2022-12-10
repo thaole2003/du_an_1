@@ -617,3 +617,13 @@ function count_images($id_comic,$id_chapter){
     WHERE A.id = $id_comic and B.number_chapter = $id_chapter order by C.name";
     return pdo_query_value($sql);
 }
+function load_one_nd_chapter($id,$id_chapter){
+    $sql = "SELECT A.number_chapter,A.noi_dung FROM chapter A INNER JOIN comic B on A.id_comic = B.id
+    WHERE B.id = $id and A.number_chapter = $id_chapter";
+    return pdo_query_one($sql);
+}
+function count_sl_chapter($id){
+    $sql = "SELECT COUNT(*) FROM chapter A INNER JOIN comic B on A.id_comic = B.id
+    WHERE B.id = $id";
+    return pdo_query_value($sql);
+}
