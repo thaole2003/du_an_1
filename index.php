@@ -40,7 +40,7 @@ if (isset($_SESSION['dang_xuat'])) {
 
 if (isset($_POST['search'])) {
 
-    $length = strlen($_POST['textsearch']);
+    $length = trim(strlen($_POST['textsearch']));
 
     if ($length != 0) {
         $textsearch = $_POST['textsearch'];
@@ -48,6 +48,10 @@ if (isset($_POST['search'])) {
         include_once  'views/search.php';
         include_once  './views/header_home_footer/footer.php';
         die;
+    }else{
+        $_SESSION['timkiem'] = 'bạn chưa nhập từ khóa';
+        header('location:index.php');
+       
     }
 }
 
