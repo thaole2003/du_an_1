@@ -527,18 +527,18 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
             break;
             //Nạp coin
         case 'coin':
-            if ($_SESSION['auth']) {
-                if (isset($_POST['nap_coin'])) {
+            if (isset($_POST['nap_coin'])) {
+                if ($_SESSION['auth']) {
                     if ($_POST['price'] != 0) {
                         $price = $_POST['price'];
                         header('location:index.php?act=chi_tiet_coin&price=' . $price);
                     } else {
                         $menh_gia = "Bạn chưa chọn mệnh giá";
                     }
+                } else {
+                    $_SESSION['chua_dn'] = "Bạn cần đăng nhập để nạp coin";
+                    header('location:index.php?act=coin');
                 }
-            } else {
-                $_SESSION['chua_dn'] = "Bạn cần đăng nhập để nạp coin";
-                header('location:index.php?act=coin');
             }
             include "views/coin.php";
             break;
