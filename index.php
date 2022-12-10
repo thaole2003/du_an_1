@@ -40,11 +40,15 @@ if (isset($_SESSION['dang_xuat'])) {
 
 if (isset($_POST['search'])) {
 
-    $length = strlen($_POST['textsearch']);
+    $length = trim(strlen($_POST['textsearch']));
 
     if ($length != 0) {
         $textsearch = $_POST['textsearch'];
+        $all_search = search_all($textsearch);
         header('location:index.php?act=search_comic_all&text='.$textsearch);
+    }else{
+        $_SESSION['timkiem'] = 'bạn chưa nhập từ khóa';
+        header('location:index.php');
     }
 }
 

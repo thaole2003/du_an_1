@@ -159,7 +159,7 @@ if (isset($_SESSION['dang_xuat'])) {
                     <form action="" method="POST">
                         <div class="search">
                             <div class="vien">
-                                <input type="text" name='textsearch' placeholder="Bạn muốn tìm truyện gì?">
+                                <input type="text" name='textsearch' placeholder="<?php echo isset($_SESSION['timkiem']) ? $_SESSION['timkiem'] : ' Bạn muốn tìm truyện gì?'; unset($_SESSION['timkiem'])?>">
                                 <a href="index.php?act=search"><button name="search"> <i class="fas fa-search"></i></button></a>
                             </div>
                         </div>
