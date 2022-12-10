@@ -47,12 +47,14 @@
 
                     <?php
                     if ($detail_comic['vip'] == 1) {
-                        $id_user = $_SESSION['auth']['id'];
+                        if(isset($_SESSION['auth'])){
+                            $id_user = $_SESSION['auth']['id'];
 
-                        if (check_his($id, $id_user) == "") {
-                            $onclick = "return confirm('Bạn chắc chắn muốn đọc truyện này! để đọc truyện này bạn sẽ mất " . number_format($detail_comic['price']) . " Coin')";
-                        } else {
-                            $onclick = "";
+                            if (check_his($id, $id_user) == "") {
+                                $onclick = "return confirm('Bạn chắc chắn muốn đọc truyện này! để đọc truyện này bạn sẽ mất " . number_format($detail_comic['price']) . " Coin')";
+                            } else {
+                                $onclick = "";
+                            }
                         }
                     } else {
                         $onclick = "";
