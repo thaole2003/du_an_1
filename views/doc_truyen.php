@@ -13,7 +13,7 @@
                 <img src="content/uploads/img_cua_comic/<?= $img['img'] ?>" alt="">
             <?php } ?>
         </div>
-        <div>
+        <div style="margin-bottom: 20px;">
             <?php
             if ($number_chapter == 1) {
                 $display = "none";
@@ -21,7 +21,9 @@
                 $display = "block";
             }
             ?>
-            <div class="left_prive" style="display: <?= $display ?>;">
+            <div class="left_prive bg-orange-300 hover:bg-blue-300 rounded-md p-2" style="
+            float: left;
+            display: <?= $display ?>;">
                 <?php
                 $id_chapter = $number_chapter - 1;
                 $nd_chapter = load_one_nd_chapter($id, $id_chapter);
@@ -38,7 +40,9 @@
                 $display_chapter = "block";
             }
             ?>
-            <div class="right_next" style="display: <?= $display_chapter ?>;">
+            <div class="right_next bg-orange-300 hover:bg-blue-300 rounded-md p-2" style="
+            float: right;
+            display: <?= $display_chapter ?>;">
                 <?php
                 $id_chapter = $number_chapter + 1;
                 $nd_chapter = load_one_nd_chapter($id, $id_chapter);

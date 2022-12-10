@@ -1054,3 +1054,10 @@ article .hoa_don tr td {
 .chapter tr th{
     padding: 5px;
 }
+/*next chapter*/
+.left_prive{
+    float: left;
+}
+.right_next{
+    float: right;
+}
