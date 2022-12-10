@@ -288,7 +288,7 @@ function handle_dem_truyen_cung_tl($id)
 
 function search_all($text)
 {
-    $sql = "SELECT id,name,date,cover_image as img_name
+    $sql = "SELECT id,name,vip,price,date,cover_image as img_name
     from comic 
     where name like '%$text%' and comic.status=2
     ";

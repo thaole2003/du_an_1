@@ -44,10 +44,7 @@ if (isset($_POST['search'])) {
 
     if ($length != 0) {
         $textsearch = $_POST['textsearch'];
-        $all_search = search_all($textsearch);
-        include_once  'views/search.php';
-        include_once  './views/header_home_footer/footer.php';
-        die;
+        header('location:index.php?act=search_comic_all&text='.$textsearch);
     }
 }
 
@@ -55,6 +52,14 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
     $act = $_GET['act'];
 
     switch ($act) {
+        //search comic client
+        case 'search_comic_all':
+            if(isset($_GET['text'])){
+                $textsearch = $_GET['text'];
+                $all_search = search_all($textsearch);
+            }
+            include_once  'views/search.php';
+            break;
             //Đọc truyện
         case 'doc_truyen':
             if (isset($_GET['id']) && $_GET['id'] > 0) {
