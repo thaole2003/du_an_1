@@ -10,6 +10,9 @@
                 <option value="0" selected>Tất cả</option>
                 <?php
                 $comic_all = comic_select_all();
+              
+
+               
                 foreach ($comic_all as $KEY => $VAL) {
                 ?>
                     <option class="font-medium text-xl" value="<?= $VAL['id'] ?>"><?= $VAL['name'] ?></option>
@@ -35,9 +38,11 @@
                 </tr>
             </thead>
             <tbody class="font-medium text-lg border-2">
-                <?php foreach($list_comment as $key =>$value){ 
-                    $xoa_comment="index.php?act=xoa_comment&id=" . $value['id'];
-                    ?>
+                <?php
+                if ($list_comment) {
+                    foreach ($list_comment as $key => $value) {
+                        $xoa_comment = "index.php?act=xoa_comment&id=" . $value['id'];
+                ?>
                     
                 <tr class="text-center  ">
                     <td class="p-2 border-2 border-solid "><?= $value['id'] ?></td>
@@ -51,7 +56,13 @@
                     <a href="<?= $xoa_comment ?>" onclick="return confirm('Bạn chắc chắn xóa comment này chứ!')" class="p-2 px-4 bg-orange-400 border text-white hover:bg-blue-500  hover:text-orange-400 ml-2">Xóa</a>
                     </td>
                 </tr>
-                <?php }?>
+                <?php }
+                } else{
+                    ?>
+                    <td colspan="9"><h1 style="text-align: center; font-size:31px; font-weight:bold; margin: 20px auto; color:red;">Chưa có comment</h1></td>
+                    <?php
+                }
+                    ?>
             </tbody>
         </table>
     </div>
