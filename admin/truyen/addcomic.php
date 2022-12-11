@@ -75,6 +75,10 @@
         <br>
         <label class="font-medium">Author</label><br>
         <input class=" border-0 my-2 focus:outline-none border-solid border border-yellow-400 w-full  h-[40px] " type="text" name="author" placeholder="Tác giả"><br>
+        <span class="font-medium text-red-500">
+            <?php if (isset($trong_tg)) {
+                echo $trong_tg;
+            } ?></span><br>
         <label class="font-medium">Intro</label><br>
         <input class=" border-0 my-2 focus:outline-none border-solid border border-yellow-400 w-full  h-[40px] " type="text" name="intro" placeholder="Giới thiệu"><br>
         <label class="font-medium">Loại truyện</label><br>

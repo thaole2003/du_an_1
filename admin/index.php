@@ -496,7 +496,7 @@ if (isset($_GET['act'])) {
                 $namee = trim($_POST['name_comic']);
                 $length2 = strlen($namee);
                 $detail = $_POST['detail'];
-                $author = $_POST['author'];
+                $author = trim($_POST['author']);
                 $intro = $_POST['intro'];
                 $view = 0;
                 $like = 0;
@@ -504,6 +504,11 @@ if (isset($_GET['act'])) {
                 $number_chapter = $_POST['number_chapter'];
                 $noi_dung = $_POST['noi_dung'];
                 $allowUpload = true;
+
+                if($author == ""){
+                    $trong_tg = 'Không được để trống tác giả';
+                    $allowUpload = false;
+                }
 
                 if ($_POST['vip'] == 0) {
                     $price_comic = 0;
@@ -836,13 +841,18 @@ if (isset($_GET['act'])) {
                 $id = $_POST['id'];
                 $name = trim($_POST['name']);
                 $detail = $_POST['detail'];
-                $author = $_POST['author'];
+                $author = trim($_POST['author']);
                 $intro = $_POST['intro'];
                 $category_id = $_POST['category_id'];
                 $name_cu = comic_select_one($id)['name'];
                 $ten_cu = load_all_comic_edit($name_cu);
 
                 $allowUpload = true;
+
+                if($author == ""){
+                    $_SESSION['trong_tg'] = "Không được để trống tên tác giả!";
+                    $allowUpload = false;
+                }
 
                 if ($_POST['vip'] == 0) {
                     $price_comic = 0;
@@ -896,13 +906,13 @@ if (isset($_GET['act'])) {
                     //ko là ảnh trả về false
                     $check = getimagesize($_FILES["cover_image"]["tmp_name"]);
                     if ($check == false) {
-                        $khong_phai_anh = "Đây không phải là file ảnh";
+                        $_SESSION['khong_phai_anh'] = "Đây không phải là file ảnh";
                         $allowUpload = false;
                     }
 
                     //kiểm tra kiêu file không làm trong định dạng cho phép
                     if (!in_array($imageFileType, $allowtype)) {
-                        $loi_dinh_dang = "Không được upload những ảnh có định dạng ipg, jpeg";
+                        $_SESSION['dinh_dang'] = "Chỉ được upload những ảnh có định dạng ipg, jpeg";
                         $allowUpload = false;
                     }
 

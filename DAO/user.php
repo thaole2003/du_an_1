@@ -175,7 +175,7 @@ function count_email_input($email)
 // kiểm tra nhập số
 function nhap_so($nhap_so)
 {
-    return (bool)preg_match("/[0-9]/", $nhap_so);
+    return (bool)preg_match("/^[0-9]+$/", $nhap_so);
 }
 // kiểm tra email
 function emailValid($email)

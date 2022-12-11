@@ -82,9 +82,10 @@ if (is_array($load_all_comic)) {
             <img class="w-[200px] h-[200px]" src="../content/uploads/cover_img/<?php echo $cover_image ?>" />
         </div><br>
         <input class="border-0 my-2 focus:outline-none border-solid border p-1 border-yellow-400 w-full  h-[40px] " type="file" name="cover_image" placeholder="Ảnh bìa"><br>
-        <b style="color: red;"><?php echo isset($thong_bao) ? $thong_bao : "" ?></b>
-        <b style="color: red;"><?php echo isset($khong_phai_anh) ? $khong_phai_anh : "" ?></b>
-        <b style="color: red;"><?php echo isset($loi_dinh_dang) ? $loi_dinh_dang : "" ?></b>
+        <span style="color: red; font-weight:bold;"><?php echo isset($_SESSION['khong_phai_anh']) ? $_SESSION['khong_phai_anh'] : "" ?></span><br>
+        <span style="color: red; font-weight:bold;"><?php echo isset($_SESSION['dinh_dang']) ? $_SESSION['dinh_dang'] : "" ?></span>
+        <?php unset($_SESSION['khong_phai_anh']);
+        unset($_SESSION['dinh_dang']); ?><br>
         <label class="font-medium">Detail</label>
         <br>
         <textarea class=" border-0 my-2 focus:outline-none border-solid border border-yellow-400 w-full  " name="detail" id="" cols="30" rows="10"><?php if (isset($detail) && ($detail != "")) echo $detail; ?></textarea>
@@ -93,6 +94,8 @@ if (is_array($load_all_comic)) {
         <br>
         <input class=" border-0 my-2 focus:outline-none border-solid border border-yellow-400 w-full  h-[40px] " type="text" name="author" value="<?php if (isset($author) && ($author != "")) echo $author; ?>">
         <br>
+        <span style="color: red; font-weight:bold;"><?php echo isset($_SESSION['trong_tg']) ? $_SESSION['trong_tg'] : "" ?></span><br>
+        <?php unset($_SESSION['trong_tg']); ?>
         <label class="font-medium">Intro</label>
         <br>
         <input class=" border-0 my-2 focus:outline-none border-solid border border-yellow-400 w-full  h-[40px] " type="text" name="intro" value="<?php if (isset($intro) && ($intro != "")) echo $intro; ?>">
@@ -140,8 +143,6 @@ if (is_array($load_all_comic)) {
             <a class="add_chapter" href="index.php?act=add_chapter&id=<?= $id_comic ?>&add=<?= $count_chapter['sl'] + 1 ?>">Thêm tập</a>
 
         </div>
-
-
 
         <!--Svip-->
         <label class="font-medium">Truyện</label><br>
