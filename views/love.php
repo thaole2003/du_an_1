@@ -1,6 +1,6 @@
 <!--Phần article-->
-<article>
-    <div class="truyen_hot">
+<article class="mb-60">
+    <div class="truyen_hot mb-40">
         <h3><i class="fa-solid fa-star"></i>Truyện yêu thích</h3>
         <div class="rol">
             <?php

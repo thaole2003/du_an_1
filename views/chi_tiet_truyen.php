@@ -171,7 +171,7 @@
                             </a>
                             <p style="display: <?= $display ?>;"><?= number_format($price); ?> Coin</p>
                             <div class="ngay_update">
-                                <h5><?php echo substr($date, 0, 11) ?></h5>
+                                <h5 style="color: #ffffff;"><?php echo substr($date, 0, 11) ?></h5>
                             </div>
                         </div>
                     </div>

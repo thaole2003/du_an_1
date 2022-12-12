@@ -1,5 +1,5 @@
 <!--Phần article-->
-<article>
+<article class="mb-60">
     <div class="truyen">
         <h3> <i class="fa-solid fa-flag"></i><?php echo isset($_SESSION['auth']) ? "lịch sử đọc của bạn" : "bạn cần đăng nhập để xem lịch sử" ?> </h3>
         <div class="rol">
@@ -32,8 +32,6 @@
                 }
             } ?>
         </div>
-
     </div>
-
     <div class="clear"></div>
 </article>

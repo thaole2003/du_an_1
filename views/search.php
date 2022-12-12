@@ -1,4 +1,4 @@
-<article>
+<article class="mb-60">
     <div class="truyen_hot">
         <h3 class='text-center'> <i class="fa-solid fa-heart"></i>Từ khóa của bạn tìm là '<?= $textsearch ?>'</h3>
         <h4 class='text-center'>Kết quả tìm kiếm</h4>
@@ -12,7 +12,7 @@
                 }
             ?>
                 <a href="index.php?act=detail&id=<?= $value['id']; ?>">
-                    <div class="col" style="margin-bottom: 40px;">
+                    <div class="col">
                         <div class="product">
                             <div class="img"><img class="w-[200px] h-[300px]" src="content/uploads/cover_img/<?php echo $value['img_name'] ?>" alt="">
                             </div>

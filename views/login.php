@@ -33,9 +33,5 @@
                 <a href="index.php"><button id="cancellogin" class="border border-soild h-8 rounded-lg  h-10 p-2 bg-blue-500">Cancel</button></a>
             </div>
         </div>
-        <div class="flex gap-2 justify-center m-3">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-google"></i>
-        </div>
     </form>
 </div>
