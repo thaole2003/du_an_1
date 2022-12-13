@@ -119,9 +119,9 @@
             </table>
         </div>
         <div class="gioi_thieu">
-            <h3><i class="fa-solid fa-info"></i>Giới thiệu</h3>
+            <h3><i class="fa-solid fa-info"></i>Mô tả</h3>
             <p>
-                <?= $detail_comic['intro'] ?>
+                <?= $detail_comic['detail'] ?>
             </p>
         </div>
         <div class="binh_luan w-[500px]">
