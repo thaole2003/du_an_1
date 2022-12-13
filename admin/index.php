@@ -576,7 +576,7 @@ if (isset($_GET['act'])) {
 
                     //kiểm tra kiêu file không làm trong định dạng cho phép
                     if (!in_array($imageFileType, $allowtype)) {
-                        $loi_dinh_dang = "Không được upload những ảnh có định dạng ipg, jpeg";
+                        $loi_dinh_dang = "Chỉ được upload những ảnh có định dạng ipg, jpeg";
                         $allowUpload = false;
                     }
 
@@ -622,7 +622,7 @@ if (isset($_GET['act'])) {
 
                     //kiểm tra kiêu file không làm trong định dạng cho phép
                     if (!in_array($imageFileType, $allowtype)) {
-                        $loi_dinh_dang_f = "Không được upload những ảnh có định dạng ipg, jpeg";
+                        $loi_dinh_dang_f = "Chỉ được upload những ảnh có định dạng ipg, jpeg";
                         $allowUpload = false;
                     }
                 }
@@ -693,7 +693,7 @@ if (isset($_GET['act'])) {
 
                         //kiểm tra kiêu file không làm trong định dạng cho phép
                         if (!in_array($imageFileType, $allowtype)) {
-                            $loi_dinh_dang_f = "Không được upload những ảnh có định dạng ipg, jpeg";
+                            $loi_dinh_dang_f = "Chỉ được upload những ảnh có định dạng ipg, jpeg";
                             $allowUpload = false;
                         }
                     }
@@ -810,7 +810,7 @@ if (isset($_GET['act'])) {
 
                         //kiểm tra kiêu file không làm trong định dạng cho phép
                         if (!in_array($imageFileType, $allowtype)) {
-                            $loi_dinh_dang_f = "Không được upload những ảnh có định dạng ipg, jpeg";
+                            $loi_dinh_dang_f = "Chỉ được upload những ảnh có định dạng ipg, jpeg";
                             $allowUpload = false;
                         }
                     }
