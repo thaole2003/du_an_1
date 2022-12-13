@@ -33,10 +33,6 @@
                 <button class="p-2 px-4 bg-orange-400  text-white hover:bg-blue-500  hover:text-orange-400 border border-solid  "  name="update">UPDATE</button> <button id="cancelregister" class="p-2 px-4 bg-orange-400  text-white hover:bg-blue-500  hover:text-orange-400  border border-solid "><a class="text-white" href="index.php?act=list_kh">Danh sách</a></button>
             </div>
         </div>
-        <div class="flex gap-2 justify-center m-3">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-google"></i>
-        </div>
         </form>
 </div>
 </div>
