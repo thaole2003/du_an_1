@@ -695,4 +695,3 @@ if (isset($_GET['act']) && $_GET['act'] != "") {
 }
 include_once "views/header_home_footer/footer.php";
 ?>
-<img src="./" alt="">
